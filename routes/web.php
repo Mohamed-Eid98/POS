@@ -109,5 +109,5 @@ Route::get('/city-page-{id}', [CityController::class, 'showPage'])->name('city.p
 Route::get('/addnotification', [notificationController::class, 'addnotification'])->name('notification.add');
 Route::get('/shownotification', [notificationController::class, 'shownotification'])->name('notification.show');
 
-//////////// End City All Routessdasdasdasdasdasdasdasdasdasdasdasdasdasd //////////
+//////////// End City All Routessdasdasdasdasdasdasdasdasdasdasdasdasdasd  mohamed khaled//////////
 
