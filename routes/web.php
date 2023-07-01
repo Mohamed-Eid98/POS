@@ -88,7 +88,7 @@ Route::get('/product-subcategory-{id}', [ProductController::class, 'showSub'])->
 //////////// End Product All Routes //////////
 
 
-//////////// Start city All Routes sda //////////
+//////////// Start city All Routes //////////
 
 Route::get('/add-city', [CityController::class, 'Add'])->name('city.add');
 Route::get('/add-area', [CityController::class, 'AddArea'])->name('area.add');
