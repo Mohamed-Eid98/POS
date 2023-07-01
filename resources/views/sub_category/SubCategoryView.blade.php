@@ -20,58 +20,59 @@
 @section('content')
 
 
-@if (session('delete'))
-<div class="alert alert-success">
-    {{ session('delete') }}
-</div>
-@endif
-@if (session('edit'))
-<div class="alert alert-info">
-    {{ session('edit') }}
-</div>
-@endif
+    @if (session('delete'))
+        <div class="alert alert-success">
+            {{ session('delete') }}
+        </div>
+    @endif
+    @if (session('edit'))
+        <div class="alert alert-info">
+            {{ session('edit') }}
+        </div>
+    @endif
 
-  <div class="col-xl-12">
-      <div class="card ">
+    <div class="col-xl-12">
+        <div class="card ">
 
             <div class="card-header pb-0">
             </div>
             <div class="card-body">
-                <table id="example1" class="table key-buttons text-md-nowrap">
+                <table id="example" class="table key-buttons text-md-nowrap">
                     <thead>
                         <tr>
                             <th class="border-bottom-0">#</th>
-                        <th class="border-bottom-0">  القسم الرئيسي </th>
-                        <th class="border-bottom-0">  القسم الفرعي </th>
-                        <th class="border-bottom-0"> actions</th>
+                            <th class="border-bottom-0"> القسم الرئيسي </th>
+                            <th class="border-bottom-0"> القسم الفرعي </th>
+                            <th class="border-bottom-0"> actions</th>
 
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php $i = 0; ?>
-                    @foreach ($subcategories as $section)
-                    <?php $i++; ?>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php $i = 0; ?>
+                        @foreach ($subcategories as $section)
+                            <?php $i++; ?>
 
-                    <tr>
-                        <td>{{ $i }}</td>
-                        <td>{{ $section->category->name }} </td>
-                        <td>{{ $section->name }} </td>
-                        <td>
-                            <a href="{{ route('subcategory.edit',$section->id) }}" title="تعديل" class="btn btn-info">
-                                <i class="las la-pen"></i></a>
-                                <a href="{{ route('subcategory.delete',$section->id) }}"
-                                    class="btn btn-danger" title="حذف">
-                                    <i class="las la-trash"></i></a>
-                        </td>
-                    </tr>
-                    @endforeach
+                            <tr>
+                                <td><strong>{{ $i }}</strong></td>
+                                <td><strong>{{ $section->category->name }}</strong> </td>
+                                <td><strong>{{ $section->name }}</strong> </td>
+                                <td>
+                                    <a href="{{ route('subcategory.edit', $section->id) }}" title="تعديل"
+                                        class="btn btn-info">
+                                        <i class="las la-pen"></i></a>
+                                    <a href="{{ route('subcategory.delete', $section->id) }}" class="btn btn-danger"
+                                        title="حذف">
+                                        <i class="las la-trash"></i></a>
+                                </td>
+                            </tr>
+                        @endforeach
 
 
-                </tbody>
-            </table>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
-</div>
 
 
 
@@ -118,4 +119,81 @@
             modal.find('.modal-body #section_name').val(section_name);
         })
     </script>
+    <script>
+        $(function(e) {
+            //file export datatable
+            var table = $('#example').DataTable({
+                lengthChange: false,
+                buttons: ['copy', 'excel', 'pdf', 'colvis'],
+                responsive: true,
+                language: {
+                    searchPlaceholder: 'Search...',
+                    sSearch: '',
+                    lengthMenu: '_MENU_ ',
+                }
+            });
+            table.buttons().container()
+                .appendTo('#example_wrapper .col-md-6:eq(0)');
+
+            $('#example1').DataTable({
+                language: {
+                    searchPlaceholder: 'Search...',
+                    sSearch: '',
+                    lengthMenu: '_MENU_',
+                }
+            });
+            $('#example2').DataTable({
+                responsive: true,
+                language: {
+                    searchPlaceholder: 'Search...',
+                    sSearch: '',
+                    lengthMenu: '_MENU_',
+                }
+            });
+            var table = $('#example-delete').DataTable({
+                responsive: true,
+                language: {
+                    searchPlaceholder: 'Search...',
+                    sSearch: '',
+                    lengthMenu: '_MENU_',
+                }
+            });
+            $('#example-delete tbody').on('click', 'tr', function() {
+                if ($(this).hasClass('selected')) {
+                    $(this).removeClass('selected');
+                } else {
+                    table.$('tr.selected').removeClass('selected');
+                    $(this).addClass('selected');
+                }
+            });
+
+            $('#button').click(function() {
+                table.row('.selected').remove().draw(false);
+            });
+
+            //Details display datatable
+            $('#example-1').DataTable({
+                responsive: true,
+                language: {
+                    searchPlaceholder: 'Search...',
+                    sSearch: '',
+                    lengthMenu: '_MENU_',
+                },
+                responsive: {
+                    details: {
+                        display: $.fn.dataTable.Responsive.display.modal({
+                            header: function(row) {
+                                var data = row.data();
+                                return 'Details for ' + data[0] + ' ' + data[1];
+                            }
+                        }),
+                        renderer: $.fn.dataTable.Responsive.renderer.tableAll({
+                            tableClass: 'table border mb-0'
+                        })
+                    }
+                }
+            });
+        });
+    </script>
+
 @endsection

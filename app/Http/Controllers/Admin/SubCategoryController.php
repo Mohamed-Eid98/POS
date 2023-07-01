@@ -2,8 +2,13 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
+use App\Models\Product;
+use App\Models\Category;
+use App\Models\SubCategory;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Spatie\MediaLibrary\MediaCollections\Models\Media;
+
 
 class SubCategoryController extends Controller
 {
@@ -13,6 +18,9 @@ class SubCategoryController extends Controller
     }
     public function Store(Request $request)
     {
+        // return $request;
+
+
         $request->validate([
             'cate_id' => 'required',
             'name' => 'required|unique:sub_categories|max:255',
@@ -23,10 +31,26 @@ class SubCategoryController extends Controller
             'name.unique' =>'هذا القسم مسجل مسبقا',
         ]);
 
-    subCategory::create([
-        'category_id' => $request->cate_id,
-        'name' => $request->name,
-    ]);
+    //     $subcategory = subCategory::create([
+    //     'category_id' => $request->cate_id,
+    //     'name' => $request->name,
+    // ]);
+
+
+
+
+    $subcategory = new SubCategory();
+    $subcategory->category_id = $request->cate_id;
+    $subcategory->name = $request->name;
+    $subcategory->save();
+
+
+
+    if ($request->file('pic')) {
+        $subcategory->addMediaFromRequest('pic')->usingName($subcategory->name)->toMediaCollection('imagess');
+    }
+
+
     session()->flash('Add', 'تم اضافة القسم بنجاح ');
 
     return redirect()->back();

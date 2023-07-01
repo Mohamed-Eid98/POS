@@ -6,6 +6,7 @@ use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Intervention\Image\Facades\Image;
+use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
 class CategoryController extends Controller
 {
@@ -27,24 +28,29 @@ class CategoryController extends Controller
         ]);
 
 
-        if($request->file('pic')){
-            // dd('sa');
-            $file= $request->file('pic');
-            $fileName = date('YmdHi'). $file->getClientOriginalName();
-            $file->move(public_path('uploads/category/'),$fileName);
-            $save_url = 'uploads/brand/' .$fileName;
+        // if($request->file('pic')){
+        //     // dd('sa');
+        //     $file= $request->file('pic');
+        //     $fileName = date('YmdHi'). $file->getClientOriginalName();
+        //     $file->move(public_path('uploads/category/'),$fileName);
+        //     $save_url = 'uploads/brand/' .$fileName;
 
-            Category::create([
-                'name' => $request->name,
-                'image' => $save_url
-        ]);
-        }else{
-            Category::create([
-                'name' => $request->name,
-            ]);
-        }
+        //     Category::create([
+        //         'name' => $request->name,
+        //         'image' => $save_url
+        // ]);
+        // }else{
+        //     Category::create([
+        //         'name' => $request->name,
+        //     ]);
+        // }
+        $category = new Category;
+        $category->name = $request->name;
+        $category->save();
 
-    session()->flash('Add', 'تم اضافة القسم بنجاح ');
+        $category->addMediaFromRequest('pic')->usingName($category->name)->toMediaCollection('images');
+
+        session()->flash('Add', 'تم اضافة القسم بنجاح ');
 
     return redirect()->back();
 }

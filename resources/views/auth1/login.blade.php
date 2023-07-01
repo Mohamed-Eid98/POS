@@ -20,7 +20,7 @@
                                     <div class="col-7">
                                         <div class="text-primary p-4">
                                             <h5 class="text-primary">Welcome Back !</h5>
-                                            <p>Sign in to continue to Skote.</p>
+                                            <p>Sign in to continue to Benesize.</p>
                                         </div>
                                     </div>
                                     <div class="col-5 align-self-end">
@@ -107,12 +107,14 @@
                                                     </a>
                                                 </li>
                                                 <li class="list-inline-item">
-                                                    <a href="#" class="social-list-item bg-info text-white border-info">
+                                                    <a href="#"
+                                                        class="social-list-item bg-info text-white border-info">
                                                         <i class="mdi mdi-twitter"></i>
                                                     </a>
                                                 </li>
                                                 <li class="list-inline-item">
-                                                    <a href="#" class="social-list-item bg-danger text-white border-danger">
+                                                    <a href="#"
+                                                        class="social-list-item bg-danger text-white border-danger">
                                                         <i class="mdi mdi-google"></i>
                                                     </a>
                                                 </li>
@@ -136,10 +138,11 @@
                             <div>
                                 <p>Don't have an account ? <a href="{{ url('register') }}" class="fw-medium text-primary">
                                         Signup now </a> </p>
-                                <p>© <script>
+                                <p>©
+                                    <script>
                                         document.write(new Date().getFullYear())
-
-                                    </script> Skote. Crafted with <i class="mdi mdi-heart text-danger"></i> by Themesbrand
+                                    </script> Skote. Crafted with <i class="mdi mdi-heart text-danger"></i>
+                                    by Themesbrand
                                 </p>
                             </div>
                         </div>
@@ -149,5 +152,4 @@
             </div>
         </div>
         <!-- end account-pages -->
-
     @endsection
