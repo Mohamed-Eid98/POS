@@ -102,7 +102,8 @@ Route::get('/area-delete-{id}', [CityController::class, 'Edit'])->name('city.del
 Route::post('/city-update', [CityController::class, 'Update'])->name('country.update');
 Route::get('/city-delete-{id}', [CityController::class, 'Delete'])->name('country.delete');
 Route::get('/city-page-{id}', [CityController::class, 'showPage'])->name('city.page');
-//////////// End Product All Routes //////////
+//////////// End city All Routes //////////
+
 //////////// Start city All Routes //////////
 Route::get('/addnotification', [notificationController::class, 'addnotification'])->name('notification.add');
 Route::get('/shownotification', [notificationController::class, 'shownotification'])->name('notification.show');
