@@ -250,7 +250,7 @@ foreach ($request->size as $size) {
 
 if ($request->hasFile('multi_img')) {
     foreach ($request->file('multi_img') as $image) {
-        $color_product->addMedia($image)->usingName('colorImages')->toMediaCollection('images');
+        $color_product->addMedia($image)->usingName('colorImages')->toMediaCollection('ColorImages');
     }
 }
 

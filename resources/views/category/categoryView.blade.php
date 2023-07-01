@@ -68,8 +68,13 @@
                                             <tr>
                                                 <td><strong>{{ $i }}</strong></td>
                                                 <td>
-                                                    {{-- {{ $category->getFirstMediaUrl('CategoryImages') }} --}}
-                                                    <img src="{{  $category->getFirstMediaUrl('CategoryImages') }}" alt="{{ $category->title }}" class="img-fluid">
+                                                    @if ($category->getFirstMediaUrl('CategoryImages'))
+                                                    <img src="{{  $category->getFirstMediaUrl('CategoryImages') }}" style="width: 60px;height:50px" alt="{{ $category->title }}" class="img-fluid">
+
+                                                    @else
+                                                    <img src="{{  asset('uploads/on-C100969_Image_01.jpeg') }}" style="width: 60px;height:50px" alt="{{ $category->title }}" class="img-fluid">
+
+                                                    @endif
                                                 </td>
                                                 <td><strong>{{ $category->name }}</strong></td>
                                                 <td>
@@ -177,10 +182,10 @@
             //file export datatable
             var table = $('#example').DataTable({
                 lengthChange: false,
-                buttons: ['copy', 'excel', 'pdf', 'colvis'],
+                buttons: ['copy', 'excel', 'pdff', 'colvis'],
                 responsive: true,
                 language: {
-                    searchPlaceholder: 'Search...',
+                    searchPlaceholder: 'البحث ...',
                     sSearch: '',
                     lengthMenu: '_MENU_ ',
                 }
@@ -190,7 +195,7 @@
 
             $('#example1').DataTable({
                 language: {
-                    searchPlaceholder: 'Search...',
+                    searchPlaceholder: 'البحث ...',
                     sSearch: '',
                     lengthMenu: '_MENU_',
                 }
@@ -198,7 +203,7 @@
             $('#example2').DataTable({
                 responsive: true,
                 language: {
-                    searchPlaceholder: 'Search...',
+                    searchPlaceholder: 'البحث ...',
                     sSearch: '',
                     lengthMenu: '_MENU_',
                 }
@@ -206,7 +211,7 @@
             var table = $('#example-delete').DataTable({
                 responsive: true,
                 language: {
-                    searchPlaceholder: 'Search...',
+                    searchPlaceholder: 'البحث ...',
                     sSearch: '',
                     lengthMenu: '_MENU_',
                 }
@@ -228,7 +233,7 @@
             $('#example-1').DataTable({
                 responsive: true,
                 language: {
-                    searchPlaceholder: 'Search...',
+                    searchPlaceholder: 'البحث ...',
                     sSearch: '',
                     lengthMenu: '_MENU_',
                 },
