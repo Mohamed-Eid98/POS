@@ -15,6 +15,8 @@ use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use App\Notifications\ProductNotification;
 use Illuminate\Support\Facades\Notification;
+use Spatie\MediaLibrary\MediaCollections\Models\Media;
+
 
 class ProductController extends Controller
 {
@@ -29,11 +31,11 @@ class ProductController extends Controller
 
     public function addcands()
     {
-        $categories = Category::orderBy('name', 'ASC')->get();
+        $products = Product::orderBy('name', 'ASC')->get();
         $colors = Color::orderBy('name', 'ASC')->get();
         $sizes = Size::orderBy('name', 'ASC')->get();
         // return response()->view('my-view')->header('Cache-Control', 'no-cache, no-store, must-revalidate');
-        return view('product.addcolorandsize', compact('categories', 'colors', 'sizes'));
+        return view('product.addcolorandsize', compact('products', 'colors', 'sizes'));
     }
     public function AjaxShow($id)
     {
@@ -213,6 +215,54 @@ public function Delete($id)
 
     return redirect()->back();
 }
+public function ColorSizeStore(Request $request)
+{
+
+    // return $request;
+
+        $request->validate([
+            'product_id' => 'required',
+            'size' => 'required',
+            'color' => 'required',
+        ],[
+
+            'product_id.required' =>'يرجي ادخال اسم المنتج',
+            'size.required' =>'يرجي ادخال حجم النتج ',
+            'color.required' =>'يرجي ادخال لون النتج ',
+        ]);
+
+        // $product = new Product;
+        // $product->name = $request->name;
+        // $product->save();
+
+
+        $color_product = ColorProduct::Create([
+            'product_id' => $request->product_id,
+            'color_id' => $request->color,
+        ]);
+
+foreach ($request->size as $size) {
+    ColorProductSize::create([
+        'color_product_id' => $color_product->id,
+        'size_id' => $size,
+    ]);
+}
+
+if ($request->hasFile('multi_img')) {
+    foreach ($request->file('multi_img') as $image) {
+        $color_product->addMedia($image)->usingName('colorImages')->toMediaCollection('images');
+    }
+}
+
+
+
+        session()->flash('add', 'تم اضافة البيانات بنجاح ');
+
+    return redirect()->back();
+}
+
+
+
 
 public function zero($id)
 {

@@ -52,6 +52,7 @@
                                     <thead>
                                         <tr role="row">
                                             <th>#</th>
+                                            <th> الصوره</th>
                                             <th>القسم الرئيسي</th>
                                             <th>التعديلات</th>
                                         </tr>
@@ -66,6 +67,10 @@
                                             <?php $i++; ?>
                                             <tr>
                                                 <td><strong>{{ $i }}</strong></td>
+                                                <td>
+                                                    {{-- {{ $category->getFirstMediaUrl('CategoryImages') }} --}}
+                                                    <img src="{{  $category->getFirstMediaUrl('CategoryImages') }}" alt="{{ $category->title }}" class="img-fluid">
+                                                </td>
                                                 <td><strong>{{ $category->name }}</strong></td>
                                                 <td>
                                                     <a href="{{ route('category.edit', $category->id) }}" title="Edit Data"
