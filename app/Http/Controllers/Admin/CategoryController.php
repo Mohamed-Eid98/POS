@@ -48,7 +48,7 @@ class CategoryController extends Controller
         $category->name = $request->name;
         $category->save();
 
-        $category->addMediaFromRequest('pic')->usingName($category->name)->toMediaCollection('images');
+        $category->addMediaFromRequest('pic')->usingName($category->name)->toMediaCollection('CategoryImages');
 
         session()->flash('Add', 'تم اضافة القسم بنجاح ');
 

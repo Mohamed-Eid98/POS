@@ -25,7 +25,7 @@
     <link href="{{ asset('assets/css/bootstrap.min.css') }}" id="bootstrap-style" rel="stylesheet" type="text/css" />
     <!-- Icons Css -->
     <link href="{{ asset('assets/css/icons.min.css') }}" rel="stylesheet" type="text/css" />
-    <link href="{{ URL::asset('build/libs/dropzone/min/dropzone.min.css') }}" rel="stylesheet" type="text/css" />
+    {{-- <link href="{{ URL::asset('build/libs/dropzone/min/dropzone.min.css') }}" rel="stylesheet" type="text/css" /> --}}
 @endsection
 
 
@@ -41,9 +41,9 @@
         @endslot
     @endcomponent
 
-    @if (session('Add'))
+    @if (session('add'))
         <div class="alert alert-success">
-            {{ session('Add') }}
+            {{ session('add') }}
         </div>
     @endif
 
@@ -52,14 +52,13 @@
             <div class="card">
                 <div class="card-body">
 
-                    <h4 class="card-title">إضافة مقاسات والوان المنتجس</h4>
+                    <h4 class="card-title">إضافة مقاسات والوان المنتج</h4>
                     <p class="card-title-desc">
                     </p>
 
                     <div>
 
-                        <form action="{{ route('city.store') }}" class="dropzone" method="POST"
-                            enctype="multipart/form-data">
+                        <form action="{{ route('product.addcolorandsize.store') }}" class="dropzone" method="POST" enctype="multipart/form-data">
                             @csrf
 
 
@@ -67,15 +66,14 @@
                                 <div class="form-group">
                                     <h5> اسم المنتح<span class="text-danger">*</span></h5>
                                     <div class="controls">
-                                        <select name="cate_id" id="select" class="form-control">
+                                        <select name="product_id" id="select" class="form-control">
                                             <option value="" selected disabled>-- اختر المنتج --</option>
-
-                                            <option value="">تيشرت</option>
-                                            <option value="">بنطلون</option>
-
+                                            @foreach ($products as $product)
+                                                <option value="{{ $product->id }}">{{ $product->name }}</option>
+                                            @endforeach
 
                                         </select>
-                                        @error('cate_id')
+                                        @error('product_id')
                                             <span class="text-danger">{{ $message }}</span>
                                         @enderror
                                     </div>
@@ -87,7 +85,7 @@
                                 <div class="form-group">
                                     <h5>اللون <span class="text-danger">*</span></h5>
                                     <div class="controls">
-                                        <select name="color[]" id="select" class="form-control">
+                                        <select name="color" id="select" class="form-control">
                                             <option value="" selected disabled>-- اختر اللون
                                                 --
                                             </option>
@@ -122,6 +120,41 @@
 
                                 </div>
                             </div>
+
+
+
+                            <div class="box">
+                                <div class="box-header with-border">
+                                    <h4 class="box-title">إضافة صور </h4>
+                                </div>
+                                <hr>
+                                <!-- start 2nd row  -->
+
+
+
+                                <div class="fallback">
+                                    {{-- <img src="" id="mainThmb" alt=""> --}}
+                                    <div class="row" id="preview_image">
+
+                                    </div>
+                                    <br>
+                                    <input type="file" name="multi_img[]" class="form-control" multiple=""  id="multiImg" >
+                                    @error('multi_image')
+                                        <span class="text-danger" >{{ $message }}</span>
+                                    @enderror
+                                </div>
+                                <div class="dz-message needsclick">
+                                    <div class="mb-3">
+                                        <i class="display-4 text-muted bx bxs-cloud-upload text-center"></i>
+                                    </div>
+
+                                    <h4>ادخل الصور هنا</h4>
+                                </div>
+                            </div>
+
+
+
+
                     </div>
                     <div class="text-center mt-4">
                         <input type="submit" class="btn btn-primary waves-effect waves-light" value="حفظ">
@@ -156,4 +189,54 @@
     <script src="{{ asset('assets/js/pages/form-advanced.init.js') }}"></script>
 
     <script src="{{ asset('assets/js/app.js') }}"></script>
+
+    {{-- <script type="text/javascript">
+        function mainThamUrl(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function(e) {
+                    $('#mainThmb').attr('src', e.target.result).width(130).height(150);
+                };
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+    </script> --}}
+
+
+<script>
+
+    $(document).ready(function(){
+     $('#multiImg').on('change', function(){ //on file input change
+        if (window.File && window.FileReader && window.FileList && window.Blob) //check File API supported browser
+        {
+            var data = $(this)[0].files; //this file data
+
+            $.each(data, function(index, file){ //loop though each file
+                if(/(\.|\/)(gif|jpe?g|png)$/i.test(file.type)){ //check supported file type
+                    var fRead = new FileReader(); //new filereader
+                    fRead.onload = (function(file){ //trigger function on successful read
+                    return function(e) {
+                        var img = $('<img/>').addClass('thumb').attr('src', e.target.result) .width(80)
+                    .height(80); //create image element
+                        $('#preview_image').append(img); //append image to output element
+                    };
+                    })(file);
+                    fRead.readAsDataURL(file); //URL representing the file's data.
+                }
+            });
+
+        }else{
+            alert("Your browser doesn't support File API!"); //if File API is absent
+        }
+     });
+    });
+
+    </script>
+
+{{-- <script src="{{ asset('build/libs/dropzone/min/dropzone.min.js') }}"></script> --}}
+
+{{-- <script src="{{ asset('build/js/app.js') }}"></script> --}}
+
+
+
 @endsection

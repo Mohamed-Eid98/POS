@@ -77,6 +77,7 @@ Route::get('/zero-{id}', [ProductController::class, 'zero'])->name('product.quen
 Route::get('/ten-{id}', [ProductController::class, 'lessTen'])->name('product.quentity.ten');
 Route::get('/read-notifiction-{id}', [ProductController::class, 'readNotification'])->name('product.read-notification');
 Route::get('/addcands', [ProductController::class, 'addcands'])->name('product.addcolorandsize');
+Route::post('/addcands', [ProductController::class, 'ColorSizeStore'])->name('product.addcolorandsize.store');
 Route::post('/product/add', [ProductController::class, 'Store'])->name('product.store');
 Route::get('/ajax-{id}', [ProductController::class, 'AjaxShow']);
 Route::get('/showp', [ProductController::class, 'Show'])->name('product.show');
