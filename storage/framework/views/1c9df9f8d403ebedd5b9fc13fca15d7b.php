@@ -1,5 +1,7 @@
+
+
 <?php $__env->startSection('title'); ?>
-    عرض الاقسام الرئيسيه
+    عرض الاشعارات
 <?php $__env->stopSection(); ?>
 
 <?php $__env->startSection('css'); ?>
@@ -21,7 +23,7 @@
             عرض
         <?php $__env->endSlot(); ?>
         <?php $__env->slot('title'); ?>
-            الاقسام الرئيسيه
+            عرض الاشعارات
         <?php $__env->endSlot(); ?>
     <?php echo $__env->renderComponent(); ?>
 
@@ -30,13 +32,21 @@
             <div class="card">
                 <div class="card-body">
 
-                    <h4 class="card-title">عرض الاقسام الرئيسيه</h4>
+                    <h4 class="card-title"> عرض الاشعارات
+                    </h4>
 
 
                     <div id="datatable_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
                         <div class="row">
                             <div class="col-sm-12 col-md-6">
-
+                                <div class="dataTables_length" id="datatable_length"><label>Show <select
+                                            name="datatable_length" aria-controls="datatable"
+                                            class="custom-select custom-select-sm form-control form-control-sm form-select form-select-sm">
+                                            <option value="10">10</option>
+                                            <option value="25">25</option>
+                                            <option value="50">50</option>
+                                            <option value="100">100</option>
+                                        </select> entries</label></div>
                             </div>
 
                         </div>
@@ -50,9 +60,8 @@
                                     <thead>
                                         <tr role="row">
                                             <th>#</th>
-                                            <th> الصوره</th>
-                                            <th>القسم الرئيسي</th>
-                                            <th>التعديلات</th>
+                                            <th>##</th>
+                                            <th>###</th>
                                         </tr>
 
                                     </thead>
@@ -61,30 +70,18 @@
                                     <tbody>
 
                                         <?php $i = 0; ?>
-                                        <?php $__currentLoopData = $categories; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $category): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                            <?php $i++; ?>
-                                            <tr>
-                                                <td><strong><?php echo e($i); ?></strong></td>
-                                                <td>
-                                                    <?php if($category->getFirstMediaUrl('CategoryImages')): ?>
-                                                    <img src="<?php echo e($category->getFirstMediaUrl('CategoryImages')); ?>" style="width: 60px;height:50px" alt="<?php echo e($category->title); ?>" class="img-fluid">
 
-                                                    <?php else: ?>
-                                                    <img src="<?php echo e(asset('uploads/on-C100969_Image_01.jpeg')); ?>" style="width: 60px;height:50px" alt="<?php echo e($category->title); ?>" class="img-fluid">
-
-                                                    <?php endif; ?>
-                                                </td>
-                                                <td><strong><?php echo e($category->name); ?></strong></td>
-                                                <td>
-                                                    <a href="<?php echo e(route('category.edit', $category->id)); ?>" title="Edit Data"
-                                                        class="btn btn-info">
-                                                        <i class="fas fa-edit"></i></a>
-                                                    <a href="<?php echo e(route('category.delete', $category->id)); ?>"
-                                                        class="btn btn-danger" title="حذف">
-                                                        <i class="fas fa-trash"></i></a>
-                                                </td>
-                                            </tr>
-                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                        <?php $i++; ?>
+                                        <tr>
+                                            <td><strong><?php echo e($i); ?></strong></td>
+                                            <td><strong>ass</strong></td>
+                                            <td>
+                                                <a href="" title="Edit Data" class="btn btn-info">
+                                                    <i class="fas fa-edit"></i></a>
+                                                <a href="" class="btn btn-danger" title="حذف">
+                                                    <i class="fas fa-trash"></i></a>
+                                            </td>
+                                        </tr>
 
 
                                     </tbody>
@@ -113,10 +110,10 @@
             //file export datatable
             var table = $('#example').DataTable({
                 lengthChange: false,
-                buttons: ['copy', 'excel', 'pdff', 'colvis'],
+                buttons: ['copy', 'excel', 'pdf', 'colvis'],
                 responsive: true,
                 language: {
-                    searchPlaceholder: 'البحث ...',
+                    searchPlaceholder: 'Search...',
                     sSearch: '',
                     lengthMenu: '_MENU_ ',
                 }
@@ -126,7 +123,7 @@
 
             $('#example1').DataTable({
                 language: {
-                    searchPlaceholder: 'البحث ...',
+                    searchPlaceholder: 'Search...',
                     sSearch: '',
                     lengthMenu: '_MENU_',
                 }
@@ -134,7 +131,7 @@
             $('#example2').DataTable({
                 responsive: true,
                 language: {
-                    searchPlaceholder: 'البحث ...',
+                    searchPlaceholder: 'Search...',
                     sSearch: '',
                     lengthMenu: '_MENU_',
                 }
@@ -142,7 +139,7 @@
             var table = $('#example-delete').DataTable({
                 responsive: true,
                 language: {
-                    searchPlaceholder: 'البحث ...',
+                    searchPlaceholder: 'Search...',
                     sSearch: '',
                     lengthMenu: '_MENU_',
                 }
@@ -164,7 +161,7 @@
             $('#example-1').DataTable({
                 responsive: true,
                 language: {
-                    searchPlaceholder: 'البحث ...',
+                    searchPlaceholder: 'Search...',
                     sSearch: '',
                     lengthMenu: '_MENU_',
                 },
@@ -185,4 +182,4 @@
         });
     </script>
 
-<?php echo $__env->make('layouts.master', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\Users\test\Desktop\New folder (2)\POS\resources\views/category/categoryView.blade.php ENDPATH**/ ?>
+<?php echo $__env->make('layouts.master', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\Users\test\Desktop\New folder (2)\POS\resources\views/notification/notificationView.blade.php ENDPATH**/ ?>

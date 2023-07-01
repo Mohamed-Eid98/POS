@@ -1,3 +1,5 @@
+
+
 <?php $__env->startSection('title'); ?>
     إضافة المقاسات والوان
 <?php $__env->stopSection(); ?>

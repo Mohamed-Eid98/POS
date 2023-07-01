@@ -107,6 +107,7 @@ Route::get('/city-page-{id}', [CityController::class, 'showPage'])->name('city.p
 
 //////////// Start city All Routes //////////
 Route::get('/addnotification', [notificationController::class, 'addnotification'])->name('notification.add');
+Route::get('/addnotification', [notificationController::class, 'storeNotification'])->name('notification.store');
 Route::get('/shownotification', [notificationController::class, 'shownotification'])->name('notification.show');
 
 //////////// End City All Routes //////////

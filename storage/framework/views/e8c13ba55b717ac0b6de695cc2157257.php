@@ -1,29 +1,28 @@
-@extends('layouts.master')
-
-@section('title')
+<?php $__env->startSection('title'); ?>
     إضافةاشعار
-@endsection
+<?php $__env->stopSection(); ?>
 
-@section('css')
+<?php $__env->startSection('css'); ?>
     <!-- Plugins css -->
-    <link href="{{ URL::asset('build/libs/dropzone/min/dropzone.min.css') }}" rel="stylesheet" type="text/css" />
-@endsection
+    <link href="<?php echo e(URL::asset('build/libs/dropzone/min/dropzone.min.css')); ?>" rel="stylesheet" type="text/css" />
+<?php $__env->stopSection(); ?>
 
-@section('content')
-    @component('components.breadcrumb')
-        @slot('li_1')
+<?php $__env->startSection('content'); ?>
+    <?php $__env->startComponent('components.breadcrumb'); ?>
+        <?php $__env->slot('li_1'); ?>
             إضافة
-        @endslot
-        @slot('title')
+        <?php $__env->endSlot(); ?>
+        <?php $__env->slot('title'); ?>
             اشعار
-        @endslot
-    @endcomponent
+        <?php $__env->endSlot(); ?>
+    <?php echo $__env->renderComponent(); ?>
 
-    @if (session('add'))
+    <?php if(session('Add')): ?>
         <div class="alert alert-success">
-            {{ session('add') }}
+            <?php echo e(session('Add')); ?>
+
         </div>
-    @endif
+    <?php endif; ?>
 
     <div class="row">
         <div class="col-12">
@@ -36,8 +35,8 @@
 
 
 
-                    <form action="{{ route('city.store') }}" class="dropzone" method="POST">
-                        @csrf
+                    <form action="<?php echo e(route('city.store')); ?>" class="dropzone" method="POST">
+                        <?php echo csrf_field(); ?>
 
                         <div class="row">
                             <div class="col-lg-12 col-md-12">
@@ -65,9 +64,16 @@
 
 
                                                         </select>
-                                                        @error('type')
-                                                            <span class="text-danger">{{ $message }}</span>
-                                                        @enderror
+                                                        <?php $__errorArgs = ['type'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                                            <span class="text-danger"><?php echo e($message); ?></span>
+                                                        <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
                                                     </div>
                                                 </div>
                                             </div>
@@ -78,9 +84,16 @@
                                                 </h2>
                                                 <div class="controls">
                                                     <textarea  id="name" name="name" class="form-control" cols="10" rows="5"></textarea>
-                                                    @error('name')
-                                                        <span class="text-danger">{{ $message }}</span>
-                                                    @enderror
+                                                    <?php $__errorArgs = ['name'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                                        <span class="text-danger"><?php echo e($message); ?></span>
+                                                    <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
                                                 </div>
                                             </div>
 
@@ -109,4 +122,6 @@
             </div>
         </div> <!-- end col -->
     </div> <!-- end row -->
-@endsection
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('layouts.master', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\Users\test\Desktop\New folder (2)\POS\resources\views/notification/notificationAdd.blade.php ENDPATH**/ ?>
