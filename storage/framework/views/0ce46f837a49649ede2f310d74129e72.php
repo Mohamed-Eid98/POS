@@ -343,7 +343,9 @@
                                         </span>
                                     </div>
                                     <div class="flex-grow-1">
-                                       <a href="<?php echo e(route('product.read-notification', $notification->data['product_id'] )); ?>"><?php echo e($notification->data['message']); ?> </a>
+                                        <?php if($notification->data['id']): ?>
+                                        <a href="<?php echo e(route('product.read-notification', $notification->data['id'] )); ?>"><?php echo e($notification->data['message']); ?> </a>
+                                        <?php endif; ?>
                                     </div>
                                     <div class="">
                                         <?php echo e($notification->created_at->diffForHumans()); ?>

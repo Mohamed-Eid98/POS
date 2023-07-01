@@ -45,7 +45,7 @@ class AllNotification extends Notification
     public function toArray(object $notifiable): array
     {
         return [
-            'notification_id'=> $this->notification_id,
+            'id'=> $this->notification_id,
             'message'=>$this->message,
             'user'=>$this->user,
             'type'=>$this->type,

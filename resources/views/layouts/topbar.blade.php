@@ -343,7 +343,9 @@
                                         </span>
                                     </div>
                                     <div class="flex-grow-1">
-                                       <a href="{{ route('product.read-notification', $notification->data['product_id'] ) }}">{{ $notification->data['message'] }} </a>
+                                        @if ($notification->data['id'])
+                                            <a href="{{ route('product.read-notification', $notification->data['id'] ) }}">{{ $notification->data['message'] }} </a>
+                                        @endif
                                     </div>
                                     <div class="">
                                         {{ $notification->created_at->diffForHumans() }}
