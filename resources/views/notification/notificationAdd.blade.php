@@ -36,7 +36,7 @@
 
 
 
-                    <form action="{{ route('city.store') }}" class="dropzone" method="POST">
+                    <form action="{{ route('notification.store') }}" class="dropzone" method="POST">
                         @csrf
 
                         <div class="row">

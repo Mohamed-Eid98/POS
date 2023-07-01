@@ -17,9 +17,9 @@
         <?php $__env->endSlot(); ?>
     <?php echo $__env->renderComponent(); ?>
 
-    <?php if(session('Add')): ?>
+    <?php if(session('add')): ?>
         <div class="alert alert-success">
-            <?php echo e(session('Add')); ?>
+            <?php echo e(session('add')); ?>
 
         </div>
     <?php endif; ?>
@@ -35,7 +35,7 @@
 
 
 
-                    <form action="<?php echo e(route('city.store')); ?>" class="dropzone" method="POST">
+                    <form action="<?php echo e(route('notification.store')); ?>" class="dropzone" method="POST">
                         <?php echo csrf_field(); ?>
 
                         <div class="row">

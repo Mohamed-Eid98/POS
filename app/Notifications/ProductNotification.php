@@ -47,7 +47,7 @@ class ProductNotification extends Notification
     public function toArray(object $notifiable): array
     {
         return [
-            'product_id'=> $this-> product_id,
+            'id'=> $this-> product_id,
             'message'=>$this->message,
             'user'=>$this->user,
         ];

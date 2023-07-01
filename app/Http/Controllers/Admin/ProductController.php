@@ -299,7 +299,7 @@ public function readNotification($id)
 {
     $product = Product::findOrfail($id);
 
-    $getId = DB::table('notifications')->where('data->product_id' , $id)->pluck('id');
+    $getId = DB::table('notifications')->where('data->id' , $id)->pluck('id');
     foreach ($getId as $id) {
         DB::table('notifications')->where('id' , $id)->update(['read_at' => now()]);
     }

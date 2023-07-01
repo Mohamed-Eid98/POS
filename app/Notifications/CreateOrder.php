@@ -36,7 +36,7 @@ class CreateOrder extends Notification
     public function toArray(object $notifiable): array
     {
         return [
-            'order_id'=>$this->order_id,
+            'id'=>$this->order_id,
              'user'=>$this->user,
         ];
     }
