@@ -69,7 +69,8 @@ Route::get('/subcategory-show', [SubCategoryController::class, 'Show'])->name('s
 Route::get('/subcategory-edit-{id}', [SubCategoryController::class, 'Edit'])->name('subcategory.edit');
 Route::post('/subcategory-update', [SubCategoryController::class, 'Update'])->name('subcategory.update');
 Route::get('/subcategory/delete/{id}', [SubCategoryController::class, 'Delete'])->name('subcategory.delete');
-//////////// End Category All Routes //////////
+
+//////////// End subCategory All Routes //////////
 
 //////////// Start Product All Routes //////////
 
@@ -110,6 +111,7 @@ Route::get('/city-page-{id}', [CityController::class, 'showPage'])->name('city.p
 Route::get('/addnotification', [notificationController::class, 'addnotification'])->name('notification.add');
 Route::post('/addnotification', [notificationController::class, 'storeNotification'])->name('notification.store');
 Route::get('/shownotification', [notificationController::class, 'shownotification'])->name('notification.show');
+Route::get('/read-allnotifiction-{id}', [notificationController::class, 'readNotification'])->name('product.read-allnotification');
 
 //////////// End City All //////////
 

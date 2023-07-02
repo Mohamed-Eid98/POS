@@ -1,5 +1,3 @@
-
-
 <?php $__env->startSection('title'); ?>
     إضافة المقاسات والوان
 <?php $__env->stopSection(); ?>
@@ -25,7 +23,8 @@
     <link href="<?php echo e(asset('assets/css/bootstrap.min.css')); ?>" id="bootstrap-style" rel="stylesheet" type="text/css" />
     <!-- Icons Css -->
     <link href="<?php echo e(asset('assets/css/icons.min.css')); ?>" rel="stylesheet" type="text/css" />
-    
+    <link href="<?php echo e(URL::asset('build/libs/dropzone/min/dropzone.min.css')); ?>" rel="stylesheet" type="text/css" />
+
 <?php $__env->stopSection(); ?>
 
 
@@ -37,7 +36,7 @@
             إضافة
         <?php $__env->endSlot(); ?>
         <?php $__env->slot('title'); ?>
-            المقاساتوالالوان
+            المقاسات والالوان
         <?php $__env->endSlot(); ?>
     <?php echo $__env->renderComponent(); ?>
 

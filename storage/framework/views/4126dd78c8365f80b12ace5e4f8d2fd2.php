@@ -1,12 +1,11 @@
-@extends('layouts.master')
-@section('title')
+<?php $__env->startSection('title'); ?>
     إضافة قسم فرعي جديد
-@stop
-@section('css')
-    <link href="{{ URL::asset('build/libs/dropzone/min/dropzone.min.css') }}" rel="stylesheet" type="text/css" />
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('css'); ?>
+    <link href="<?php echo e(URL::asset('build/libs/dropzone/min/dropzone.min.css')); ?>" rel="stylesheet" type="text/css" />
 
-@endsection
-@section('page-header')
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('page-header'); ?>
     <!-- breadcrumb -->
     <div class="breadcrumb-header justify-content-between">
         <div class="my-auto">
@@ -17,17 +16,18 @@
         </div>
     </div>
     <!-- breadcrumb -->
-@endsection
+<?php $__env->stopSection(); ?>
 
 
-@section('content')
+<?php $__env->startSection('content'); ?>
 
 
-    @if (session('Add'))
+    <?php if(session('Add')): ?>
         <div class="alert alert-success">
-            {{ session('Add') }}
+            <?php echo e(session('Add')); ?>
+
         </div>
-    @endif
+    <?php endif; ?>
 
     <section class="content">
         <div class="row">
@@ -40,21 +40,28 @@
                         <div class="card">
                             <div class="card-body">
 
-                                <form method="post" action="{{ route('subcategory.store') }}" enctype="multipart/form-data">
-                                    @csrf
+                                <form method="post" action="<?php echo e(route('subcategory.store')); ?>" enctype="multipart/form-data">
+                                    <?php echo csrf_field(); ?>
 
                                     <div class="form-group">
                                         <h5>القسم الرئيسي <span class="text-danger">*</span></h5>
                                         <div class="controls">
                                             <select name="cate_id" id="select" class="form-control">
                                                 <option value="" selected disabled>-- اختر القسم الرئيسي--</option>
-                                                @foreach ($categories as $category)
-                                                    <option value="{{ $category->id }}">{{ $category->name }}</option>
-                                                @endforeach
+                                                <?php $__currentLoopData = $categories; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $category): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                    <option value="<?php echo e($category->id); ?>"><?php echo e($category->name); ?></option>
+                                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                             </select>
-                                            @error('cate_id')
-                                                <span class="text-danger">{{ $message }}</span>
-                                            @enderror
+                                            <?php $__errorArgs = ['cate_id'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                                <span class="text-danger"><?php echo e($message); ?></span>
+                                            <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
                                         </div>
                                     </div>
 
@@ -63,9 +70,16 @@
                                         <h5 for="name">القسم الفرعي <span class="text-danger">*</span></h5>
                                         <div class="controls">
                                             <input type="text" id="name" name="name" class="form-control">
-                                            @error('name')
-                                                <span class="text-danger">{{ $message }}</span>
-                                            @enderror
+                                            <?php $__errorArgs = ['name'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                                <span class="text-danger"><?php echo e($message); ?></span>
+                                            <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
                                         </div>
                                     </div>
                                     <br>
@@ -74,9 +88,16 @@
                                         <br><br>
                                         <input type="file" name="pic" onChange="mainThamUrl(this)">
 
-                                        @error('pic')
-                                            <span class="text-danger" >{{ $message }}</span>
-                                        @enderror
+                                        <?php $__errorArgs = ['pic'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                            <span class="text-danger" ><?php echo e($message); ?></span>
+                                        <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
                                 </div>
                                 <div class="dz-message needsclick">
                                     <div class="mb-3">
@@ -102,10 +123,10 @@
         <!-- /.row -->
     </section>
 
-@endsection
-@section('js')
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('js'); ?>
 
-@section('script')
+<?php $__env->startSection('script'); ?>
     <script type="text/javascript">
         function mainThamUrl(input) {
             if (input.files && input.files[0]) {
@@ -118,7 +139,7 @@
         }
     </script>
 
-{{-- <script src="{{ asset('build/libs/dropzone/min/dropzone.min.js') }}"></script>
 
-<script src="{{ asset('build/js/app.js') }}"></script> --}}
-@endsection
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('layouts.master', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\Users\test\Desktop\New folder (2)\POS\resources\views/sub_category/SubCategoryAdd.blade.php ENDPATH**/ ?>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use App\Notifications\AllNotification;
 use Illuminate\Support\Facades\Notification;
@@ -39,6 +40,20 @@ class notificationController extends Controller
 
             return view('notification.notificationView');
     }
+
+    public function readNotification($id)
+{
+    // $product = Product::findOrfail($id);
+// dd('assa');
+    $getId = DB::table('notifications')->where('type' , 'App\Notifications\AllNotification' )->pluck('id');
+    foreach ($getId as $id) {
+        DB::table('notifications')->where('id' , $id)->update(['read_at' => now()]);
+    }
+
+    return redirect()->back();
+}
+
+
 
 
 

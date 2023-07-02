@@ -114,9 +114,8 @@
                                                     <span class="badge text-bg-danger">{{ $product->code }}</span>
 
                                                 </td>
-                                                <td> <strong> <a
-                                                            href="{{ route('product.show.subcategory', $product->id) }}">
-                                                            {{ $product->subcategory->name }} </a></strong></td>
+                                                <td> <strong> <a href="{{ route('product.show.subcategory' , $product->id) }}"> {{ $product->subcategory->name }} </a></strong></td>
+
                                                 <td> <strong> {{ $product->price }} د.ع. </strong></td>
                                                 <td> <strong> {{ $product->min_price }} د.ع. </strong></td>
                                                 <td><strong> {{ $product->increase_ratio }} د.ع. </strong></td>

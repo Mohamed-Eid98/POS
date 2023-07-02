@@ -25,7 +25,8 @@
     <link href="{{ asset('assets/css/bootstrap.min.css') }}" id="bootstrap-style" rel="stylesheet" type="text/css" />
     <!-- Icons Css -->
     <link href="{{ asset('assets/css/icons.min.css') }}" rel="stylesheet" type="text/css" />
-    {{-- <link href="{{ URL::asset('build/libs/dropzone/min/dropzone.min.css') }}" rel="stylesheet" type="text/css" /> --}}
+    <link href="{{ URL::asset('build/libs/dropzone/min/dropzone.min.css') }}" rel="stylesheet" type="text/css" />
+
 @endsection
 
 
@@ -37,7 +38,7 @@
             إضافة
         @endslot
         @slot('title')
-            المقاساتوالالوان
+            المقاسات والالوان
         @endslot
     @endcomponent
 

@@ -55,7 +55,9 @@
                                 </div>
 
                                 <div class="fallback">
-                                        <input type="file" name="pic"><br>
+                                    <img src="" id="mainThmb" alt="">
+                                    <br><br>
+                                    <input type="file" name="pic" onChange="mainThamUrl(this)">
                                         @error('pic')
                                             <span class="text-danger" >{{ $message }}</span>
                                         @enderror
@@ -90,8 +92,23 @@
 
 
 @section('script')
+
+
+@section('script')
+    <script type="text/javascript">
+        function mainThamUrl(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function(e) {
+                    $('#mainThmb').attr('src', e.target.result).width(130).height(150);
+                };
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+    </script>
+
     <!-- Plugins js -->
-    {{-- <script src="{{ URL::asset('build/libs/dropzone/min/dropzone.min.js') }}"></script> --}}
+    {{-- <script src="{{ asset('build/libs/dropzone/min/dropzone.min.js') }}"></script> --}}
 
 
 
@@ -111,75 +128,3 @@
 
 
 
-
-
-
-
-{{-- @section('content')
-
-
-
-
-<section class="content">
-    <div class="row">
-
-
-      <div class="col-12">
-
-        <div class="box">
-          <div class="box-body">
-              <div class="table-responsive">
-
-            <form method="post" action="{{ route('category.store') }}">
-            @csrf
-                <div class="form-group">
-                    <h5 for="name">أسم القسم  <span class="text-danger">*</span></h5>
-                    <div class="controls">
-                        <input type="text" id="name" name="name" class="form-control">
-                        @error('name')
-                            <span class="text-danger" >{{ $message }}</span>
-                        @enderror
-                    </div>
-                </div>
-
-
-                <div class="text-center">
-                    <input type="submit" class="btn btn-rounded btn-info mb-5" value="إضافه">
-                </div>
-
-            </form>
-
-              </div>
-          </div>
-          <!-- /.box-body -->
-        </div>
-      </div>
-
-
-    </div>
-    <!-- /.row -->
-</section>
-
-@endsection
-@section('js')
-    <!--Internal  Chart.bundle js -->
-    <script src="{{ URL::asset('assets/plugins/chart.js/Chart.bundle.min.js') }}"></script>
-    <!-- Moment js -->
-    <script src="{{ URL::asset('assets/plugins/raphael/raphael.min.js') }}"></script>
-    <!--Internal  Flot js-->
-    <script src="{{ URL::asset('assets/plugins/jquery.flot/jquery.flot.js') }}"></script>
-    <script src="{{ URL::asset('assets/plugins/jquery.flot/jquery.flot.pie.js') }}"></script>
-    <script src="{{ URL::asset('assets/plugins/jquery.flot/jquery.flot.resize.js') }}"></script>
-    <script src="{{ URL::asset('assets/plugins/jquery.flot/jquery.flot.categories.js') }}"></script>
-    <script src="{{ URL::asset('assets/js/dashboard.sampledata.js') }}"></script>
-    <script src="{{ URL::asset('assets/js/chart.flot.sampledata.js') }}"></script>
-    <!--Internal Apexchart js-->
-    <script src="{{ URL::asset('assets/js/apexcharts.js') }}"></script>
-    <!-- Internal Map -->
-    <script src="{{ URL::asset('assets/plugins/jqvmap/jquery.vmap.min.js') }}"></script>
-    <script src="{{ URL::asset('assets/plugins/jqvmap/maps/jquery.vmap.usa.js') }}"></script>
-    <script src="{{ URL::asset('assets/js/modal-popup.js') }}"></script>
-    <!--Internal  index js -->
-    <script src="{{ URL::asset('assets/js/index.js') }}"></script>
-    <script src="{{ URL::asset('assets/js/jquery.vmap.sampledata.js') }}"></script>
-@endsection --}}

@@ -27,6 +27,19 @@
         @endslot
     @endcomponent
 
+
+
+    @if (session('delete'))
+    <div class="alert alert-success">
+        {{ session('delete') }}
+    </div>
+    @endif
+    @if (session('edit'))
+    <div class="alert alert-success">
+        {{ session('edit') }}
+    </div>
+    @endif
+
     <div class="row">
         <div class="col-12">
             <div class="card">

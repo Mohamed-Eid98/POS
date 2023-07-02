@@ -16,4 +16,12 @@ class Category extends Model implements HasMedia
         'name',
         'image'
 ];
+
+
+public function registerMediaCollections(): void
+{
+    $this->addMediaCollection('CategoryImages')
+         ->useDisk('public')
+         ->singleFile();
+}
 }

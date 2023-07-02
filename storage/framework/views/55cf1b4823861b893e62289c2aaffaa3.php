@@ -1,5 +1,3 @@
-
-
 <?php $__env->startSection('title'); ?>
     <?php echo app('translator')->get('translation.Dashboards'); ?>
 <?php $__env->stopSection(); ?>
@@ -38,7 +36,7 @@
                                     alt="" class="img-thumbnail rounded-circle">
                             </div>
                             <h5 class="font-size-15 text-truncate"><?php echo e(Str::ucfirst(Auth::user()->name)); ?></h5>
-                            <p class="text-muted mb-0 text-truncate">الموظف المسؤو</p>
+                            <p class="text-muted mb-0 text-truncate">الموظف المسؤل</p>
                         </div>
 
                         <div class="col-sm-8">

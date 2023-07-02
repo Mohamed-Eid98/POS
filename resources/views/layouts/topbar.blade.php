@@ -343,8 +343,13 @@
                                         </span>
                                     </div>
                                     <div class="flex-grow-1">
-                                        @if ($notification->data['id'])
+                                        @if ($notification->type == 'App\Notifications\ProductNotification' )
                                             <a href="{{ route('product.read-notification', $notification->data['id'] ) }}">{{ $notification->data['message'] }} </a>
+
+                                        @elseif ($notification->type == 'App\Notifications\AllNotification')
+                                        <a href="{{ route('product.read-allnotification', $notification->data['id'] ) }}">{{ $notification->data['message'] }} </a>
+                                        @else
+
                                         @endif
                                     </div>
                                     <div class="">

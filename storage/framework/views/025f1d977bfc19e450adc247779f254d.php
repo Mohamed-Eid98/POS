@@ -1,5 +1,3 @@
-
-
 <?php $__env->startSection('title'); ?>
     عرض المنتجات
 <?php $__env->stopSection(); ?>
@@ -109,9 +107,8 @@
                                                     <span class="badge text-bg-danger"><?php echo e($product->code); ?></span>
 
                                                 </td>
-                                                <td> <strong> <a
-                                                            href="<?php echo e(route('product.show.subcategory', $product->id)); ?>">
-                                                            <?php echo e($product->subcategory->name); ?> </a></strong></td>
+                                                <td> <strong> <a href="<?php echo e(route('product.show.subcategory' , $product->id)); ?>"> <?php echo e($product->subcategory->name); ?> </a></strong></td>
+
                                                 <td> <strong> <?php echo e($product->price); ?> د.ع. </strong></td>
                                                 <td> <strong> <?php echo e($product->min_price); ?> د.ع. </strong></td>
                                                 <td><strong> <?php echo e($product->increase_ratio); ?> د.ع. </strong></td>

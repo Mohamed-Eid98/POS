@@ -1,3 +1,5 @@
+
+
 <?php $__env->startSection('title'); ?>
     إضافةاشعار
 <?php $__env->stopSection(); ?>

@@ -61,7 +61,9 @@ unset($__errorArgs, $__bag); ?>
                                 </div>
 
                                 <div class="fallback">
-                                        <input type="file" name="pic"><br>
+                                    <img src="" id="mainThmb" alt="">
+                                    <br><br>
+                                    <input type="file" name="pic" onChange="mainThamUrl(this)">
                                         <?php $__errorArgs = ['pic'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
@@ -103,6 +105,21 @@ unset($__errorArgs, $__bag); ?>
 
 
 <?php $__env->startSection('script'); ?>
+
+
+<?php $__env->startSection('script'); ?>
+    <script type="text/javascript">
+        function mainThamUrl(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function(e) {
+                    $('#mainThmb').attr('src', e.target.result).width(130).height(150);
+                };
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+    </script>
+
     <!-- Plugins js -->
     
 
@@ -112,11 +129,6 @@ unset($__errorArgs, $__bag); ?>
             
 
 <?php $__env->stopSection(); ?>
-
-
-
-
-
 
 
 
