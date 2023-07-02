@@ -7,17 +7,17 @@
         <div id="sidebar-menu">
             <!-- Left Menu Start -->
             <ul class="metismenu list-unstyled" id="side-menu">
-                <li class="menu-title" key="t-menu">الصفحه الرئيسيه</li>
+                
 
-                <li>
-                    <a href="javascript: void(0);" class="has-arrow waves-effect">
+                
+
+                <li class="mm-active">
+                    <a href="<?php echo e(route('root')); ?>" class="waves-effect active">
                         <i class="bx bx-home-circle"></i>
                         <span key="t-dashboards">الصفحه الرئيسيه</span>
                     </a>
-                    <ul class="sub-menu" aria-expanded="false">
-                        <li><a href="<?php echo e(route('root')); ?>" key="t-default">الصفحه الرئيسيه</a></li>
-                    </ul>
                 </li>
+
                 <li class="menu-title" key="t-menu">الاقسام</li>
 
                 <li>

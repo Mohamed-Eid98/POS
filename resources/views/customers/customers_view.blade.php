@@ -45,7 +45,7 @@
             <div class="card">
                 <div class="card-body">
 
-                    <h4 class="card-title">عدد الزبائن  ({{ $user->customers->count() }} )</h4>
+                    <h4 class="card-title">عدد الزبائن ({{ $user->customers->count() }} )</h4>
                     <p class="card-title-desc">
 
                     </p>
@@ -81,45 +81,44 @@
 
                                         <?php $i = 0; ?>
                                         @foreach ($user->customers as $customer)
-                                        <?php $i++ ; ?>
-                                        <tr>
-                                            <?php $i; ?>
+                                            <?php $i++; ?>
+                                            <tr>
+                                                <?php $i; ?>
 
-                                            <td>{{ $i }}</td>
+                                                <td>{{ $i }}</td>
 
-                                            {{-- <td>{{ $user->avatar }}</td> --}}
+                                                {{-- <td>{{ $user->avatar }}</td> --}}
 
-                                            <td>{{ $customer->name }}</td>
-                                            <td>{{ $customer->country->general_title }}</td>
-                                            <td>
-                                                @if ($customer->city)
-                                                {{ $customer->city->general_title }}
-                                                @else
+                                                <td>{{ $customer->name }}</td>
+                                                {{-- <td>{{ $customer->country->general_title }}</td> --}}
+                                                <td>
+                                                    @if ($customer->city)
+                                                        {{ $customer->city->general_title }}
+                                                    @else
                                                         لا يوجد
-                                                @endif
-                                            </td>
-                                            <td>
-                                                @if ($customer->area)
-                                                {{ $customer->area->general_title }}
-                                                @else
+                                                    @endif
+                                                </td>
+                                                <td>
+                                                    @if ($customer->area)
+                                                        {{ $customer->area->general_title }}
+                                                    @else
                                                         لا يوجد
-                                                @endif
-                                            </td>
-                                            <td>{{ $customer->address }}</td>
-                                            <td>
-                                                <li>{{ $customer->phone_number }}</li>
-                                                @if ($customer->second_phone_number)
-                                                <li>{{ $customer->second_phone_number }}</li>
-
-                                                @endif
-                                            </td>
-                                            <td>
+                                                    @endif
+                                                </td>
+                                                <td>{{ $customer->address }}</td>
+                                                <td>
+                                                    <li>{{ $customer->phone_number }}</li>
+                                                    @if ($customer->second_phone_number)
+                                                        <li>{{ $customer->second_phone_number }}</li>
+                                                    @endif
+                                                </td>
+                                                <td>
                                                     <a href="{{ route('user.delete', $customer->id) }}" title="حذف"
                                                         class="btn btn-sm btn-soft-danger"><i
                                                             class="mdi mdi-delete-outline"></i></a>
-                                            </td>
+                                                </td>
                                             </tr>
-                                            @endforeach
+                                        @endforeach
 
 
                                     </tbody>

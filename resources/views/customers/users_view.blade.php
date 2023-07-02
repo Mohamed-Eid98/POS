@@ -105,7 +105,8 @@
                                                         </li>
                                                         <li data-bs-toggle="tooltip" data-bs-placement="top"
                                                             title="عرض الطلبات">
-                                                            <a href="#" class="btn btn-sm btn-soft-info"><i
+                                                            <a href="{{ route('usersorder.show', $user->id) }}"
+                                                                class="btn btn-sm btn-soft-info"><i
                                                                     class="fas fa-list-ul"></i></a>
 
                                                         </li>
@@ -132,6 +133,7 @@
             </div> <!-- end col -->
         </div>
     @endsection
+
     <script>
         $(function(e) {
             //file export datatable

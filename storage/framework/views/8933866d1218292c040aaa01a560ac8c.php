@@ -103,7 +103,8 @@
                                                         </li>
                                                         <li data-bs-toggle="tooltip" data-bs-placement="top"
                                                             title="عرض الطلبات">
-                                                            <a href="#" class="btn btn-sm btn-soft-info"><i
+                                                            <a href="<?php echo e(route('usersorder.show', $user->id)); ?>"
+                                                                class="btn btn-sm btn-soft-info"><i
                                                                     class="fas fa-list-ul"></i></a>
 
                                                         </li>
@@ -130,6 +131,7 @@
             </div> <!-- end col -->
         </div>
     <?php $__env->stopSection(); ?>
+
     <script>
         $(function(e) {
             //file export datatable

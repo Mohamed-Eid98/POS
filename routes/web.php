@@ -49,6 +49,8 @@ Route::get('/invoices-page', [IvoicesController::class, 'showtable'])->name('inv
 
 Route::get('/users-show', [CustomerController::class, 'index'])->name('users.show');
 Route::get('/customers-show-{id}', [CustomerController::class, 'showcustomer'])->name('customers.show');
+Route::get('/users-order-{id}', [CustomerController::class, 'showuserorder'])->name('usersorder.show');
+
 Route::get('/user-delete-{id}', [CustomerController::class, 'delete'])->name('user.delete');
 
 

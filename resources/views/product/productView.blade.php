@@ -63,8 +63,8 @@
                             <div class="col-sm-12 col-md-6">
 
                             </div>
-
                         </div>
+
                         <div class="row">
                             <div class="col-sm-12">
                                 <table id="example"
@@ -114,7 +114,9 @@
                                                     <span class="badge text-bg-danger">{{ $product->code }}</span>
 
                                                 </td>
-                                                <td> <strong> <a href="{{ route('product.show.subcategory' , $product->id) }}"> {{ $product->subcategory->name }} </a></strong></td>
+                                                <td> <strong> <a
+                                                            href="{{ route('product.show.subcategory', $product->id) }}">
+                                                            {{ $product->subcategory->name }} </a></strong></td>
 
                                                 <td> <strong> {{ $product->price }} د.ع. </strong></td>
                                                 <td> <strong> {{ $product->min_price }} د.ع. </strong></td>
@@ -156,28 +158,57 @@
                                                 </td>
 
                                                 <td>
-                                                    <a href="{{ route('product.edit', $product->id) }}" title="تعديل"
-                                                        class="btn btn-info">
-                                                        <i class="fas fa-edit"></i></a>
 
-                                                    @if ($product->product_qty == 0)
-                                                        <a href="{{ route('product.quentity.zero', $product->id) }}" title="ارسال اشعار"
-                                                        class="btn btn-success">
-                                                        <i class="fas fa-bell"></i></a>
 
+                                                    {{-- @if ($product->product_qty == 0)
+                                                        <a href="{{ route('product.quentity.zero', $product->id) }}"
+                                                            title="ارسال اشعار" class="btn btn-success">
+                                                            <i class="fas fa-bell"></i></a>
                                                     @elseif ($product->product_qty < 10)
-                                                 <a href="{{ route('product.quentity.ten', $product->id) }}" title="ارسال اشعار"
-                                                        class="btn btn-success">
-                                                        <i class="fas fa-bell"></i></a>
+                                                        <a href="{{ route('product.quentity.ten', $product->id) }}"
+                                                            title="ارسال اشعار" class="btn btn-success">
+                                                            <i class="fas fa-bell"></i></a>
                                                     @else
-
-                                                    @endif
-
+                                                    @endif --}}
 
 
-                                                    <a href="{{ route('product.delete', $product->id) }}"
+
+                                                    {{-- <a href="{{ route('product.delete', $product->id) }}"
                                                         class="btn btn-danger" title="حذف">
-                                                        <i class="fas fa-trash"></i></a>
+                                                        <i class="fas fa-trash"></i></a> --}}
+                                                    {{-- <a href="{{ route('user.edit',$user->id) }}" title="تعديل"
+                                                                class="btn btn-info">
+                                                                <i class="fas fa-edit"></i></a> --}}
+
+
+                                                    <ul class="list-unstyled hstack gap-1 mb-0">
+                                                        <li data-bs-toggle="tooltip" data-bs-placement="top" title="تعديل ">
+                                                            <a href="{{ route('product.edit', $product->id) }}"
+                                                                class="btn btn-sm btn-soft-primary"><i
+                                                                    class="mdi mdi-pencil-outline"></i></a>
+                                                        </li>
+                                                        <li data-bs-toggle="tooltip" data-bs-placement="top"
+                                                            title="ارسال اشعار">
+                                                            @if ($product->product_qty == 0)
+                                                                <a href="{{ route('product.quentity.zero', $product->id) }}"
+                                                                    class="btn
+                                                                    btn-sm btn-soft-info"><i
+                                                                        class="fas fa-list-ul"></i></a>
+                                                            @elseif ($product->product_qty < 10)
+                                                                <a href="{{ route('product.quentity.ten', $product->id) }}"
+                                                                    class="btn
+                                                                btn-sm btn-soft-info"><i
+                                                                        class="fas fa-list-ul"></i></a>
+                                                            @else
+                                                            @endif
+                                                        </li>
+                                                        <li data-bs-toggle="tooltip" data-bs-placement="top" title="Delete">
+                                                            <a href="{{ route('product.delete', $product->id) }}"
+                                                                title="حذف" class="btn btn-sm btn-soft-danger"><i
+                                                                    class="mdi mdi-delete-outline"></i></a>
+                                                        </li>
+                                                    </ul>
+
                                                 </td>
                                             </tr>
                                         @endforeach

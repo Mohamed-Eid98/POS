@@ -343,8 +343,13 @@
                                         </span>
                                     </div>
                                     <div class="flex-grow-1">
-                                        <?php if($notification->data['id']): ?>
+                                        <?php if($notification->type == 'App\Notifications\ProductNotification' ): ?>
                                             <a href="<?php echo e(route('product.read-notification', $notification->data['id'] )); ?>"><?php echo e($notification->data['message']); ?> </a>
+
+                                        <?php elseif($notification->type == 'App\Notifications\AllNotification'): ?>
+                                        <a href="<?php echo e(route('product.read-allnotification', $notification->data['id'] )); ?>"><?php echo e($notification->data['message']); ?> </a>
+                                        <?php else: ?>
+
                                         <?php endif; ?>
                                     </div>
                                     <div class="">

@@ -45,7 +45,7 @@
             <div class="card">
                 <div class="card-body">
 
-                    <h4 class="card-title">عرض الزبائن</h4>
+                    <h4 class="card-title">عدد الزبائن (<?php echo e($user->customers->count()); ?> )</h4>
                     <p class="card-title-desc">
 
                     </p>
@@ -63,7 +63,13 @@
                                     <thead>
                                         <tr role="row">
                                             <th>#</th>
-                                            <th>الزبائن</th>
+                                            <th>اسم الزبون</th>
+                                            <th>البلد </th>
+                                            <th>المدينه </th>
+                                            <th>المنطقه </th>
+                                            <th>العنوان </th>
+                                            <th>الموبيل </th>
+                                            <th>التعديلات </th>
 
 
                                         </tr>
@@ -74,18 +80,47 @@
                                     <tbody>
 
                                         <?php $i = 0; ?>
-                                        <?php $i++; ?>
-                                        <tr>
-                                            <td><?php echo e($i); ?></td>
+                                        <?php $__currentLoopData = $user->customers; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $customer): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                            <?php $i++; ?>
+                                            <tr>
+                                                <?php $i; ?>
 
-                                            
+                                                <td><?php echo e($i); ?></td>
 
-                                            <td>
-                                                momomo
+                                                
 
-                                            </td>
+                                                <td><?php echo e($customer->name); ?></td>
+                                                
+                                                <td>
+                                                    <?php if($customer->city): ?>
+                                                        <?php echo e($customer->city->general_title); ?>
 
-                                        </tr>
+                                                    <?php else: ?>
+                                                        لا يوجد
+                                                    <?php endif; ?>
+                                                </td>
+                                                <td>
+                                                    <?php if($customer->area): ?>
+                                                        <?php echo e($customer->area->general_title); ?>
+
+                                                    <?php else: ?>
+                                                        لا يوجد
+                                                    <?php endif; ?>
+                                                </td>
+                                                <td><?php echo e($customer->address); ?></td>
+                                                <td>
+                                                    <li><?php echo e($customer->phone_number); ?></li>
+                                                    <?php if($customer->second_phone_number): ?>
+                                                        <li><?php echo e($customer->second_phone_number); ?></li>
+                                                    <?php endif; ?>
+                                                </td>
+                                                <td>
+                                                    <a href="<?php echo e(route('user.delete', $customer->id)); ?>" title="حذف"
+                                                        class="btn btn-sm btn-soft-danger"><i
+                                                            class="mdi mdi-delete-outline"></i></a>
+                                                </td>
+                                            </tr>
+                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 
 
                                     </tbody>
