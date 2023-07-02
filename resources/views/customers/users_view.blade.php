@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('title')
-    عرض الزبائن
+    عرض العملاء
 @endsection
 
 @section('css')
@@ -23,7 +23,7 @@
             عرض
         @endslot
         @slot('title')
-            الزبائن
+            العملاء
         @endslot
     @endcomponent
 
@@ -45,7 +45,7 @@
             <div class="card">
                 <div class="card-body">
 
-                    <h4 class="card-title">عرض الزبائن</h4>
+                    <h4 class="card-title">عرض العملاء</h4>
                     <p class="card-title-desc">
 
                     </p>
@@ -63,9 +63,13 @@
                                     <thead>
                                         <tr role="row">
                                             <th>#</th>
-                                            <th>الزبائن</th>
+                                            <th>الموزع</th>
+                                            <th>رقم التليفون</th>
+                                            <th>الايميل </th>
+                                            <th>العنوان </th>
+                                            {{-- <th>الصوره </th> --}}
 
-
+                                            <th>التعديلات</th>
                                         </tr>
 
                                     </thead>
@@ -74,18 +78,47 @@
                                     <tbody>
 
                                         <?php $i = 0; ?>
-                                        <?php $i++; ?>
-                                        <tr>
-                                            <td>{{ $i }}</td>
+                                        @foreach ($users as $user)
+                                            <?php $i++; ?>
+                                            <tr>
+                                                <td>{{ $i }}</td>
+                                                <td>{{ $user->name }}</td>
+                                                <td>{{ $user->phone }}</td>
+                                                <td>{{ $user->email }}</td>
+                                                <td>{{ $user->address }}</td>
+                                                {{-- <td>{{ $user->avatar }}</td> --}}
 
-                                            {{-- <td>{{ $user->avatar }}</td> --}}
 
-                                            <td>
-                                                momomo
 
-                                            </td>
+                                                <td>
+                                                    {{-- <a href="{{ route('user.edit',$user->id) }}" title="تعديل"
+                                                        class="btn btn-info">
+                                                        <i class="fas fa-edit"></i></a> --}}
 
-                                        </tr>
+
+                                                    <ul class="list-unstyled hstack gap-1 mb-0">
+                                                        <li data-bs-toggle="tooltip" data-bs-placement="top"
+                                                            title="عرض الزبائن">
+                                                            <a href="{{ route('customers.show', $user->id) }}"
+                                                                class="btn btn-sm btn-soft-primary"><i
+                                                                    class="mdi mdi-eye-outline"></i></a>
+                                                        </li>
+                                                        <li data-bs-toggle="tooltip" data-bs-placement="top"
+                                                            title="عرض الطلبات">
+                                                            <a href="#" class="btn btn-sm btn-soft-info"><i
+                                                                    class="fas fa-list-ul"></i></a>
+
+                                                        </li>
+                                                        <li data-bs-toggle="tooltip" data-bs-placement="top" title="Delete">
+                                                            <a href="{{ route('user.delete', $user->id) }}" title="حذف"
+                                                                class="btn btn-sm btn-soft-danger"><i
+                                                                    class="mdi mdi-delete-outline"></i></a>
+                                                        </li>
+                                                    </ul>
+
+                                                </td>
+                                            </tr>
+                                        @endforeach
 
 
                                     </tbody>

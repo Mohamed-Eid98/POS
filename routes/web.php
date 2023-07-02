@@ -47,7 +47,8 @@ Route::get('/inactive/{id}', [OrderController::class, 'UnPaid'])->name('orders.u
 Route::get('/invoices-page', [IvoicesController::class, 'showtable'])->name('invoices.page');
 //////////// end invoices All Routes //////////
 
-Route::get('/customers-show', [CustomerController::class, 'index'])->name('customers.show');
+Route::get('/users-show', [CustomerController::class, 'index'])->name('users.show');
+Route::get('/customers-show-{id}', [CustomerController::class, 'showcustomer'])->name('customers.show');
 Route::get('/user-delete-{id}', [CustomerController::class, 'delete'])->name('user.delete');
 
 

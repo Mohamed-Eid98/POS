@@ -144,7 +144,7 @@
                             <span key="t-dashboards"> العملاء</span>
                         </a>
                         <ul class="sub-menu" aria-expanded="false">
-                            <li><a class="slide-item" href="{{ route('customers.show') }}">جميع العملاء</a>
+                            <li><a class="slide-item" href="{{ route('users.show') }}">جميع العملاء</a>
 
                         </ul>
                     </li>

@@ -12,7 +12,13 @@ class CustomerController extends Controller
 
         $users = User::with('customers')->get();
         // return $customers;
-        return view('customers.customers_view' , compact('users'));
+        return view('customers.users_view' , compact('users'));
+    }
+    function showcustomer($id){
+
+        $user = User::with('customers')->find($id);
+        //  return $customers;
+         return view('customers.customers_view' , compact('user'));
     }
     function delete($id){
 

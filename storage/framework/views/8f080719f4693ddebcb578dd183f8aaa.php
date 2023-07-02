@@ -1,9 +1,8 @@
-@extends('layouts.master')
-@section('title')
+<?php $__env->startSection('title'); ?>
     عرض جميع الطلبات
-@stop
+<?php $__env->stopSection(); ?>
 
-@section('page-header')
+<?php $__env->startSection('page-header'); ?>
     <!-- breadcrumb -->
     <div class="breadcrumb-header justify-content-between">
         <div class="my-auto">
@@ -14,20 +13,22 @@
         </div>
     </div>
     <!-- breadcrumb -->
-@endsection
+<?php $__env->stopSection(); ?>
 
 
-@section('content')
-    @if (session('delete'))
+<?php $__env->startSection('content'); ?>
+    <?php if(session('delete')): ?>
         <div class="alert alert-success">
-            {{ session('delete') }}
+            <?php echo e(session('delete')); ?>
+
         </div>
-    @endif
-    @if (session('edit'))
+    <?php endif; ?>
+    <?php if(session('edit')): ?>
         <div class="alert alert-info">
-            {{ session('edit') }}
+            <?php echo e(session('edit')); ?>
+
         </div>
-    @endif
+    <?php endif; ?>
 
 
     <div class="col-xl-12">
@@ -58,60 +59,56 @@
                     </thead>
                     <tbody>
                         <?php $i = 0; ?>
-                        @foreach ($orders as $order)
+                        <?php $__currentLoopData = $orders; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $order): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                             <?php $i++; ?>
 
                             <tr>
-                                <td>{{ $i }}</td>
-                                <td> <a href=""> {{ $order->invoice_no }} </a> </td>
-                                <td>{{ $order->created_at->diffForHumans() }} </td>
-                                <td>{{ $order->customer->name }} </td>
+                                <td><?php echo e($i); ?></td>
+                                <td> <a href=""> <?php echo e($order->invoice_no); ?> </a> </td>
+                                <td><?php echo e($order->created_at->diffForHumans()); ?> </td>
+                                <td><?php echo e($order->customer->name); ?> </td>
                                 <td>
-                                    @if ($order->status == 'Paid')
+                                    <?php if($order->status == 'Paid'): ?>
                                         <span class="badge rounded-pill text-bg-primary"> مدفوع </span>
-                                    @else
+                                    <?php else: ?>
                                         <span class="badge rounded-pill text-bg-primary"> غير
                                             مدفوع </span>
-                                    @endif
+                                    <?php endif; ?>
                                 </td>
-                                <td>{{ $order->final_total }}EG </td>
+                                <td><?php echo e($order->final_total); ?>EG </td>
 
                                 <td>
-                                    @if ($order->status == 'Pending')
-                                        <span class="badge rounded-pill text-bg-primary"> {{ $order->status }} </span>
-                                    @elseif ($order->status == 'Paid')
-                                        <span class="badge rounded-pill text-bg-primary"> {{ $order->status }} </span>
-                                    @elseif ($order->status == 'InPrograss')
-                                        <span class="badge rounded-pill text-bg-primary"> {{ $order->status }} </span>
-                                    @elseif ($order->status == 'Rejected')
-                                        <span class="badge rounded-pill text-bg-primary"> {{ $order->status }} </span>
-                                    @elseif ($order->status == 'Cancelled')
-                                        <span class="badge rounded-pill text-bg-primary"> {{ $order->status }} </span>
-                                    @else
-                                        <span class="badge rounded-pill text-bg-primary"> {{ $order->status }} </span>
-                                    @endif
+                                    <?php if($order->status == 'Pending'): ?>
+                                        <span class="badge rounded-pill text-bg-primary"> <?php echo e($order->status); ?> </span>
+                                    <?php elseif($order->status == 'Paid'): ?>
+                                        <span class="badge rounded-pill text-bg-primary"> <?php echo e($order->status); ?> </span>
+                                    <?php elseif($order->status == 'InPrograss'): ?>
+                                        <span class="badge rounded-pill text-bg-primary"> <?php echo e($order->status); ?> </span>
+                                    <?php elseif($order->status == 'Rejected'): ?>
+                                        <span class="badge rounded-pill text-bg-primary"> <?php echo e($order->status); ?> </span>
+                                    <?php elseif($order->status == 'Cancelled'): ?>
+                                        <span class="badge rounded-pill text-bg-primary"> <?php echo e($order->status); ?> </span>
+                                    <?php else: ?>
+                                        <span class="badge rounded-pill text-bg-primary"> <?php echo e($order->status); ?> </span>
+                                    <?php endif; ?>
                                 </td>
 
                                 <td>
-                                    <a href="{{ route('orders.paid', $order->id) }}" class="btn btn-primary"
+                                    <a href="<?php echo e(route('orders.paid', $order->id)); ?>" class="btn btn-primary"
                                         title="Product Details Data"><i class="fa fa-eye"></i> </a>
-                                    @if ($order->status == 'Paid')
-                                        <a href="{{ route('orders.unpaid', $order->id) }}" class="btn btn-danger"
+                                    <?php if($order->status == 'Paid'): ?>
+                                        <a href="<?php echo e(route('orders.unpaid', $order->id)); ?>" class="btn btn-danger"
                                             title="غير مدفوع"><i class="fa fa-arrow-down"></i> </a>
-                                    @else
-                                        <a href="{{ route('orders.paid', $order->id) }}" class="btn btn-success"
+                                    <?php else: ?>
+                                        <a href="<?php echo e(route('orders.paid', $order->id)); ?>" class="btn btn-success"
                                             title="ادفع الان"><i class="fa fa-arrow-up"></i> </a>
-                                    @endif
+                                    <?php endif; ?>
 
-                                    {{-- <a href="{{ route('order.edit',$order->id) }}" title="تعديل" class="btn btn-info">
-                                <i class="las la-pen"></i></a>
-                                <a href="{{ route('order.delete',$order->id) }}"
-                                    class="btn btn-danger" title="حذف">
-                                    <i class="fa fa-trash"></i></a> --}}
+                                    
                                 </td>
 
                             </tr>
-                        @endforeach
+                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 
 
                     </tbody>
@@ -123,27 +120,27 @@
 
 
 
-@endsection
-@section('js')
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('js'); ?>
     <!-- Internal Data tables -->
-    <script src="{{ URL::asset('assets/plugins/datatable/js/jquery.dataTables.min.js') }}"></script>
-    <script src="{{ URL::asset('assets/plugins/datatable/js/dataTables.dataTables.min.js') }}"></script>
-    <script src="{{ URL::asset('assets/plugins/datatable/js/dataTables.responsive.min.js') }}"></script>
-    <script src="{{ URL::asset('assets/plugins/datatable/js/responsive.dataTables.min.js') }}"></script>
-    <script src="{{ URL::asset('assets/plugins/datatable/js/jquery.dataTables.js') }}"></script>
-    <script src="{{ URL::asset('assets/plugins/datatable/js/dataTables.bootstrap4.js') }}"></script>
-    <script src="{{ URL::asset('assets/plugins/datatable/js/dataTables.buttons.min.js') }}"></script>
-    <script src="{{ URL::asset('assets/plugins/datatable/js/buttons.bootstrap4.min.js') }}"></script>
-    <script src="{{ URL::asset('assets/plugins/datatable/js/jszip.min.js') }}"></script>
-    <script src="{{ URL::asset('assets/plugins/datatable/js/pdfmake.min.js') }}"></script>
-    <script src="{{ URL::asset('assets/plugins/datatable/js/vfs_fonts.js') }}"></script>
-    <script src="{{ URL::asset('assets/plugins/datatable/js/buttons.html5.min.js') }}"></script>
-    <script src="{{ URL::asset('assets/plugins/datatable/js/buttons.print.min.js') }}"></script>
-    <script src="{{ URL::asset('assets/plugins/datatable/js/buttons.colVis.min.js') }}"></script>
-    <script src="{{ URL::asset('assets/plugins/datatable/js/dataTables.responsive.min.js') }}"></script>
-    <script src="{{ URL::asset('assets/plugins/datatable/js/responsive.bootstrap4.min.js') }}"></script>
+    <script src="<?php echo e(URL::asset('assets/plugins/datatable/js/jquery.dataTables.min.js')); ?>"></script>
+    <script src="<?php echo e(URL::asset('assets/plugins/datatable/js/dataTables.dataTables.min.js')); ?>"></script>
+    <script src="<?php echo e(URL::asset('assets/plugins/datatable/js/dataTables.responsive.min.js')); ?>"></script>
+    <script src="<?php echo e(URL::asset('assets/plugins/datatable/js/responsive.dataTables.min.js')); ?>"></script>
+    <script src="<?php echo e(URL::asset('assets/plugins/datatable/js/jquery.dataTables.js')); ?>"></script>
+    <script src="<?php echo e(URL::asset('assets/plugins/datatable/js/dataTables.bootstrap4.js')); ?>"></script>
+    <script src="<?php echo e(URL::asset('assets/plugins/datatable/js/dataTables.buttons.min.js')); ?>"></script>
+    <script src="<?php echo e(URL::asset('assets/plugins/datatable/js/buttons.bootstrap4.min.js')); ?>"></script>
+    <script src="<?php echo e(URL::asset('assets/plugins/datatable/js/jszip.min.js')); ?>"></script>
+    <script src="<?php echo e(URL::asset('assets/plugins/datatable/js/pdfmake.min.js')); ?>"></script>
+    <script src="<?php echo e(URL::asset('assets/plugins/datatable/js/vfs_fonts.js')); ?>"></script>
+    <script src="<?php echo e(URL::asset('assets/plugins/datatable/js/buttons.html5.min.js')); ?>"></script>
+    <script src="<?php echo e(URL::asset('assets/plugins/datatable/js/buttons.print.min.js')); ?>"></script>
+    <script src="<?php echo e(URL::asset('assets/plugins/datatable/js/buttons.colVis.min.js')); ?>"></script>
+    <script src="<?php echo e(URL::asset('assets/plugins/datatable/js/dataTables.responsive.min.js')); ?>"></script>
+    <script src="<?php echo e(URL::asset('assets/plugins/datatable/js/responsive.bootstrap4.min.js')); ?>"></script>
     <!--Internal  Datatable js -->
-    <script src="{{ URL::asset('assets/js/table-data.js') }}"></script>
+    <script src="<?php echo e(URL::asset('assets/js/table-data.js')); ?>"></script>
     <script>
         $('#exampleModal2').on('show.bs.modal', function(event) {
             var button = $(event.relatedTarget)
@@ -242,4 +239,6 @@
             });
         });
     </script>
-@endsection
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('layouts.master', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\POS\resources\views/orders/allorders.blade.php ENDPATH**/ ?>
