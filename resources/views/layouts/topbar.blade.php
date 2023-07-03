@@ -312,6 +312,11 @@
                     <i class="bx bx-fullscreen"></i>
                 </button>
             </div>
+
+
+@if (Auth::user())
+
+
             {{-- notification --}}
             <div class="dropdown d-inline-block">
                 <button type="button" class="btn header-item noti-icon waves-effect"
@@ -385,6 +390,10 @@
                     </div>
                 </div>
             </div>
+
+            @endif
+
+
 
             <div class="dropdown d-inline-block">
                 <button type="button" class="btn header-item waves-effect" id="page-header-user-dropdown"

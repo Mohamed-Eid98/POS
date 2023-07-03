@@ -27,9 +27,7 @@ Auth::routes();
 Route::get('/', [App\Http\Controllers\HomeController::class, 'root'])->name('root');
 
 
-Route::get('/about', function () {
-    return view('form-uploads');
-});
+
 
 
 // Route::middleware(['auth'])->group(function () {
