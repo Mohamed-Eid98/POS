@@ -24,6 +24,6 @@ class HomeController extends Controller
     public function index()
     {
         // dd('sa');
-        return redirect()->route('area.add');
+        return view('index');
     }
 }
