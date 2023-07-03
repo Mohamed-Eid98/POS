@@ -81,8 +81,6 @@ return [
     */
 
     'locale' => 'en',
-    'locales' => ['en', 'ar'],
-
 
     /*
     |--------------------------------------------------------------------------
@@ -135,6 +133,7 @@ return [
     | this array to grant expanded functionality to your applications.
     |
     */
+   
 
     'providers' => [
 

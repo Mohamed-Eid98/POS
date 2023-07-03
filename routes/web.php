@@ -157,3 +157,11 @@ Route::get('/inactive/{id}', [OrderController::class, 'UnPaid'])->name('orders.u
 
 //////////// End City All //////////
 
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
