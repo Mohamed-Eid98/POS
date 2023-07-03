@@ -222,57 +222,7 @@ unset($__errorArgs, $__bag); ?>
 
 
 
-        <div class="row">
-            <div class="col-lg-12 col-md-12">
-                <div class="card">
-                    <div class="card-body">
 
-
-                        <div class="box">
-                            <div class="box-header with-border">
-                                <h4 class="box-title"> معلومات</h4>
-                            </div>
-                            <hr>
-                            <!-- start 2nd row  -->
-
-
-                        </div>
-                        <div class="row">
-                            <!-- start 1st row  -->
-
-
-
-
-
-
-                            <div class="col-md-6">
-
-                                <div class="mb-3">
-                                    <label class="form-label">المقاس </label>
-
-                                    <select name="size[]" class="select2 form-control select2-multiple"
-                                        multiple="multiple" data-placeholder="Choose ...">
-
-                                        <?php $__currentLoopData = $sizes; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $size): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                            <option value="<?php echo e($size->id); ?>">
-                                                <?php echo e($size->name); ?>
-
-                                            </option>
-                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-
-                                    </select>
-
-                                </div>
-                            </div> <!-- end col md 6 -->
-
-                        </div> <!-- end 1st row  -->
-
-                    </div>
-                    <!-- end row -->
-                </div>
-            </div>
-
-        </div>
 
 
         <div class="row">
