@@ -23,10 +23,13 @@ use App\Http\Controllers\Admin\notificationController;
 */
 
 Auth::routes();
-// Route::get('/login', [App\Http\Controllers\Auth\LoginController::class, 'showLoginForm'])->name('login');
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'root'])->name('root');
 
+
+Route::get('/about', function () {
+    return view('form-uploads');
+});
 
 
 Route::middleware(['auth'])->group(function () {
@@ -139,25 +142,8 @@ Route::middleware(['auth'])->group(function () {
 
 });
 
-<<<<<<< HEAD
 
 
-=======
-Route::get('/add-area', [CityController::class, 'AddArea'])->name('area.add');
-Route::post('/area-add', [CityController::class, 'AreaStore'])->name('area.store');
-Route::get('/area-show', [CityController::class, 'ShowArea'])->name('area.show');
-Route::get('/area-edit-{id}', [CityController::class, 'EditArea'])->name('area.edit');
-Route::post('/area-update', [CityController::class, 'UpdateArea'])->name('area.update');
-Route::get('/area-delete-{id}', [CityController::class, 'DeleteArea'])->name('area.delete');
-
-
- Route::post('/city-add', [CityController::class, 'Store'])->name('city.store');
-Route::get('/edit2-{id}', [CityController::class, 'Edit'])->name('country.edit');
-// Route::get('/area-edit-{id}', [CityController::class, 'Edit'])->name('city.edit');
-// Route::get('/area-delete-{id}', [CityController::class, 'Edit'])->name('city.delete');
-// Route::post('/city-update', [CityController::class, 'Update'])->name('country.update');
-Route::get('/city-page-{id}', [CityController::class, 'showPage'])->name('city.page');
->>>>>>> 6107726f8c91af363f0b859e8425c2dae58326cf
 //////////// End city All Routes //////////
 
 //////////// Start city All Routes //////////
