@@ -314,15 +314,16 @@
             </div>
 
 
-@if (Auth::user())
-
 
             {{-- notification --}}
+
+            {{-- @if (Auth::user())
             <div class="dropdown d-inline-block">
                 <button type="button" class="btn header-item noti-icon waves-effect"
                     id="page-header-notifications-dropdown" data-bs-toggle="dropdown" aria-haspopup="true"
                     aria-expanded="false">
                     <i class="bx bx-bell bx-tada"></i>
+
                     <span class="badge bg-danger rounded-pill">{{ Auth::user()->unreadNotifications->count() }}</span>
                 </button>
                 <div class="dropdown-menu dropdown-menu-lg dropdown-menu-end p-0"
@@ -338,6 +339,8 @@
                         </div>
                     </div>
                     <div data-simplebar style="max-height: 230px;">
+
+
                         @foreach (Auth::user()->unreadNotifications as $notification)
                             <a href="" class="text-reset notification-item">
                                 <div class="d-flex">
@@ -366,9 +369,7 @@
 
 
 
-                                {{-- <div class="text-center">
-                                    {{ $notification->data['usercreate'] }}
-                                </div> --}}
+
 
 
 
@@ -376,7 +377,6 @@
 
                             </a>
                         @endforeach
-
 
 
 
@@ -391,8 +391,7 @@
                 </div>
             </div>
 
-            @endif
-
+            @endif --}}
 
 
             <div class="dropdown d-inline-block">

@@ -1,7 +1,7 @@
 @extends('layouts.master-without-nav')
 
 @section('title')
-login
+@lang('translation.Login')
 @endsection
 
 @section('css')
@@ -101,7 +101,7 @@ login
                                         <form class="form-horizontal" method="POST" action="{{ route('login') }}">
                                             @csrf
                                             <div class="mb-3">
-                                                <label for="username" class="form-label">Email</label>
+                                                <label for="username" class="form-label">Emaill</label>
                                                 <input name="email" type="email" class="form-control @error('email') is-invalid @enderror" value="{{ old('email', 'admin@themesbrand.com') }}" id="username" placeholder="Enter Email" autocomplete="email" autofocus>
                                                 @error('email')
                                                 <span class="invalid-feedback" role="alert">
