@@ -23,13 +23,10 @@ use App\Http\Controllers\Admin\notificationController;
 */
 
 Auth::routes();
+// Route::get('/login', [App\Http\Controllers\Auth\LoginController::class, 'showLoginForm'])->name('login');
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'root'])->name('root');
 
-
-Route::get('/about', function () {
-    return view('form-uploads');
-});
 
 
 Route::middleware(['auth'])->group(function () {

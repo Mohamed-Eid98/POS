@@ -2,29 +2,24 @@
 
 namespace App\Models;
 
-
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Product;
 use Illuminate\Database\Eloquent\Model;
-use Spatie\MediaLibrary\InteractsWithMedia;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
 
 class SubCategory extends Model implements HasMedia
 {
     use HasFactory, InteractsWithMedia;
 
-    protected $guarded =[];
+    protected $fillable = ['id', 'name'];
 
-    public function category()
+    public function products ()
     {
-        return $this->belongsTo(Category::class);
+        return $this->hasMany(Product::class,'sub_category_id');
     }
-    /**
-     * Get all of the comments for the subCategory
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function products()
-    {
-        return $this->hasMany(Product::class, 'sub_category_id', 'id');
+    
+    public function category() {
+        return $this->belongsTo(Category::class);
     }
 }
