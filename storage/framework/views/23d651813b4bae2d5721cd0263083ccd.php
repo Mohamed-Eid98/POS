@@ -78,28 +78,27 @@
     const checkboxes = document.querySelectorAll('input[type="checkbox"]');
     const totalInput = document.getElementById('total');
 
-function updateTotal() {
-  let sum = 0;
+    function updateTotal() {
+        let sum = 0;
 
-  checkboxes.forEach((checkbox) => {
+        checkboxes.forEach((checkbox) => {
             if (checkbox.checked) {
                 const value = parseInt(checkbox.value);
                 if (typeof value === 'number' && !isNaN(value)) {
-                sum += value;
+                    sum += value;
                 }
             }
-            });
+        });
 
-  totalInput.value = sum;
-}
+        totalInput.value = sum;
+    }
 
-checkboxes.forEach((checkbox) => {
-  checkbox.addEventListener('change', updateTotal);
-});
+    checkboxes.forEach((checkbox) => {
+        checkbox.addEventListener('change', updateTotal);
+    });
 
-updateTotal();
+    updateTotal();
 </script>
 
 <?php echo $__env->yieldContent('script-bottom'); ?>
-
 <?php /**PATH C:\xampp\htdocs\POS\resources\views/layouts/vendor-scripts.blade.php ENDPATH**/ ?>

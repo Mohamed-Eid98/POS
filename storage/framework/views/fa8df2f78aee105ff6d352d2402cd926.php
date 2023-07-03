@@ -1,7 +1,5 @@
-
-
 <?php $__env->startSection('title'); ?>
-    عرض العملاء
+    عرض المناطق
 <?php $__env->stopSection(); ?>
 
 <?php $__env->startSection('css'); ?>
@@ -23,7 +21,7 @@
             عرض
         <?php $__env->endSlot(); ?>
         <?php $__env->slot('title'); ?>
-            العملاء
+            المناطق
         <?php $__env->endSlot(); ?>
     <?php echo $__env->renderComponent(); ?>
 
@@ -47,7 +45,7 @@
             <div class="card">
                 <div class="card-body">
 
-                    <h4 class="card-title">عرض العملاء</h4>
+                    <h4 class="card-title">عرض المناطق</h4>
                     <p class="card-title-desc">
 
                     </p>
@@ -60,16 +58,13 @@
                         <div class="row">
                             <div class="col-sm-12">
                                 <table id="example" class="table table-striped my-3 w-100" role="grid"
-                                    aria-describedby="datatable_info" style="width: 1566px;">
+                                    aria-describedby="datatable_info">
                                     <thead>
                                         <tr role="row">
                                             <th>#</th>
-                                            <th>الموزع</th>
-                                            <th>رقم التليفون</th>
-                                            <th>الايميل </th>
-                                            <th>العنوان </th>
                                             
-
+                                            <th>المنطقه</th>
+                                            <th>التوصيل</th>
                                             <th>التعديلات</th>
                                         </tr>
 
@@ -78,46 +73,53 @@
 
                                     <tbody>
 
-                                        <?php $i = 0; ?>
-                                        <?php $__currentLoopData = $users; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $user): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                            <?php $i++; ?>
-                                            <tr>
-                                                <td><?php echo e($i); ?></td>
-                                                <td><?php echo e($user->name); ?></td>
-                                                <td><?php echo e($user->phone); ?></td>
-                                                <td><?php echo e($user->email); ?></td>
-                                                <td><?php echo e($user->address); ?></td>
-                                                
+                                        <?php $i = 0;
+                                        $prevCountry = null; ?>
+                                        <?php $__currentLoopData = $cities; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $city): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                            <?php $__currentLoopData = $city->areas; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $area): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                <?php if($prevCountry !== $city->general_title): ?>
+                                                    <tr>
+                                                        <td colspan="4"><?php echo e($city->general_title); ?> </td>
+                                                    </tr>
+                                                    <?php
+                                                        $prevCountry = $city->general_title;
+                                                    ?>
+                                                <?php endif; ?>
 
 
 
-                                                <td>
-                                                    
 
+                                                <?php $i++; ?>
+                                                <tr>
+                                                    <td><?php echo e($i); ?></td>
 
-                                                    <ul class="list-unstyled hstack gap-1 mb-0">
-                                                        <li data-bs-toggle="tooltip" data-bs-placement="top"
-                                                            title="عرض الزبائن">
-                                                            <a href="<?php echo e(route('customers.show', $user->id)); ?>"
-                                                                class="btn btn-sm btn-soft-primary"><i
-                                                                    class="mdi mdi-eye-outline"></i></a>
-                                                        </li>
-                                                        <li data-bs-toggle="tooltip" data-bs-placement="top"
-                                                            title="عرض الطلبات">
-                                                            <a href="<?php echo e(route('usersorder.show', $user->id)); ?>"
-                                                                class="btn btn-sm btn-soft-info"><i
-                                                                    class="fas fa-list-ul"></i></a>
+                                                    <td>
+                                                        <?php echo e($area->general_title); ?>
 
-                                                        </li>
-                                                        <li data-bs-toggle="tooltip" data-bs-placement="top" title="Delete">
-                                                            <a href="<?php echo e(route('user.delete', $user->id)); ?>" title="حذف"
-                                                                class="btn btn-sm btn-soft-danger"><i
-                                                                    class="mdi mdi-delete-outline"></i></a>
-                                                        </li>
-                                                    </ul>
+                                                    </td>
+                                                    <td>
+                                                        <?php echo e($area->shipping_cost); ?>
 
-                                                </td>
-                                            </tr>
+                                                    </td>
+                                                    <td>
+                                                        <ul class="list-unstyled hstack gap-1 mb-0">
+                                                            <li data-bs-toggle="tooltip" data-bs-placement="top"
+                                                                title="تعديل ">
+                                                                <a href="<?php echo e(route('area.edit', $area->id)); ?>"
+                                                                    class="btn btn-sm btn-soft-primary"><i
+                                                                        class="mdi mdi-pencil-outline"></i></a>
+                                                            </li>
+
+                                                            <li data-bs-toggle="tooltip" data-bs-placement="top"
+                                                                title="حذف">
+                                                                <a href="<?php echo e(route('area.delete', $area->id)); ?>"
+                                                                    title="حذف" class="btn btn-sm btn-soft-danger"><i
+                                                                        class="mdi mdi-delete-outline"></i></a>
+                                                            </li>
+                                                        </ul>
+                                                    </td>
+                                                </tr>
+                                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 
 
@@ -125,14 +127,12 @@
                                 </table>
                             </div>
                         </div>
-                        
 
                     </div>
                 </div>
             </div> <!-- end col -->
         </div>
     <?php $__env->stopSection(); ?>
-
     <script>
         $(function(e) {
             //file export datatable
@@ -210,4 +210,4 @@
         });
     </script>
 
-<?php echo $__env->make('layouts.master', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\POS\resources\views/customers/users_view.blade.php ENDPATH**/ ?>
+<?php echo $__env->make('layouts.master', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\POS\resources\views/city/areaView.blade.php ENDPATH**/ ?>

@@ -1,7 +1,5 @@
-
-
 <?php $__env->startSection('title'); ?>
-    عرض العملاء
+    عرض المحافظات
 <?php $__env->stopSection(); ?>
 
 <?php $__env->startSection('css'); ?>
@@ -23,10 +21,17 @@
             عرض
         <?php $__env->endSlot(); ?>
         <?php $__env->slot('title'); ?>
-            العملاء
+            المحافظات
         <?php $__env->endSlot(); ?>
     <?php echo $__env->renderComponent(); ?>
 
+
+    <?php if(session('add')): ?>
+        <div class="alert alert-success">
+            <?php echo e(session('add')); ?>
+
+        </div>
+    <?php endif; ?>
 
     <?php if(session('delete')): ?>
         <div class="alert alert-success">
@@ -47,7 +52,7 @@
             <div class="card">
                 <div class="card-body">
 
-                    <h4 class="card-title">عرض العملاء</h4>
+                    <h4 class="card-title">عرض المحافظات</h4>
                     <p class="card-title-desc">
 
                     </p>
@@ -64,12 +69,7 @@
                                     <thead>
                                         <tr role="row">
                                             <th>#</th>
-                                            <th>الموزع</th>
-                                            <th>رقم التليفون</th>
-                                            <th>الايميل </th>
-                                            <th>العنوان </th>
-                                            
-
+                                            <th>المحافظات</th>
                                             <th>التعديلات</th>
                                         </tr>
 
@@ -79,43 +79,29 @@
                                     <tbody>
 
                                         <?php $i = 0; ?>
-                                        <?php $__currentLoopData = $users; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $user): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                        <?php $__currentLoopData = $cities; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $city): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                             <?php $i++; ?>
                                             <tr>
                                                 <td><?php echo e($i); ?></td>
-                                                <td><?php echo e($user->name); ?></td>
-                                                <td><?php echo e($user->phone); ?></td>
-                                                <td><?php echo e($user->email); ?></td>
-                                                <td><?php echo e($user->address); ?></td>
-                                                
-
-
-
                                                 <td>
-                                                    
+                                                    <?php echo e($city->general_title); ?>
 
 
+                                                </td>
+                                                <td>
                                                     <ul class="list-unstyled hstack gap-1 mb-0">
-                                                        <li data-bs-toggle="tooltip" data-bs-placement="top"
-                                                            title="عرض الزبائن">
-                                                            <a href="<?php echo e(route('customers.show', $user->id)); ?>"
+                                                        <li data-bs-toggle="tooltip" data-bs-placement="top" title="تعديل ">
+                                                            <a href="<?php echo e(route('city.edit', $city->id)); ?>"
                                                                 class="btn btn-sm btn-soft-primary"><i
-                                                                    class="mdi mdi-eye-outline"></i></a>
+                                                                    class="mdi mdi-pencil-outline"></i></a>
                                                         </li>
-                                                        <li data-bs-toggle="tooltip" data-bs-placement="top"
-                                                            title="عرض الطلبات">
-                                                            <a href="<?php echo e(route('usersorder.show', $user->id)); ?>"
-                                                                class="btn btn-sm btn-soft-info"><i
-                                                                    class="fas fa-list-ul"></i></a>
 
-                                                        </li>
-                                                        <li data-bs-toggle="tooltip" data-bs-placement="top" title="Delete">
-                                                            <a href="<?php echo e(route('user.delete', $user->id)); ?>" title="حذف"
+                                                        <li data-bs-toggle="tooltip" data-bs-placement="top" title="حذف">
+                                                            <a href="<?php echo e(route('city.delete', $city->id)); ?>" title="حذف"
                                                                 class="btn btn-sm btn-soft-danger"><i
                                                                     class="mdi mdi-delete-outline"></i></a>
                                                         </li>
                                                     </ul>
-
                                                 </td>
                                             </tr>
                                         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
@@ -132,7 +118,6 @@
             </div> <!-- end col -->
         </div>
     <?php $__env->stopSection(); ?>
-
     <script>
         $(function(e) {
             //file export datatable
@@ -210,4 +195,4 @@
         });
     </script>
 
-<?php echo $__env->make('layouts.master', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\POS\resources\views/customers/users_view.blade.php ENDPATH**/ ?>
+<?php echo $__env->make('layouts.master', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\POS\resources\views/city/cityView.blade.php ENDPATH**/ ?>

@@ -1,5 +1,3 @@
-
-
 <?php $__env->startSection('title'); ?>
     عرض الطلبات
 <?php $__env->stopSection(); ?>
@@ -58,75 +56,78 @@
                                         <?php echo csrf_field(); ?>
                                         <table id="example" class="table table-striped">
                                             <thead>
-                                            <tr>
-                                                <th></th>
+                                                <tr>
+                                                    <th></th>
 
-                                                <th data-priority="1">رقم الفاتوره</th>
-                                                <th data-priority="2">الحاله</th>
-                                                <th data-priority="3">سعر فاتوره التوصيل</th>
-                                                <th data-priority="4"> اختيار</th>
+                                                    <th data-priority="1">رقم الفاتوره</th>
+                                                    <th data-priority="2">الحاله</th>
+                                                    <th data-priority="3">سعر فاتوره التوصيل</th>
+                                                    <th data-priority="4"> اختيار</th>
 
-                                            </tr>
+                                                </tr>
 
-                                        </thead>
-                                        <tbody>
-                                            <?php $__currentLoopData = $orders; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $order): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                            <tr>
-                                                <td></td>
+                                            </thead>
+                                            <tbody>
+                                                <?php $__currentLoopData = $orders; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $order): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                    <tr>
+                                                        <td></td>
 
-                                                <td><?php echo e($order->invoice_no); ?> </td>
-                                                <td><?php echo e($order->status); ?> </td>
-                                                <td><?php echo e($order->final_total); ?></td>
-                                                <td>
-                                                    <label>
-                                                        <input type="checkbox" name="name[<?php echo e($order->id); ?>]"
-                                                        value="<?php echo e($order->final_total); ?>">
-                                                    </label>
-                                                </td>
-
-
-                                            </tr>
-                                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                                        <td><?php echo e($order->invoice_no); ?> </td>
+                                                        <td><?php echo e($order->status); ?> </td>
+                                                        <td><?php echo e($order->final_total); ?></td>
+                                                        <td>
+                                                            <label>
+                                                                <input type="checkbox" name="name[<?php echo e($order->id); ?>]"
+                                                                    value="<?php echo e($order->final_total); ?>">
+                                                            </label>
+                                                        </td>
 
 
+                                                    </tr>
+                                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 
 
-                                        </tbody>
-                                    </table>
 
 
-                                    <div class="row">
-                                        <div class="col-md-6 m-auto">
+                                            </tbody>
+                                        </table>
 
 
-                                            <div class="row">
-                                                <input type="hidden" name="user_id" value="<?php echo e($order->user_id); ?>">
-                                                <input type="text" id="total" name="total" readonly>
-                                        <div class="col-md-3 m-auto"><input type="date" name="date_at" value="<?php echo e(now()); ?>"></div>
-                                    </div>
+                                        <div class="row">
+                                            <div class="col-md-6 m-auto">
 
 
-                                            
+                                                <div class="row">
+                                                    
+                                                    <input type="text" id="total" name="total" readonly
+                                                        class="form-control form-control-rounded is-valid form-control-lg my-3 ">
+                                                    <div class="col-md-4  m-auto"><input type="date" name="date_at"
+                                                            value="<?php echo e(now()); ?>"
+                                                            class="form-control form-control-rounded form-control-lg ">
+                                                    </div>
+                                                </div>
+
+
+                                                
+                                            </div>
+
                                         </div>
-
-                                    </div>
-                                    
+                                        
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="text-center mt-4 mb-2">
+                <div class="text-center
+                                                            mt-4 mb-2">
                     <input type="submit" class="btn btn-primary waves-effect waves-light" value="حفظ">
                 </div>
                 
-            </form>
+                </form>
 
             </div>
         </div>
     </div> <!-- end col -->
-
-
 <?php $__env->stopSection(); ?>
 
 

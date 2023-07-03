@@ -1,5 +1,3 @@
-
-
 <?php $__env->startSection('title'); ?>
     عرض الزبائن
 <?php $__env->stopSection(); ?>
@@ -59,14 +57,12 @@
                         </div>
                         <div class="row">
                             <div class="col-sm-12">
-                                <table id="example"
-                                    class="table table-bordered dt-responsive nowrap w-100 dataTable no-footer dtr-inline my-3"
-                                    role="grid" aria-describedby="datatable_info" style="width: 1566px;">
+                                <table id="example" class="table table-striped my-3 w-100" role="grid"
+                                    aria-describedby="datatable_info" style="width: 1566px;">
                                     <thead>
                                         <tr role="row">
                                             <th>#</th>
                                             <th>اسم الزبون</th>
-                                            <th>البلد </th>
                                             <th>المدينه </th>
                                             <th>المنطقه </th>
                                             <th>العنوان </th>
@@ -92,7 +88,6 @@
                                                 
 
                                                 <td><?php echo e($customer->name); ?></td>
-                                                <td><?php echo e($customer->country->general_title); ?></td>
                                                 <td>
                                                     <?php if($customer->city): ?>
                                                         <?php echo e($customer->city->general_title); ?>

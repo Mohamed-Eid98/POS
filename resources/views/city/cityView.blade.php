@@ -58,23 +58,13 @@
 
                     <div id="datatable_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
                         <div class="row">
-                            <div class="col-sm-12 col-md-6">
-                                <div class="dataTables_length" id="datatable_length"><label>عرض <select
-                                            name="datatable_length" aria-controls="datatable"
-                                            class="custom-select custom-select-sm form-control form-control-sm form-select form-select-sm">
-                                            <option value="10">10</option>
-                                            <option value="25">25</option>
-                                            <option value="50">50</option>
-                                            <option value="100">100</option>
-                                        </select> entries</label></div>
-                            </div>
+
 
                         </div>
                         <div class="row">
                             <div class="col-sm-12">
-                                <table id="example"
-                                    class="table table-bordered dt-responsive nowrap w-100 dataTable no-footer dtr-inline"
-                                    role="grid" aria-describedby="datatable_info" style="width: 1566px;">
+                                <table id="example" class="table table-striped my-3 w-100" role="grid"
+                                    aria-describedby="datatable_info" style="width: 1566px;">
                                     <thead>
                                         <tr role="row">
                                             <th>#</th>
@@ -93,7 +83,7 @@
                                             <tr>
                                                 <td>{{ $i }}</td>
                                                 <td>
-                                                 {{ $city->general_title }}
+                                                    {{ $city->general_title }}
 
                                                 </td>
                                                 <td>
@@ -105,8 +95,8 @@
                                                         </li>
 
                                                         <li data-bs-toggle="tooltip" data-bs-placement="top" title="حذف">
-                                                            <a href="{{ route('city.delete', $city->id) }}"
-                                                                title="حذف" class="btn btn-sm btn-soft-danger"><i
+                                                            <a href="{{ route('city.delete', $city->id) }}" title="حذف"
+                                                                class="btn btn-sm btn-soft-danger"><i
                                                                     class="mdi mdi-delete-outline"></i></a>
                                                         </li>
                                                     </ul>

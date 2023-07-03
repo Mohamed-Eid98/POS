@@ -52,23 +52,13 @@
 
                     <div id="datatable_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
                         <div class="row">
-                            <div class="col-sm-12 col-md-6">
-                                <div class="dataTables_length" id="datatable_length"><label>عرض <select
-                                            name="datatable_length" aria-controls="datatable"
-                                            class="custom-select custom-select-sm form-control form-control-sm form-select form-select-sm">
-                                            <option value="10">10</option>
-                                            <option value="25">25</option>
-                                            <option value="50">50</option>
-                                            <option value="100">100</option>
-                                        </select> entries</label></div>
-                            </div>
+
 
                         </div>
                         <div class="row">
                             <div class="col-sm-12">
-                                <table id="example"
-                                    class="table table-bordered dt-responsive nowrap w-100 dataTable no-footer dtr-inline"
-                                    role="grid" aria-describedby="datatable_info" style="width: 1566px;">
+                                <table id="example" class="table table-striped my-3 w-100" role="grid"
+                                    aria-describedby="datatable_info">
                                     <thead>
                                         <tr role="row">
                                             <th>#</th>
@@ -83,49 +73,51 @@
 
                                     <tbody>
 
-                                        <?php $i = 0; $prevCountry = null; ?>
+                                        <?php $i = 0;
+                                        $prevCountry = null; ?>
                                         @foreach ($cities as $city)
-                                                @foreach ($city->areas as $area)
-
+                                            @foreach ($city->areas as $area)
                                                 @if ($prevCountry !== $city->general_title)
+                                                    <tr>
+                                                        <td colspan="4">{{ $city->general_title }} </td>
+                                                    </tr>
+                                                    @php
+                                                        $prevCountry = $city->general_title;
+                                                    @endphp
+                                                @endif
+
+
+
+
+                                                <?php $i++; ?>
                                                 <tr>
-                                                    <td colspan="4">{{ $city->general_title }} </td>
+                                                    <td>{{ $i }}</td>
+
+                                                    <td>
+                                                        {{ $area->general_title }}
+                                                    </td>
+                                                    <td>
+                                                        {{ $area->shipping_cost }}
+                                                    </td>
+                                                    <td>
+                                                        <ul class="list-unstyled hstack gap-1 mb-0">
+                                                            <li data-bs-toggle="tooltip" data-bs-placement="top"
+                                                                title="تعديل ">
+                                                                <a href="{{ route('area.edit', $area->id) }}"
+                                                                    class="btn btn-sm btn-soft-primary"><i
+                                                                        class="mdi mdi-pencil-outline"></i></a>
+                                                            </li>
+
+                                                            <li data-bs-toggle="tooltip" data-bs-placement="top"
+                                                                title="حذف">
+                                                                <a href="{{ route('area.delete', $area->id) }}"
+                                                                    title="حذف" class="btn btn-sm btn-soft-danger"><i
+                                                                        class="mdi mdi-delete-outline"></i></a>
+                                                            </li>
+                                                        </ul>
+                                                    </td>
                                                 </tr>
-                                                @php
-                                                    $prevCountry = $city->general_title;
-                                                @endphp
-                                            @endif
-
-
-
-
-                                            <?php $i++; ?>
-                                            <tr>
-                                                <td>{{ $i }}</td>
-
-                                                <td>
-                                                            {{ $area->general_title }}
-                                                </td>
-                                                <td>
-                                                            {{ $area->shipping_cost }}
-                                                </td>
-                                                <td>
-                                                    <ul class="list-unstyled hstack gap-1 mb-0">
-                                                        <li data-bs-toggle="tooltip" data-bs-placement="top" title="تعديل ">
-                                                            <a href="{{ route('area.edit', $area->id) }}"
-                                                                class="btn btn-sm btn-soft-primary"><i
-                                                                    class="mdi mdi-pencil-outline"></i></a>
-                                                        </li>
-
-                                                        <li data-bs-toggle="tooltip" data-bs-placement="top" title="حذف">
-                                                            <a href="{{ route('area.delete', $area->id) }}"
-                                                                title="حذف" class="btn btn-sm btn-soft-danger"><i
-                                                                    class="mdi mdi-delete-outline"></i></a>
-                                                        </li>
-                                                    </ul>
-                                                </td>
-                                            </tr>
-                                        @endforeach
+                                            @endforeach
                                         @endforeach
 
 
