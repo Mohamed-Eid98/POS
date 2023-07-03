@@ -1,49 +1,43 @@
-@extends('layouts.master')
+<?php $__env->startSection('title'); ?>
+    عرض الزبائن
+<?php $__env->stopSection(); ?>
 
-@section('title')
-    عرض المحافظات
-@endsection
-
-@section('css')
+<?php $__env->startSection('css'); ?>
     <!-- DataTables -->
     <link
-        href="{{ asset('build/libs/datatables.net-bs4/css/dataTables.bootstrap4.min.css" rel="stylesheet" type="text/css') }}" />
+        href="<?php echo e(asset('build/libs/datatables.net-bs4/css/dataTables.bootstrap4.min.css" rel="stylesheet" type="text/css')); ?>" />
     <link
-        href="{{ asset('build/libs/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css" rel="stylesheet" type="text/css') }}" />
+        href="<?php echo e(asset('build/libs/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css" rel="stylesheet" type="text/css')); ?>" />
 
 
     <!-- Responsive datatable examples -->
-    <link href="{{ asset('build/libs/datatables.net-responsive-bs4/css/responsive.bootstrap4.min.css') }}" rel="stylesheet"
+    <link href="<?php echo e(asset('build/libs/datatables.net-responsive-bs4/css/responsive.bootstrap4.min.css')); ?>" rel="stylesheet"
         type="text/css" />
-@endsection
+<?php $__env->stopSection(); ?>
 
-@section('content')
-    @component('components.breadcrumb')
-        @slot('li_1')
+<?php $__env->startSection('content'); ?>
+    <?php $__env->startComponent('components.breadcrumb'); ?>
+        <?php $__env->slot('li_1'); ?>
             عرض
-        @endslot
-        @slot('title')
-            المحافظات
-        @endslot
-    @endcomponent
+        <?php $__env->endSlot(); ?>
+        <?php $__env->slot('title'); ?>
+            الزبائن
+        <?php $__env->endSlot(); ?>
+    <?php echo $__env->renderComponent(); ?>
 
 
-    @if (session('add'))
+    <?php if(session('delete')): ?>
         <div class="alert alert-success">
-            {{ session('add') }}
-        </div>
-    @endif
+            <?php echo e(session('delete')); ?>
 
-    @if (session('delete'))
-        <div class="alert alert-success">
-            {{ session('delete') }}
         </div>
-    @endif
-    @if (session('edit'))
+    <?php endif; ?>
+    <?php if(session('edit')): ?>
         <div class="alert alert-success">
-            {{ session('edit') }}
+            <?php echo e(session('edit')); ?>
+
         </div>
-    @endif
+    <?php endif; ?>
 
 
     <div class="row">
@@ -51,7 +45,7 @@
             <div class="card">
                 <div class="card-body">
 
-                    <h4 class="card-title">عرض المحافظات</h4>
+                    <h4 class="card-title">عدد الزبائن (<?php echo e($user->customers->count()); ?> )</h4>
                     <p class="card-title-desc">
 
                     </p>
@@ -68,8 +62,14 @@
                                     <thead>
                                         <tr role="row">
                                             <th>#</th>
-                                            <th>المحافظات</th>
-                                            <th>التعديلات</th>
+                                            <th>اسم الزبون</th>
+                                            <th>المدينه </th>
+                                            <th>المنطقه </th>
+                                            <th>العنوان </th>
+                                            <th>الموبيل </th>
+                                            <th>التعديلات </th>
+
+
                                         </tr>
 
                                     </thead>
@@ -78,44 +78,59 @@
                                     <tbody>
 
                                         <?php $i = 0; ?>
-                                        @foreach ($cities as $city)
+                                        <?php $__currentLoopData = $user->customers; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $customer): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                             <?php $i++; ?>
                                             <tr>
-                                                <td>{{ $i }}</td>
-                                                <td>
-                                                    {{ $city->general_title }}
+                                                <?php $i; ?>
 
+                                                <td><?php echo e($i); ?></td>
+
+                                                
+
+                                                <td><?php echo e($customer->name); ?></td>
+                                                <td>
+                                                    <?php if($customer->city): ?>
+                                                        <?php echo e($customer->city->general_title); ?>
+
+                                                    <?php else: ?>
+                                                        لا يوجد
+                                                    <?php endif; ?>
                                                 </td>
                                                 <td>
-                                                    <ul class="list-unstyled hstack gap-1 mb-0">
-                                                        <li data-bs-toggle="tooltip" data-bs-placement="top" title="تعديل ">
-                                                            <a href="{{ route('city.edit', $city->id) }}"
-                                                                class="btn btn-sm btn-soft-primary"><i
-                                                                    class="mdi mdi-pencil-outline"></i></a>
-                                                        </li>
+                                                    <?php if($customer->area): ?>
+                                                        <?php echo e($customer->area->general_title); ?>
 
-                                                        <li data-bs-toggle="tooltip" data-bs-placement="top" title="حذف">
-                                                            <a href="{{ route('city.delete', $city->id) }}" title="حذف"
-                                                                class="btn btn-sm btn-soft-danger"><i
-                                                                    class="mdi mdi-delete-outline"></i></a>
-                                                        </li>
-                                                    </ul>
+                                                    <?php else: ?>
+                                                        لا يوجد
+                                                    <?php endif; ?>
+                                                </td>
+                                                <td><?php echo e($customer->address); ?></td>
+                                                <td>
+                                                    <li><?php echo e($customer->phone_number); ?></li>
+                                                    <?php if($customer->second_phone_number): ?>
+                                                        <li><?php echo e($customer->second_phone_number); ?></li>
+                                                    <?php endif; ?>
+                                                </td>
+                                                <td>
+                                                    <a href="<?php echo e(route('user.delete', $customer->id)); ?>" title="حذف"
+                                                        class="btn btn-sm btn-soft-danger"><i
+                                                            class="mdi mdi-delete-outline"></i></a>
                                                 </td>
                                             </tr>
-                                        @endforeach
+                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 
 
                                     </tbody>
                                 </table>
                             </div>
                         </div>
-                        {{-- <div class="row"><div class="col-sm-12 col-md-5"><div class="dataTables_info" id="datatable_info" role="status" aria-live="polite">Showing 1 to 10 of 57 entries</div></div><div class="col-sm-12 col-md-7"><div class="dataTables_paginate paging_simple_numbers" id="datatable_paginate"><ul class="pagination"><li class="paginate_button page-item previous disabled" id="datatable_previous"><a href="#" aria-controls="datatable" data-dt-idx="0" tabindex="0" class="page-link">Previous</a></li><li class="paginate_button page-item active"><a href="#" aria-controls="datatable" data-dt-idx="1" tabindex="0" class="page-link">1</a></li><li class="paginate_button page-item "><a href="#" aria-controls="datatable" data-dt-idx="2" tabindex="0" class="page-link">2</a></li><li class="paginate_button page-item "><a href="#" aria-controls="datatable" data-dt-idx="3" tabindex="0" class="page-link">3</a></li><li class="paginate_button page-item "><a href="#" aria-controls="datatable" data-dt-idx="4" tabindex="0" class="page-link">4</a></li><li class="paginate_button page-item "><a href="#" aria-controls="datatable" data-dt-idx="5" tabindex="0" class="page-link">5</a></li><li class="paginate_button page-item "><a href="#" aria-controls="datatable" data-dt-idx="6" tabindex="0" class="page-link">6</a></li><li class="paginate_button page-item next" id="datatable_next"><a href="#" aria-controls="datatable" data-dt-idx="7" tabindex="0" class="page-link">Next</a></li></ul></div></div></div></div> --}}
+                        
 
                     </div>
                 </div>
             </div> <!-- end col -->
         </div>
-    @endsection
+    <?php $__env->stopSection(); ?>
     <script>
         $(function(e) {
             //file export datatable
@@ -192,3 +207,5 @@
             });
         });
     </script>
+
+<?php echo $__env->make('layouts.master', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\POS\resources\views/customers/customers_view.blade.php ENDPATH**/ ?>

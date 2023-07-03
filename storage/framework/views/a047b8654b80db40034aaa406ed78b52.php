@@ -1,43 +1,35 @@
-@extends('layouts.master')
-
-@section('title')
+<?php $__env->startSection('title'); ?>
     عرض الطلبات
-@endsection
+<?php $__env->stopSection(); ?>
 
-@section('css')
+<?php $__env->startSection('css'); ?>
     <!-- DataTables -->
-    {{-- <link
-        href="{{ asset('build/libs/datatables.net-bs4/css/dataTables.bootstrap4.min.css" rel="stylesheet" type="text/css') }}" />
-    <link
-        href="{{ asset('build/libs/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css" rel="stylesheet" type="text/css') }}" />
+    
+<?php $__env->stopSection(); ?>
 
-
-    <!-- Responsive datatable examples -->
-    <link href="{{ asset('build/libs/datatables.net-responsive-bs4/css/responsive.bootstrap4.min.css') }}" rel="stylesheet"
-        type="text/css" /> --}}
-@endsection
-
-@section('content')
-    @component('components.breadcrumb')
-        @slot('li_1')
+<?php $__env->startSection('content'); ?>
+    <?php $__env->startComponent('components.breadcrumb'); ?>
+        <?php $__env->slot('li_1'); ?>
             عرض
-        @endslot
-        @slot('title')
+        <?php $__env->endSlot(); ?>
+        <?php $__env->slot('title'); ?>
             الطلبات
-        @endslot
-    @endcomponent
+        <?php $__env->endSlot(); ?>
+    <?php echo $__env->renderComponent(); ?>
 
 
-    @if (session('delete'))
+    <?php if(session('delete')): ?>
         <div class="alert alert-success">
-            {{ session('delete') }}
+            <?php echo e(session('delete')); ?>
+
         </div>
-    @endif
-    @if (session('edit'))
+    <?php endif; ?>
+    <?php if(session('edit')): ?>
         <div class="alert alert-success">
-            {{ session('edit') }}
+            <?php echo e(session('edit')); ?>
+
         </div>
-    @endif
+    <?php endif; ?>
 
 
     <div class="row">
@@ -60,8 +52,8 @@
                         <div class="col-sm-12">
                             <div class="table-rep-plugin">
                                 <div class="" data-pattern="priority-columns">
-                                    <form action="{{ route('orders.payments') }}" method="POST">
-                                        @csrf
+                                    <form action="<?php echo e(route('orders.payments')); ?>" method="POST">
+                                        <?php echo csrf_field(); ?>
                                         <table id="example" class="table table-striped">
                                             <thead>
                                                 <tr>
@@ -76,23 +68,23 @@
 
                                             </thead>
                                             <tbody>
-                                                @foreach ($orders as $order)
+                                                <?php $__currentLoopData = $orders; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $order): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                                     <tr>
                                                         <td></td>
 
-                                                        <td>{{ $order->invoice_no }} </td>
-                                                        <td>{{ $order->status }} </td>
-                                                        <td>{{ $order->final_total }}</td>
+                                                        <td><?php echo e($order->invoice_no); ?> </td>
+                                                        <td><?php echo e($order->status); ?> </td>
+                                                        <td><?php echo e($order->final_total); ?></td>
                                                         <td>
                                                             <label>
-                                                                <input type="checkbox" name="name[{{ $order->id }}]"
-                                                                    value="{{ $order->final_total }}">
+                                                                <input type="checkbox" name="name[<?php echo e($order->id); ?>]"
+                                                                    value="<?php echo e($order->final_total); ?>">
                                                             </label>
                                                         </td>
 
 
                                                     </tr>
-                                                @endforeach
+                                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 
 
 
@@ -106,23 +98,21 @@
 
 
                                                 <div class="row">
-                                                    {{-- <input type="hidden" name="user_id" value="{{ $order->user_id }}"> --}}
+                                                    
                                                     <input type="text" id="total" name="total" readonly
                                                         class="form-control form-control-rounded is-valid form-control-lg my-3 ">
                                                     <div class="col-md-4  m-auto"><input type="date" name="date_at"
-                                                            value="{{ now() }}"
+                                                            value="<?php echo e(now()); ?>"
                                                             class="form-control form-control-rounded form-control-lg ">
                                                     </div>
                                                 </div>
 
 
-                                                {{-- <input type="text" readonly id="total" > --}}
+                                                
                                             </div>
 
                                         </div>
-                                        {{-- <div class="row">
-                                        <div class="col-md-3 m-auto"><input type="date"></div>
-                                    </div> --}}
+                                        
                                 </div>
                             </div>
                         </div>
@@ -132,13 +122,13 @@
                                                             mt-4 mb-2">
                     <input type="submit" class="btn btn-primary waves-effect waves-light" value="حفظ">
                 </div>
-                {{-- <div class="row"><div class="col-sm-12 col-md-5"><div class="dataTables_info" id="datatable_info" role="status" aria-live="polite">Showing 1 to 10 of 57 entries</div></div><div class="col-sm-12 col-md-7"><div class="dataTables_paginate paging_simple_numbers" id="datatable_paginate"><ul class="pagination"><li class="paginate_button page-item previous disabled" id="datatable_previous"><a href="#" aria-controls="datatable" data-dt-idx="0" tabindex="0" class="page-link">Previous</a></li><li class="paginate_button page-item active"><a href="#" aria-controls="datatable" data-dt-idx="1" tabindex="0" class="page-link">1</a></li><li class="paginate_button page-item "><a href="#" aria-controls="datatable" data-dt-idx="2" tabindex="0" class="page-link">2</a></li><li class="paginate_button page-item "><a href="#" aria-controls="datatable" data-dt-idx="3" tabindex="0" class="page-link">3</a></li><li class="paginate_button page-item "><a href="#" aria-controls="datatable" data-dt-idx="4" tabindex="0" class="page-link">4</a></li><li class="paginate_button page-item "><a href="#" aria-controls="datatable" data-dt-idx="5" tabindex="0" class="page-link">5</a></li><li class="paginate_button page-item "><a href="#" aria-controls="datatable" data-dt-idx="6" tabindex="0" class="page-link">6</a></li><li class="paginate_button page-item next" id="datatable_next"><a href="#" aria-controls="datatable" data-dt-idx="7" tabindex="0" class="page-link">Next</a></li></ul></div></div></div></div> --}}
+                
                 </form>
 
             </div>
         </div>
     </div> <!-- end col -->
-@endsection
+<?php $__env->stopSection(); ?>
 
 
 <script>
@@ -217,3 +207,5 @@
         });
     });
 </script>
+
+<?php echo $__env->make('layouts.master', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\POS\resources\views/customers/ordercustomer_view.blade.php ENDPATH**/ ?>

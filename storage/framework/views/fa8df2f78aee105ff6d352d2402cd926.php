@@ -1,43 +1,43 @@
-@extends('layouts.master')
-
-@section('title')
+<?php $__env->startSection('title'); ?>
     عرض المناطق
-@endsection
+<?php $__env->stopSection(); ?>
 
-@section('css')
+<?php $__env->startSection('css'); ?>
     <!-- DataTables -->
     <link
-        href="{{ asset('build/libs/datatables.net-bs4/css/dataTables.bootstrap4.min.css" rel="stylesheet" type="text/css') }}" />
+        href="<?php echo e(asset('build/libs/datatables.net-bs4/css/dataTables.bootstrap4.min.css" rel="stylesheet" type="text/css')); ?>" />
     <link
-        href="{{ asset('build/libs/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css" rel="stylesheet" type="text/css') }}" />
+        href="<?php echo e(asset('build/libs/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css" rel="stylesheet" type="text/css')); ?>" />
 
 
     <!-- Responsive datatable examples -->
-    <link href="{{ asset('build/libs/datatables.net-responsive-bs4/css/responsive.bootstrap4.min.css') }}" rel="stylesheet"
+    <link href="<?php echo e(asset('build/libs/datatables.net-responsive-bs4/css/responsive.bootstrap4.min.css')); ?>" rel="stylesheet"
         type="text/css" />
-@endsection
+<?php $__env->stopSection(); ?>
 
-@section('content')
-    @component('components.breadcrumb')
-        @slot('li_1')
+<?php $__env->startSection('content'); ?>
+    <?php $__env->startComponent('components.breadcrumb'); ?>
+        <?php $__env->slot('li_1'); ?>
             عرض
-        @endslot
-        @slot('title')
+        <?php $__env->endSlot(); ?>
+        <?php $__env->slot('title'); ?>
             المناطق
-        @endslot
-    @endcomponent
+        <?php $__env->endSlot(); ?>
+    <?php echo $__env->renderComponent(); ?>
 
 
-    @if (session('delete'))
+    <?php if(session('delete')): ?>
         <div class="alert alert-success">
-            {{ session('delete') }}
+            <?php echo e(session('delete')); ?>
+
         </div>
-    @endif
-    @if (session('edit'))
+    <?php endif; ?>
+    <?php if(session('edit')): ?>
         <div class="alert alert-success">
-            {{ session('edit') }}
+            <?php echo e(session('edit')); ?>
+
         </div>
-    @endif
+    <?php endif; ?>
 
 
     <div class="row">
@@ -62,7 +62,7 @@
                                     <thead>
                                         <tr role="row">
                                             <th>#</th>
-                                            {{-- <th>المحافظات</th> --}}
+                                            
                                             <th>المنطقه</th>
                                             <th>التوصيل</th>
                                             <th>التعديلات</th>
@@ -75,50 +75,52 @@
 
                                         <?php $i = 0;
                                         $prevCountry = null; ?>
-                                        @foreach ($cities as $city)
-                                            @foreach ($city->areas as $area)
-                                                @if ($prevCountry !== $city->general_title)
+                                        <?php $__currentLoopData = $cities; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $city): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                            <?php $__currentLoopData = $city->areas; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $area): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                <?php if($prevCountry !== $city->general_title): ?>
                                                     <tr>
-                                                        <td colspan="4">{{ $city->general_title }} </td>
+                                                        <td colspan="4"><?php echo e($city->general_title); ?> </td>
                                                     </tr>
-                                                    @php
+                                                    <?php
                                                         $prevCountry = $city->general_title;
-                                                    @endphp
-                                                @endif
+                                                    ?>
+                                                <?php endif; ?>
 
 
 
 
                                                 <?php $i++; ?>
                                                 <tr>
-                                                    <td>{{ $i }}</td>
+                                                    <td><?php echo e($i); ?></td>
 
                                                     <td>
-                                                        {{ $area->general_title }}
+                                                        <?php echo e($area->general_title); ?>
+
                                                     </td>
                                                     <td>
-                                                        {{ $area->shipping_cost }}
+                                                        <?php echo e($area->shipping_cost); ?>
+
                                                     </td>
                                                     <td>
                                                         <ul class="list-unstyled hstack gap-1 mb-0">
                                                             <li data-bs-toggle="tooltip" data-bs-placement="top"
                                                                 title="تعديل ">
-                                                                <a href="{{ route('area.edit', $area->id) }}"
+                                                                <a href="<?php echo e(route('area.edit', $area->id)); ?>"
                                                                     class="btn btn-sm btn-soft-primary"><i
                                                                         class="mdi mdi-pencil-outline"></i></a>
                                                             </li>
 
                                                             <li data-bs-toggle="tooltip" data-bs-placement="top"
                                                                 title="حذف">
-                                                                <a href="{{ route('area.delete', $area->id) }}"
+                                                                <a href="<?php echo e(route('area.delete', $area->id)); ?>"
                                                                     title="حذف" class="btn btn-sm btn-soft-danger"><i
                                                                         class="mdi mdi-delete-outline"></i></a>
                                                             </li>
                                                         </ul>
                                                     </td>
                                                 </tr>
-                                            @endforeach
-                                        @endforeach
+                                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 
 
                                     </tbody>
@@ -130,7 +132,7 @@
                 </div>
             </div> <!-- end col -->
         </div>
-    @endsection
+    <?php $__env->stopSection(); ?>
     <script>
         $(function(e) {
             //file export datatable
@@ -207,3 +209,5 @@
             });
         });
     </script>
+
+<?php echo $__env->make('layouts.master', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\POS\resources\views/city/areaView.blade.php ENDPATH**/ ?>
