@@ -178,11 +178,131 @@
 
 
 
+
+
+
+
                     </div>
                 </div>
             </div>
         </div>
 
+        <div class="row">
+            <div class="col-lg-12 col-md-12">
+                <div class="card">
+                    <div class="card-body">
+
+
+                        <div class="box">
+                            <div class="box-header with-border">
+                                <h4 class="box-title"> تفاصيل</h4>
+                            </div>
+                            <hr>
+                            <!-- start 2nd row  -->
+
+
+                        </div>
+
+
+                        <div class="row">
+                            <!-- start 1st row  -->
+
+                            <div class="col-md-4">
+
+                                <div class="form-group">
+                                    <h5 for="price">السعر <span class="text-danger">*</span></h5>
+                                    <div class="controls">
+                                        <input type="number"  name="price" class="form-control" />
+                                        @error('price')
+                                            <span class="text-danger" >{{ $message }}</span>
+                                        @enderror
+                                    </div>
+                                </div>
+
+                            </div> <!-- end col md 6 -->
+
+
+                            <div class="col-md-4">
+
+                                <div class="form-group">
+                                    <h5 for="qty">الكميه </h5>
+                                    <div class="controls">
+                                        <input type="number"  name="qty" class="form-control" />
+                                        @error('qty')
+                                            <span class="text-danger" >{{ $message }}</span>
+                                        @enderror
+                                    </div>
+                                </div>
+
+                            </div> <!-- end col md 6 -->
+
+
+                        </div> <!-- end 1st row  -->
+
+
+                        <div class="row">
+                            <!-- start 1st row  -->
+
+                            <div class="col-md-4">
+
+                                <div class="form-group">
+                                    <h5 for="min_price"> الحد الادني </h5>
+                                    <div class="controls">
+                                        <input type="number"  name="min_price" class="form-control" />
+                                        @error('min_price')
+                                            <span class="text-danger" >{{ $message }}</span>
+                                        @enderror
+                                    </div>
+                                </div>
+
+                            </div> <!-- end col md 4 -->
+
+
+                            <div class="col-md-4">
+
+                                <div class="form-group">
+                                    <h5 for="repeated_times"> عدد التكرار</h5>
+                                    <div class="controls">
+                                        <input type="number"  name="repeated_times" class="form-control" />
+                                        @error('repeated_times')
+                                            <span class="text-danger" >{{ $message }}</span>
+                                        @enderror
+                                    </div>
+                                </div>
+
+                            </div> <!-- end col md 4 -->
+                            <div class="col-md-4">
+
+                                <div class="form-group">
+                                    <h5 for="increase_ratio">الزياده %</h5>
+                                    <div class="controls">
+                                        <input type="number"  name="increase_ratio" class="form-control" />
+                                        @error('increase_ratio')
+                                            <span class="text-danger" >{{ $message }}</span>
+                                        @enderror
+                                    </div>
+                                </div>
+
+                            </div> <!-- end col md 6 -->
+
+                        </div> <!-- end 1st row  -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
 
 
 

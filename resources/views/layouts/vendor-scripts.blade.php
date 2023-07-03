@@ -24,6 +24,66 @@
 <script src="{{ asset('assets/js/table-data.js') }}"></script>
 
 
+{{-- <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.3.2/firebase.js"></script>
+<script>
+    // alert('as');
+    var firebaseConfig = {
+    apiKey: "AIzaSyCEBiaUSZGdRZFI2gyCKPxJ9qdJBawxRVA",
+    authDomain: "final-dashboard-bd1ed.firebaseapp.com",
+    projectId: "final-dashboard-bd1ed",
+    storageBucket: "final-dashboard-bd1ed.appspot.com",
+    messagingSenderId: "523255190089",
+    appId: "1:523255190089:web:d84198d816ae43142c6598",
+    measurementId: "G-R0ZMM23HX2"
+    };
+    firebase.initializeApp(firebaseConfig);
+    const messaging = firebase.messaging();
+
+    function startFCM() {
+        messaging
+        .requestPermission()
+        .then(function () {
+            return messaging.getToken()
+        })
+        .then(function (response) {
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+            $.ajax({
+                url: '{{ route("store.token") }}',
+                type: 'POST',
+                data: {
+                    token: response
+                },
+                dataType: 'JSON',
+                success: function (response) {
+                    alert('Token stored.');
+                },
+                error: function (error) {
+                    alert(error);
+                },
+            });
+        }).catch(function (error) {
+            alert(error);
+        });
+    }
+    messaging.onMessage(function (payload) {
+        const title = payload.notification.title;
+        const options = {
+            body: payload.notification.body,
+            icon: payload.notification.icon,
+        };
+        new Notification(title, options);
+    });
+    alert('as');
+</script> --}}
+
+
+
+
 
 <script>
     < script >

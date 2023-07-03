@@ -48,64 +48,34 @@ class ProductController extends Controller
     {
         // return $request;
 
-        if ($request->file('pic')) {
-            // dd('sa');
-            $file = $request->file('pic');
-            $fileName = date('YmdHi').$file->getClientOriginalName();
-            $file->move(public_path('uploads/product/'), $fileName);
-            $save_url = 'uploads/product/'.$fileName;
 
-            $product_id = Product::insertGetId([
+            $product = Product::create([
                 'name' => $request->name,
                 'description' => $request->desc,
                 'code' => $request->code,
 
-                'sub_category_id' => 17,
+                'sub_category_id' => $request->subcate_id,
 
                 'price' => $request->price,
                 'min_price' => $request->min_price,
                 'increase_ratio' => $request->increase_ratio,
                 'repeat_times' => $request->repeated_times,
+                'product_qty' => $request->qty,
 
 
-                'image' => $save_url,
                 'is_new' => $request->new,
                 'is_on_sale' => $request->sale,
                 'is_new_arrival' => $request->new_arrival,
                 'is_best_seller' => $request->best_seller,
 
             ]);
-        } else {
-            $product_id = Product::insertGetId([
-                'name' => $request->name,
-                'description' => $request->desc,
-                'code' => $request->code,
 
-                'sub_category_id' => 17,
 
-                'price' => $request->price,
-                'min_price' => $request->min_price,
-                'increase_ratio' => $request->increase_ratio,
-                'repeat_times' => $request->repeated_times,
 
-                'is_new' => $request->new,
-                'is_on_sale' => $request->sale,
-                'is_new_arrival' => $request->new_arrival,
-                'is_best_seller' => $request->best_seller,
-            ]);
+        if ($request->hasFile('pic')) {
+            $product->addMediaFromRequest('pic')->toMediaCollection('ProductImages');
 
-            $color_product_id = ColorProduct::insertGetId([
-                'product_id' => $product_id,
-                'color_id' => $request->color,
-            ]);
-
-            $color_product_size_id = ColorProductSize::insertGetId([
-                'color_product_id' => $color_product_id,
-                'size_id' => $request->size,
-
-            ]);
-        }
-        dd($request->all());
+    }
 
         session()->flash('add', 'تم اضافة المنتج بنجاح ');
 

@@ -10,6 +10,7 @@ use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\CustomerController;
 use App\Http\Controllers\Admin\SubCategoryController;
 use App\Http\Controllers\Admin\notificationController;
+use App\Http\Controllers\Admin\NotificationSendController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,6 +26,12 @@ use App\Http\Controllers\Admin\notificationController;
 Auth::routes();
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('root');
+<<<<<<< HEAD
+=======
+Route::get('/home', function(){
+    return view('home');
+});
+>>>>>>> 2c055a92981ed17a3b8387fd199dae3810ed239c
 
 
 
@@ -158,4 +165,11 @@ Route::middleware(['auth'])->group(function () {
 //////////// End City All //////////
 
 
+<<<<<<< HEAD
 
+=======
+Route::group(['middleware' => 'auth'],function(){
+    Route::post('/store-token', [NotificationSendController::class, 'updateDeviceToken'])->name('store.token');
+    Route::post('/send-web-notification', [NotificationSendController::class, 'sendNotification'])->name('send.web-notification');
+});
+>>>>>>> 2c055a92981ed17a3b8387fd199dae3810ed239c
