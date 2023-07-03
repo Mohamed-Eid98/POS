@@ -170,6 +170,8 @@
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.3.2/firebase.js"></script>
 <script>
+    $serverKey =
+        'AAAAtAWqcQA:APA91bGJP2o_RGYHrxqtTj0CsFNjO6QKU33gQUXMn69fvjwzhRzjrJ1wPw8SMKF0GBG_mfz91W56f5jpOR5M96kX40il4HLlcfdaeaax-on353WYA1bzykq5rTAhizyiLC5yRsGUH6Jj';
     var firebaseConfig = {
         apiKey: "AIzaSyA095Hq0lPUdv82dl35lgbaaND3Lv_fnYM",
         authDomain: "benesize-6cd49.firebaseapp.com",
