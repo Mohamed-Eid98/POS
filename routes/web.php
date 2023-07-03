@@ -32,7 +32,7 @@ Route::get('/about', function () {
 });
 
 
-Route::middleware(['auth'])->group(function () {
+// Route::middleware(['auth'])->group(function () {
 
 Route::get('/order', [OrderController::class, 'index'])->name('orders.show');
 Route::get('/order-pending', [OrderController::class, 'pending'])->name('orders.pendingg');
@@ -43,7 +43,7 @@ Route::get('/order-cancelled', [OrderController::class, 'cancelled'])->name('ord
 Route::get('/order-paid', [OrderController::class, 'orderPaid'])->name('orders.paid.show');Route::get('/active/{id}', [OrderController::class, 'Paid'])->name('orders.paid');
 Route::get('/inactive/{id}', [OrderController::class, 'UnPaid'])->name('orders.unpaid');
 
-});
+// });
 
 
 
@@ -51,13 +51,13 @@ Route::get('/inactive/{id}', [OrderController::class, 'UnPaid'])->name('orders.u
 
 
 //////////// start invoices All Routes //////////
-Route::middleware(['auth'])->group(function () {
+// Route::middleware(['auth'])->group(function () {
     Route::get('/invoices-page', [IvoicesController::class, 'showtable'])->name('invoices.page');
-    });
+    // });
 //////////// end invoices All Routes //////////
 
 
-Route::middleware(['auth'])->group(function () {
+// Route::middleware(['auth'])->group(function () {
     Route::get('/users-show', [CustomerController::class, 'index'])->name('users.show');
     Route::get('/customers-show-{id}', [CustomerController::class, 'showcustomer'])->name('customers.show');
     Route::get('/users-order-{id}', [CustomerController::class, 'showuserorder'])->name('usersorder.show');
@@ -65,12 +65,12 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('/user-delete-{id}', [CustomerController::class, 'delete'])->name('user.delete');
 
-});
+// });
 
 
 
 //////////// Start Category All Routes //////////
-Route::middleware(['auth'])->group(function () {
+// Route::middleware(['auth'])->group(function () {
     Route::get('/addCategory', [CategoryController::class, 'Add'])->name('category.add');
     Route::post('/add', [CategoryController::class, 'Store'])->name('category.store');
     Route::get('/show', [CategoryController::class, 'Show'])->name('category.show');
@@ -79,12 +79,12 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/delete-{id}', [CategoryController::class, 'Delete'])->name('category.delete');
     Route::get('/category-page-{id}', [CategoryController::class, 'showPage'])->name('category.page');
 
-});
+// });
 //////////// End Category All Routes //////////
 
 //////////// Start subCategory All Routes /////////
 
-Route::middleware(['auth'])->group(function () {
+// Route::middleware(['auth'])->group(function () {
 
     Route::get('/subcategory-add', [SubCategoryController::class, 'Add'])->name('subcategory.add');
     Route::post('/subcategory-add', [SubCategoryController::class, 'Store'])->name('subcategory.store');
@@ -93,13 +93,13 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/subcategory-update', [SubCategoryController::class, 'Update'])->name('subcategory.update');
     Route::get('/subcategory/delete/{id}', [SubCategoryController::class, 'Delete'])->name('subcategory.delete');
 
-});
+// });
 
 //////////// End subCategory All Routes //////////
 
 //////////// Start Product All Routes //////////
 
-Route::middleware(['auth'])->group(function () {
+// Route::middleware(['auth'])->group(function () {
 
     Route::get('/add2', [ProductController::class, 'Add'])->name('product.add');
     Route::get('/zero-{id}', [ProductController::class, 'zero'])->name('product.quentity.zero');
@@ -115,7 +115,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/product/delete/{id}', [ProductController::class, 'Delete'])->name('product.delete');
     Route::get('/product-subcategory-{id}', [ProductController::class, 'showSub'])->name('product.show.subcategory');
 
-});
+// });
 
 
 
@@ -124,7 +124,7 @@ Route::middleware(['auth'])->group(function () {
 
 //////////// Start city All Routes //////////
 
-Route::middleware(['auth'])->group(function () {
+// Route::middleware(['auth'])->group(function () {
     Route::get('/add-city', [CityController::class, 'Add'])->name('city.add');
     Route::get('/city-show', [CityController::class, 'Show'])->name('city.show');
     Route::get('/city-edit-{id}', [CityController::class, 'Edit'])->name('city.edit');
@@ -140,7 +140,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/area-delete-{id}', [CityController::class, 'DeleteArea'])->name('area.delete');
     Route::get('/city-page-{id}', [CityController::class, 'showPage'])->name('city.page');
 
-});
+// });
 
 
 
@@ -148,13 +148,13 @@ Route::middleware(['auth'])->group(function () {
 
 //////////// Start city All Routes //////////
 
-Route::middleware(['auth'])->group(function () {
+// Route::middleware(['auth'])->group(function () {
     Route::get('/addnotification', [notificationController::class, 'addnotification'])->name('notification.add');
     Route::post('/addnotification', [notificationController::class, 'storeNotification'])->name('notification.store');
     Route::get('/shownotification', [notificationController::class, 'shownotification'])->name('notification.show');
     Route::get('/read-allnotifiction-{id}', [notificationController::class, 'readNotification'])->name('product.read-allnotification');
 
-});
+// });
 
 
 //////////// End City All //////////
