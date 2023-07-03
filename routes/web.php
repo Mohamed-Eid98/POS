@@ -24,7 +24,7 @@ use App\Http\Controllers\Admin\notificationController;
 
 Auth::routes();
 
-Route::get('/', [App\Http\Controllers\HomeController::class, 'root'])->name('root');
+Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('root');
 
 
 
