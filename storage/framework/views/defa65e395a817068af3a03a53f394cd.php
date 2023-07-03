@@ -1,5 +1,5 @@
 <?php $__env->startSection('title'); ?>
-    إضافة محافظه
+    تعديل محافظه
 <?php $__env->stopSection(); ?>
 
 <?php $__env->startSection('css'); ?>
@@ -13,7 +13,7 @@
 <?php $__env->startSection('content'); ?>
     <?php $__env->startComponent('components.breadcrumb'); ?>
         <?php $__env->slot('li_1'); ?>
-            إضافة
+            تعديل
         <?php $__env->endSlot(); ?>
         <?php $__env->slot('title'); ?>
             محافظه
@@ -32,21 +32,22 @@
             <div class="card">
                 <div class="card-body">
 
-                    <h4 class="card-title">إضافة محافظه جديد</h4>
+                    <h4 class="card-title">تعديل محافظه </h4>
                     <p class="card-title-desc">
                     </p>
 
                     <div>
 
-                        <form action="<?php echo e(route('city.store')); ?>" class="dropzone" method="POST"
+                        <form action="<?php echo e(route('city.update')); ?>" class="dropzone" method="POST"
                             enctype="multipart/form-data">
                             <?php echo csrf_field(); ?>
+                        <input type="hidden" name="id" value="<?php echo e($city->id); ?>">
 
                             <div class="mb-3">
                                 <label for="formrow-firstname-input" class="form-label">اسم المحافظه <span
                                         class="text-danger">*</span></label>
                                 <input type="text" class="form-control" id="formrow-firstname-input" name="name"
-                                    placeholder="ادخل اسم المحافظه من فضلك">
+                                    value="<?php echo e($city->general_title); ?>">
                                 <?php $__errorArgs = ['name'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
@@ -61,7 +62,7 @@ unset($__errorArgs, $__bag); ?>
 
                     </div>
                     <div class="text-center mt-4">
-                        <input type="submit" class="btn btn-primary waves-effect waves-light" value="حفظ">
+                        <input type="submit" class="btn btn-primary waves-effect waves-light" value="تعديل">
                     </div>
                     </form>
 
@@ -76,4 +77,4 @@ unset($__errorArgs, $__bag); ?>
     </div> <!-- end row -->
 <?php $__env->stopSection(); ?>
 
-<?php echo $__env->make('layouts.master', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\Users\test\Desktop\New folder (2)\POS\resources\views/city/cityAdd.blade.php ENDPATH**/ ?>
+<?php echo $__env->make('layouts.master', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\Users\test\Desktop\New folder (2)\POS\resources\views/city/city_page.blade.php ENDPATH**/ ?>

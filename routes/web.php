@@ -97,17 +97,24 @@ Route::get('/product-subcategory-{id}', [ProductController::class, 'showSub'])->
 //////////// Start city All Routes //////////
 
 Route::get('/add-city', [CityController::class, 'Add'])->name('city.add');
-Route::get('/add-area', [CityController::class, 'AddArea'])->name('area.add');
-Route::post('/city-add', [CityController::class, 'Store'])->name('city.store');
-Route::post('/area-add', [CityController::class, 'CityStore'])->name('area.store');
 Route::get('/city-show', [CityController::class, 'Show'])->name('city.show');
+Route::get('/city-edit-{id}', [CityController::class, 'Edit'])->name('city.edit');
+Route::post('/city-update', [CityController::class, 'Update'])->name('city.update');
+Route::get('/city-delete-{id}', [CityController::class, 'Delete'])->name('city.delete');
+
+Route::get('/add-area', [CityController::class, 'AddArea'])->name('area.add');
+Route::post('/area-add', [CityController::class, 'CityStore'])->name('area.store');
 Route::get('/area-show', [CityController::class, 'ShowArea'])->name('area.show');
-Route::get('/city-ajax-{id}', [CityController::class, 'AjaxShow']);
+Route::get('/area-edit-{id}', [CityController::class, 'EditArea'])->name('area.edit');
+Route::post('/area-update', [CityController::class, 'UpdateArea'])->name('area.update');
+Route::get('/area-delete-{id}', [CityController::class, 'DeleteArea'])->name('area.delete');
+
+
+// Route::post('/city-add', [CityController::class, 'Store'])->name('city.store');
 Route::get('/edit2-{id}', [CityController::class, 'Edit'])->name('country.edit');
-Route::get('/area-edit-{id}', [CityController::class, 'Edit'])->name('city.edit');
-Route::get('/area-delete-{id}', [CityController::class, 'Edit'])->name('city.delete');
-Route::post('/city-update', [CityController::class, 'Update'])->name('country.update');
-Route::get('/city-delete-{id}', [CityController::class, 'Delete'])->name('country.delete');
+// Route::get('/area-edit-{id}', [CityController::class, 'Edit'])->name('city.edit');
+// Route::get('/area-delete-{id}', [CityController::class, 'Edit'])->name('city.delete');
+// Route::post('/city-update', [CityController::class, 'Update'])->name('country.update');
 Route::get('/city-page-{id}', [CityController::class, 'showPage'])->name('city.page');
 //////////// End city All Routes //////////
 

@@ -73,8 +73,7 @@
                                         <tr role="row">
                                             <th>#</th>
                                             
-                                            <th>المحافظات</th>
-                                            <th>المدن</th>
+                                            <th>المنطقه</th>
                                             <th>التوصيل</th>
                                             <th>التعديلات</th>
                                         </tr>
@@ -88,12 +87,12 @@
                                         <?php $__currentLoopData = $cities; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $city): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                                 <?php $__currentLoopData = $city->areas; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $area): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
 
-                                                <?php if($prevCountry !== $city->country->general_title): ?>
+                                                <?php if($prevCountry !== $city->general_title): ?>
                                                 <tr>
-                                                    <td colspan="4"><?php echo e($city->country->general_title); ?> </td>
+                                                    <td colspan="4"><?php echo e($city->general_title); ?> </td>
                                                 </tr>
                                                 <?php
-                                                    $prevCountry = $city->country->general_title;
+                                                    $prevCountry = $city->general_title;
                                                 ?>
                                             <?php endif; ?>
 
@@ -104,25 +103,28 @@
                                             <tr>
                                                 <td><?php echo e($i); ?></td>
 
-                                                
-                                                <td> <?php echo e($city->general_title); ?>  </td>
                                                 <td>
                                                             <?php echo e($area->general_title); ?>
 
-                                                        
                                                 </td>
                                                 <td>
                                                             <?php echo e($area->shipping_cost); ?>
 
-                                                        
                                                 </td>
                                                 <td>
-                                                    <a href="<?php echo e(route('city.edit', $city->id)); ?>" title="تعديل"
-                                                        class="btn btn-info">
-                                                        <i class="fas fa-edit"></i></a>
-                                                    <a href="<?php echo e(route('city.delete', $city->id)); ?>" class="btn btn-danger"
-                                                        title="حذف">
-                                                        <i class="fas fa-trash"></i></a>
+                                                    <ul class="list-unstyled hstack gap-1 mb-0">
+                                                        <li data-bs-toggle="tooltip" data-bs-placement="top" title="تعديل ">
+                                                            <a href="<?php echo e(route('area.edit', $area->id)); ?>"
+                                                                class="btn btn-sm btn-soft-primary"><i
+                                                                    class="mdi mdi-pencil-outline"></i></a>
+                                                        </li>
+
+                                                        <li data-bs-toggle="tooltip" data-bs-placement="top" title="حذف">
+                                                            <a href="<?php echo e(route('area.delete', $area->id)); ?>"
+                                                                title="حذف" class="btn btn-sm btn-soft-danger"><i
+                                                                    class="mdi mdi-delete-outline"></i></a>
+                                                        </li>
+                                                    </ul>
                                                 </td>
                                             </tr>
                                         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
@@ -133,7 +135,6 @@
                                 </table>
                             </div>
                         </div>
-                        
 
                     </div>
                 </div>

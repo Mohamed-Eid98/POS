@@ -1,3 +1,4 @@
+
 <?php $__env->startSection('title'); ?>
     تعديل قسم رئيسي
 <?php $__env->stopSection(); ?>

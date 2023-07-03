@@ -39,7 +39,7 @@
 
 
 
-            <div class="card-header pb-0">
+            <div class="">
             </div>
             <div class="card-body">
                 <table id="example" class="table key-buttons text-md-nowrap flex" style="width: 100%" >

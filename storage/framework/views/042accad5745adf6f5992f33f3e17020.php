@@ -1,5 +1,3 @@
-
-
 <?php $__env->startSection('title'); ?>
     عرض المحافظات
 <?php $__env->stopSection(); ?>
@@ -27,6 +25,13 @@
         <?php $__env->endSlot(); ?>
     <?php echo $__env->renderComponent(); ?>
 
+
+    <?php if(session('add')): ?>
+        <div class="alert alert-success">
+            <?php echo e(session('add')); ?>
+
+        </div>
+    <?php endif; ?>
 
     <?php if(session('delete')): ?>
         <div class="alert alert-success">
@@ -74,7 +79,6 @@
                                     <thead>
                                         <tr role="row">
                                             <th>#</th>
-                                            <th>البلد</th>
                                             <th>المحافظات</th>
                                             <th>التعديلات</th>
                                         </tr>
@@ -85,27 +89,29 @@
                                     <tbody>
 
                                         <?php $i = 0; ?>
-                                        <?php $__currentLoopData = $countries; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $country): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                        <?php $__currentLoopData = $cities; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $city): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                             <?php $i++; ?>
                                             <tr>
                                                 <td><?php echo e($i); ?></td>
-
-                                                <td><?php echo e($country->general_title); ?></td>
                                                 <td>
-                                                    <?php if($country->cities): ?>
-                                                        <?php $__currentLoopData = $country->cities; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $city): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                                            <li><?php echo e($city->general_title); ?> </li>
-                                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                                                    <?php else: ?>
-                                                        لا
-                                                    <?php endif; ?>
+                                                 <?php echo e($city->general_title); ?>
+
+
                                                 </td>
                                                 <td>
-                                                    
-                                                    <a href="<?php echo e(route('country.delete', $country->id)); ?>"
-                                                        class="btn btn-danger" title="حذف">
-                                                        <i class="fas fa-trash"></i></a>
+                                                    <ul class="list-unstyled hstack gap-1 mb-0">
+                                                        <li data-bs-toggle="tooltip" data-bs-placement="top" title="تعديل ">
+                                                            <a href="<?php echo e(route('city.edit', $city->id)); ?>"
+                                                                class="btn btn-sm btn-soft-primary"><i
+                                                                    class="mdi mdi-pencil-outline"></i></a>
+                                                        </li>
 
+                                                        <li data-bs-toggle="tooltip" data-bs-placement="top" title="حذف">
+                                                            <a href="<?php echo e(route('city.delete', $city->id)); ?>"
+                                                                title="حذف" class="btn btn-sm btn-soft-danger"><i
+                                                                    class="mdi mdi-delete-outline"></i></a>
+                                                        </li>
+                                                    </ul>
                                                 </td>
                                             </tr>
                                         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>

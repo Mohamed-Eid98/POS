@@ -28,6 +28,12 @@
     @endcomponent
 
 
+    @if (session('add'))
+        <div class="alert alert-success">
+            {{ session('add') }}
+        </div>
+    @endif
+
     @if (session('delete'))
         <div class="alert alert-success">
             {{ session('delete') }}
@@ -72,7 +78,6 @@
                                     <thead>
                                         <tr role="row">
                                             <th>#</th>
-                                            <th>البلد</th>
                                             <th>المحافظات</th>
                                             <th>التعديلات</th>
                                         </tr>
@@ -83,29 +88,28 @@
                                     <tbody>
 
                                         <?php $i = 0; ?>
-                                        @foreach ($countries as $country)
+                                        @foreach ($cities as $city)
                                             <?php $i++; ?>
                                             <tr>
                                                 <td>{{ $i }}</td>
-
-                                                <td>{{ $country->general_title }}</td>
                                                 <td>
-                                                    @if ($country->cities)
-                                                        @foreach ($country->cities as $city)
-                                                            <li>{{ $city->general_title }} </li>
-                                                        @endforeach
-                                                    @else
-                                                        لا
-                                                    @endif
+                                                 {{ $city->general_title }}
+
                                                 </td>
                                                 <td>
-                                                    {{-- <a href="{{ route('country.edit',$country->id) }}" title="تعديل"
-                                                        class="btn btn-info">
-                                                        <i class="fas fa-edit"></i></a> --}}
-                                                    <a href="{{ route('country.delete', $country->id) }}"
-                                                        class="btn btn-danger" title="حذف">
-                                                        <i class="fas fa-trash"></i></a>
+                                                    <ul class="list-unstyled hstack gap-1 mb-0">
+                                                        <li data-bs-toggle="tooltip" data-bs-placement="top" title="تعديل ">
+                                                            <a href="{{ route('city.edit', $city->id) }}"
+                                                                class="btn btn-sm btn-soft-primary"><i
+                                                                    class="mdi mdi-pencil-outline"></i></a>
+                                                        </li>
 
+                                                        <li data-bs-toggle="tooltip" data-bs-placement="top" title="حذف">
+                                                            <a href="{{ route('city.delete', $city->id) }}"
+                                                                title="حذف" class="btn btn-sm btn-soft-danger"><i
+                                                                    class="mdi mdi-delete-outline"></i></a>
+                                                        </li>
+                                                    </ul>
                                                 </td>
                                             </tr>
                                         @endforeach

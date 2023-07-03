@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('title')
-    إضافة محافظه
+    تعديل محافظه
 @endsection
 
 @section('css')
@@ -15,16 +15,16 @@
 @section('content')
     @component('components.breadcrumb')
         @slot('li_1')
-            إضافة
+            تعديل
         @endslot
         @slot('title')
             محافظه
         @endslot
     @endcomponent
 
-    @if (session('add'))
+    @if (session('Add'))
         <div class="alert alert-success">
-            {{ session('add') }}
+            {{ session('Add') }}
         </div>
     @endif
 
@@ -33,21 +33,22 @@
             <div class="card">
                 <div class="card-body">
 
-                    <h4 class="card-title">إضافة محافظه جديد</h4>
+                    <h4 class="card-title">تعديل محافظه </h4>
                     <p class="card-title-desc">
                     </p>
 
                     <div>
 
-                        <form action="{{ route('city.store') }}" class="dropzone" method="POST"
+                        <form action="{{ route('city.update') }}" class="dropzone" method="POST"
                             enctype="multipart/form-data">
                             @csrf
+                        <input type="hidden" name="id" value="{{ $city->id }}">
 
                             <div class="mb-3">
                                 <label for="formrow-firstname-input" class="form-label">اسم المحافظه <span
                                         class="text-danger">*</span></label>
                                 <input type="text" class="form-control" id="formrow-firstname-input" name="name"
-                                    placeholder="ادخل اسم المحافظه من فضلك">
+                                    value="{{ $city->general_title }}">
                                 @error('name')
                                     <span class="text-danger">{{ $message }}</span>
                                 @enderror
@@ -55,7 +56,7 @@
 
                     </div>
                     <div class="text-center mt-4">
-                        <input type="submit" class="btn btn-primary waves-effect waves-light" value="حفظ">
+                        <input type="submit" class="btn btn-primary waves-effect waves-light" value="تعديل">
                     </div>
                     </form>
 

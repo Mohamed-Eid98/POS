@@ -72,9 +72,8 @@
                                     <thead>
                                         <tr role="row">
                                             <th>#</th>
-                                            {{-- <th>البلد</th> --}}
-                                            <th>المحافظات</th>
-                                            <th>المدن</th>
+                                            {{-- <th>المحافظات</th> --}}
+                                            <th>المنطقه</th>
                                             <th>التوصيل</th>
                                             <th>التعديلات</th>
                                         </tr>
@@ -88,12 +87,12 @@
                                         @foreach ($cities as $city)
                                                 @foreach ($city->areas as $area)
 
-                                                @if ($prevCountry !== $city->country->general_title)
+                                                @if ($prevCountry !== $city->general_title)
                                                 <tr>
-                                                    <td colspan="4">{{ $city->country->general_title }} </td>
+                                                    <td colspan="4">{{ $city->general_title }} </td>
                                                 </tr>
                                                 @php
-                                                    $prevCountry = $city->country->general_title;
+                                                    $prevCountry = $city->general_title;
                                                 @endphp
                                             @endif
 
@@ -104,23 +103,26 @@
                                             <tr>
                                                 <td>{{ $i }}</td>
 
-                                                {{-- <td>{{ $city->country->general_title }}</td> --}}
-                                                <td> {{ $city->general_title }}  </td>
                                                 <td>
                                                             {{ $area->general_title }}
-                                                        {{-- <li> {{ $area->general_title }} </li> --}}
                                                 </td>
                                                 <td>
                                                             {{ $area->shipping_cost }}
-                                                        {{-- <li> {{ $area->general_title }} </li> --}}
                                                 </td>
                                                 <td>
-                                                    <a href="{{ route('city.edit', $city->id) }}" title="تعديل"
-                                                        class="btn btn-info">
-                                                        <i class="fas fa-edit"></i></a>
-                                                    <a href="{{ route('city.delete', $city->id) }}" class="btn btn-danger"
-                                                        title="حذف">
-                                                        <i class="fas fa-trash"></i></a>
+                                                    <ul class="list-unstyled hstack gap-1 mb-0">
+                                                        <li data-bs-toggle="tooltip" data-bs-placement="top" title="تعديل ">
+                                                            <a href="{{ route('area.edit', $area->id) }}"
+                                                                class="btn btn-sm btn-soft-primary"><i
+                                                                    class="mdi mdi-pencil-outline"></i></a>
+                                                        </li>
+
+                                                        <li data-bs-toggle="tooltip" data-bs-placement="top" title="حذف">
+                                                            <a href="{{ route('area.delete', $area->id) }}"
+                                                                title="حذف" class="btn btn-sm btn-soft-danger"><i
+                                                                    class="mdi mdi-delete-outline"></i></a>
+                                                        </li>
+                                                    </ul>
                                                 </td>
                                             </tr>
                                         @endforeach
@@ -131,7 +133,6 @@
                                 </table>
                             </div>
                         </div>
-                        {{-- <div class="row"><div class="col-sm-12 col-md-5"><div class="dataTables_info" id="datatable_info" role="status" aria-live="polite">Showing 1 to 10 of 57 entries</div></div><div class="col-sm-12 col-md-7"><div class="dataTables_paginate paging_simple_numbers" id="datatable_paginate"><ul class="pagination"><li class="paginate_button page-item previous disabled" id="datatable_previous"><a href="#" aria-controls="datatable" data-dt-idx="0" tabindex="0" class="page-link">Previous</a></li><li class="paginate_button page-item active"><a href="#" aria-controls="datatable" data-dt-idx="1" tabindex="0" class="page-link">1</a></li><li class="paginate_button page-item "><a href="#" aria-controls="datatable" data-dt-idx="2" tabindex="0" class="page-link">2</a></li><li class="paginate_button page-item "><a href="#" aria-controls="datatable" data-dt-idx="3" tabindex="0" class="page-link">3</a></li><li class="paginate_button page-item "><a href="#" aria-controls="datatable" data-dt-idx="4" tabindex="0" class="page-link">4</a></li><li class="paginate_button page-item "><a href="#" aria-controls="datatable" data-dt-idx="5" tabindex="0" class="page-link">5</a></li><li class="paginate_button page-item "><a href="#" aria-controls="datatable" data-dt-idx="6" tabindex="0" class="page-link">6</a></li><li class="paginate_button page-item next" id="datatable_next"><a href="#" aria-controls="datatable" data-dt-idx="7" tabindex="0" class="page-link">Next</a></li></ul></div></div></div></div> --}}
 
                     </div>
                 </div>

@@ -1,4 +1,4 @@
-<?php $__env->startSection('title'); ?> إضافة منطقه  <?php $__env->stopSection(); ?>
+<?php $__env->startSection('title'); ?> تعديل منطقه  <?php $__env->stopSection(); ?>
 
 <?php $__env->startSection('css'); ?>
     <!-- Plugins css -->
@@ -11,7 +11,7 @@
 <?php $__env->startSection('content'); ?>
 
     <?php $__env->startComponent('components.breadcrumb'); ?>
-        <?php $__env->slot('li_1'); ?> إضافة <?php $__env->endSlot(); ?>
+        <?php $__env->slot('li_1'); ?> تعديل <?php $__env->endSlot(); ?>
         <?php $__env->slot('title'); ?>  منطقه <?php $__env->endSlot(); ?>
     <?php echo $__env->renderComponent(); ?>
 
@@ -19,31 +19,21 @@
 
 
 
-
-
-
-
-
-    <?php if(session('Add')): ?>
-<div class="alert alert-success">
-    <?php echo e(session('Add')); ?>
-
-</div>
-<?php endif; ?>
-
     <div class="row">
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
 
-                    <h4 class="card-title">إضافة منطقه جديده</h4>
+                    <h4 class="card-title">تعديل منطقه </h4>
                     <p class="card-title-desc">
                     </p>
 
                     <div>
 
-                        <form action="<?php echo e(route('area.store')); ?>" class="dropzone" method="POST" enctype="multipart/form-data">
+                        <form action="<?php echo e(route('area.update')); ?>" class="dropzone" method="POST" enctype="multipart/form-data">
                             <?php echo csrf_field(); ?>
+
+                            <input type="hidden" name="id" value="<?php echo e($area->id); ?>" >
 
 
                             <div class="mb-3">
@@ -51,9 +41,8 @@
                                     <h5> المحافظه <span class="text-danger">*</span></h5>
                                     <div class="controls">
                                         <select name="city_id" id="city_id" class="form-control"  >
-                                            <option value="" selected disabled >-- اختر المحافظه --</option>
                                             <?php $__currentLoopData = $cities; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $city): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                            <option value="<?php echo e($city->id); ?>"><?php echo e($city->general_title); ?></option>
+                                            <option value="<?php echo e($city->id); ?>" <?php echo e($city->id == $area->city_id ? 'selected' : ''); ?>><?php echo e($city->general_title); ?></option>
                                         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                         </select>
                                         <?php $__errorArgs = ['city_id'];
@@ -72,7 +61,7 @@ unset($__errorArgs, $__bag); ?>
 
                                 <div class="mb-3">
                                     <label for="formrow-firstname-input" class="form-label">اسم المنطقه <span class="text-danger">*</span></label>
-                                    <input type="text" class="form-control" id="formrow-firstname-input" name="name" placeholder="ادخل اسم المنطقه من فضلك">
+                                    <input type="text" class="form-control" id="formrow-firstname-input" name="name" value="<?php echo e($area->general_title); ?>">
 
 
                                     <?php $__errorArgs = ['name'];
@@ -88,7 +77,7 @@ unset($__errorArgs, $__bag); ?>
                                 </div>
                                 <div class="mb-3">
                                     <label for="price" class="form-label">سعر التوصيل  <span class="text-danger">*</span></label>
-                                    <input type="number" class="form-control" id="price" name="price" placeholder="ادخل السعر من فضلك">
+                                    <input type="number" class="form-control" id="price" name="price" value="<?php echo e($area->shipping_cost); ?>" >
                                         <?php $__errorArgs = ['price'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
@@ -159,4 +148,4 @@ unset($__errorArgs, $__bag); ?>
 
 
 
-<?php echo $__env->make('layouts.master', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\Users\test\Desktop\New folder (2)\POS\resources\views/city/areaAdd.blade.php ENDPATH**/ ?>
+<?php echo $__env->make('layouts.master', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\Users\test\Desktop\New folder (2)\POS\resources\views/city/area_page.blade.php ENDPATH**/ ?>

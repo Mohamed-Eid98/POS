@@ -1,7 +1,7 @@
 
 @extends('layouts.master')
 
-@section('title') إضافة منطقه  @endsection
+@section('title') تعديل منطقه  @endsection
 
 @section('css')
     <!-- Plugins css -->
@@ -14,7 +14,7 @@
 @section('content')
 
     @component('components.breadcrumb')
-        @slot('li_1') إضافة @endslot
+        @slot('li_1') تعديل @endslot
         @slot('title')  منطقه @endslot
     @endcomponent
 
@@ -22,30 +22,21 @@
 
 
 
-
-
-
-
-
-    @if (session('Add'))
-<div class="alert alert-success">
-    {{ session('Add') }}
-</div>
-@endif
-
     <div class="row">
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
 
-                    <h4 class="card-title">إضافة منطقه جديده</h4>
+                    <h4 class="card-title">تعديل منطقه </h4>
                     <p class="card-title-desc">
                     </p>
 
                     <div>
 
-                        <form action="{{ route('area.store') }}" class="dropzone" method="POST" enctype="multipart/form-data">
+                        <form action="{{ route('area.update') }}" class="dropzone" method="POST" enctype="multipart/form-data">
                             @csrf
+
+                            <input type="hidden" name="id" value="{{ $area->id }}" >
 
 
                             <div class="mb-3">
@@ -53,9 +44,8 @@
                                     <h5> المحافظه <span class="text-danger">*</span></h5>
                                     <div class="controls">
                                         <select name="city_id" id="city_id" class="form-control"  >
-                                            <option value="" selected disabled >-- اختر المحافظه --</option>
                                             @foreach ($cities as $city)
-                                            <option value="{{ $city->id }}">{{ $city->general_title  }}</option>
+                                            <option value="{{ $city->id }}" {{ $city->id == $area->city_id ? 'selected' : '' }}>{{ $city->general_title  }}</option>
                                         @endforeach
                                         </select>
                                         @error('city_id')
@@ -67,7 +57,7 @@
 
                                 <div class="mb-3">
                                     <label for="formrow-firstname-input" class="form-label">اسم المنطقه <span class="text-danger">*</span></label>
-                                    <input type="text" class="form-control" id="formrow-firstname-input" name="name" placeholder="ادخل اسم المنطقه من فضلك">
+                                    <input type="text" class="form-control" id="formrow-firstname-input" name="name" value="{{ $area->general_title }}">
 
 
                                     @error('name')
@@ -76,7 +66,7 @@
                                 </div>
                                 <div class="mb-3">
                                     <label for="price" class="form-label">سعر التوصيل  <span class="text-danger">*</span></label>
-                                    <input type="number" class="form-control" id="price" name="price" placeholder="ادخل السعر من فضلك">
+                                    <input type="number" class="form-control" id="price" name="price" value="{{ $area->shipping_cost }}" >
                                         @error('price')
                                             <span class="text-danger" >{{ $message }}</span>
                                         @enderror
