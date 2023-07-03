@@ -1,27 +1,25 @@
 <?php
 
-
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\MediaLibrary\HasMedia;
-
-class Category extends Model implements HasMedia
+use Spatie\MediaLibrary\InteractsWithMedia;
+class Category extends Model  implements HasMedia
 {
     use HasFactory, InteractsWithMedia;
 
-    protected $fillable= [
-        'name',
-        'image'
-];
+    protected $fillable = ['name'];
 
 
-public function registerMediaCollections(): void
-{
-    $this->addMediaCollection('CategoryImages')
-         ->useDisk('public')
-         ->singleFile();
-}
+    public function products ()
+    {
+        return $this->hasMany(Product::class,'category_id');
+    }
+
+    public function subCategory ()
+    {
+        return $this->hasMany(SubCategory::class,'sub_category_id');
+    }
 }
