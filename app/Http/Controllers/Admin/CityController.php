@@ -15,18 +15,6 @@ class CityController extends Controller
     }
     public function Store(Request $request)
     {
-<<<<<<< HEAD
-=======
-        // $request->validate([
-        //     'name' => 'required|unique:cities|max:255',
-        // ],[
-
-        //     'name.required' =>'يرجي ادخال اسم المحافظه',
-        //     'name.unique' =>'هذه المحافظه مسجله مسبقا',
-        // ]);
->>>>>>> 6107726f8c91af363f0b859e8425c2dae58326cf
-
-
         City::create([
             'general_title' => $request->name,
             'country_id' => 1,

@@ -26,6 +26,7 @@ class Product extends Model implements HasMedia {
         'price',
         'is_new',
         'is_on_sale',
+        'product_qty',
 
         'is_new_arrival',
         'is_best_seller'

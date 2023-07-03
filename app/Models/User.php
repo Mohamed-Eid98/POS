@@ -35,7 +35,8 @@ class User extends Authenticatable implements JWTSubject, HasMedia
         'area_id',
         'country_id',
         'gender',
-        'date_of_birth'
+        'date_of_birth',
+        'device_token' // attriiteattribute added
     ];
 
     /**

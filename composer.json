@@ -13,10 +13,10 @@
         "laravel/framework": "^8.75",
         "laravel/sanctum": "^2.11",
         "laravel/tinker": "^2.5",
-        "laravel/ui": "^3.3",
+        "laravel/ui": "^3.4",
         "rawilk/laravel-settings": "^2.2",
         "spatie/laravel-medialibrary": "9.0.0",
-        "tymon/jwt-auth": "*"
+        "tymon/jwt-auth": "^1.0@dev"
     },
     "require-dev": {
         "facade/ignition": "^2.5",
