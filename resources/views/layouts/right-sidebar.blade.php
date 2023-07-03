@@ -1,8 +1,8 @@
 <!-- Right Sidebar -->
 <div class="right-bar">
-    <div data-simplebar class="h-100">
+    <div data-simplebar class="h-100" dir="rtl">
         <div class="rightbar-title d-flex align-items-center px-3 py-4">
-            
+
             <h5 class="m-0 me-2">Settings</h5>
 
             <a href="javascript:void(0);" class="right-bar-toggle ms-auto">
@@ -23,7 +23,7 @@
                 <input class="form-check-input theme-choice" type="checkbox" id="light-mode-switch" checked>
                 <label class="form-check-label" for="light-mode-switch">Light Mode</label>
             </div>
-    
+
             <div class="mb-2">
                 <img src="build/images/layouts/layout-2.jpg" class="img-fluid img-thumbnail" alt="">
             </div>
@@ -31,7 +31,7 @@
                 <input class="form-check-input theme-choice" type="checkbox" id="dark-mode-switch" data-bsStyle="build/css/bootstrap-dark.min.css" data-appStyle="build/css/app-dark.min.css">
                 <label class="form-check-label" for="dark-mode-switch">Dark Mode</label>
             </div>
-    
+
             <div class="mb-2">
                 <img src="build/images/layouts/layout-3.jpg" class="img-fluid img-thumbnail" alt="">
             </div>
@@ -47,7 +47,7 @@
                 <input class="form-check-input theme-choice" type="checkbox" id="dark-rtl-mode-switch">
                 <label class="form-check-label" for="dark-rtl-mode-switch">Dark RTL Mode</label>
             </div>
-            
+
         </div>
 
     </div> <!-- end slimscroll-menu-->
