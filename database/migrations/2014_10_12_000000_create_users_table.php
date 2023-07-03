@@ -35,6 +35,7 @@ class CreateUsersTable extends Migration
             $table->tinyInteger('is_registerd')->default(0);
             $table->enum('gender', array('male','female'))->nullable();
             $table->date('date_of_birth')->nullable();
+            $table->text('device_token')->nullable(); // Add device token in users migration file.
             $table->rememberToken();
             $table->timestamps();
         });
