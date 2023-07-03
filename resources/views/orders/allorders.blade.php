@@ -41,7 +41,7 @@
             <div class="card-header pb-0">
             </div>
             <div class="card-body">
-                <table id="example" class="table key-buttons text-md-nowrap flex" style="width: 100%" >
+                <table id="example" class="table table-striped my-3" style="width: 100%">
                     <thead>
                         <tr>
                             <th class="border-bottom-0">#SL</th>
@@ -67,12 +67,11 @@
                                 <td>{{ $order->created_at->diffForHumans() }} </td>
                                 <td>
                                     @if ($order->customer)
-
-                                    {{ $order->customer->name }}
+                                        {{ $order->customer->name }}
                                     @else
                                         No name exist
                                     @endif
-                                 </td>
+                                </td>
                                 <td>
                                     @if ($order->status == 'Paid')
                                         <span class="badge rounded-pill text-bg-primary"> مدفوع </span>
@@ -100,13 +99,15 @@
                                 </td>
 
                                 <td>
-                                    <a href="{{ route('orders.paid', $order->id) }}" class="btn btn-primary"
-                                        title="Product Details Data"><i class="fa fa-eye"></i> </a>
+                                    <a href="{{ route('orders.paid', $order->id) }}" title="Product Details Data"
+                                        class="btn btn-sm btn-soft-primary"><i class="mdi mdi-eye-outline"></i></a>
                                     @if ($order->status == 'Paid')
-                                        <a href="{{ route('orders.unpaid', $order->id) }}" class="btn btn-danger"
-                                            title="غير مدفوع"><i class="fa fa-arrow-down"></i> </a>
+                                        <a href="{{ route('orders.unpaid', $order->id) }}"
+                                            class="btn btn-sm btn-soft-danger" title=" غير مدفوع"><i
+                                                class="fa fa-arrow-up"></i>
+                                        </a>
                                     @else
-                                        <a href="{{ route('orders.paid', $order->id) }}" class="btn btn-success"
+                                        <a href="{{ route('orders.paid', $order->id) }}" class="btn btn-sm btn-soft-info"
                                             title="ادفع الان"><i class="fa fa-arrow-up"></i> </a>
                                     @endif
 

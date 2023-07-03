@@ -67,9 +67,8 @@
 
                         <div class="row">
                             <div class="col-sm-12">
-                                <table id="example"
-                                    class="table table-bordered dt-responsive nowrap w-100 dataTable no-footer dtr-inline"
-                                    role="grid" aria-describedby="datatable_info" style="width: 100%">
+                                <table id="example" class="table table-striped my-3" role="grid"
+                                    aria-describedby="datatable_info" style="width: 100%">
                                     <thead>
                                         <tr role="row">
                                             <th>#</th>
@@ -77,11 +76,11 @@
                                             <th>اسم المنتج</th>
                                             <th>الكود</th>
                                             <th>القسم الفرعي</th>
-                                            <th>السعر (دينار عراقي)</th>
-                                            <th>الحد الادني (دينار عراقي)</th>
-                                            <th>معدل الزياده (دينار عراقي)</th>
+                                            <th>السعر </th>
+                                            <th>الحد الادني </th>
+                                            <th>معدل الزياده </th>
                                             <th>عدد التكرار</th>
-                                            <th>الحد الاقصي (دينار عراقي)</th>
+                                            <th>الحد الاقصي </th>
                                             <th>الكميه </th>
                                             <th>جديد </th>
                                             <th>الافضل مبيعاً </th>
@@ -109,25 +108,24 @@
                                                             alt="" style="width: 40px; height:50px">
                                                     @endif
                                                 </td>
-                                                <td> <strong> {{ $product->name }} </strong> </td>
+                                                <td> {{ $product->name }} </td>
                                                 <td>
                                                     <span class="badge text-bg-danger">{{ $product->code }}</span>
 
                                                 </td>
-                                                <td> <strong> <a
-                                                            href="{{ route('product.show.subcategory', $product->id) }}">
-                                                            {{ $product->subcategory->name }} </a></strong></td>
+                                                <td> <a href="{{ route('product.show.subcategory', $product->id) }}">
+                                                        {{ $product->subcategory->name }} </a></td>
 
-                                                <td> <strong> {{ $product->price }} د.ع. </strong></td>
-                                                <td> <strong> {{ $product->min_price }} د.ع. </strong></td>
-                                                <td><strong> {{ $product->increase_ratio }} د.ع. </strong></td>
-                                                <td> <b> {{ $product->repeat_times }} </b> </td>
+                                                <td> {{ $product->price }} د.ع. </td>
+                                                <td> {{ $product->min_price }} د.ع. </td>
+                                                <td> {{ $product->increase_ratio }} د.ع. </td>
+                                                <td> {{ $product->repeat_times }} </td>
                                                 <td>
-                                                    <strong>{{ $product->min_price + ($product->repeat_times + 1) * $product->increase_ratio }}
-                                                        د.ع.
-                                                    </strong>
+                                                    {{ $product->min_price + ($product->repeat_times + 1) * $product->increase_ratio }}
+                                                    د.ع.
+
                                                 </td>
-                                                <td><strong> {{ $product->product_qty }} </strong></td>
+                                                <td> {{ $product->product_qty }} </td>
                                                 <td>
                                                     @if ($product->is_new == 1)
                                                         <span class="badge text-bg-secondary">نعم</span>
@@ -216,6 +214,7 @@
 
                                     </tbody>
                                 </table>
+
                             </div>
                         </div>
                         {{-- <div class="row"><div class="col-sm-12 col-md-5"><div class="dataTables_info" id="datatable_info" role="status" aria-live="polite">Showing 1 to 10 of 57 entries</div></div><div class="col-sm-12 col-md-7"><div class="dataTables_paginate paging_simple_numbers" id="datatable_paginate"><ul class="pagination"><li class="paginate_button page-item previous disabled" id="datatable_previous"><a href="#" aria-controls="datatable" data-dt-idx="0" tabindex="0" class="page-link">Previous</a></li><li class="paginate_button page-item active"><a href="#" aria-controls="datatable" data-dt-idx="1" tabindex="0" class="page-link">1</a></li><li class="paginate_button page-item "><a href="#" aria-controls="datatable" data-dt-idx="2" tabindex="0" class="page-link">2</a></li><li class="paginate_button page-item "><a href="#" aria-controls="datatable" data-dt-idx="3" tabindex="0" class="page-link">3</a></li><li class="paginate_button page-item "><a href="#" aria-controls="datatable" data-dt-idx="4" tabindex="0" class="page-link">4</a></li><li class="paginate_button page-item "><a href="#" aria-controls="datatable" data-dt-idx="5" tabindex="0" class="page-link">5</a></li><li class="paginate_button page-item "><a href="#" aria-controls="datatable" data-dt-idx="6" tabindex="0" class="page-link">6</a></li><li class="paginate_button page-item next" id="datatable_next"><a href="#" aria-controls="datatable" data-dt-idx="7" tabindex="0" class="page-link">Next</a></li></ul></div></div></div></div> --}}
@@ -241,7 +240,7 @@
                 buttons: ['copy', 'excel', 'pdf', 'colvis'],
                 responsive: true,
                 language: {
-                    searchPlaceholder: 'Search...',
+                    searchPlaceholder: 'ابحث هنا',
                     sSearch: '',
                     lengthMenu: '_MENU_ ',
                 }
@@ -251,7 +250,7 @@
 
             $('#example1').DataTable({
                 language: {
-                    searchPlaceholder: 'Search...',
+                    searchPlaceholder: 'ابحث هنا',
                     sSearch: '',
                     lengthMenu: '_MENU_',
                 }
@@ -259,7 +258,7 @@
             $('#example2').DataTable({
                 responsive: true,
                 language: {
-                    searchPlaceholder: 'Search...',
+                    searchPlaceholder: 'ابحث هنا',
                     sSearch: '',
                     lengthMenu: '_MENU_',
                 }
@@ -267,7 +266,7 @@
             var table = $('#example-delete').DataTable({
                 responsive: true,
                 language: {
-                    searchPlaceholder: 'Search...',
+                    searchPlaceholder: 'ابحث هنا',
                     sSearch: '',
                     lengthMenu: '_MENU_',
                 }
@@ -289,7 +288,7 @@
             $('#example-1').DataTable({
                 responsive: true,
                 language: {
-                    searchPlaceholder: 'Search...',
+                    searchPlaceholder: 'ابحث هنا',
                     sSearch: '',
                     lengthMenu: '_MENU_',
                 },

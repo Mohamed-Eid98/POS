@@ -1,5 +1,5 @@
 <?php $__env->startSection('title'); ?>
-    عرض جميع الطلبات
+    عرض الاقسام الرئيسيه
 <?php $__env->stopSection(); ?>
 
 <?php $__env->startSection('page-header'); ?>
@@ -8,7 +8,7 @@
         <div class="my-auto">
             <div class="d-flex">
                 <h4 class="content-title mb-0 my-auto">عرض </h4><span class="text-muted mt-1 tx-13 mr-2 mb-0">/
-                    جميع الطلبات</span>
+                    الاقسام الفرعيه</span>
             </div>
         </div>
     </div>
@@ -17,6 +17,8 @@
 
 
 <?php $__env->startSection('content'); ?>
+
+
     <?php if(session('delete')): ?>
         <div class="alert alert-success">
             <?php echo e(session('delete')); ?>
@@ -30,90 +32,39 @@
         </div>
     <?php endif; ?>
 
-
     <div class="col-xl-12">
         <div class="card ">
-            <h4 class="card-title">عرض جميع الطلبات</h4>
-
-
-
-
 
             <div class="card-header pb-0">
             </div>
             <div class="card-body">
-                <table id="example" class="table table-striped my-3" style="width: 100%">
+                <h3 class="card-title my-3 ">عرض الاقسام الفرعيه</h3>
+
+                <table id="example" class="table table-striped my-4 w-100 ">
                     <thead>
                         <tr>
-                            <th class="border-bottom-0">#SL</th>
-                            <th class="border-bottom-0">الطلبات</th>
-                            <th class="border-bottom-0">التاريخ</th>
-                            <th class="border-bottom-0">اسم العميل</th>
-                            <th class="border-bottom-0">الحاله</th>
-                            <th class="border-bottom-0">الكل</th>
-                            <th class="border-bottom-0">طلبات الحاله</th>
-
-                            <th class="border-bottom-0"> حدث</th>
+                            <th class="border-bottom-0">#</th>
+                            <th class="border-bottom-0"> القسم الرئيسي </th>
+                            <th class="border-bottom-0"> القسم الفرعي </th>
+                            <th class="border-bottom-0"> actions</th>
 
                         </tr>
                     </thead>
                     <tbody>
                         <?php $i = 0; ?>
-                        <?php $__currentLoopData = $orders; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $order): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                        <?php $__currentLoopData = $subcategories; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $section): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                             <?php $i++; ?>
 
                             <tr>
                                 <td><?php echo e($i); ?></td>
-                                <td> <a href=""> <?php echo e($order->invoice_no); ?> </a> </td>
-                                <td><?php echo e($order->created_at->diffForHumans()); ?> </td>
-                                <td>
-                                    <?php if($order->customer): ?>
-                                        <?php echo e($order->customer->name); ?>
-
-                                    <?php else: ?>
-                                        No name exist
-                                    <?php endif; ?>
-                                </td>
-                                <td>
-                                    <?php if($order->status == 'Paid'): ?>
-                                        <span class="badge rounded-pill text-bg-primary"> مدفوع </span>
-                                    <?php else: ?>
-                                        <span class="badge rounded-pill text-bg-primary"> غير
-                                            مدفوع </span>
-                                    <?php endif; ?>
-                                </td>
-                                <td><?php echo e($order->final_total); ?>EG </td>
+                                <td><?php echo e($section->category->name); ?> </td>
+                                <td><?php echo e($section->name); ?> </td>
 
                                 <td>
-                                    <?php if($order->status == 'Pending'): ?>
-                                        <span class="badge rounded-pill text-bg-primary"> <?php echo e($order->status); ?> </span>
-                                    <?php elseif($order->status == 'Paid'): ?>
-                                        <span class="badge rounded-pill text-bg-primary"> <?php echo e($order->status); ?> </span>
-                                    <?php elseif($order->status == 'InPrograss'): ?>
-                                        <span class="badge rounded-pill text-bg-primary"> <?php echo e($order->status); ?> </span>
-                                    <?php elseif($order->status == 'Rejected'): ?>
-                                        <span class="badge rounded-pill text-bg-primary"> <?php echo e($order->status); ?> </span>
-                                    <?php elseif($order->status == 'Cancelled'): ?>
-                                        <span class="badge rounded-pill text-bg-primary"> <?php echo e($order->status); ?> </span>
-                                    <?php else: ?>
-                                        <span class="badge rounded-pill text-bg-primary"> <?php echo e($order->status); ?> </span>
-                                    <?php endif; ?>
-                                </td>
-
-                                <td>
-                                    <a href="<?php echo e(route('orders.paid', $order->id)); ?>" title="Product Details Data"
-                                        class="btn btn-sm btn-soft-primary"><i class="mdi mdi-eye-outline"></i></a>
-                                    <?php if($order->status == 'Paid'): ?>
-                                        <a href="<?php echo e(route('orders.unpaid', $order->id)); ?>"
-                                            class="btn btn-sm btn-soft-danger" title=" غير مدفوع"><i
-                                                class="fa fa-arrow-up"></i>
-                                        </a>
-                                    <?php else: ?>
-                                        <a href="<?php echo e(route('orders.paid', $order->id)); ?>" class="btn btn-sm btn-soft-info"
-                                            title="ادفع الان"><i class="fa fa-arrow-up"></i> </a>
-                                    <?php endif; ?>
-
-                                    
+                                    <a href="<?php echo e(route('subcategory.edit', $section->id)); ?>" title="Edit Data"
+                                        class="btn btn-sm btn-soft-primary"><i class="mdi mdi-pencil-outline"></i></a>
+                                    <a href="<?php echo e(route('subcategory.delete', $section->id)); ?>" title="حذف"
+                                        class="btn btn-sm btn-soft-danger"><i class="mdi mdi-delete-outline"></i></a>
                                 </td>
 
                             </tr>
@@ -125,7 +76,6 @@
             </div>
         </div>
     </div>
-
 
 
 
@@ -248,6 +198,7 @@
             });
         });
     </script>
+
 <?php $__env->stopSection(); ?>
 
-<?php echo $__env->make('layouts.master', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\POS\resources\views/orders/allorders.blade.php ENDPATH**/ ?>
+<?php echo $__env->make('layouts.master', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\POS\resources\views/sub_category/SubCategoryView.blade.php ENDPATH**/ ?>

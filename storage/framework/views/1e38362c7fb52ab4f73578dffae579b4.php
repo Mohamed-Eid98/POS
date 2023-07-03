@@ -60,9 +60,8 @@
 
                         <div class="row">
                             <div class="col-sm-12">
-                                <table id="example"
-                                    class="table table-bordered dt-responsive nowrap w-100 dataTable no-footer dtr-inline"
-                                    role="grid" aria-describedby="datatable_info" style="width: 1566px;">
+                                <table id="example" class="table table-striped my-3" role="grid"
+                                    aria-describedby="datatable_info" style="width: 100%">
                                     <thead>
                                         <tr role="row">
                                             <th>#</th>
@@ -70,11 +69,11 @@
                                             <th>اسم المنتج</th>
                                             <th>الكود</th>
                                             <th>القسم الفرعي</th>
-                                            <th>السعر (دينار عراقي)</th>
-                                            <th>الحد الادني (دينار عراقي)</th>
-                                            <th>معدل الزياده (دينار عراقي)</th>
+                                            <th>السعر </th>
+                                            <th>الحد الادني </th>
+                                            <th>معدل الزياده </th>
                                             <th>عدد التكرار</th>
-                                            <th>الحد الاقصي (دينار عراقي)</th>
+                                            <th>الحد الاقصي </th>
                                             <th>الكميه </th>
                                             <th>جديد </th>
                                             <th>الافضل مبيعاً </th>
@@ -102,26 +101,25 @@
                                                             alt="" style="width: 40px; height:50px">
                                                     <?php endif; ?>
                                                 </td>
-                                                <td> <strong> <?php echo e($product->name); ?> </strong> </td>
+                                                <td> <?php echo e($product->name); ?> </td>
                                                 <td>
                                                     <span class="badge text-bg-danger"><?php echo e($product->code); ?></span>
 
                                                 </td>
-                                                <td> <strong> <a
-                                                            href="<?php echo e(route('product.show.subcategory', $product->id)); ?>">
-                                                            <?php echo e($product->subcategory->name); ?> </a></strong></td>
+                                                <td> <a href="<?php echo e(route('product.show.subcategory', $product->id)); ?>">
+                                                        <?php echo e($product->subcategory->name); ?> </a></td>
 
-                                                <td> <strong> <?php echo e($product->price); ?> د.ع. </strong></td>
-                                                <td> <strong> <?php echo e($product->min_price); ?> د.ع. </strong></td>
-                                                <td><strong> <?php echo e($product->increase_ratio); ?> د.ع. </strong></td>
-                                                <td> <b> <?php echo e($product->repeat_times); ?> </b> </td>
+                                                <td> <?php echo e($product->price); ?> د.ع. </td>
+                                                <td> <?php echo e($product->min_price); ?> د.ع. </td>
+                                                <td> <?php echo e($product->increase_ratio); ?> د.ع. </td>
+                                                <td> <?php echo e($product->repeat_times); ?> </td>
                                                 <td>
-                                                    <strong><?php echo e($product->min_price + ($product->repeat_times + 1) * $product->increase_ratio); ?>
+                                                    <?php echo e($product->min_price + ($product->repeat_times + 1) * $product->increase_ratio); ?>
 
-                                                        د.ع.
-                                                    </strong>
+                                                    د.ع.
+
                                                 </td>
-                                                <td><strong> <?php echo e($product->product_qty); ?> </strong></td>
+                                                <td> <?php echo e($product->product_qty); ?> </td>
                                                 <td>
                                                     <?php if($product->is_new == 1): ?>
                                                         <span class="badge text-bg-secondary">نعم</span>
@@ -174,12 +172,12 @@
                                                                 <a href="<?php echo e(route('product.quentity.zero', $product->id)); ?>"
                                                                     class="btn
                                                                     btn-sm btn-soft-info"><i
-                                                                        class="fas fa-list-ul"></i></a>
+                                                                        class="fas fa-bell"></i></a>
                                                             <?php elseif($product->product_qty < 10): ?>
                                                                 <a href="<?php echo e(route('product.quentity.ten', $product->id)); ?>"
                                                                     class="btn
                                                                 btn-sm btn-soft-info"><i
-                                                                        class="fas fa-list-ul"></i></a>
+                                                                        class="fas fa-bell"></i></a>
                                                             <?php else: ?>
                                                             <?php endif; ?>
                                                         </li>
@@ -197,6 +195,7 @@
 
                                     </tbody>
                                 </table>
+
                             </div>
                         </div>
                         
@@ -222,7 +221,7 @@
                 buttons: ['copy', 'excel', 'pdf', 'colvis'],
                 responsive: true,
                 language: {
-                    searchPlaceholder: 'Search...',
+                    searchPlaceholder: 'ابحث هنا',
                     sSearch: '',
                     lengthMenu: '_MENU_ ',
                 }
@@ -232,7 +231,7 @@
 
             $('#example1').DataTable({
                 language: {
-                    searchPlaceholder: 'Search...',
+                    searchPlaceholder: 'ابحث هنا',
                     sSearch: '',
                     lengthMenu: '_MENU_',
                 }
@@ -240,7 +239,7 @@
             $('#example2').DataTable({
                 responsive: true,
                 language: {
-                    searchPlaceholder: 'Search...',
+                    searchPlaceholder: 'ابحث هنا',
                     sSearch: '',
                     lengthMenu: '_MENU_',
                 }
@@ -248,7 +247,7 @@
             var table = $('#example-delete').DataTable({
                 responsive: true,
                 language: {
-                    searchPlaceholder: 'Search...',
+                    searchPlaceholder: 'ابحث هنا',
                     sSearch: '',
                     lengthMenu: '_MENU_',
                 }
@@ -270,7 +269,7 @@
             $('#example-1').DataTable({
                 responsive: true,
                 language: {
-                    searchPlaceholder: 'Search...',
+                    searchPlaceholder: 'ابحث هنا',
                     sSearch: '',
                     lengthMenu: '_MENU_',
                 },
