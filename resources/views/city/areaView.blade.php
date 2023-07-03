@@ -52,29 +52,19 @@
 
                     <div id="datatable_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
                         <div class="row">
-                            <div class="col-sm-12 col-md-6">
-                                <div class="dataTables_length" id="datatable_length"><label>عرض <select
-                                            name="datatable_length" aria-controls="datatable"
-                                            class="custom-select custom-select-sm form-control form-control-sm form-select form-select-sm">
-                                            <option value="10">10</option>
-                                            <option value="25">25</option>
-                                            <option value="50">50</option>
-                                            <option value="100">100</option>
-                                        </select> entries</label></div>
-                            </div>
+
 
                         </div>
                         <div class="row">
                             <div class="col-sm-12">
-                                <table id="example"
-                                    class="table table-bordered dt-responsive nowrap w-100 dataTable no-footer dtr-inline"
-                                    role="grid" aria-describedby="datatable_info" style="width: 1566px;">
+                                <table id="example" class="table table-striped my-3 w-100" role="grid"
+                                    aria-describedby="datatable_info">
                                     <thead>
                                         <tr role="row">
                                             <th>#</th>
-                                            <th>البلد</th>
-                                            <th>المحافظات</th>
-                                            <th>المناطق</th>
+                                            {{-- <th>المحافظات</th> --}}
+                                            <th>المنطقه</th>
+                                            <th>التوصيل</th>
                                             <th>التعديلات</th>
                                         </tr>
 
@@ -83,28 +73,51 @@
 
                                     <tbody>
 
-                                        <?php $i = 0; ?>
+                                        <?php $i = 0;
+                                        $prevCountry = null; ?>
                                         @foreach ($cities as $city)
-                                            <?php $i++; ?>
-                                            <tr>
-                                                <td>{{ $i }}</td>
+                                            @foreach ($city->areas as $area)
+                                                @if ($prevCountry !== $city->general_title)
+                                                    <tr>
+                                                        <td colspan="4">{{ $city->general_title }} </td>
+                                                    </tr>
+                                                    @php
+                                                        $prevCountry = $city->general_title;
+                                                    @endphp
+                                                @endif
 
-                                                <td>{{ $city->country->general_title }}</td>
-                                                <td> {{ $city->general_title }} </td>
-                                                <td>
-                                                    @foreach ($city->areas as $area)
-                                                        <li> {{ $area->general_title }} </li>
-                                                    @endforeach
-                                                </td>
-                                                <td>
-                                                    <a href="{{ route('city.edit', $city->id) }}" title="تعديل"
-                                                        class="btn btn-info">
-                                                        <i class="fas fa-edit"></i></a>
-                                                    <a href="{{ route('city.delete', $city->id) }}" class="btn btn-danger"
-                                                        title="حذف">
-                                                        <i class="fas fa-trash"></i></a>
-                                                </td>
-                                            </tr>
+
+
+
+                                                <?php $i++; ?>
+                                                <tr>
+                                                    <td>{{ $i }}</td>
+
+                                                    <td>
+                                                        {{ $area->general_title }}
+                                                    </td>
+                                                    <td>
+                                                        {{ $area->shipping_cost }}
+                                                    </td>
+                                                    <td>
+                                                        <ul class="list-unstyled hstack gap-1 mb-0">
+                                                            <li data-bs-toggle="tooltip" data-bs-placement="top"
+                                                                title="تعديل ">
+                                                                <a href="{{ route('area.edit', $area->id) }}"
+                                                                    class="btn btn-sm btn-soft-primary"><i
+                                                                        class="mdi mdi-pencil-outline"></i></a>
+                                                            </li>
+
+                                                            <li data-bs-toggle="tooltip" data-bs-placement="top"
+                                                                title="حذف">
+                                                                <a href="{{ route('area.delete', $area->id) }}"
+                                                                    title="حذف" class="btn btn-sm btn-soft-danger"><i
+                                                                        class="mdi mdi-delete-outline"></i></a>
+                                                            </li>
+                                                        </ul>
+                                                    </td>
+                                                </tr>
+                                            @endforeach
                                         @endforeach
 
 
@@ -112,7 +125,6 @@
                                 </table>
                             </div>
                         </div>
-                        {{-- <div class="row"><div class="col-sm-12 col-md-5"><div class="dataTables_info" id="datatable_info" role="status" aria-live="polite">Showing 1 to 10 of 57 entries</div></div><div class="col-sm-12 col-md-7"><div class="dataTables_paginate paging_simple_numbers" id="datatable_paginate"><ul class="pagination"><li class="paginate_button page-item previous disabled" id="datatable_previous"><a href="#" aria-controls="datatable" data-dt-idx="0" tabindex="0" class="page-link">Previous</a></li><li class="paginate_button page-item active"><a href="#" aria-controls="datatable" data-dt-idx="1" tabindex="0" class="page-link">1</a></li><li class="paginate_button page-item "><a href="#" aria-controls="datatable" data-dt-idx="2" tabindex="0" class="page-link">2</a></li><li class="paginate_button page-item "><a href="#" aria-controls="datatable" data-dt-idx="3" tabindex="0" class="page-link">3</a></li><li class="paginate_button page-item "><a href="#" aria-controls="datatable" data-dt-idx="4" tabindex="0" class="page-link">4</a></li><li class="paginate_button page-item "><a href="#" aria-controls="datatable" data-dt-idx="5" tabindex="0" class="page-link">5</a></li><li class="paginate_button page-item "><a href="#" aria-controls="datatable" data-dt-idx="6" tabindex="0" class="page-link">6</a></li><li class="paginate_button page-item next" id="datatable_next"><a href="#" aria-controls="datatable" data-dt-idx="7" tabindex="0" class="page-link">Next</a></li></ul></div></div></div></div> --}}
 
                     </div>
                 </div>

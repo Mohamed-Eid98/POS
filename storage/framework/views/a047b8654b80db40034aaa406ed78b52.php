@@ -4,15 +4,7 @@
 
 <?php $__env->startSection('css'); ?>
     <!-- DataTables -->
-    <link
-        href="<?php echo e(asset('build/libs/datatables.net-bs4/css/dataTables.bootstrap4.min.css" rel="stylesheet" type="text/css')); ?>" />
-    <link
-        href="<?php echo e(asset('build/libs/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css" rel="stylesheet" type="text/css')); ?>" />
-
-
-    <!-- Responsive datatable examples -->
-    <link href="<?php echo e(asset('build/libs/datatables.net-responsive-bs4/css/responsive.bootstrap4.min.css')); ?>" rel="stylesheet"
-        type="text/css" />
+    
 <?php $__env->stopSection(); ?>
 
 <?php $__env->startSection('content'); ?>
@@ -55,92 +47,90 @@
 
 
                     </div>
+
                     <div class="row">
                         <div class="col-sm-12">
                             <div class="table-rep-plugin">
-                                <div class="table-responsive mb-0" data-pattern="priority-columns">
-                                    <table id="example" class="table table-striped">
-                                        <thead>
-                                            <tr>
-                                                <th></th>
-
-                                                <th data-priority="1">رقم الفاتوره</th>
-                                                <th data-priority="2">الحاله</th>
-                                                <th data-priority="3">سعر فاتوره التوصيل</th>
-                                                <th data-priority="4"> select</th>
-
-                                            </tr>
-
-                                        </thead>
-                                        <tbody>
-                                            <?php $__currentLoopData = $users; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $user): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                <div class="" data-pattern="priority-columns">
+                                    <form action="<?php echo e(route('orders.payments')); ?>" method="POST">
+                                        <?php echo csrf_field(); ?>
+                                        <table id="example" class="table table-striped">
+                                            <thead>
                                                 <tr>
-                                                    <td></td>
+                                                    <th></th>
 
-                                                    <td><?php echo e($user->invoice_no); ?></td>
-                                                    <td><?php echo e($user->status); ?></td>
-                                                    <td><?php echo e($user->final_total); ?></td>
-                                                    <td>
-                                                        <label>
-                                                            <input type="checkbox" name="item"
-                                                                value="<?php echo e($user->final_total); ?>">اختار
-
-                                                        </label>
-                                                    </td>
-
+                                                    <th data-priority="1">رقم الفاتوره</th>
+                                                    <th data-priority="2">الحاله</th>
+                                                    <th data-priority="3">سعر فاتوره التوصيل</th>
+                                                    <th data-priority="4"> اختيار</th>
 
                                                 </tr>
-                                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+
+                                            </thead>
+                                            <tbody>
+                                                <?php $__currentLoopData = $orders; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $order): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                    <tr>
+                                                        <td></td>
+
+                                                        <td><?php echo e($order->invoice_no); ?> </td>
+                                                        <td><?php echo e($order->status); ?> </td>
+                                                        <td><?php echo e($order->final_total); ?></td>
+                                                        <td>
+                                                            <label>
+                                                                <input type="checkbox" name="name[<?php echo e($order->id); ?>]"
+                                                                    value="<?php echo e($order->final_total); ?>">
+                                                            </label>
+                                                        </td>
+
+
+                                                    </tr>
+                                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 
 
 
 
-                                        </tbody>
-                                    </table>
+                                            </tbody>
+                                        </table>
 
 
-                                    <div class="row">
-                                        <div class="col-md-3 m-auto"><input type="text"></div>
-                                        <p id="total">Total: $0</p>
+                                        <div class="row">
+                                            <div class="col-md-6 m-auto">
 
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-3 m-auto"><input type="date"></div>
-                                    </div>
+
+                                                <div class="row">
+                                                    
+                                                    <input type="text" id="total" name="total" readonly
+                                                        class="form-control form-control-rounded is-valid form-control-lg my-3 ">
+                                                    <div class="col-md-4  m-auto"><input type="date" name="date_at"
+                                                            value="<?php echo e(now()); ?>"
+                                                            class="form-control form-control-rounded form-control-lg ">
+                                                    </div>
+                                                </div>
+
+
+                                                
+                                            </div>
+
+                                        </div>
+                                        
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="text-center mt-4">
+                <div class="text-center
+                                                            mt-4 mb-2">
                     <input type="submit" class="btn btn-primary waves-effect waves-light" value="حفظ">
                 </div>
                 
+                </form>
 
             </div>
         </div>
     </div> <!-- end col -->
-    </div>
 <?php $__env->stopSection(); ?>
 
-<script>
-    const checkboxes = document.querySelectorAll('input[type="checkbox"]');
-    const total = document.getElementById('total');
 
-    checkboxes.forEach((checkbox) => {
-        checkbox.addEventListener('change', () => {
-            let sum = 0;
-
-            checkboxes.forEach((checkbox) => {
-                if (checkbox.checked) {
-                    sum += parseInt(checkbox.value);
-                }
-            });
-
-            total.textContent = `Total: $${sum}`;
-        });
-    });
-</script>
 <script>
     $(function(e) {
         //file export datatable

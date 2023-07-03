@@ -60,8 +60,9 @@
                                     <thead>
                                         <tr role="row">
                                             <th>#</th>
-                                            <th>##</th>
-                                            <th>###</th>
+                                            <th>الاشعار</th>
+                                            <th>نوع الاشعار</th>
+                                            <th>التعديلات</th>
                                         </tr>
 
                                     </thead>
@@ -70,16 +71,32 @@
                                     <tbody>
 
                                         <?php $i = 0; ?>
+                                    @foreach ($notifications as $notification)
 
+                                    @endforeach
                                         <?php $i++; ?>
                                         <tr>
                                             <td><strong>{{ $i }}</strong></td>
-                                            <td><strong>ass</strong></td>
+                                            @php
+                                                $obj = json_decode($notification->data['message']);
+                                            @endphp
+                                            <td><strong>{{ $obj }}</strong></td>
+                                            <td><strong>{{ $notification->type }}</strong></td>
                                             <td>
-                                                <a href="" title="Edit Data" class="btn btn-info">
-                                                    <i class="fas fa-edit"></i></a>
-                                                <a href="" class="btn btn-danger" title="حذف">
-                                                    <i class="fas fa-trash"></i></a>
+
+                                                <ul class="list-unstyled hstack gap-1 mb-0">
+                                                    <li data-bs-toggle="tooltip" data-bs-placement="top" title="تعديل ">
+                                                        <a href=""
+                                                            class="btn btn-sm btn-soft-primary"><i
+                                                                class="mdi mdi-pencil-outline"></i></a>
+                                                    </li>
+
+                                                    <li data-bs-toggle="tooltip" data-bs-placement="top" title="Delete">
+                                                        <a href=""
+                                                            title="حذف" class="btn btn-sm btn-soft-danger"><i
+                                                                class="mdi mdi-delete-outline"></i></a>
+                                                    </li>
+                                                </ul>
                                             </td>
                                         </tr>
 

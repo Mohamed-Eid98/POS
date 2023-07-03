@@ -37,7 +37,9 @@
             <div class="card-header pb-0">
             </div>
             <div class="card-body">
-                <table id="example" class="table key-buttons text-md-nowrap">
+                <h3 class="card-title my-3 ">عرض الاقسام الفرعيه</h3>
+
+                <table id="example" class="table table-striped my-4 w-100 ">
                     <thead>
                         <tr>
                             <th class="border-bottom-0">#</th>
@@ -53,17 +55,17 @@
                             <?php $i++; ?>
 
                             <tr>
-                                <td><strong>{{ $i }}</strong></td>
-                                <td><strong>{{ $section->category->name }}</strong> </td>
-                                <td><strong>{{ $section->name }}</strong> </td>
+                                <td>{{ $i }}</td>
+                                <td>{{ $section->category->name }} </td>
+                                <td>{{ $section->name }} </td>
+
                                 <td>
-                                    <a href="{{ route('subcategory.edit', $section->id) }}" title="تعديل"
-                                        class="btn btn-info">
-                                        <i class="las la-pen"></i></a>
-                                    <a href="{{ route('subcategory.delete', $section->id) }}" class="btn btn-danger"
-                                        title="حذف">
-                                        <i class="las la-trash"></i></a>
+                                    <a href="{{ route('subcategory.edit', $section->id) }}" title="Edit Data"
+                                        class="btn btn-sm btn-soft-primary"><i class="mdi mdi-pencil-outline"></i></a>
+                                    <a href="{{ route('subcategory.delete', $section->id) }}" title="حذف"
+                                        class="btn btn-sm btn-soft-danger"><i class="mdi mdi-delete-outline"></i></a>
                                 </td>
+
                             </tr>
                         @endforeach
 

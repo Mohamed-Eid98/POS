@@ -84,7 +84,7 @@ session()->flash('edit', 'تم تعديل القسم بنجاح ');
 
 public function Delete($id)
 {
-    Product::find($id)->delete();
+    subCategory::find($id)->delete();
     session()->flash('delete', 'تم حذف القسم بنجاح ');
     return redirect()->back();
 

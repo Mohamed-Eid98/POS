@@ -13,8 +13,8 @@
 
 
     <!-- Responsive datatable examples -->
-    <link href="{{ asset('build/libs/datatables.net-responsive-bs4/css/responsive.bootstrap4.min.css') }}"
-        rel="stylesheet" type="text/css" />
+    <link href="{{ asset('build/libs/datatables.net-responsive-bs4/css/responsive.bootstrap4.min.css') }}" rel="stylesheet"
+        type="text/css" />
 @endsection
 
 @section('content')
@@ -23,15 +23,15 @@
             عرض
         @endslot
         @slot('title')
-        قسم رئيسي
+            قسم رئيسي
         @endslot
     @endcomponent
 
 
     @if (session('delete'))
-    <div class="alert alert-success">
-        {{ session('delete') }}
-    </div>
+        <div class="alert alert-success">
+            {{ session('delete') }}
+        </div>
     @endif
 
 
@@ -47,16 +47,7 @@
 
                     <div id="datatable_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
                         <div class="row">
-                            <div class="col-sm-12 col-md-6">
-                                <div class="dataTables_length" id="datatable_length"><label>عرض <select
-                                            name="datatable_length" aria-controls="datatable"
-                                            class="custom-select custom-select-sm form-control form-control-sm form-select form-select-sm">
-                                            <option value="10">10</option>
-                                            <option value="25">25</option>
-                                            <option value="50">50</option>
-                                            <option value="100">100</option>
-                                        </select> entries</label></div>
-                            </div>
+
                             <div class="col-sm-12 col-md-6">
                                 <div id="datatable_filter" class="dataTables_filter"><label>Search:<input type="search"
                                             class="form-control form-control-sm" placeholder=""
@@ -82,27 +73,30 @@
                                     <tbody>
 
 
-                                            <tr>
-                                                <td>1</td>
-                                                <td>
-                                                    @if ($category->getFirstMediaUrl('CategoryImages'))
-                                                    <img src="{{  $category->getFirstMediaUrl('CategoryImages') }}" style="width: 60px;height:50px" alt="{{ $category->title }}" class="img-fluid">
+                                        <tr>
+                                            <td>1</td>
+                                            <td>
+                                                @if ($category->getFirstMediaUrl('CategoryImages'))
+                                                    <img src="{{ $category->getFirstMediaUrl('CategoryImages') }}"
+                                                        style="width: 60px;height:50px" alt="{{ $category->title }}"
+                                                        class="img-fluid">
+                                                @else
+                                                    <img src="{{ asset('uploads/on-C100969_Image_01.jpeg') }}"
+                                                        style="width: 60px;height:50px" alt="{{ $category->title }}"
+                                                        class="img-fluid">
+                                                @endif
+                                            </td>
+                                            <td>{{ $category->category->name }}</td>
+                                            <td>
+                                                <a href="{{ route('category.edit', $category->id) }}" title="تعديل"
+                                                    class="btn btn-info">
+                                                    <i class="fas fa-edit"></i></a>
+                                                <a href="{{ route('category.delete', $category->id) }}"
+                                                    class="btn btn-sm btn-soft-danger" title="حذف">
+                                                    <i class="mdi mdi-delete-outline"></i></a>
+                                            </td>
 
-                                                    @else
-                                                    <img src="{{  asset('uploads/on-C100969_Image_01.jpeg') }}" style="width: 60px;height:50px" alt="{{ $category->title }}" class="img-fluid">
-
-                                                    @endif
-                                                </td>
-                                                <td>{{ $category->category->name }}</td>
-                                                <td>
-                                                    <a href="{{ route('category.edit', $category->id) }}" title="تعديل"
-                                                        class="btn btn-info">
-                                                        <i class="fas fa-edit"></i></a>
-                                                    <a href="{{ route('category.delete', $category->id) }}"
-                                                        class="btn btn-danger" title="حذف">
-                                                        <i class="fas fa-trash"></i></a>
-                                                </td>
-                                            </tr>
+                                        </tr>
 
 
                                     </tbody>
