@@ -45,7 +45,7 @@
             <div class="card">
                 <div class="card-body">
 
-                    <h4 class="card-title">عدد الزبائن  (<?php echo e($user->customers->count()); ?> )</h4>
+                    <h4 class="card-title">عدد الزبائن (<?php echo e($user->customers->count()); ?> )</h4>
                     <p class="card-title-desc">
 
                     </p>
@@ -81,47 +81,46 @@
 
                                         <?php $i = 0; ?>
                                         <?php $__currentLoopData = $user->customers; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $customer): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                        <?php $i++ ; ?>
-                                        <tr>
-                                            <?php $i; ?>
+                                            <?php $i++; ?>
+                                            <tr>
+                                                <?php $i; ?>
 
-                                            <td><?php echo e($i); ?></td>
+                                                <td><?php echo e($i); ?></td>
 
-                                            
+                                                
 
-                                            <td><?php echo e($customer->name); ?></td>
-                                            <td><?php echo e($customer->country->general_title); ?></td>
-                                            <td>
-                                                <?php if($customer->city): ?>
-                                                <?php echo e($customer->city->general_title); ?>
+                                                <td><?php echo e($customer->name); ?></td>
+                                                <td><?php echo e($customer->country->general_title); ?></td>
+                                                <td>
+                                                    <?php if($customer->city): ?>
+                                                        <?php echo e($customer->city->general_title); ?>
 
-                                                <?php else: ?>
+                                                    <?php else: ?>
                                                         لا يوجد
-                                                <?php endif; ?>
-                                            </td>
-                                            <td>
-                                                <?php if($customer->area): ?>
-                                                <?php echo e($customer->area->general_title); ?>
+                                                    <?php endif; ?>
+                                                </td>
+                                                <td>
+                                                    <?php if($customer->area): ?>
+                                                        <?php echo e($customer->area->general_title); ?>
 
-                                                <?php else: ?>
+                                                    <?php else: ?>
                                                         لا يوجد
-                                                <?php endif; ?>
-                                            </td>
-                                            <td><?php echo e($customer->address); ?></td>
-                                            <td>
-                                                <li><?php echo e($customer->phone_number); ?></li>
-                                                <?php if($customer->second_phone_number): ?>
-                                                <li><?php echo e($customer->second_phone_number); ?></li>
-
-                                                <?php endif; ?>
-                                            </td>
-                                            <td>
+                                                    <?php endif; ?>
+                                                </td>
+                                                <td><?php echo e($customer->address); ?></td>
+                                                <td>
+                                                    <li><?php echo e($customer->phone_number); ?></li>
+                                                    <?php if($customer->second_phone_number): ?>
+                                                        <li><?php echo e($customer->second_phone_number); ?></li>
+                                                    <?php endif; ?>
+                                                </td>
+                                                <td>
                                                     <a href="<?php echo e(route('user.delete', $customer->id)); ?>" title="حذف"
                                                         class="btn btn-sm btn-soft-danger"><i
                                                             class="mdi mdi-delete-outline"></i></a>
-                                            </td>
+                                                </td>
                                             </tr>
-                                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 
 
                                     </tbody>

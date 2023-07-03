@@ -56,13 +56,13 @@
                             <div class="col-sm-12 col-md-6">
 
                             </div>
-
                         </div>
+
                         <div class="row">
                             <div class="col-sm-12">
                                 <table id="example"
                                     class="table table-bordered dt-responsive nowrap w-100 dataTable no-footer dtr-inline"
-                                    role="grid" aria-describedby="datatable_info" style="width: 1566px;">
+                                    role="grid" aria-describedby="datatable_info" style="width: 100%">
                                     <thead>
                                         <tr role="row">
                                             <th>#</th>
@@ -107,7 +107,9 @@
                                                     <span class="badge text-bg-danger"><?php echo e($product->code); ?></span>
 
                                                 </td>
-                                                <td> <strong> <a href="<?php echo e(route('product.show.subcategory' , $product->id)); ?>"> <?php echo e($product->subcategory->name); ?> </a></strong></td>
+                                                <td> <strong> <a
+                                                            href="<?php echo e(route('product.show.subcategory', $product->id)); ?>">
+                                                            <?php echo e($product->subcategory->name); ?> </a></strong></td>
 
                                                 <td> <strong> <?php echo e($product->price); ?> د.ع. </strong></td>
                                                 <td> <strong> <?php echo e($product->min_price); ?> د.ع. </strong></td>
@@ -150,28 +152,44 @@
                                                 </td>
 
                                                 <td>
-                                                    <a href="<?php echo e(route('product.edit', $product->id)); ?>" title="تعديل"
-                                                        class="btn btn-info">
-                                                        <i class="fas fa-edit"></i></a>
 
-                                                    <?php if($product->product_qty == 0): ?>
-                                                        <a href="<?php echo e(route('product.quentity.zero', $product->id)); ?>" title="ارسال اشعار"
-                                                        class="btn btn-success">
-                                                        <i class="fas fa-bell"></i></a>
 
-                                                    <?php elseif($product->product_qty < 10): ?>
-                                                 <a href="<?php echo e(route('product.quentity.ten', $product->id)); ?>" title="ارسال اشعار"
-                                                        class="btn btn-success">
-                                                        <i class="fas fa-bell"></i></a>
-                                                    <?php else: ?>
-
-                                                    <?php endif; ?>
+                                                    
 
 
 
-                                                    <a href="<?php echo e(route('product.delete', $product->id)); ?>"
-                                                        class="btn btn-danger" title="حذف">
-                                                        <i class="fas fa-trash"></i></a>
+                                                    
+                                                    
+
+
+                                                    <ul class="list-unstyled hstack gap-1 mb-0">
+                                                        <li data-bs-toggle="tooltip" data-bs-placement="top" title="تعديل ">
+                                                            <a href="<?php echo e(route('product.edit', $product->id)); ?>"
+                                                                class="btn btn-sm btn-soft-primary"><i
+                                                                    class="mdi mdi-pencil-outline"></i></a>
+                                                        </li>
+                                                        <li data-bs-toggle="tooltip" data-bs-placement="top"
+                                                            title="ارسال اشعار">
+                                                            <?php if($product->product_qty == 0): ?>
+                                                                <a href="<?php echo e(route('product.quentity.zero', $product->id)); ?>"
+                                                                    class="btn
+                                                                    btn-sm btn-soft-info"><i
+                                                                        class="fas fa-bell"></i></a>
+                                                            <?php elseif($product->product_qty < 10): ?>
+                                                                <a href="<?php echo e(route('product.quentity.ten', $product->id)); ?>"
+                                                                    class="btn
+                                                                btn-sm btn-soft-info"><i
+                                                                        class="fas fa-bell"></i></a>
+                                                            <?php else: ?>
+                                                            <?php endif; ?>
+                                                        </li>
+                                                        <li data-bs-toggle="tooltip" data-bs-placement="top" title="Delete">
+                                                            <a href="<?php echo e(route('product.delete', $product->id)); ?>"
+                                                                title="حذف" class="btn btn-sm btn-soft-danger"><i
+                                                                    class="mdi mdi-delete-outline"></i></a>
+                                                        </li>
+                                                    </ul>
+
                                                 </td>
                                             </tr>
                                         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>

@@ -1,27 +1,30 @@
 <!-- JAVASCRIPT -->
-<script src="{{ URL::asset('build/libs/jquery/jquery.min.js') }}"></script>
-<script src="{{ URL::asset('build/libs/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-<script src="{{ URL::asset('build/libs/metismenu/metisMenu.min.js') }}"></script>
-<script src="{{ URL::asset('build/libs/simplebar/simplebar.min.js') }}"></script>
-<script src="{{ URL::asset('build/libs/node-waves/waves.min.js') }}"></script>
-<script src="{{ URL::asset('assets/plugins/datatable/js/jquery.dataTables.min.js') }}"></script>
-<script src="{{ URL::asset('assets/plugins/datatable/js/dataTables.dataTables.min.js') }}"></script>
-<script src="{{ URL::asset('assets/plugins/datatable/js/dataTables.responsive.min.js') }}"></script>
-<script src="{{ URL::asset('assets/plugins/datatable/js/responsive.dataTables.min.js') }}"></script>
-<script src="{{ URL::asset('assets/plugins/datatable/js/jquery.dataTables.js') }}"></script>
-<script src="{{ URL::asset('assets/plugins/datatable/js/dataTables.bootstrap4.js') }}"></script>
-<script src="{{ URL::asset('assets/plugins/datatable/js/dataTables.buttons.min.js') }}"></script>
-<script src="{{ URL::asset('assets/plugins/datatable/js/buttons.bootstrap4.min.js') }}"></script>
-<script src="{{ URL::asset('assets/plugins/datatable/js/jszip.min.js') }}"></script>
-<script src="{{ URL::asset('assets/plugins/datatable/js/pdfmake.min.js') }}"></script>
-<script src="{{ URL::asset('assets/plugins/datatable/js/vfs_fonts.js') }}"></script>
-<script src="{{ URL::asset('assets/plugins/datatable/js/buttons.html5.min.js') }}"></script>
-<script src="{{ URL::asset('assets/plugins/datatable/js/buttons.print.min.js') }}"></script>
-<script src="{{ URL::asset('assets/plugins/datatable/js/buttons.colVis.min.js') }}"></script>
-<script src="{{ URL::asset('assets/plugins/datatable/js/dataTables.responsive.min.js') }}"></script>
-<script src="{{ URL::asset('assets/plugins/datatable/js/responsive.bootstrap4.min.js') }}"></script>
+<script src="{{ asset('build/libs/jquery/jquery.min.js') }}"></script>
+<script src="{{ asset('build/libs/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+<script src="{{ asset('build/libs/metismenu/metisMenu.min.js') }}"></script>
+<script src="{{ asset('build/libs/simplebar/simplebar.min.js') }}"></script>
+<script src="{{ asset('build/libs/node-waves/waves.min.js') }}"></script>
+<script src="{{ asset('assets/plugins/datatable/js/jquery.dataTables.min.js') }}"></script>
+<script src="{{ asset('assets/plugins/datatable/js/dataTables.dataTables.min.js') }}"></script>
+<script src="{{ asset('assets/plugins/datatable/js/dataTables.responsive.min.js') }}"></script>
+<script src="{{ asset('assets/plugins/datatable/js/responsive.dataTables.min.js') }}"></script>
+<script src="{{ asset('assets/plugins/datatable/js/jquery.dataTables.js') }}"></script>
+<script src="{{ asset('assets/plugins/datatable/js/dataTables.bootstrap4.js') }}"></script>
+<script src="{{ asset('assets/plugins/datatable/js/dataTables.buttons.min.js') }}"></script>
+<script src="{{ asset('assets/plugins/datatable/js/buttons.bootstrap4.min.js') }}"></script>
+<script src="{{ asset('assets/plugins/datatable/js/jszip.min.js') }}"></script>
+<script src="{{ asset('assets/plugins/datatable/js/pdfmake.min.js') }}"></script>
+<script src="{{ asset('assets/plugins/datatable/js/vfs_fonts.js') }}"></script>
+<script src="{{ asset('assets/plugins/datatable/js/buttons.html5.min.js') }}"></script>
+<script src="{{ asset('assets/plugins/datatable/js/buttons.print.min.js') }}"></script>
+<script src="{{ asset('assets/plugins/datatable/js/buttons.colVis.min.js') }}"></script>
+<script src="{{ asset('assets/plugins/datatable/js/dataTables.responsive.min.js') }}"></script>
+<script src="{{ asset('assets/plugins/datatable/js/responsive.bootstrap4.min.js') }}"></script>
 <!--Internal  Datatable js -->
-<script src="{{ URL::asset('assets/js/table-data.js') }}"></script>
+<script src="{{ asset('assets/js/table-data.js') }}"></script>
+
+
+
 <script>
     < script >
         $('#change-password').on('submit', function(event) {
@@ -64,9 +67,38 @@
         });
 </script>
 
+
+
 @yield('script')
 
 <!-- App js -->
-<script src="{{ URL::asset('build/js/app.js') }}"></script>
+<script src="{{ asset('build/js/app.js') }}"></script>
+
+<script>
+    const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+    const totalInput = document.getElementById('total');
+
+function updateTotal() {
+  let sum = 0;
+
+  checkboxes.forEach((checkbox) => {
+            if (checkbox.checked) {
+                const value = parseInt(checkbox.value);
+                if (typeof value === 'number' && !isNaN(value)) {
+                sum += value;
+                }
+            }
+            });
+
+  totalInput.value = sum;
+}
+
+checkboxes.forEach((checkbox) => {
+  checkbox.addEventListener('change', updateTotal);
+});
+
+updateTotal();
+</script>
 
 @yield('script-bottom')
+

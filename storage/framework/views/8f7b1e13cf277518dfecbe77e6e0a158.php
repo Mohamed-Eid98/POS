@@ -1,4 +1,3 @@
-
 <?php $__env->startSection('title'); ?>
     عرض جميع الطلبات
 <?php $__env->stopSection(); ?>
@@ -43,7 +42,7 @@
             <div class="card-header pb-0">
             </div>
             <div class="card-body">
-                <table id="example" class="table key-buttons text-md-nowrap flex">
+                <table id="example" class="table key-buttons text-md-nowrap flex" style="width: 100%" >
                     <thead>
                         <tr>
                             <th class="border-bottom-0">#SL</th>
@@ -67,7 +66,15 @@
                                 <td><?php echo e($i); ?></td>
                                 <td> <a href=""> <?php echo e($order->invoice_no); ?> </a> </td>
                                 <td><?php echo e($order->created_at->diffForHumans()); ?> </td>
-                                <td><?php echo e($order->customer->name); ?> </td>
+                                <td>
+                                    <?php if($order->customer): ?>
+
+                                    <?php echo e($order->customer->name); ?>
+
+                                    <?php else: ?>
+                                        No name exist
+                                    <?php endif; ?>
+                                 </td>
                                 <td>
                                     <?php if($order->status == 'Paid'): ?>
                                         <span class="badge rounded-pill text-bg-primary"> مدفوع </span>

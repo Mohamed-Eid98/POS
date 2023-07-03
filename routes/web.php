@@ -50,6 +50,7 @@ Route::get('/invoices-page', [IvoicesController::class, 'showtable'])->name('inv
 Route::get('/users-show', [CustomerController::class, 'index'])->name('users.show');
 Route::get('/customers-show-{id}', [CustomerController::class, 'showcustomer'])->name('customers.show');
 Route::get('/users-order-{id}', [CustomerController::class, 'showuserorder'])->name('usersorder.show');
+Route::post('/order-payments', [CustomerController::class, 'paymentsStore'])->name('orders.payments');
 
 Route::get('/user-delete-{id}', [CustomerController::class, 'delete'])->name('user.delete');
 
@@ -101,6 +102,7 @@ Route::post('/city-add', [CityController::class, 'Store'])->name('city.store');
 Route::post('/area-add', [CityController::class, 'CityStore'])->name('area.store');
 Route::get('/city-show', [CityController::class, 'Show'])->name('city.show');
 Route::get('/area-show', [CityController::class, 'ShowArea'])->name('area.show');
+Route::get('/city-ajax-{id}', [CityController::class, 'AjaxShow']);
 Route::get('/edit2-{id}', [CityController::class, 'Edit'])->name('country.edit');
 Route::get('/area-edit-{id}', [CityController::class, 'Edit'])->name('city.edit');
 Route::get('/area-delete-{id}', [CityController::class, 'Edit'])->name('city.delete');

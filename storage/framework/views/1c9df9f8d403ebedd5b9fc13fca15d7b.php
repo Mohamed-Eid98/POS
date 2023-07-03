@@ -1,5 +1,3 @@
-
-
 <?php $__env->startSection('title'); ?>
     عرض الاشعارات
 <?php $__env->stopSection(); ?>
@@ -60,8 +58,9 @@
                                     <thead>
                                         <tr role="row">
                                             <th>#</th>
-                                            <th>##</th>
-                                            <th>###</th>
+                                            <th>الاشعار</th>
+                                            <th>نوع الاشعار</th>
+                                            <th>التعديلات</th>
                                         </tr>
 
                                     </thead>
@@ -70,16 +69,32 @@
                                     <tbody>
 
                                         <?php $i = 0; ?>
+                                    <?php $__currentLoopData = $notifications; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $notification): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
 
+                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                         <?php $i++; ?>
                                         <tr>
                                             <td><strong><?php echo e($i); ?></strong></td>
-                                            <td><strong>ass</strong></td>
+                                            <?php
+                                                $obj = json_decode($notification->data['message']);
+                                            ?>
+                                            <td><strong><?php echo e($obj); ?></strong></td>
+                                            <td><strong><?php echo e($notification->type); ?></strong></td>
                                             <td>
-                                                <a href="" title="Edit Data" class="btn btn-info">
-                                                    <i class="fas fa-edit"></i></a>
-                                                <a href="" class="btn btn-danger" title="حذف">
-                                                    <i class="fas fa-trash"></i></a>
+
+                                                <ul class="list-unstyled hstack gap-1 mb-0">
+                                                    <li data-bs-toggle="tooltip" data-bs-placement="top" title="تعديل ">
+                                                        <a href=""
+                                                            class="btn btn-sm btn-soft-primary"><i
+                                                                class="mdi mdi-pencil-outline"></i></a>
+                                                    </li>
+
+                                                    <li data-bs-toggle="tooltip" data-bs-placement="top" title="Delete">
+                                                        <a href=""
+                                                            title="حذف" class="btn btn-sm btn-soft-danger"><i
+                                                                class="mdi mdi-delete-outline"></i></a>
+                                                    </li>
+                                                </ul>
                                             </td>
                                         </tr>
 

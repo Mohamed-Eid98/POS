@@ -69,7 +69,7 @@
                             <div class="col-sm-12">
                                 <table id="example"
                                     class="table table-bordered dt-responsive nowrap w-100 dataTable no-footer dtr-inline"
-                                    role="grid" aria-describedby="datatable_info" style="width: 1566px;">
+                                    role="grid" aria-describedby="datatable_info" style="width: 100%">
                                     <thead>
                                         <tr role="row">
                                             <th>#</th>
@@ -193,12 +193,12 @@
                                                                 <a href="{{ route('product.quentity.zero', $product->id) }}"
                                                                     class="btn
                                                                     btn-sm btn-soft-info"><i
-                                                                        class="fas fa-list-ul"></i></a>
+                                                                        class="fas fa-bell"></i></a>
                                                             @elseif ($product->product_qty < 10)
                                                                 <a href="{{ route('product.quentity.ten', $product->id) }}"
                                                                     class="btn
                                                                 btn-sm btn-soft-info"><i
-                                                                        class="fas fa-list-ul"></i></a>
+                                                                        class="fas fa-bell"></i></a>
                                                             @else
                                                             @endif
                                                         </li>

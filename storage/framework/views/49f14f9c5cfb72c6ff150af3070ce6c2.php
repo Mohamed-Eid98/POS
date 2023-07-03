@@ -1,3 +1,5 @@
+
+
 <?php $__env->startSection('title'); ?> إضافة قسم رئيسي <?php $__env->stopSection(); ?>
 
 <?php $__env->startSection('css'); ?>

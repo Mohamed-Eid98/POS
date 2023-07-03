@@ -41,7 +41,7 @@
             <div class="card-header pb-0">
             </div>
             <div class="card-body">
-                <table id="example" class="table key-buttons text-md-nowrap flex">
+                <table id="example" class="table key-buttons text-md-nowrap flex" style="width: 100%" >
                     <thead>
                         <tr>
                             <th class="border-bottom-0">#SL</th>
@@ -65,7 +65,14 @@
                                 <td>{{ $i }}</td>
                                 <td> <a href=""> {{ $order->invoice_no }} </a> </td>
                                 <td>{{ $order->created_at->diffForHumans() }} </td>
-                                <td>{{ $order->customer->name }} </td>
+                                <td>
+                                    @if ($order->customer)
+
+                                    {{ $order->customer->name }}
+                                    @else
+                                        No name exist
+                                    @endif
+                                 </td>
                                 <td>
                                     @if ($order->status == 'Paid')
                                         <span class="badge rounded-pill text-bg-primary"> مدفوع </span>

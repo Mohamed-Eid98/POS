@@ -90,7 +90,7 @@
                                                 {{-- <td>{{ $user->avatar }}</td> --}}
 
                                                 <td>{{ $customer->name }}</td>
-                                                {{-- <td>{{ $customer->country->general_title }}</td> --}}
+                                                <td>{{ $customer->country->general_title }}</td>
                                                 <td>
                                                     @if ($customer->city)
                                                         {{ $customer->city->general_title }}

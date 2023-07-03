@@ -15,8 +15,8 @@ class CityController extends Controller
         return view('city.cityAdd' , compact('countries'));
     }
     function AddArea(){
-        $cities = City::orderBy('general_title' , 'ASC')->get();
-        return view('city.areaAdd' , compact('cities'));
+        $countries = Country::orderBy('general_title' , 'ASC')->get();
+        return view('city.areaAdd' , compact('countries'));
     }
 
 
@@ -45,25 +45,30 @@ class CityController extends Controller
     return redirect()->back();
 }
 
+function AjaxShow($id){
+    $city = City::where('country_id', $id)->orderBy('general_title', 'ASC')->get();
+    // dd($sub_cate);
+    return response()->json($city);
+}
 
 public function CityStore(Request $request)
 {
     $request->validate([
         'name' => 'required|unique:categories|max:255',
-        'cate_id' => 'required',
+        'city_id' => 'required',
         'price' => 'required',
     ],[
 
         'name.required' =>'يرجي ادخال اسم المنطقه',
         'price.required' =>'يرجي ادخال سعر التوصيل',
         'name.unique' =>'هذه المنطقه مسجل مسبقا',
-        'cate_id.required' =>'يرجي اختيار المحافظه ',
+        'city_id.required' =>'يرجي اختيار المحافظه ',
     ]);
 
 
     Area::create([
         'general_title' => $request->name,
-        'city_id' => $request->cate_id,
+        'city_id' => $request->city_id,
         'shipping_cost' => $request->price,
         'sort' => 1,
     ]);
