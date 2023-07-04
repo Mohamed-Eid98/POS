@@ -70,12 +70,8 @@
                                             <th>القسم الرئيسي</th>
                                             <th>التعديلات</th>
                                         </tr>
-
                                     </thead>
-
-
                                     <tbody>
-
                                         <?php $i = 0; ?>
                                         @foreach ($categories as $category)
                                             <?php $i++; ?>
