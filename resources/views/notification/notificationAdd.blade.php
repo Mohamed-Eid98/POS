@@ -1,4 +1,4 @@
-{{-- @extends('layouts.master')
+@extends('layouts.master')
 
 @section('title')
     إضافةاشعار
@@ -36,7 +36,7 @@
 
 
 
-                    <form action="{{ route('notification.store') }}" class="dropzone" method="POST">
+                    <form action="{{ route('send.web-notification') }}" class="dropzone" method="POST">
                         @csrf
 
                         <div class="row">
@@ -56,7 +56,7 @@
                                                 <div class="form-group">
                                                     <h2> نوع الاشعار<span class="text-danger">*</span></h2>
                                                     <div class="controls">
-                                                        <select name="type" id="select" class="form-control">
+                                                        <select name="title" id="select" class="form-control">
 
 
                                                             <option value="تهنئه">تهنئه</option>
@@ -77,8 +77,8 @@
                                                 <h2 for="name"> الاشعار<span class="text-danger">*</span>
                                                 </h2>
                                                 <div class="controls">
-                                                    <textarea  id="name" name="name" class="form-control" cols="10" rows="5"></textarea>
-                                                    @error('name')
+                                                    <textarea  id="name" name="body" class="form-control" cols="10" rows="5"></textarea>
+                                                    @error('body')
                                                         <span class="text-danger">{{ $message }}</span>
                                                     @enderror
                                                 </div>
@@ -109,12 +109,12 @@
             </div>
         </div> <!-- end col -->
     </div> <!-- end row -->
-@endsection --}}
+@endsection
 
 
 
 
-@extends('layouts.app')
+{{-- @extends('layouts.app')
 
 @section('content')
     <div class="container">
@@ -164,8 +164,8 @@
                 </div>
             </div>
         </div>
-    </div><!-- The core Firebase JS SDK is always required and must be listed first -->
-@endsection
+    </div><!-- The core Firebase JS SDK is always required and must be listed first --> --}}
+{{-- @endsection --}}
 
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.3.2/firebase.js"></script>

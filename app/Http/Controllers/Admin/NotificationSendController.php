@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\User;
+use App\Models\Notification;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -24,6 +25,8 @@ class NotificationSendController extends Controller
 
     public function sendNotification(Request $request)
     {
+
+        // return $request;
         $url = 'https://fcm.googleapis.com/fcm/send';
 
         $FcmToken = User::whereNotNull('device_token')->pluck('device_token')->all();
@@ -36,6 +39,13 @@ class NotificationSendController extends Controller
                 "body" => $request->body,
             ]
         ];
+
+        Notification::create([
+            'title' => $request->body,
+            'type' => $request->title,
+            'typeNotice' => 'OutOfStock',
+        ]);
+
         $encodedData = json_encode($data);
 
         $headers = [
