@@ -100,12 +100,12 @@
                                             <td>
                                                 <ul class="list-unstyled hstack gap-1 mb-0">
                                                     <li data-bs-toggle="tooltip" data-bs-placement="top" title="تعديل ">
-                                                        <a href="{{ route('notification.edit-allnotification' , $notification->id) }}" class="btn btn-sm btn-soft-primary"><i
+                                                        <a href="{{ route('notification.edit' , $notification->id) }}" class="btn btn-sm btn-soft-primary"><i
                                                                 class="mdi mdi-pencil-outline"></i></a>
                                                     </li>
 
                                                     <li data-bs-toggle="tooltip" data-bs-placement="top" title="Delete">
-                                                        <a href="{{ route('notification.delete-allnotification' , $notification->id) }}" title="حذف"
+                                                        <a href="{{ route('notification.delete' , $notification->id) }}" title="حذف"
                                                             class="btn btn-sm btn-soft-danger"><i
                                                                 class="mdi mdi-delete-outline"></i></a>
                                                     </li>

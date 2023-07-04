@@ -69,16 +69,16 @@ Route::middleware(['auth'])->group(function () {
 
 
 //////////// Start Category All Routes //////////
-Route::middleware(['auth'])->group(function () {
+// Route::middleware(['auth'])->group(function () {
     Route::get('/addCategory', [CategoryController::class, 'Add'])->name('category.add');
     Route::post('/add', [CategoryController::class, 'Store'])->name('category.store');
     Route::get('/show', [CategoryController::class, 'Show'])->name('category.show');
-    Route::get('/edit-{id}', [CategoryController::class, 'Edit'])->name('category.edit');
-    Route::post('/update', [CategoryController::class, 'Update'])->name('category.update');
-    Route::get('/delete-{id}', [CategoryController::class, 'Delete'])->name('category.delete');
+    Route::get('/edit-category-{id}', [CategoryController::class, 'Edit'])->name('category.edit');
+    Route::post('/update-category', [CategoryController::class, 'Update'])->name('category.update');
+    Route::get('/delete-category-{id}', [CategoryController::class, 'Delete'])->name('category.delete');
     Route::get('/category-page-{id}', [CategoryController::class, 'showPage'])->name('category.page');
 
-});
+// });
 //////////// End Category All Routes //////////
 
 //////////// Start subCategory All Routes /////////
@@ -150,11 +150,11 @@ Route::middleware(['auth'])->group(function () {
 Route::middleware(['auth'])->group(function () {
     Route::get('/addnotification', [notificationController::class, 'addnotification'])->name('notification.add');
     Route::post('/addnotification', [notificationController::class, 'storeNotification'])->name('notification.store');
-    Route::get('/shownotification', [notificationController::class, 'shownotification'])->name('notification.show');
+    Route::get('/show-notification', [notificationController::class, 'shownotification'])->name('notification.show');
     Route::get('/read-allnotifiction-{id}', [notificationController::class, 'readNotification'])->name('notification.read-allnotification');
-    Route::get('/edit-allnotifiction-{id}', [notificationController::class, 'EditNotification'])->name('notification.edit-allnotification');
-    Route::post('/edit-allnotifiction', [notificationController::class, 'UpdateNotification'])->name('notification.update-allnotification');
-    Route::get('/delete-allnotifiction-{id}', [notificationController::class, 'DeleteNotification'])->name('notification.delete-allnotification');
+    Route::get('/edit-allnotifiction-{id}', [notificationController::class, 'EditNotification'])->name('notification.edit');
+    Route::post('/edit-allnotifiction', [notificationController::class, 'UpdateNotification'])->name('notification.update');
+    Route::get('/delete-allnotifiction-{id}', [notificationController::class, 'DeleteNotification'])->name('notification.delete');
 
 });
 

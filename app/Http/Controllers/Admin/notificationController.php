@@ -3,11 +3,11 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\User;
+use App\Models\Notification;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use App\Notifications\AllNotification;
-use Illuminate\Support\Facades\Notification;
 
 class notificationController extends Controller
 {
@@ -18,10 +18,11 @@ class notificationController extends Controller
     }
     public function shownotification()
     {
-        $notifications = DB::table('notifications')->get();
+        $notifications = Notification::get();
 
         return view('notification.notificationView', compact('notifications'));
     }
+
     public function storeNotification(Request $request)
     {
 
@@ -44,11 +45,10 @@ class notificationController extends Controller
 
     public function readNotification($id)
 {
-    // $product = Product::findOrfail($id);
-// dd('assa');
-    $getId = DB::table('notifications')->where('type' , 'App\Notifications\AllNotification' )->pluck('id');
+
+    $getId = Notification::where('type' , 'App\Notifications\AllNotification' )->pluck('id');
     foreach ($getId as $id) {
-        DB::table('notifications')->where('id' , $id)->update(['read_at' => now()]);
+        Notification::where('id' , $id)->update(['read_at' => now()]);
     }
 
     return redirect()->back();
@@ -56,7 +56,8 @@ class notificationController extends Controller
     public function EditNotification($id)
 {
 
-    $notification = DB::table('notifications')->find($id);
+
+    $notification = Notification::find($id);
     return view('notification.notificationEdit' , compact('notification'));
 
 }
@@ -64,7 +65,7 @@ class notificationController extends Controller
 {
 
     $id = $request->id;
-    $notification = DB::table('notifications')->find($id)->update([
+    $notification = Notification::find($id)->update([
         'title' => $request->body,
         'type' => $request->title,
         'typeNotice' => 'OutOfStock',
@@ -76,7 +77,7 @@ class notificationController extends Controller
     public function DeleteNotification($id)
 {
 
-    DB::table('notifications')->find($id)->delete();
+    Notification::find($id)->delete();
     session()->flash('delete', 'تم حذف الاشعار بنجاح ');
 
     return redirect()->back();

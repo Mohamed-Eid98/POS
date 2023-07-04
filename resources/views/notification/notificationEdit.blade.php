@@ -1,6 +1,6 @@
 @extends('layouts.master')
 @section('title')
-    تعديلالاشعار
+    تعديل الاشعار
 @stop
 @section('css')
     <!--  Owl-carousel css-->
@@ -14,7 +14,7 @@
         <div class="my-auto">
             <div class="d-flex">
                 <h4 class="content-title mb-0 my-auto">تعديل</h4><span class="text-muted mt-1 tx-13 mr-2 mb-0">/
-                    قسم رئيسي</span>
+                    الاشعار</span>
             </div>
         </div>
     </div>
@@ -41,7 +41,7 @@
                     <div class="box-body">
                         <div class="table-responsive">
 
-                            <form method="post" action="{{ route('notification.update-allnotification') }}">
+                            <form method="post" action="{{ route('notification.update') }}">
                                 @csrf
                                 <input type="hidden" name="id" value="{{ $notification->id }}" class="form-control">
 
