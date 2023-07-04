@@ -38,25 +38,15 @@
 
                     <div id="datatable_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
                         <div class="row">
-                            <div class="col-sm-12 col-md-6">
-                                <div class="dataTables_length" id="datatable_length"><label>Show <select
-                                            name="datatable_length" aria-controls="datatable"
-                                            class="custom-select custom-select-sm form-control form-control-sm form-select form-select-sm">
-                                            <option value="10">10</option>
-                                            <option value="25">25</option>
-                                            <option value="50">50</option>
-                                            <option value="100">100</option>
-                                        </select> entries</label></div>
-                            </div>
+
 
                         </div>
                         {{-- <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names.."> --}}
 
                         <div class="row">
                             <div class="col-sm-12">
-                                <table id="example"
-                                    class="table table-bordered dt-responsive nowrap w-100 dataTable no-footer dtr-inline"
-                                    role="grid" aria-describedby="datatable_info" style="width: 1566px;">
+                                <table id="example" class="table table-striped my-3 w-100 " role="grid"
+                                    aria-describedby="datatable_info" style="width: 1566px;">
                                     <thead>
                                         <tr role="row">
                                             <th>#</th>
@@ -71,9 +61,8 @@
                                     <tbody>
 
                                         <?php $i = 0; ?>
-                                    @foreach ($notifications as $notification)
-
-                                    @endforeach
+                                        @foreach ($notifications as $notification)
+                                        @endforeach
                                         <?php $i++; ?>
                                         <tr>
                                             <td><strong>{{ $i }}</strong></td>
@@ -86,14 +75,13 @@
 
                                                 <ul class="list-unstyled hstack gap-1 mb-0">
                                                     <li data-bs-toggle="tooltip" data-bs-placement="top" title="تعديل ">
-                                                        <a href=""
-                                                            class="btn btn-sm btn-soft-primary"><i
+                                                        <a href="" class="btn btn-sm btn-soft-primary"><i
                                                                 class="mdi mdi-pencil-outline"></i></a>
                                                     </li>
 
                                                     <li data-bs-toggle="tooltip" data-bs-placement="top" title="Delete">
-                                                        <a href=""
-                                                            title="حذف" class="btn btn-sm btn-soft-danger"><i
+                                                        <a href="" title="حذف"
+                                                            class="btn btn-sm btn-soft-danger"><i
                                                                 class="mdi mdi-delete-outline"></i></a>
                                                     </li>
                                                 </ul>
