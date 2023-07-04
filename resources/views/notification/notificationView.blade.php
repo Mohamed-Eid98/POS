@@ -66,11 +66,10 @@
                                         <?php $i++; ?>
                                         <tr>
                                             <td><strong>{{ $i }}</strong></td>
-                                            @php
-                                                $obj = json_decode($notification->data['message']);
-                                            @endphp
-                                            <td><strong>{{ $obj }}</strong></td>
+
+                                            <td><strong> {{ $notification->title }} </strong></td>
                                             <td><strong>{{ $notification->type }}</strong></td>
+
                                             <td>
 
                                                 <ul class="list-unstyled hstack gap-1 mb-0">

@@ -59,9 +59,9 @@
                                                         <select name="title" id="select" class="form-control">
 
 
-                                                            <option value="تهنئه">تهنئه</option>
-                                                            <option value="تنبيه">تنبيه</option>
-                                                            <option value="معلومه">معلومه</option>
+                                                            <option value="Notice">تهنئه</option>
+                                                            <option value="Product">تنبيه</option>
+                                                            <option value="Info">معلومه</option>
 
 
                                                         </select>
@@ -74,10 +74,10 @@
 
 
                                             <div class="form-group my-5">
-                                                <h2 for="name"> الاشعار<span class="text-danger">*</span>
-                                                </h2>
+                                                <h4 for="name"> الاشعار<span class="text-danger">*</span>
+                                                </h4>
                                                 <div class="controls">
-                                                    <textarea  id="name" name="body" class="form-control" cols="10" rows="5"></textarea>
+                                                    <textarea id="name" name="body" class="form-control" cols="10" rows="5"></textarea>
                                                     @error('body')
                                                         <span class="text-danger">{{ $message }}</span>
                                                     @enderror

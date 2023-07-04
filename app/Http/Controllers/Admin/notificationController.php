@@ -19,8 +19,7 @@ class notificationController extends Controller
     public function shownotification()
     {
         $notifications = DB::table('notifications')->get();
-        $ob = json_decode($notifications->data['message']);
-        return $ob;
+
         return view('notification.notificationView', compact('notifications'));
     }
     public function storeNotification(Request $request)
