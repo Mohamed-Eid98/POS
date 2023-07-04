@@ -53,6 +53,34 @@ class notificationController extends Controller
 
     return redirect()->back();
 }
+    public function EditNotification($id)
+{
+
+    $notification = DB::table('notifications')->find($id);
+    return view('notification.notificationEdit' , compact('notification'));
+
+}
+    public function UpdateNotification(Request $request)
+{
+
+    $id = $request->id;
+    $notification = DB::table('notifications')->find($id)->update([
+        'title' => $request->body,
+        'type' => $request->title,
+        'typeNotice' => 'OutOfStock',
+    ]);
+    session()->flash('edit', 'تم تعديل الاشعار بنجاح ');
+
+    return redirect()->route('notification.show');
+}
+    public function DeleteNotification($id)
+{
+
+    DB::table('notifications')->find($id)->delete();
+    session()->flash('delete', 'تم حذف الاشعار بنجاح ');
+
+    return redirect()->back();
+}
 
 
 

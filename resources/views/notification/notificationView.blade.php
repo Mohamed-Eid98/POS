@@ -27,6 +27,24 @@
         @endslot
     @endcomponent
 
+
+    @if (session('delete'))
+        <div class="alert alert-success">
+            {{ session('delete') }}
+        </div>
+    @endif
+    @if (session('edit'))
+        <div class="alert alert-success">
+            {{ session('edit') }}
+        </div>
+    @endif
+    @if (session('add'))
+        <div class="alert alert-success">
+            {{ session('add') }}
+        </div>
+    @endif
+
+
     <div class="row">
         <div class="col-12">
             <div class="card">
@@ -62,30 +80,40 @@
 
                                         <?php $i = 0; ?>
                                         @foreach ($notifications as $notification)
-                                        @endforeach
                                         <?php $i++; ?>
                                         <tr>
                                             <td><strong>{{ $i }}</strong></td>
 
                                             <td><strong> {{ $notification->title }} </strong></td>
-                                            <td><strong>{{ $notification->type }}</strong></td>
 
+                                            @if ($notification->type == 'Info')
+
+                                                    <td><strong>معلومه</strong></td>
+                                            @elseif ($notification->type == 'Product')
+
+                                                    <td><strong>تنبيه</strong></td>
+
+
+                                            @else
+                                                    <td><strong>تهنئه</strong></td>
+                                            @endif
                                             <td>
-
                                                 <ul class="list-unstyled hstack gap-1 mb-0">
                                                     <li data-bs-toggle="tooltip" data-bs-placement="top" title="تعديل ">
-                                                        <a href="" class="btn btn-sm btn-soft-primary"><i
+                                                        <a href="{{ route('notification.edit-allnotification' , $notification->id) }}" class="btn btn-sm btn-soft-primary"><i
                                                                 class="mdi mdi-pencil-outline"></i></a>
                                                     </li>
 
                                                     <li data-bs-toggle="tooltip" data-bs-placement="top" title="Delete">
-                                                        <a href="" title="حذف"
+                                                        <a href="{{ route('notification.delete-allnotification' , $notification->id) }}" title="حذف"
                                                             class="btn btn-sm btn-soft-danger"><i
                                                                 class="mdi mdi-delete-outline"></i></a>
                                                     </li>
                                                 </ul>
                                             </td>
                                         </tr>
+                                        @endforeach
+
 
 
                                     </tbody>

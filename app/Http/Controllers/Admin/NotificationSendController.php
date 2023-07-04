@@ -72,7 +72,8 @@ class NotificationSendController extends Controller
         // Close connection
         curl_close($ch);
         // FCM response
-        dd($result);
+        session()->flash('add', 'تم ارسال الاشعار بنجاح ');
+        return redirect()->route('notification.show');
     }
 }
 

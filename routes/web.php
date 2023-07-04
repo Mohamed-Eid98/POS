@@ -151,7 +151,10 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/addnotification', [notificationController::class, 'addnotification'])->name('notification.add');
     Route::post('/addnotification', [notificationController::class, 'storeNotification'])->name('notification.store');
     Route::get('/shownotification', [notificationController::class, 'shownotification'])->name('notification.show');
-    Route::get('/read-allnotifiction-{id}', [notificationController::class, 'readNotification'])->name('product.read-allnotification');
+    Route::get('/read-allnotifiction-{id}', [notificationController::class, 'readNotification'])->name('notification.read-allnotification');
+    Route::get('/edit-allnotifiction-{id}', [notificationController::class, 'EditNotification'])->name('notification.edit-allnotification');
+    Route::post('/edit-allnotifiction', [notificationController::class, 'UpdateNotification'])->name('notification.update-allnotification');
+    Route::get('/delete-allnotifiction-{id}', [notificationController::class, 'DeleteNotification'])->name('notification.delete-allnotification');
 
 });
 
