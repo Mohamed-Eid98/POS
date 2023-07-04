@@ -33,6 +33,8 @@ class CustomerController extends Controller
          return view('customers.ordercustomer_view' , compact('orders'));
     }
     public function paymentsStore(Request $request){
+
+        // return $request;
         $request->validate([
             'name' => 'required',
         ],[
@@ -52,6 +54,8 @@ if($request->date_at){
     $payment_id = DB::table('payments')->insertGetId([
         'date_at' => now(),
         'invoice_no' => uniqid(),
+        'price' => $request->total,
+        'created_at' => now()
     ]);
 }
 

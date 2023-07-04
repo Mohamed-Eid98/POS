@@ -17,6 +17,7 @@ class CreatePaymentsTable extends Migration
             $table->id();
             $table->string('invoice_no',50)->nullable();
             $table->dateTime('date_at')->nullable();
+            $table->decimal('price')->nullable();
             $table->timestamps();
         });
     }
