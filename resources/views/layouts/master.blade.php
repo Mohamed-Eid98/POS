@@ -9,6 +9,7 @@
     <meta content="Themesbrand" name="author" />
     <!-- App favicon -->
     <link rel="shortcut icon" href="{{ URL::asset('build/images/favicon.ico') }}">
+
     @include('layouts.head-css')
 </head>
 
@@ -27,7 +28,7 @@
             <div class="page-content">
                 <div class="container-fluid">
                     @yield('content')
-                    
+
                 </div>
                 <!-- container-fluid -->
             </div>

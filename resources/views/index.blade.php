@@ -43,14 +43,21 @@
 
                         <div class="col-sm-8">
                             <div class="pt-4">
+                                @php
+                                    $all_orders = DB::table('orders')->count();
+                                    $pending_orders = DB::table('orders')
+                                        ->where('status', '=', 'Pending')
+                                        ->count();
+                                    
+                                @endphp
 
                                 <div class="row">
                                     <div class="col-6">
-                                        <h5 class="font-size-15">10</h5>
-                                        <p class="text-muted mb-0">عدد الطلبات</p>
+                                        <h5 class="font-size-15">{{ $pending_orders }}</h5>
+                                        <p class="text-muted mb-0">عدد الطلبات المعلقه</p>
                                     </div>
                                     <div class="col-6">
-                                        <h5 class="font-size-15">$1000</h5>
+                                        <h5 class="font-size-15">1000$</h5>
                                         <p class="text-muted mb-0">ايراد اليوم</p>
                                     </div>
                                 </div>
@@ -96,7 +103,7 @@
                             <div class="d-flex">
                                 <div class="flex-grow-1">
                                     <p class="text-muted fw-medium">الطلبات</p>
-                                    <h4 class="mb-0">10</h4>
+                                    <h4 class="mb-0">{{ $all_orders }}</h4>
                                 </div>
 
                                 <div class="flex-shrink-0 align-self-center">
@@ -392,7 +399,7 @@
     </div>
     <!-- end row -->
 
-    <div class="row">
+    {{-- <div class="row">
         <div class="col-lg-12">
             <div class="card">
                 <div class="card-body">
@@ -606,7 +613,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
     <!-- end row -->
 
     <!-- Transaction Modal -->

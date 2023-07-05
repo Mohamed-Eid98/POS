@@ -128,14 +128,18 @@
                                     تم الغاؤها </a>
                         </ul>
                     </li>
-                    <li class="menu-title" key="t-menu">اضافه اشعارات</li>
+                    {{-- <li class="" key="t-menu">اضافه اشعارات</li> --}}
 
                     <li>
-                        <a href="javascript: void(0);" class="has-arrow waves-effect">
+
+                        <a href="javascript: void(0);" class="has-arrow waves-effect my-3">
                             <i class="bx bx-store"></i>
 
-                            <span key="t-dashboards"> اضافه اشعارات</span>
+                            <span key="t-dashboards menu-title"> اضافه اشعارات</span>
+
+                            </h4>
                         </a>
+
                         <ul class="sub-menu" aria-expanded="false">
                             <li><a class="slide-item" href="{{ route('notification.add') }}"> اضافه اشعارات </a>
                             <li><a class="slide-item" href="{{ route('notification.show') }}"> عرض الاشعارات </a>
@@ -143,10 +147,10 @@
                         </ul>
                     </li>
 
-                    <li class="menu-title" key="t-menu">العملاء</li>
+                    {{-- <li class="menu-title" key="t-menu">العملاء</li> --}}
 
                     <li>
-                        <a href="javascript: void(0);" class="has-arrow waves-effect">
+                        <a href="javascript: void(0);" class="has-arrow waves-effect my-3">
                             <i class="bx bx-list-ul"></i>
 
                             <span key="t-dashboards"> العملاء</span>
@@ -156,10 +160,10 @@
 
                         </ul>
                     </li>
-                    <li class="menu-title" key="t-menu">المحافظات</li>
+                    {{-- <li class="menu-title" key="t-menu">المحافظات</li> --}}
 
                     <li>
-                        <a href="javascript: void(0);" class="has-arrow waves-effect">
+                        <a href="javascript: void(0);" class="has-arrow waves-effect my-3">
                             <i class="bx bx-envelope"></i>
 
                             <span key="t-dashboards"> المحافظات</span>
@@ -171,10 +175,10 @@
                             <li><a class="slide-item" href="{{ route('area.show') }}"> عرض المناطق </a>
                         </ul>
                     </li>
-                    <li class="menu-title" key="t-menu">الفواتير</li>
+                    {{-- <li class="menu-title" key="t-menu">الفواتير</li> --}}
 
                     <li>
-                        <a href="javascript: void(0);" class="has-arrow waves-effect">
+                        <a href="javascript: void(0);" class="has-arrow waves-effect my-3">
                             <i class="bx bx-envelope"></i>
 
                             <span key="t-dashboards"> الفواتير</span>
