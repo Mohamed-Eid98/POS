@@ -22,10 +22,10 @@ class AdminMiddleware
             if (Auth::user()->role == 1) {
                 return $next($request);
             } else {
-                return redirect('login')->with('message', 'access denied you are not an admins');
+                return redirect()->route('login')->with('message', 'access denied you are not an admins');
             }
         } else {
-            return redirect('login')->with('message', 'please login');
+            return redirect()->route('login')->with('message', 'please login');
         }
         return $next($request);
     }

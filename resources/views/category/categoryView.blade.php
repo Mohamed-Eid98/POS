@@ -78,8 +78,8 @@
                                             <tr>
                                                 <td>{{ $i }}</td>
                                                 <td>
-                                                    @if ($category->getFirstMediaUrl('CategoryImages'))
-                                                        <img src="{{ $category->getFirstMediaUrl('CategoryImages') }}"
+                                                    @if ($category->getFirstMediaUrl('images'))
+                                                        <img src="{{ $category->getFirstMediaUrl('images') }}"
                                                             style="width: 60px;height:50px" alt="{{ $category->title }}"
                                                             class="img-fluid">
                                                     @else

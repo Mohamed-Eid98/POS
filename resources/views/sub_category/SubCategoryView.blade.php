@@ -43,8 +43,9 @@
                     <thead>
                         <tr>
                             <th class="border-bottom-0">#</th>
-                            <th class="border-bottom-0"> القسم الرئيسي </th>
+                            <th class="border-bottom-0"> الصوره </th>
                             <th class="border-bottom-0"> القسم الفرعي </th>
+                            <th class="border-bottom-0"> القسم الرئيسي </th>
                             <th class="border-bottom-0"> actions</th>
 
                         </tr>
@@ -56,8 +57,19 @@
 
                             <tr>
                                 <td>{{ $i }}</td>
-                                <td>{{ $section->category->name }} </td>
                                 <td>{{ $section->name }} </td>
+                                <td>
+                                    @if ($section->getFirstMediaUrl('images'))
+                                        <img src="{{ $section->getFirstMediaUrl('images') }}"
+                                            style="width: 60px;height:50px" alt="{{ $section->title }}"
+                                            class="img-fluid">
+                                    @else
+                                        <img src="{{ asset('uploads/on-C100969_Image_01.jpeg') }}"
+                                            style="width: 60px;height:50px" alt="{{ $section->title }}"
+                                            class="img-fluid">
+                                    @endif
+                                </td>
+                                <td>{{ $section->category->name }} </td>
 
                                 <td>
                                     <a href="{{ route('subcategory.edit', $section->id) }}" title="Edit Data"

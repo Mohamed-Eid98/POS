@@ -48,7 +48,15 @@
                                     $pending_orders = DB::table('orders')
                                         ->where('status', '=', 'Pending')
                                         ->count();
-                                    
+                                    $payments_today = DB::table('payments')->whereDate('created_at', today() )->sum('price');
+                                    $month = date('m'); // Get the current month
+                                    $year = date('Y'); // Get the current year
+                                    $payments_month = DB::table('payments')->whereMonth('created_at', $month)->whereYear('created_at', $year)->sum('price');
+                                    $payments_sum = DB::table('payments')->sum('price');
+                                    $payments_count = DB::table('payments')->count();
+
+
+
                                 @endphp
 
                                 <div class="row">
@@ -57,7 +65,7 @@
                                         <p class="text-muted mb-0">عدد الطلبات المعلقه</p>
                                     </div>
                                     <div class="col-6">
-                                        <h5 class="font-size-15">1000$</h5>
+                                        <h5 class="font-size-15">{{ $payments_today }} دينار</h5>
                                         <p class="text-muted mb-0">ايراد اليوم</p>
                                     </div>
                                 </div>
@@ -76,8 +84,8 @@
                     <div class="row">
                         <div class="col-sm-6">
                             <p class="text-muted">الشهر</p>
-                            <h3>$34,252</h3>
-                            <p class="text-muted"><span class="text-success me-2"> 12% <i class="mdi mdi-arrow-up"></i>
+                            <h3>{{ $payments_month }} دينار </h3>
+                            <p class="text-muted"><span class="text-success me-2">  {{ number_format(($payments_month / $payments_sum)*100, 4, '.', '') }} % <i class="mdi mdi-arrow-up"></i>
                                 </span> الفتره السابقه</p>
 
                             <div class="mt-4">
@@ -123,7 +131,7 @@
                             <div class="d-flex">
                                 <div class="flex-grow-1">
                                     <p class="text-muted fw-medium">ايرد اليوم</p>
-                                    <h4 class="mb-0">$1000</h4>
+                                    <h4 class="mb-0">{{ $payments_today }} دينار</h4>
                                 </div>
 
                                 <div class="flex-shrink-0 align-self-center ">
@@ -143,7 +151,7 @@
                             <div class="d-flex">
                                 <div class="flex-grow-1">
                                     <p class="text-muted fw-medium">متوسط الايراد</p>
-                                    <h4 class="mb-0">$500</h4>
+                                    <h4 class="mb-0">{{ floor($payments_sum / $payments_count) }} دينار</h4>
                                 </div>
 
                                 <div class="flex-shrink-0 align-self-center">

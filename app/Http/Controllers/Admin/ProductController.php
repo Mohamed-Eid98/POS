@@ -73,7 +73,7 @@ class ProductController extends Controller
 
 
         if ($request->hasFile('pic')) {
-            $product->addMediaFromRequest('pic')->toMediaCollection('ProductImages');
+            $product->addMediaFromRequest('pic')->toMediaCollection('images');
 
     }
 

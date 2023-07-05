@@ -46,7 +46,7 @@
 
                                 <div class="row">
                                     <div class="col-6">
-                                        <h5 class="font-size-15">10</h5>
+                                        <h5 class="font-size-15">100</h5>
                                         <p class="text-muted mb-0">عدد الطلبات</p>
                                     </div>
                                     <div class="col-6">

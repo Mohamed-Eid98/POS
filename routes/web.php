@@ -29,7 +29,7 @@ Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('ro
 
 
 
-Route::prefix('admin')->middleware('auth', 'isAdmin')->group(function () {
+Route::middleware('auth', 'isAdmin')->group(function () {
     Route::get('/order', [OrderController::class, 'index'])->name('orders.show');
     Route::get('/order-pending', [OrderController::class, 'pending'])->name('orders.pendingg');
     Route::get('/order-delivered', [OrderController::class, 'delivered'])->name('orders.delivered');
@@ -40,30 +40,23 @@ Route::prefix('admin')->middleware('auth', 'isAdmin')->group(function () {
     Route::get('/active/{id}', [OrderController::class, 'Paid'])->name('orders.paid');
     Route::get('/inactive/{id}', [OrderController::class, 'UnPaid'])->name('orders.unpaid');
 
-
-
-
-
-
     //////////// start invoices All Routes //////////
-    Route::middleware(['auth'])->group(function () {
-        Route::get('/invoices-page', [IvoicesController::class, 'showtable'])->name('invoices.page');
-    });
+    Route::get('/invoices-page', [IvoicesController::class, 'showtable'])->name('invoices.page');
     //////////// end invoices All Routes //////////
 
 
-    // Route::middleware(['auth'])->group(function () {
+    //////////// Start Customers All Routes //////////
+
     Route::get('/users-show', [CustomerController::class, 'index'])->name('users.show');
     Route::get('/customers-show-{id}', [CustomerController::class, 'showcustomer'])->name('customers.show');
     Route::get('/users-order-{id}', [CustomerController::class, 'showuserorder'])->name('usersorder.show');
     Route::post('/order-payments', [CustomerController::class, 'paymentsStore'])->name('orders.payments');
-
     Route::get('/user-delete-{id}', [CustomerController::class, 'delete'])->name('user.delete');
 
-
+    //////////// End Customers All Routes //////////
 
     //////////// Start Category All Routes //////////
-    // Route::middleware(['auth'])->group(function () {
+
     Route::get('/addCategory', [CategoryController::class, 'Add'])->name('category.add');
     Route::post('/add', [CategoryController::class, 'Store'])->name('category.store');
     Route::get('/show', [CategoryController::class, 'Show'])->name('category.show');
@@ -72,11 +65,9 @@ Route::prefix('admin')->middleware('auth', 'isAdmin')->group(function () {
     Route::get('/delete-category-{id}', [CategoryController::class, 'Delete'])->name('category.delete');
     Route::get('/category-page-{id}', [CategoryController::class, 'showPage'])->name('category.page');
 
-    // });
     //////////// End Category All Routes //////////
 
     //////////// Start subCategory All Routes /////////
-
 
     Route::get('/subcategory-add', [SubCategoryController::class, 'Add'])->name('subcategory.add');
     Route::post('/subcategory-add', [SubCategoryController::class, 'Store'])->name('subcategory.store');
@@ -85,56 +76,49 @@ Route::prefix('admin')->middleware('auth', 'isAdmin')->group(function () {
     Route::post('/subcategory-update', [SubCategoryController::class, 'Update'])->name('subcategory.update');
     Route::get('/subcategory/delete/{id}', [SubCategoryController::class, 'Delete'])->name('subcategory.delete');
 
-
-
     //////////// End subCategory All Routes //////////
 
-    //////////// Start Product All Routes //////////
+
+        //////////// Start Product All Routes //////////
+
+        Route::get('/add2', [ProductController::class, 'Add'])->name('product.add');
+        Route::get('/zero-{id}', [ProductController::class, 'zero'])->name('product.quentity.zero');
+        Route::get('/ten-{id}', [ProductController::class, 'lessTen'])->name('product.quentity.ten');
+        Route::get('/read-notifiction-{id}', [ProductController::class, 'readNotification'])->name('product.read-notification');
+        Route::get('/addcands', [ProductController::class, 'addcands'])->name('product.addcolorandsize');
+        Route::post('/addcands', [ProductController::class, 'ColorSizeStore'])->name('product.addcolorandsize.store');
+        Route::post('/product/add', [ProductController::class, 'Store'])->name('product.store');
+        Route::get('/ajax-{id}', [ProductController::class, 'AjaxShow']);
+        Route::get('/showp', [ProductController::class, 'Show'])->name('product.show');
+        Route::get('/product-edit-{id}', [ProductController::class, 'Edit'])->name('product.edit');
+        Route::post('/product/update', [ProductController::class, 'Update'])->name('product.update');
+        Route::get('/product/delete/{id}', [ProductController::class, 'Delete'])->name('product.delete');
+        Route::get('/product-subcategory-{id}', [ProductController::class, 'showSub'])->name('product.show.subcategory');
+
+        //////////// End Product All Routes //////////
 
 
-    Route::get('/add2', [ProductController::class, 'Add'])->name('product.add');
-    Route::get('/zero-{id}', [ProductController::class, 'zero'])->name('product.quentity.zero');
-    Route::get('/ten-{id}', [ProductController::class, 'lessTen'])->name('product.quentity.ten');
-    Route::get('/read-notifiction-{id}', [ProductController::class, 'readNotification'])->name('product.read-notification');
-    Route::get('/addcands', [ProductController::class, 'addcands'])->name('product.addcolorandsize');
-    Route::post('/addcands', [ProductController::class, 'ColorSizeStore'])->name('product.addcolorandsize.store');
-    Route::post('/product/add', [ProductController::class, 'Store'])->name('product.store');
-    Route::get('/ajax-{id}', [ProductController::class, 'AjaxShow']);
-    Route::get('/showp', [ProductController::class, 'Show'])->name('product.show');
-    Route::get('/product-edit-{id}', [ProductController::class, 'Edit'])->name('product.edit');
-    Route::post('/product/update', [ProductController::class, 'Update'])->name('product.update');
-    Route::get('/product/delete/{id}', [ProductController::class, 'Delete'])->name('product.delete');
-    Route::get('/product-subcategory-{id}', [ProductController::class, 'showSub'])->name('product.show.subcategory');
+        //////////// Start city All Routes //////////
+
+        Route::get('/add-city', [CityController::class, 'Add'])->name('city.add');
+        Route::get('/city-show', [CityController::class, 'Show'])->name('city.show');
+        Route::get('/city-edit-{id}', [CityController::class, 'Edit'])->name('city.edit');
+        Route::post('/city-update', [CityController::class, 'Update'])->name('city.update');
+        Route::get('/city-delete-{id}', [CityController::class, 'Delete'])->name('city.delete');
+        Route::post('/city-add', [CityController::class, 'Store'])->name('city.store');
+
+        Route::get('/add-area', [CityController::class, 'AddArea'])->name('area.add');
+        Route::post('/area-add', [CityController::class, 'AreaStore'])->name('area.store');
+        Route::get('/area-show', [CityController::class, 'ShowArea'])->name('area.show');
+        Route::get('/area-edit-{id}', [CityController::class, 'EditArea'])->name('area.edit');
+        Route::post('/area-update', [CityController::class, 'UpdateArea'])->name('area.update');
+        Route::get('/area-delete-{id}', [CityController::class, 'DeleteArea'])->name('area.delete');
+        Route::get('/city-page-{id}', [CityController::class, 'showPage'])->name('city.page');
+
+        //////////// End city All Routes //////////
 
 
-
-
-    //////////// End Product All Routes //////////
-
-
-    //////////// Start city All Routes //////////
-
-    Route::get('/add-city', [CityController::class, 'Add'])->name('city.add');
-    Route::get('/city-show', [CityController::class, 'Show'])->name('city.show');
-    Route::get('/city-edit-{id}', [CityController::class, 'Edit'])->name('city.edit');
-    Route::post('/city-update', [CityController::class, 'Update'])->name('city.update');
-    Route::get('/city-delete-{id}', [CityController::class, 'Delete'])->name('city.delete');
-    Route::post('/city-add', [CityController::class, 'Store'])->name('city.store');
-
-    Route::get('/add-area', [CityController::class, 'AddArea'])->name('area.add');
-    Route::post('/area-add', [CityController::class, 'AreaStore'])->name('area.store');
-    Route::get('/area-show', [CityController::class, 'ShowArea'])->name('area.show');
-    Route::get('/area-edit-{id}', [CityController::class, 'EditArea'])->name('area.edit');
-    Route::post('/area-update', [CityController::class, 'UpdateArea'])->name('area.update');
-    Route::get('/area-delete-{id}', [CityController::class, 'DeleteArea'])->name('area.delete');
-    Route::get('/city-page-{id}', [CityController::class, 'showPage'])->name('city.page');
-
-
-
-
-    //////////// End city All Routes //////////
-
-    //////////// Start city All Routes //////////
+    //////////// Start Notification All Routes //////////
 
     Route::get('/addnotification', [notificationController::class, 'addnotification'])->name('notification.add');
     Route::post('/addnotification', [notificationController::class, 'storeNotification'])->name('notification.store');
@@ -143,11 +127,14 @@ Route::prefix('admin')->middleware('auth', 'isAdmin')->group(function () {
     Route::get('/edit-allnotifiction-{id}', [notificationController::class, 'EditNotification'])->name('notification.edit');
     Route::post('/edit-allnotifiction', [notificationController::class, 'UpdateNotification'])->name('notification.update');
     Route::get('/delete-allnotifiction-{id}', [notificationController::class, 'DeleteNotification'])->name('notification.delete');
-
-
-    ////////////f End City All //////////
-
-
     Route::post('/store-token', [NotificationSendController::class, 'updateDeviceToken'])->name('store.token');
     Route::post('/send-web-notification', [NotificationSendController::class, 'sendNotification'])->name('send.web-notification');
+
+    //////////// End Notification All Routes //////////
+
+
 });
+
+
+
+

@@ -47,7 +47,7 @@ class SubCategoryController extends Controller
 
 
     if ($request->file('pic')) {
-        $subcategory->addMediaFromRequest('pic')->usingName($subcategory->name)->toMediaCollection('SubCategoryImages');
+        $subcategory->addMediaFromRequest('pic')->usingName($subcategory->name)->toMediaCollection('images');
     }
 
 

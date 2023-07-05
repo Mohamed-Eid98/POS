@@ -100,12 +100,14 @@
                                             <tr>
                                                 <td>{{ $i }}</td>
                                                 <td>
-                                                    @if ($product->image)
-                                                        <img src="{{ $product->image }}" alt=""
-                                                            style="width: 40px; height:50px">
+                                                    @if ($product->getFirstMediaUrl('images'))
+                                                        <img src="{{ $product->getFirstMediaUrl('images') }}"
+                                                            style="width: 60px;height:50px" alt="{{ $product->title }}"
+                                                            class="img-fluid">
                                                     @else
                                                         <img src="{{ asset('uploads/on-C100969_Image_01.jpeg') }}"
-                                                            alt="" style="width: 40px; height:50px">
+                                                            style="width: 60px;height:50px" alt="{{ $product->title }}"
+                                                            class="img-fluid">
                                                     @endif
                                                 </td>
                                                 <td> {{ $product->name }} </td>
@@ -157,26 +159,6 @@
 
                                                 <td>
 
-
-                                                    {{-- @if ($product->product_qty == 0)
-                                                        <a href="{{ route('product.quentity.zero', $product->id) }}"
-                                                            title="ارسال اشعار" class="btn btn-success">
-                                                            <i class="fas fa-bell"></i></a>
-                                                    @elseif ($product->product_qty < 10)
-                                                        <a href="{{ route('product.quentity.ten', $product->id) }}"
-                                                            title="ارسال اشعار" class="btn btn-success">
-                                                            <i class="fas fa-bell"></i></a>
-                                                    @else
-                                                    @endif --}}
-
-
-
-                                                    {{-- <a href="{{ route('product.delete', $product->id) }}"
-                                                        class="btn btn-danger" title="حذف">
-                                                        <i class="fas fa-trash"></i></a> --}}
-                                                    {{-- <a href="{{ route('user.edit',$user->id) }}" title="تعديل"
-                                                                class="btn btn-info">
-                                                                <i class="fas fa-edit"></i></a> --}}
 
 
                                                     <ul class="list-unstyled hstack gap-1 mb-0">
