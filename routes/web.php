@@ -29,7 +29,7 @@ Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('ro
 
 
 
-Route::middleware('auth', 'isAdmin')->group(function () {
+Route::middleware('isAdmin')->group(function () {
     Route::get('/order', [OrderController::class, 'index'])->name('orders.show');
     Route::get('/order-pending', [OrderController::class, 'pending'])->name('orders.pendingg');
     Route::get('/order-delivered', [OrderController::class, 'delivered'])->name('orders.delivered');
@@ -87,12 +87,12 @@ Route::middleware('auth', 'isAdmin')->group(function () {
         Route::get('/read-notifiction-{id}', [ProductController::class, 'readNotification'])->name('product.read-notification');
         Route::get('/addcands', [ProductController::class, 'addcands'])->name('product.addcolorandsize');
         Route::post('/addcands', [ProductController::class, 'ColorSizeStore'])->name('product.addcolorandsize.store');
-        Route::post('/product/add', [ProductController::class, 'Store'])->name('product.store');
+        Route::post('/product-add', [ProductController::class, 'Store'])->name('product.store');
         Route::get('/ajax-{id}', [ProductController::class, 'AjaxShow']);
         Route::get('/showp', [ProductController::class, 'Show'])->name('product.show');
         Route::get('/product-edit-{id}', [ProductController::class, 'Edit'])->name('product.edit');
-        Route::post('/product/update', [ProductController::class, 'Update'])->name('product.update');
-        Route::get('/product/delete/{id}', [ProductController::class, 'Delete'])->name('product.delete');
+        Route::post('/product-update', [ProductController::class, 'Update'])->name('product.update');
+        Route::get('/product-delete-{id}', [ProductController::class, 'Delete'])->name('product.delete');
         Route::get('/product-subcategory-{id}', [ProductController::class, 'showSub'])->name('product.show.subcategory');
 
         //////////// End Product All Routes //////////

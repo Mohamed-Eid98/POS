@@ -50,7 +50,7 @@
                             <th class="border-bottom-0">اسم العميل</th>
                             <th class="border-bottom-0">الحاله</th>
                             <th class="border-bottom-0">الكل</th>
-                            <th class="border-bottom-0">طلبات الحاله</th>
+                            <th class="border-bottom-0">طالبات الحاله</th>
 
                             <th class="border-bottom-0"> حدث</th>
 
@@ -74,7 +74,7 @@
                                 </td>
                                 <td>
                                     @if ($order->status == 'Paid')
-                                        <span class="badge rounded-pill text-bg-primary"> مدفوع </span>
+                                        <span class="badge rounded-pill text-bg-danger"> مدفوع </span>
                                     @else
                                         <span class="badge rounded-pill text-bg-primary"> غير
                                             مدفوع </span>
@@ -84,17 +84,19 @@
 
                                 <td>
                                     @if ($order->status == 'Pending')
-                                        <span class="badge rounded-pill text-bg-primary"> {{ $order->status }} </span>
+                                        <span class="badge rounded-pill text-bg-secondary"> معلق </span>
                                     @elseif ($order->status == 'Paid')
-                                        <span class="badge rounded-pill text-bg-primary"> {{ $order->status }} </span>
+                                        <span class="badge rounded-pill text-bg-primary"> تم الدفع  </span>
                                     @elseif ($order->status == 'InPrograss')
-                                        <span class="badge rounded-pill text-bg-primary"> {{ $order->status }} </span>
+                                        <span class="badge rounded-pill text-bg-warning">  قيد المراجعه </span>
                                     @elseif ($order->status == 'Rejected')
-                                        <span class="badge rounded-pill text-bg-primary"> {{ $order->status }} </span>
+                                        <span class="badge rounded-pill text-bg-danger"> تم الرفض </span>
                                     @elseif ($order->status == 'Cancelled')
-                                        <span class="badge rounded-pill text-bg-primary"> {{ $order->status }} </span>
+                                        <span class="badge rounded-pill text-bg-success"> تم الإلغاء </span>
+                                    @elseif ($order->status == 'Delivered')
+                                        <span class="badge rounded-pill text-bg-info"> تم التوصيل </span>
                                     @else
-                                        <span class="badge rounded-pill text-bg-primary"> {{ $order->status }} </span>
+                                        <span class="badge rounded-pill text-bg-success"> تم التسليم </span>
                                     @endif
                                 </td>
 

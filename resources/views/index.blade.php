@@ -48,6 +48,21 @@
                                     $pending_orders = DB::table('orders')
                                         ->where('status', '=', 'Pending')
                                         ->count();
+                                        $deliered_orders = DB::table('orders')
+                                        ->where('status', '=', 'Delivered')
+                                        ->count();
+                                    $rejected_orders = DB::table('orders')
+                                        ->where('status', '=', 'Rejected')
+                                        ->count();
+                                    $cancelled_orders = DB::table('orders')
+                                        ->where('status', '=', 'Cancelled')
+                                        ->count();
+                                    $inPrograss_orders = DB::table('orders')
+                                        ->where('status', '=', 'InProgress')
+                                        ->count();
+                                    $paid_orders = DB::table('orders')
+                                        ->where('status', '=', 'Paid')
+                                        ->count();
                                     $payments_today = DB::table('payments')->whereDate('created_at', today() )->sum('price');
                                     $month = date('m'); // Get the current month
                                     $year = date('Y'); // Get the current year
@@ -195,7 +210,7 @@
     </div>
     <!-- end row -->
 
-    <div class="row">
+    {{-- <div class="row">
         <div class="col-xl-4">
             <div class="card">
                 <div class="card-body">
@@ -405,7 +420,173 @@
             </div>
         </div>
     </div>
-    <!-- end row -->
+    <!-- end row --> --}}
+
+
+    <div class="row">
+        <div class="col-xl-12">
+            <div class="card">
+
+    <div class="card-body">
+        <div class="row flex-between gx-2 gx-lg-3 mb-2">
+            <div>
+                <h4><i class="fas fa-chart-bar"></i> إحصائيات لوحة التحكم </h4>
+            </div>
+            {{-- <div class="col-12 col-md-4" style="width: 20vw">
+                <select class="custom-select" name="statistics_type" onchange="order_stats_update(this.value)">
+                    <option value="overall">
+                        إحصاءات عامة
+                    </option>
+                    <option value="today">
+                        إحصاءات اليوم
+                    </option>
+                    <option value="this_month">
+                        إحصائيات هذا الشهر
+                    </option>
+                </select>
+            </div> --}}
+        </div>
+        <div class="row gx-2 gx-lg-4" id="order_stats"><div class="col-sm-6 col-lg-4 mb-3 mb-lg-5">
+<!-- Card -->
+<a class="card card-hover-shadow h-100" href="https://v1.supplyar.thiqa-serv.com/admin/orders/list/pending" style="background: #FFFFFF">
+<div class="card-body">
+<div class="flex-between align-items-center mb-1">
+    <div style="text-align: right;">
+        <h6 class="card-subtitle" style="color: #F14A16!important;">طلبات معلقة</h6>
+        <span class="card-title h2" style="color: #F14A16!important;">
+            {{ $pending_orders }}
+        </span>
+
+    </div>
+    <div style="text-align: left;">
+        <i class="fas fa-shopping-cart ml-10" style="color: #F14A16;"></i>
+
+    </div>
+
+</div>
+<!-- End Row -->
+</div>
+</a>
+<!-- End Card -->
+</div>
+
+<div class="col-sm-6 col-lg-4 mb-3 mb-lg-5">
+<!-- Card -->
+<a class="card card-hover-shadow h-100" href="https://v1.supplyar.thiqa-serv.com/admin/orders/list/confirmed" style="background: #FFFFFF;">
+<div class="card-body">
+<div class="flex-between align-items-center mb-1">
+    <div style="text-align: right;">
+        <h6 class="card-subtitle" style="color: #F14A16!important;">تم التسليم </h6>
+         <span class="card-title h2" style="font-size: 20px;color: #F14A16!important;">{{ $deliered_orders }}
+         </span>
+    </div>
+
+    <div style="text-align: left;">
+        <i class="fas fa-shipping-fast" style="font-size: 20px;color: #F14A16"></i>
+    </div>
+</div>
+<!-- End Row -->
+</div>
+</a>
+<!-- End Card -->
+</div>
+
+<div class="col-sm-6 col-lg-4 mb-3 mb-lg-5">
+<!-- Card -->
+<a class="card card-hover-shadow h-100" href="https://v1.supplyar.thiqa-serv.com/admin/orders/list/processing" style="background: #FFFFFF">
+<div class="card-body">
+<div class="flex-between align-items-center gx-2 mb-1">
+    <div style="text-align: right;">
+        <h6 class="card-subtitle" style="color: #F14A16!important;">  قيد التوصيل</h6>
+        <span class="card-title h2" style="color: #F14A16!important;">
+            {{ $inPrograss_orders }}
+        </span>
+    </div>
+
+    <div style="text-align: left;">
+        <i class="far fa-clock" style="font-size: 20px;color: #F14A16"></i>
+    </div>
+</div>
+<!-- End Row -->
+</div>
+</a>
+<!-- End Card -->
+</div>
+
+
+<div class="row gx-2 gx-lg-4" id="order_stats"><div class="col-sm-6 col-lg-4 mb-3 mb-lg-5">
+    <!-- Card -->
+    <a class="card card-hover-shadow h-100" href="https://v1.supplyar.thiqa-serv.com/admin/orders/list/pending" style="background: #FFFFFF">
+    <div class="card-body">
+    <div class="flex-between align-items-center mb-1">
+        <div style="text-align: right;">
+            <h6 class="card-subtitle" style="color: #F14A16!important;">تم الدفع </h6>
+            <span class="card-title h2" style="color: #F14A16!important;">
+                {{ $paid_orders }}
+            </span>
+
+        </div>
+        <div style="text-align: left;">
+            <i class="fas fa-shopping-cart ml-10" style="font-size: 20px;color: #F14A16;"></i>
+
+        </div>
+
+    </div>
+    <!-- End Row -->
+    </div>
+    </a>
+    <!-- End Card -->
+    </div>
+
+    <div class="col-sm-6 col-lg-4 mb-3 mb-lg-5">
+    <!-- Card -->
+    <a class="card card-hover-shadow h-100" href="https://v1.supplyar.thiqa-serv.com/admin/orders/list/confirmed" style="background: #FFFFFF;">
+    <div class="card-body">
+    <div class="flex-between align-items-center mb-1">
+        <div style="text-align: right;">
+            <h6 class="card-subtitle" style="color: #F14A16!important;">تم الرفض </h6>
+             <span class="card-title h2" style="color: #F14A16!important;">{{ $rejected_orders }}
+             </span>
+        </div>
+
+        <div style="text-align: left;">
+            <i class="fas fa-window-close" style="font-size: 20px;color: #F14A16"></i>
+        </div>
+    </div>
+    <!-- End Row -->
+    </div>
+    </a>
+    <!-- End Card -->
+    </div>
+
+    <div class="col-sm-6 col-lg-4 mb-3 mb-lg-5">
+    <!-- Card -->
+    <a class="card card-hover-shadow h-100" href="https://v1.supplyar.thiqa-serv.com/admin/orders/list/processing" style="background: #FFFFFF">
+    <div class="card-body">
+    <div class="flex-between align-items-center gx-2 mb-1">
+        <div style="text-align: right;">
+            <h6 class="card-subtitle" style="color: #F14A16!important;">  تم الإلغاء</h6>
+            <span class="card-title h2" style="color: #F14A16!important;">
+                {{ $cancelled_orders }}
+            </span>
+        </div>
+
+        <div style="text-align: left;">
+            <i class="fas fa-prescription-bottle-alt" style="font-size: 20px;color: #F14A16"></i>
+        </div>
+    </div>
+    <!-- End Row -->
+    </div>
+    </a>
+    <!-- End Card -->
+    </div>
+
+
+</div>
+    </div>
+            </div>
+            </div>
+            </div>
 
     {{-- <div class="row">
         <div class="col-lg-12">
@@ -713,48 +894,6 @@
     </div>
     <!-- end modal -->
 
-    <!-- subscribeModal -->
-    <div class="modal fade" id="subscribeModal" tabindex="-1" aria-labelledby="subscribeModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header border-bottom-0">
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <div class="text-center mb-4">
-                        <div class="avatar-md mx-auto mb-4">
-                            <div class="avatar-title bg-light rounded-circle text-primary h1">
-                                <i class="mdi mdi-email-open"></i>
-                            </div>
-                        </div>
-
-                        <div class="row justify-content-center">
-                            <div class="col-xl-10">
-                                <h4 class="text-primary">Subscribe !</h4>
-                                <p class="text-muted font-size-14 mb-4">Subscribe our newletter and get notification to
-                                    stay
-                                    update.</p>
-
-                                <div class="input-group bg-light rounded">
-                                    <input type="email" class="form-control bg-transparent border-0"
-                                        placeholder="Enter Email address" aria-label="Recipient's username"
-                                        aria-describedby="button-addon2">
-
-                                    <button class="btn btn-primary" type="button" id="button-addon2">
-                                        <i class="bx bxs-paper-plane"></i>
-                                    </button>
-
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- end modal -->
 @endsection
 @section('script')
     <!-- apexcharts -->

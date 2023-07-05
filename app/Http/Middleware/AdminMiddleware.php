@@ -22,11 +22,13 @@ class AdminMiddleware
             if (Auth::user()->role == 1) {
                 return $next($request);
             } else {
-                return redirect()->route('login')->with('message', 'access denied you are not an admins');
+
+                session()->flash('add', 'انت لست ادمن ');
+
+                // return redirect()->back();
+                return view('auth.login');
             }
-        } else {
-            return redirect()->route('login')->with('message', 'please login');
         }
-        return $next($request);
+        // return $next($request);
     }
 }

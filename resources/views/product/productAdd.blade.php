@@ -76,7 +76,7 @@
                                 <h5 for="name">أسم المنتج <span class="text-danger">*</span>
                                 </h5>
                                 <div class="controls">
-                                    <input type="text" id="name" name="name" class="form-control">
+                                    <input type="text" id="name" name="name" class="form-control" required>
                                     @error('name')
                                         <span class="text-danger">{{ $message }}</span>
                                     @enderror
@@ -87,7 +87,7 @@
                                 <h5 for="desc">وصف المنتج <span class="text-danger">*</span>
                                 </h5>
                                 <div class="controls">
-                                    <textarea name="desc" class="form-control" id="desc" cols="10" rows="5"></textarea>
+                                    <textarea name="desc" class="form-control" id="desc" cols="10" rows="5" required></textarea>
                                     @error('desc')
                                         <span class="text-danger">{{ $message }}</span>
                                     @enderror
@@ -163,7 +163,7 @@
                                 <div class="form-group">
                                     <h5>القسم الفرعي <span class="text-danger">*</span></h5>
                                     <div class="controls">
-                                        <select name="subcate_id" id="select" class="form-control">
+                                        <select name="subcate_id" id="select" class="form-control" >
                                             <option value="" selected disabled>-- اختر القسم الفرعي--</option>
                                         </select>
                                         @error('subcate_id')

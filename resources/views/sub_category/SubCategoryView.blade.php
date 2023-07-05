@@ -52,29 +52,29 @@
                     </thead>
                     <tbody>
                         <?php $i = 0; ?>
-                        @foreach ($subcategories as $section)
+                        @foreach ($subcategories as $subcategory)
                             <?php $i++; ?>
 
                             <tr>
                                 <td>{{ $i }}</td>
-                                <td>{{ $section->name }} </td>
                                 <td>
-                                    @if ($section->getFirstMediaUrl('images'))
-                                        <img src="{{ $section->getFirstMediaUrl('images') }}"
-                                            style="width: 60px;height:50px" alt="{{ $section->title }}"
+                                    @if ($subcategory->getFirstMediaUrl('images'))
+                                        <img src="{{ $subcategory->getFirstMediaUrl('images') }}"
+                                        style="width: 60px;height:50px" alt="{{ $subcategory->title }}"
                                             class="img-fluid">
                                     @else
                                         <img src="{{ asset('uploads/on-C100969_Image_01.jpeg') }}"
-                                            style="width: 60px;height:50px" alt="{{ $section->title }}"
-                                            class="img-fluid">
-                                    @endif
-                                </td>
-                                <td>{{ $section->category->name }} </td>
+                                        style="width: 60px;height:50px" alt="{{ $subcategory->title }}"
+                                        class="img-fluid">
+                                        @endif
+                                    </td>
+                                <td>{{ $subcategory->name }} </td>
+                                <td>{{ $subcategory->category->name }} </td>
 
                                 <td>
-                                    <a href="{{ route('subcategory.edit', $section->id) }}" title="Edit Data"
+                                    <a href="{{ route('subcategory.edit', $subcategory->id) }}" title="Edit Data"
                                         class="btn btn-sm btn-soft-primary"><i class="mdi mdi-pencil-outline"></i></a>
-                                    <a href="{{ route('subcategory.delete', $section->id) }}" title="حذف"
+                                    <a href="{{ route('subcategory.delete', $subcategory->id) }}" title="حذف"
                                         class="btn btn-sm btn-soft-danger"><i class="mdi mdi-delete-outline"></i></a>
                                 </td>
 

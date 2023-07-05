@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\Product;
 use App\Models\Category;
-use App\Models\SubCategory;
+use App\Models\subCategory;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
@@ -31,19 +31,10 @@ class SubCategoryController extends Controller
             'name.unique' =>'هذا القسم مسجل مسبقا',
         ]);
 
-    //     $subcategory = subCategory::create([
-    //     'category_id' => $request->cate_id,
-    //     'name' => $request->name,
-    // ]);
-
-
-
-
-    $subcategory = new SubCategory();
-    $subcategory->category_id = $request->cate_id;
-    $subcategory->name = $request->name;
-    $subcategory->save();
-
+        $subcategory = subCategory::create([
+        'category_id' => $request->cate_id,
+        'name' => $request->name,
+    ]);
 
 
     if ($request->file('pic')) {
@@ -58,7 +49,7 @@ class SubCategoryController extends Controller
 
 public function Show()
 {
-    $subcategories = SubCategory::latest()->get();
+    $subcategories = subCategory::latest()->get();
     return view('sub_category.SubCategoryView' , compact('subcategories'));
 }
 
@@ -72,10 +63,16 @@ public function Edit($id)
 public function Update(Request $request)
 {
     $id  = $request->id;
+    $subCategory=  subCategory::find($id);
     subCategory::find($id)->update([
     'category_id' => $request->cate_id,
     'name' => $request->name,
 ]);
+
+if ($request->hasFile('pic')) {
+    $subCategory->addMediaFromRequest('pic')->toMediaCollection('images');
+
+}
 session()->flash('edit', 'تم تعديل القسم بنجاح ');
 
         return redirect()->route('subcategory.show');

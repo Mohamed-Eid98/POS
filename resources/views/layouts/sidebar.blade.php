@@ -100,32 +100,39 @@
                         </a>
                         <ul class="sub-menu" aria-expanded="false">
                             <li><a class="slide-item" href="{{ route('orders.show') }}">
+                                <i class="fas fa-allergies"></i>
                                     <span class="badge rounded-pill bg-info float-end"> {{ $all_orders }}</span>
                                     كل الطلبات</a>
                             <li><a class="slide-item" href="{{ route('orders.pendingg') }}">
-                                    <span class="badge rounded-pill bg-light float-end"> {{ $pending_orders }}</span>
+                                <i class="fas fa-shopping-cart"></i>
+                                    <span class="badge rounded-pill bg-secondary float-end"> {{ $pending_orders }}</span>
                                     طلبات معلقه</a>
                             </li>
                             <li><a class="slide-item" href="{{ route('orders.delivered') }}">
-                                    <span class="badge rounded-pill bg-secondary float-end">
+                                <i class="fas fa-shipping-fast"></i>
+                                    <span class="badge rounded-pill bg-success float-end">
                                         {{ $deliered_orders }}</span>
-                                    تم توصيلها</a>
+                                    تم التسليم</a>
                             <li><a class="slide-item" href="{{ route('orders.inprograss') }}">
-                                    <span class="badge rounded-pill bg-primary float-end">
-                                        {{ $inPrograss_orders }}</span>
-                                    جاري العمل عليها</a>
-                            <li><a class="slide-item" href="{{ route('orders.paid.show') }}">
-                                    <span class="badge rounded-pill bg-primary float-end"> {{ $paid_orders }}</span>
-                                    مدفوعه</a>
 
-                            <li><a class="slide-item" href="{{ route('orders.rejected') }}">
-                                    <span class="badge rounded-pill bg-warning float-end">
-                                        {{ $rejected_orders }}</span>
-                                    فشلت </a>
-                            <li><a class="slide-item" href="{{ route('orders.cancelled') }}">
+                                <i class="far fa-clock"></i>
+                                <span class="badge rounded-pill bg-info float-end">
+                                    {{ $inPrograss_orders }}</span>
+                                      قيد التوصيل</a>
+                            <li><a class="slide-item" href="{{ route('orders.paid.show') }}">
+                                <i class="fas fa-check-circle"></i><span class="badge rounded-pill bg-primary float-end"> {{ $paid_orders }}</span>
+                                تم الدفع</a>
+
+                                <li><a class="slide-item" href="{{ route('orders.rejected') }}">
+                                    <i class="fas fa-window-close"></i>
                                     <span class="badge rounded-pill bg-danger float-end">
-                                        {{ $cancelled_orders }}</span>
-                                    تم الغاؤها </a>
+                                        {{ $rejected_orders }}</span>
+                                        تم الرفض </a>
+                                        <li><a class="slide-item" href="{{ route('orders.cancelled') }}">
+                                            <i class="fas fa-prescription-bottle-alt"></i>
+                                            <span class="badge rounded-pill bg-success float-end">
+                                                {{ $cancelled_orders }}</span>
+                                                تم الإلغاء </a>
                         </ul>
                     </li>
                     {{-- <li class="" key="t-menu">اضافه اشعارات</li> --}}
