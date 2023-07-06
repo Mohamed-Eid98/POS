@@ -62,7 +62,7 @@
                                 <div class="" data-pattern="priority-columns">
                                     <form action="{{ route('orders.payments') }}" method="POST">
                                         @csrf
-                                        <table id="example" class="table table-striped">
+                                        <table id="example" class="table table-striped w-100">
                                             <thead>
                                                 <tr>
                                                     <th></th>
