@@ -81,16 +81,16 @@
                     <div class="auth-full-page-content p-md-5 p-4">
                         <div class="w-100">
 
-                            <div class="d-flex flex-column h-100">
+                            <div class="d-flex flex-column h-100" >
                                 <div class="mb-4 mb-md-5">
-                                    <a href="index" class="d-block auth-logo">
-                                        <img src="{{ URL::asset('/build/images/logo1.png') }}" alt="" height="18" width="40" class="auth-logo-dark">
-                                        <img src="{{ URL::asset('/build/images/logo1.pngg') }}" alt="" height="18" class="auth-logo-light">
+                                    <a href="index" class="d-block auth-logo" style="text-align: center">
+                                        <img src="{{ asset('/build/images/logo1.png') }}" alt="" height="80">
+                                        <img src="{{ asset('/build/images/logo1.pngg') }}" alt="" height="80">
                                     </a>
                                 </div>
                                 <div class="my-auto">
 
-                                    <div>
+                                    <div style="text-align: center">
                                         <h5 class="text-primary">اهلا بك !</h5>
                                         <p class="text-muted">تسجيل الدخول إلي بنسايز</p>
                                     </div>
@@ -130,18 +130,18 @@
                                                 @endif
 
                                             </div>
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" id="remember" {{ old('remember') ? 'checked' : '' }}>
+                                            <div class="form-check" style="text-align: right; margin-right:10px;direction:right">
+                                                <input class="form-check-input" dir="rtl"  type="checkbox" id="remember" {{ old('remember') ? 'checked' : '' }}>
                                                 <label class="form-check-label" for="remember">
-                                                    تذكرني
+                                                  تذكرني
                                                 </label>
-                                            </div>
+                                              </div>
 
                                             <div class="mt-3 d-grid">
-                                                <button class="btn btn-primary waves-effect waves-light" type="submit">دخول </button>
+                                                <button class="btn btn-primary waves-effect waves-light" style="background-color: #32a39f" type="submit">دخول </button>
                                             </div>
 
-                                            <div class="mt-4 text-center">
+                                            {{-- <div class="mt-4 text-center">
                                                 <h5 class="font-size-14 mb-3">تسجيل دخول بــ</h5>
 
                                                 <ul class="list-inline">
@@ -161,11 +161,11 @@
                                                         </a>
                                                     </li>
                                                 </ul>
-                                            </div>
+                                            </div> --}}
                                         </form>
-                                        <div class="mt-5 text-center">
+                                        {{-- <div class="mt-5 text-center">
                                             <p>ليس لديك ايميل ؟ <a href="{{ url('register') }}" class="fw-medium text-primary"> سجل الان </a> </p>
-                                        </div>
+                                        </div> --}}
                                     </div>
                                 </div>
 
