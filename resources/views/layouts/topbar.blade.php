@@ -17,7 +17,7 @@
                     <span class="logo-sm">
                         <img src="{{ URL::asset('/build/images/logo-light.svg') }}" alt="" height="22">
                     </span>
-                    <h1 class="logo logo-light my-3 text-light">Benesize</h1>
+                    <h1 class="logo logo-light my-3 text-light">بنسايز</h1>
 
                 </a>
             </div>
