@@ -12,6 +12,7 @@ use App\Http\Controllers\Admin\SubCategoryController;
 use App\Http\Controllers\Admin\notificationController;
 use App\Http\Controllers\Admin\NotificationSendController;
 use App\Http\Controllers\Admin\PrivacyController;
+use App\Http\Controllers\Admin\ComplainController;
 
 /*
 |--------------------------------------------------------------------------
@@ -134,6 +135,10 @@ Route::middleware('isAdmin')->group(function () {
     //////////// End Notification All Routes //////////
     //////////// Start privacy All Routes //////////
     Route::get('/addprivacy', [PrivacyController::class, 'addprivacy'])->name('privacy.add');
+
+    //////////// End privacy All Routes //////////
+    //////////// Start privacy All Routes //////////
+    Route::get('/addcomplain', [ComplainController::class, 'addcomplain'])->name('complain.show');
 
     //////////// End privacy All Routes //////////
 

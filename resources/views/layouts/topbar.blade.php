@@ -3,22 +3,22 @@
         <div class="d-flex">
             <!-- LOGO -->
             <div class="navbar-brand-box">
-                <a href="index" class="logo logo-dark">
+                <a href="root" class="logo logo-dark ">
                     <span class="logo-sm">
                         <img src="{{ URL::asset('/build/images/logo.svg') }}" alt="" height="22">
                     </span>
-                    <span class="logo-lg">
+                    {{-- <span class="logo-lg">
                         <img src="{{ URL::asset('/build/images/logo-dark.png') }}" alt="" height="17">
-                    </span>
+                    </span> --}}
+                    <h1>bene</h1>
                 </a>
 
-                <a href="index" class="logo logo-light">
+                <a href="root" class="logo logo-light my-3 text-light">
                     <span class="logo-sm">
                         <img src="{{ URL::asset('/build/images/logo-light.svg') }}" alt="" height="22">
                     </span>
-                    <span class="logo-lg">
-                        <img src="{{ URL::asset('/build/images/logo-light.png') }}" alt="" height="19">
-                    </span>
+                    <h1 class="logo logo-light my-3 text-light">Benesize</h1>
+
                 </a>
             </div>
 
