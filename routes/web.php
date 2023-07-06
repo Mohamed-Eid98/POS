@@ -11,6 +11,7 @@ use App\Http\Controllers\Admin\CustomerController;
 use App\Http\Controllers\Admin\SubCategoryController;
 use App\Http\Controllers\Admin\notificationController;
 use App\Http\Controllers\Admin\NotificationSendController;
+use App\Http\Controllers\Admin\PrivacyController;
 
 /*
 |--------------------------------------------------------------------------
@@ -79,43 +80,43 @@ Route::middleware('isAdmin')->group(function () {
     //////////// End subCategory All Routes //////////
 
 
-        //////////// Start Product All Routes //////////
+    //////////// Start Product All Routes //////////
 
-        Route::get('/add2', [ProductController::class, 'Add'])->name('product.add');
-        Route::get('/zero-{id}', [ProductController::class, 'zero'])->name('product.quentity.zero');
-        Route::get('/ten-{id}', [ProductController::class, 'lessTen'])->name('product.quentity.ten');
-        Route::get('/read-notifiction-{id}', [ProductController::class, 'readNotification'])->name('product.read-notification');
-        Route::get('/addcands', [ProductController::class, 'addcands'])->name('product.addcolorandsize');
-        Route::post('/addcands', [ProductController::class, 'ColorSizeStore'])->name('product.addcolorandsize.store');
-        Route::post('/product-add', [ProductController::class, 'Store'])->name('product.store');
-        Route::get('/ajax-{id}', [ProductController::class, 'AjaxShow']);
-        Route::get('/showp', [ProductController::class, 'Show'])->name('product.show');
-        Route::get('/product-edit-{id}', [ProductController::class, 'Edit'])->name('product.edit');
-        Route::post('/product-update', [ProductController::class, 'Update'])->name('product.update');
-        Route::get('/product-delete-{id}', [ProductController::class, 'Delete'])->name('product.delete');
-        Route::get('/product-subcategory-{id}', [ProductController::class, 'showSub'])->name('product.show.subcategory');
+    Route::get('/add2', [ProductController::class, 'Add'])->name('product.add');
+    Route::get('/zero-{id}', [ProductController::class, 'zero'])->name('product.quentity.zero');
+    Route::get('/ten-{id}', [ProductController::class, 'lessTen'])->name('product.quentity.ten');
+    Route::get('/read-notifiction-{id}', [ProductController::class, 'readNotification'])->name('product.read-notification');
+    Route::get('/addcands', [ProductController::class, 'addcands'])->name('product.addcolorandsize');
+    Route::post('/addcands', [ProductController::class, 'ColorSizeStore'])->name('product.addcolorandsize.store');
+    Route::post('/product-add', [ProductController::class, 'Store'])->name('product.store');
+    Route::get('/ajax-{id}', [ProductController::class, 'AjaxShow']);
+    Route::get('/showp', [ProductController::class, 'Show'])->name('product.show');
+    Route::get('/product-edit-{id}', [ProductController::class, 'Edit'])->name('product.edit');
+    Route::post('/product-update', [ProductController::class, 'Update'])->name('product.update');
+    Route::get('/product-delete-{id}', [ProductController::class, 'Delete'])->name('product.delete');
+    Route::get('/product-subcategory-{id}', [ProductController::class, 'showSub'])->name('product.show.subcategory');
 
-        //////////// End Product All Routes //////////
+    //////////// End Product All Routes //////////
 
 
-        //////////// Start city All Routes //////////
+    //////////// Start city All Routes //////////
 
-        Route::get('/add-city', [CityController::class, 'Add'])->name('city.add');
-        Route::get('/city-show', [CityController::class, 'Show'])->name('city.show');
-        Route::get('/city-edit-{id}', [CityController::class, 'Edit'])->name('city.edit');
-        Route::post('/city-update', [CityController::class, 'Update'])->name('city.update');
-        Route::get('/city-delete-{id}', [CityController::class, 'Delete'])->name('city.delete');
-        Route::post('/city-add', [CityController::class, 'Store'])->name('city.store');
+    Route::get('/add-city', [CityController::class, 'Add'])->name('city.add');
+    Route::get('/city-show', [CityController::class, 'Show'])->name('city.show');
+    Route::get('/city-edit-{id}', [CityController::class, 'Edit'])->name('city.edit');
+    Route::post('/city-update', [CityController::class, 'Update'])->name('city.update');
+    Route::get('/city-delete-{id}', [CityController::class, 'Delete'])->name('city.delete');
+    Route::post('/city-add', [CityController::class, 'Store'])->name('city.store');
 
-        Route::get('/add-area', [CityController::class, 'AddArea'])->name('area.add');
-        Route::post('/area-add', [CityController::class, 'AreaStore'])->name('area.store');
-        Route::get('/area-show', [CityController::class, 'ShowArea'])->name('area.show');
-        Route::get('/area-edit-{id}', [CityController::class, 'EditArea'])->name('area.edit');
-        Route::post('/area-update', [CityController::class, 'UpdateArea'])->name('area.update');
-        Route::get('/area-delete-{id}', [CityController::class, 'DeleteArea'])->name('area.delete');
-        Route::get('/city-page-{id}', [CityController::class, 'showPage'])->name('city.page');
+    Route::get('/add-area', [CityController::class, 'AddArea'])->name('area.add');
+    Route::post('/area-add', [CityController::class, 'AreaStore'])->name('area.store');
+    Route::get('/area-show', [CityController::class, 'ShowArea'])->name('area.show');
+    Route::get('/area-edit-{id}', [CityController::class, 'EditArea'])->name('area.edit');
+    Route::post('/area-update', [CityController::class, 'UpdateArea'])->name('area.update');
+    Route::get('/area-delete-{id}', [CityController::class, 'DeleteArea'])->name('area.delete');
+    Route::get('/city-page-{id}', [CityController::class, 'showPage'])->name('city.page');
 
-        //////////// End city All Routes //////////
+    //////////// End city All Routes //////////
 
 
     //////////// Start Notification All Routes //////////
@@ -131,10 +132,9 @@ Route::middleware('isAdmin')->group(function () {
     Route::post('/send-web-notification', [NotificationSendController::class, 'sendNotification'])->name('send.web-notification');
 
     //////////// End Notification All Routes //////////
+    //////////// Start privacy All Routes //////////
+    Route::get('/addprivacy', [PrivacyController::class, 'addprivacy'])->name('privacy.add');
 
+    //////////// End privacy All Routes //////////
 
 });
-
-
-
-

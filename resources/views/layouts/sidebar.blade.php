@@ -100,39 +100,41 @@
                         </a>
                         <ul class="sub-menu" aria-expanded="false">
                             <li><a class="slide-item" href="{{ route('orders.show') }}">
-                                <i class="fas fa-allergies"></i>
+                                    <i class="fas fa-allergies"></i>
                                     <span class="badge rounded-pill bg-info float-end"> {{ $all_orders }}</span>
                                     كل الطلبات</a>
                             <li><a class="slide-item" href="{{ route('orders.pendingg') }}">
-                                <i class="fas fa-shopping-cart"></i>
-                                    <span class="badge rounded-pill bg-secondary float-end"> {{ $pending_orders }}</span>
+                                    <i class="fas fa-shopping-cart"></i>
+                                    <span class="badge rounded-pill bg-secondary float-end">
+                                        {{ $pending_orders }}</span>
                                     طلبات معلقه</a>
                             </li>
                             <li><a class="slide-item" href="{{ route('orders.delivered') }}">
-                                <i class="fas fa-shipping-fast"></i>
+                                    <i class="fas fa-shipping-fast"></i>
                                     <span class="badge rounded-pill bg-success float-end">
                                         {{ $deliered_orders }}</span>
                                     تم التسليم</a>
                             <li><a class="slide-item" href="{{ route('orders.inprograss') }}">
 
-                                <i class="far fa-clock"></i>
-                                <span class="badge rounded-pill bg-info float-end">
-                                    {{ $inPrograss_orders }}</span>
-                                      قيد التوصيل</a>
+                                    <i class="far fa-clock"></i>
+                                    <span class="badge rounded-pill bg-info float-end">
+                                        {{ $inPrograss_orders }}</span>
+                                    قيد التوصيل</a>
                             <li><a class="slide-item" href="{{ route('orders.paid.show') }}">
-                                <i class="fas fa-check-circle"></i><span class="badge rounded-pill bg-primary float-end"> {{ $paid_orders }}</span>
-                                تم الدفع</a>
+                                    <i class="fas fa-check-circle"></i><span
+                                        class="badge rounded-pill bg-primary float-end"> {{ $paid_orders }}</span>
+                                    تم الدفع</a>
 
-                                <li><a class="slide-item" href="{{ route('orders.rejected') }}">
+                            <li><a class="slide-item" href="{{ route('orders.rejected') }}">
                                     <i class="fas fa-window-close"></i>
                                     <span class="badge rounded-pill bg-danger float-end">
                                         {{ $rejected_orders }}</span>
-                                        تم الرفض </a>
-                                        <li><a class="slide-item" href="{{ route('orders.cancelled') }}">
-                                            <i class="fas fa-prescription-bottle-alt"></i>
-                                            <span class="badge rounded-pill bg-success float-end">
-                                                {{ $cancelled_orders }}</span>
-                                                تم الإلغاء </a>
+                                    تم الرفض </a>
+                            <li><a class="slide-item" href="{{ route('orders.cancelled') }}">
+                                    <i class="fas fa-prescription-bottle-alt"></i>
+                                    <span class="badge rounded-pill bg-success float-end">
+                                        {{ $cancelled_orders }}</span>
+                                    تم الإلغاء </a>
                         </ul>
                     </li>
                     {{-- <li class="" key="t-menu">اضافه اشعارات</li> --}}
@@ -182,9 +184,24 @@
                             <li><a class="slide-item" href="{{ route('area.show') }}"> عرض المناطق </a>
                         </ul>
                     </li>
+                    <li>
+                        <a href="javascript: void(0);" class="has-arrow waves-effect my-3">
+                            <i class="bx bx-envelope"></i>
+
+                            <span key="t-dashboards"> السياسات</span>
+                        </a>
+                        <ul class="sub-menu" aria-expanded="false">
+                            <li><a class="slide-item" href="{{ route('privacy.add') }}">سياسة بنسايز</a>
+                            <li><a class="slide-item" href="{{ route('privacy.add') }}"> سياسة التوصيل </a>
+                            <li><a class="slide-item" href="{{ route('privacy.add') }}"> سياسة الارجاع </a>
+                            <li><a class="slide-item" href="{{ route('privacy.add') }}"> سياسه الضمان</a>
+                            <li><a class="slide-item" href="{{ route('privacy.add') }}"> سياسات قانونيه</a>
+
+                        </ul>
+                    </li>
                     {{-- <li class="menu-title" key="t-menu">الفواتير</li> --}}
 
-                    <li>
+                    {{-- <li>
                         <a href="javascript: void(0);" class="has-arrow waves-effect my-3">
                             <i class="bx bx-envelope"></i>
 
@@ -195,7 +212,7 @@
                             <li><a class="slide-item" href="{{ route('invoices.page') }}"> عرض الفواتير </a>
 
                         </ul>
-                    </li>
+                    </li> --}}
                     <li class="menu-title" key="t-menu">الاعدادات</li>
 
                     <li>
