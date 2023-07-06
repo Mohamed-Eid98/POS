@@ -36,7 +36,7 @@
                 <img src="build/images/layouts/layout-3.jpg" class="img-fluid img-thumbnail" alt="">
             </div>
             <div class="form-check form-switch mb-5">
-                <input class="form-check-input theme-choice" type="checkbox" id="rtl-mode-switch"  data-appStyle="build/css/app-rtl.min.css" checked>
+                <input class="form-check-input theme-choice" type="checkbox" id="rtl-mode-switch" data-appStyle="build/css/app-rtl.min.css" checked>
                 <label class="form-check-label" for="rtl-mode-switch">RTL Mode</label>
             </div>
 
