@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('title')
-    إضافةاشعار
+    عرض سياسه الضمان
 @endsection
 
 @section('css')
@@ -12,16 +12,21 @@
 @section('content')
     @component('components.breadcrumb')
         @slot('li_1')
-            إضافة
+            عرض
         @endslot
         @slot('title')
-            اشعار
+        سياسه الضمان
         @endslot
     @endcomponent
 
-    @if (session('add'))
+    @if (session('edit'))
         <div class="alert alert-success">
-            {{ session('add') }}
+            {{ session('edit') }}
+        </div>
+    @endif
+    @if (session('delete'))
+        <div class="alert alert-success">
+            {{ session('delete') }}
         </div>
     @endif
 
@@ -30,14 +35,8 @@
     <div class="row">
         <div class="col-12">
             <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                <h4 class="mb-sm-0 font-size-18">اضافه سياسات</h4>
+                <h4 class="mb-sm-0 font-size-18">عرض سياسه</h4>
 
-                <div class="page-title-right">
-                    <ol class="breadcrumb m-0">
-                        <li class="breadcrumb-item"><a href="javascript: void(0);">سياسة</a></li>
-                        <li class="breadcrumb-item active">اضافه سياسة</li>
-                    </ol>
-                </div>
 
             </div>
         </div>
@@ -55,25 +54,23 @@
                                 <div class="form-group">
                                     <h5> الاسم <span class="text-danger">*</span></h5>
                                     <div class="controls">
-                                        <input type="text" class="form-control">
+                                        <input type="text" class="form-control" value="{{ $privacy->title }}" readonly>
                                     </div>
                                 </div>
                                 </div>
 
-                                <div class="col-md-8">
+                                <div class="col-md-7">
                                 </div>
 
-                                <div class="col-md-1">
+                                <div class="col-md-2">
 
-                                <div class="text-align: left">
 
                                     <div class="form-group">
                                     <div class="controls">
-                                        <input type="button" value="حذف" class="form-group" >
-                                            <input type="button" value="تعديل" class="form-group" >
+                                        <a href="{{ route('privacy.warranty.delete' , $privacy->id) }}"  class="btn btn-outline-danger waves-effect waves-light">حذف</a>
+                                        <a href="{{ route('privacy.warranty.edit' , $privacy->id) }}"  class="btn btn-outline-primary waves-effect waves-light">تعديل</a>
                                         </div>
                                     </div>
-                                </div>
                                 </div>
 
                             </div>
@@ -81,11 +78,11 @@
                             <h4 class="card-title my-3">المحتوي </h4>
 
 
-                            <textarea id="elm1" name="area"></textarea>
-                            <div class="text-xs-right">
+                            <textarea id="elm1" name="area" readonly>{!! $privacy->description !!}</textarea>
+                            {{-- <div class="text-xs-right">
                                 <input type="submit" class="btn btn-rounded btn-primary mb-5 my-3 text-center"
                                     value="اضافة سياسة">
-                            </div>
+                            </div> --}}
                         </form>
 
                     </div>

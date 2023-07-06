@@ -191,11 +191,11 @@
                             <span key="t-dashboards"> السياسات</span>
                         </a>
                         <ul class="sub-menu" aria-expanded="false">
-                            <li><a class="slide-item" href="{{ route('privacy.add') }}">سياسة بنسايز</a>
-                            <li><a class="slide-item" href="{{ route('privacy.add') }}"> سياسة التوصيل </a>
-                            <li><a class="slide-item" href="{{ route('privacy.add') }}"> سياسة الارجاع </a>
-                            <li><a class="slide-item" href="{{ route('privacy.add') }}"> سياسه الضمان</a>
-                            <li><a class="slide-item" href="{{ route('privacy.add') }}"> سياسات قانونيه</a>
+                            <li><a class="slide-item" href="{{ route('privacy.bene.show') }}">سياسة بنسايز</a>
+                            <li><a class="slide-item" href="{{ route('privacy.delivery.show') }}"> سياسة التوصيل </a>
+                            <li><a class="slide-item" href="{{ route('privacy.return.show') }}"> سياسة الارجاع </a>
+                            <li><a class="slide-item" href="{{ route('privacy.warranty.show') }}"> سياسه الضمان</a>
+                            <li><a class="slide-item" href="{{ route('privacy.terms.show') }}"> سياسات قانونيه</a>
 
                         </ul>
                     </li>

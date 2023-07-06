@@ -133,8 +133,34 @@ Route::middleware('isAdmin')->group(function () {
     Route::post('/send-web-notification', [NotificationSendController::class, 'sendNotification'])->name('send.web-notification');
 
     //////////// End Notification All Routes //////////
+
     //////////// Start privacy All Routes //////////
-    Route::get('/addprivacy', [PrivacyController::class, 'addprivacy'])->name('privacy.add');
+    Route::get('/privacy-benesize-show', [PrivacyController::class, 'BeneShow'])->name('privacy.bene.show');
+    Route::get('/privacy-benesize-edit-{id}', [PrivacyController::class, 'BeneEdit'])->name('privacy.bene.edit');
+    Route::post('/privacy-benesize-update', [PrivacyController::class, 'BeneUpdate'])->name('privacy.bene.update');
+    Route::get('/privacy-benesize-delete-{id}', [PrivacyController::class, 'BeneDelete'])->name('privacy.bene.delete');
+
+    Route::get('/privacy-delivery-show', [PrivacyController::class, 'DeliveryShow'])->name('privacy.delivery.show');
+    Route::get('/privacy-delivery-edit-{id}', [PrivacyController::class, 'DeliveryEdit'])->name('privacy.delivery.edit');
+    Route::post('/privacy-delivery-update', [PrivacyController::class, 'DeliveryUpdate'])->name('privacy.delivery.update');
+    Route::get('/privacy-delivery-delete-{id}', [PrivacyController::class, 'DeliveryDelete'])->name('privacy.delivery.delete');
+
+    Route::get('/privacy-return-show', [PrivacyController::class, 'ReturnShow'])->name('privacy.return.show');
+    Route::get('/privacy-return-edit-{id}', [PrivacyController::class, 'ReturnEdit'])->name('privacy.return.edit');
+    Route::post('/privacy-return-update', [PrivacyController::class, 'ReturnUpdate'])->name('privacy.return.update');
+    Route::get('/privacy-return-delete-{id}', [PrivacyController::class, 'ReturnDelete'])->name('privacy.return.delete');
+
+    Route::get('/privacy-warranty-show', [PrivacyController::class, 'WarrantyShow'])->name('privacy.warranty.show');
+    Route::get('/privacy-warranty-edit-{id}', [PrivacyController::class, 'WarrantyEdit'])->name('privacy.warranty.edit');
+    Route::post('/privacy-warranty-update', [PrivacyController::class, 'WarrantyUpdate'])->name('privacy.warranty.update');
+    Route::get('/privacy-warranty-delete-{id}', [PrivacyController::class, 'WarrantyDelete'])->name('privacy.warranty.delete');
+
+    Route::get('/privacy-terms-show', [PrivacyController::class, 'TermsShow'])->name('privacy.terms.show');
+    Route::get('/privacy-terms-edit-{id}', [PrivacyController::class, 'TermsEdit'])->name('privacy.terms.edit');
+    Route::post('/privacy-terms-update', [PrivacyController::class, 'TermsUpdate'])->name('privacy.terms.update');
+    Route::get('/privacy-terms-delete-{id}', [PrivacyController::class, 'TermsDelete'])->name('privacy.terms.delete');
+
+
 
     //////////// End privacy All Routes //////////
     //////////// Start privacy All Routes //////////

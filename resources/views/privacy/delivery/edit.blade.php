@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('title')
-    إضافةاشعار
+    تعديل سياسة التوصيل
 @endsection
 
 @section('css')
@@ -12,32 +12,21 @@
 @section('content')
     @component('components.breadcrumb')
         @slot('li_1')
-            إضافة
+            تعديل
         @endslot
         @slot('title')
-            اشعار
+            سياسة التوصيل
         @endslot
     @endcomponent
 
-    @if (session('add'))
-        <div class="alert alert-success">
-            {{ session('add') }}
-        </div>
-    @endif
 
 
     <!-- start page title -->
     <div class="row">
         <div class="col-12">
             <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                <h4 class="mb-sm-0 font-size-18">اضافه سياسات</h4>
+                <h4 class="mb-sm-0 font-size-18">تعديل سياسه</h4>
 
-                <div class="page-title-right">
-                    <ol class="breadcrumb m-0">
-                        <li class="breadcrumb-item"><a href="javascript: void(0);">سياسة</a></li>
-                        <li class="breadcrumb-item active">اضافه سياسة</li>
-                    </ol>
-                </div>
 
             </div>
         </div>
@@ -49,13 +38,17 @@
             <div class="card">
                 <div class="card-body">
                     <div class="col-md-12">
-                        <form method="post">
+                        <form method="post" action="{{ route('privacy.delivery.update') }}">
+                            @csrf
+
+                            <input type="hidden" name="id" value="{{ $privacy->id }}">
+
                             <div class="row">
                                 <div class="col-md-3">
                                 <div class="form-group">
                                     <h5> الاسم <span class="text-danger">*</span></h5>
                                     <div class="controls">
-                                        <input type="text" class="form-control">
+                                        <input type="text" class="form-control" readonly value="{{ $privacy->title }}">
                                     </div>
                                 </div>
                                 </div>
@@ -69,8 +62,8 @@
 
                                     <div class="form-group">
                                     <div class="controls">
-                                        <input type="button" value="حذف" class="form-group" >
-                                            <input type="button" value="تعديل" class="form-group" >
+                                        {{-- <input type="button" value="حذف" class="form-group" >
+                                        <input type="button" value="تعديل" class="form-group" > --}}
                                         </div>
                                     </div>
                                 </div>
@@ -81,10 +74,10 @@
                             <h4 class="card-title my-3">المحتوي </h4>
 
 
-                            <textarea id="elm1" name="area"></textarea>
+                            <textarea id="elm1" name="area">{!! $privacy->description !!}</textarea>
                             <div class="text-xs-right">
                                 <input type="submit" class="btn btn-rounded btn-primary mb-5 my-3 text-center"
-                                    value="اضافة سياسة">
+                                    value="تعديل سياسة">
                             </div>
                         </form>
 
