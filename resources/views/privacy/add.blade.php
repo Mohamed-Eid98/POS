@@ -44,37 +44,35 @@
     </div>
     <!-- end page title -->
 
-    <div class="row">
-        <div class="col-12">
-            <div class="card">
-                <div class="card-body">
-                    <div class="col-md-12">
-                        <form method="post">
+    <div class="row h-100">
+        <div class="card">
+            <div class="card-body">
+                <div class="col-md-12">
+                    <form method="post">
 
-                            <div class="form-group">
-                                <h5> معلومات <span class="text-danger">*</span></h5>
-                                <div class="controls">
-                                    <select name="cate_id" id="select" class="form-control">
-                                        <option value="" selected disabled>-- اختر--</option>
-                                        <option value="">mohamed</option>
-                                    </select>
-                                    @error('cate_id')
-                                        <span class="text-danger">
-                                            {{ $message }}</span>
-                                    @enderror
-                                </div>
+                        <div class="form-group">
+                            <h5> معلومات <span class="text-danger">*</span></h5>
+                            <div class="controls">
+                                <select name="cate_id" id="select" class="form-control">
+                                    <option value="" selected disabled>-- اختر--</option>
+                                    <option value="">mohamed</option>
+                                </select>
+                                @error('cate_id')
+                                    <span class="text-danger">
+                                        {{ $message }}</span>
+                                @enderror
                             </div>
-                            <h4 class="card-title my-3">المحتوي </h4>
+                        </div>
+                        <h4 class="card-title my-3">المحتوي </h4>
 
 
-                            <textarea id="elm1" name="area"></textarea>
-                            <div class="text-xs-right">
-                                <input type="submit" class="btn btn-rounded btn-primary mb-5 my-3 text-center"
-                                    value="اضافة سياسة">
-                            </div>
-                        </form>
+                        <textarea id="elm1" name="area" class="h-100"></textarea>
+                        <div class="text-xs-right ">
+                            <input type="submit" class="btn btn-rounded btn-primary mb-5 my-3 text-center "
+                                value="اضافة سياسة">
+                        </div>
+                    </form>
 
-                    </div>
                 </div>
             </div> <!-- end col -->
         </div> <!-- end row -->

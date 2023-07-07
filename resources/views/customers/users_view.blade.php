@@ -62,10 +62,12 @@
                                     <thead>
                                         <tr role="row">
                                             <th>#</th>
-                                            <th>الموزع</th>
-                                            <th>رقم التليفون</th>
-                                            <th>الايميل </th>
-                                            <th>العنوان </th>
+                                            <th>الاسم</th>
+                                            <th>رقم الهاتف</th>
+                                            <th>رقم المحفظه </th>
+                                            <th> عدد الطلبات</th>
+
+                                            <th>المحافظه </th>
                                             {{-- <th>الصوره </th> --}}
 
                                             <th>التعديلات</th>
@@ -74,6 +76,9 @@
                                     </thead>
 
 
+                                    @php
+
+                                    @endphp
                                     <tbody>
 
                                         <?php $i = 0; ?>
@@ -83,8 +88,10 @@
                                                 <td>{{ $i }}</td>
                                                 <td>{{ $user->name }}</td>
                                                 <td>{{ $user->phone }}</td>
-                                                <td>{{ $user->email }}</td>
-                                                <td>{{ $user->address }}</td>
+                                                <td>رقم المحفظه</td>
+                                                <td>$num_orders< /td>
+                                                <td>الحافظه</td>
+
                                                 {{-- <td>{{ $user->avatar }}</td> --}}
 
 

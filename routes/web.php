@@ -13,6 +13,8 @@ use App\Http\Controllers\Admin\notificationController;
 use App\Http\Controllers\Admin\NotificationSendController;
 use App\Http\Controllers\Admin\PrivacyController;
 use App\Http\Controllers\Admin\ComplainController;
+use App\Http\Controllers\Admin\EmployeeController;
+use App\Http\Controllers\Admin\SocialController;
 
 /*
 |--------------------------------------------------------------------------
@@ -141,5 +143,15 @@ Route::middleware('isAdmin')->group(function () {
     Route::get('/addcomplain', [ComplainController::class, 'addcomplain'])->name('complain.show');
 
     //////////// End privacy All Routes //////////
+    //////////// Start employee All Routes //////////
+    Route::get('/addemployeerole', [EmployeeController::class, 'addemployee'])->name('employee.addrole');
+    Route::get('/addnewemployee', [EmployeeController::class, 'addnewemployee'])->name('employee.add');
+    Route::get('/showemployee', [EmployeeController::class, 'showemployee'])->name('employee.show');
 
+    //////////// End employee All Routes //////////
+    //////////// Start social All Routes //////////
+    Route::get('/addsocial', [SocialController::class, 'addsocial'])->name('social.add');
+
+
+    //////////// End social All Routes //////////
 });
