@@ -201,6 +201,17 @@
                     </li>
                     <li>
                         <a href="javascript: void(0);" class="has-arrow waves-effect my-3">
+                            <i class="bx bx-map"></i>
+                            <span key="t-dashboards"> مواقع التواصل الاجتماعي</span>
+                        </a>
+                        <ul class="sub-menu" aria-expanded="false">
+                            <li><a class="slide-item" href="{{ route('social.add') }}"> مواقع التواصل </a>
+
+
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="javascript: void(0);" class="has-arrow waves-effect my-3">
                             <i class="bx bx-receipt"></i>
 
                             <span key="t-dashboards"> الشكاوي والمقترحات</span>
@@ -220,7 +231,7 @@
                             <span key="bx bxs-user-detail"> اضافه دور</span>
                         </a>
                         <ul class="sub-menu" aria-expanded="false">
-                            <li><a href="" key="t-saas"> اضافه دورالموظف</a></li>
+                            <li><a href="{{ route('employee.addrole') }}" key="t-saas"> اضافه دورالموظف</a></li>
 
                         </ul>
                     </li>
@@ -232,8 +243,8 @@
                             <span key="bx bx-briefcase-alt-2"> الموظفين</span>
                         </a>
                         <ul class="sub-menu" aria-expanded="false">
-                            <li><a href="#" key="t-saas"> اضافه موظف جديد </a></li>
-                            <li><a href="#" key="t-saas"> عرض الموظفين</a></li>
+                            <li><a href="{{ route('employee.add') }}" key="t-saas"> اضافه موظف جديد </a></li>
+                            <li><a href="{{ route('employee.show') }}" key="t-saas"> عرض الموظفين</a></li>
 
                         </ul>
                     </li>

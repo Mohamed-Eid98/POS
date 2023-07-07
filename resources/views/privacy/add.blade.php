@@ -44,51 +44,38 @@
     </div>
     <!-- end page title -->
 
-    <div class="row">
-        <div class="col-12">
-            <div class="card">
-                <div class="card-body">
-                    <div class="col-md-12">
-                        <form method="post">
-                            <div class="row">
-                                <div class="col-md-3">
-                                <div class="form-group">
-                                    <h5> الاسم <span class="text-danger">*</span></h5>
-                                    <div class="controls">
-                                        <input type="text" class="form-control">
-                                    </div>
-                                </div>
-                                </div>
+    <div class="row ">
+        <div class="card">
+            <div class="card-body">
+                <div class="col-md-12">
+                    <form method="post">
 
-                                <div class="col-md-8">
-                                </div>
-
-                                <div class="col-md-1">
-
-                                <div class="text-align: left">
-
-                                    <div class="form-group">
-                                    <div class="controls">
-                                        <input type="button" value="حذف" class="form-group" >
-                                            <input type="button" value="تعديل" class="form-group" >
-                                        </div>
-                                    </div>
-                                </div>
-                                </div>
-
+                        <div class="form-group">
+                            <h5> معلومات <span class="text-danger">*</span></h5>
+                            <div class="controls">
+                                <select name="cate_id" id="select" class="form-control">
+                                    <option value="" selected disabled>-- اختر--</option>
+                                    <option value="">mohamed</option>
+                                </select>
+                                @error('cate_id')
+                                    <span class="text-danger">
+                                        {{ $message }}</span>
+                                @enderror
                             </div>
-
+                        </div>
+                        <div class="h-50">
                             <h4 class="card-title my-3">المحتوي </h4>
 
 
                             <textarea id="elm1" name="area"></textarea>
-                            <div class="text-xs-right">
-                                <input type="submit" class="btn btn-rounded btn-primary mb-5 my-3 text-center"
-                                    value="اضافة سياسة">
-                            </div>
-                        </form>
+                        </div>
 
-                    </div>
+                        <div class="text-xs-right ">
+                            <input type="submit" class="btn btn-rounded btn-primary mb-5 my-3 text-center "
+                                value="اضافة سياسة">
+                        </div>
+                    </form>
+
                 </div>
             </div> <!-- end col -->
         </div> <!-- end row -->
