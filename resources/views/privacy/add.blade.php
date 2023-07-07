@@ -44,7 +44,7 @@
     </div>
     <!-- end page title -->
 
-    <div class="row h-100">
+    <div class="row ">
         <div class="card">
             <div class="card-body">
                 <div class="col-md-12">
@@ -63,10 +63,13 @@
                                 @enderror
                             </div>
                         </div>
-                        <h4 class="card-title my-3">المحتوي </h4>
+                        <div class="h-50">
+                            <h4 class="card-title my-3">المحتوي </h4>
 
 
-                        <textarea id="elm1" name="area" class="h-100"></textarea>
+                            <textarea id="elm1" name="area"></textarea>
+                        </div>
+
                         <div class="text-xs-right ">
                             <input type="submit" class="btn btn-rounded btn-primary mb-5 my-3 text-center "
                                 value="اضافة سياسة">

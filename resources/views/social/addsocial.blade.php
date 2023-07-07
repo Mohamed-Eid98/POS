@@ -66,7 +66,7 @@
                         class="text-danger">*</span>
                 </h4>
                 <input type="text" class="form-control" id="formrow-firstname-input" name="name"
-                    placeholder="ادخل كلمه السر  من فضلك">
+                    placeholder="ادخل  الرابط  من فضلك">
 
             </div>
 
