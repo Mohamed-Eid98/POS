@@ -47,23 +47,24 @@
 
                     <div>
 
-                        <form action="{{ route('employee.update.role')  }}" class="dropzone" method="POST" enctype="multipart/form-data">
+                        <form action="{{ route('employee.update.role') }}" class="dropzone" method="POST"
+                            enctype="multipart/form-data">
                             @csrf
 
 
                             <div class="row">
                                 <div class="col-md-6">
-                                <div class="form-group">
-                                    <h5> الاسم <span class="text-danger">*</span></h5>
-                                    <div class="controls">
-                                        <input type="text" class="form-control" name="name" required>
+                                    <div class="form-group">
+                                        <h5> الاسم <span class="text-danger">*</span></h5>
+                                        <div class="controls">
+                                            <input type="text" class="form-control" name="name" required>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                            </div>
 
                             <div class="mb-12">
-                                <h4 for="formrow-firstname-input" class="form-label my-3"> اذن الوحده<span
+                                <h4 for="formrow-firstname-input" class="form-label my-3"> المهام<span
                                         class="text-danger">*</span></h4>
                                 <div class="row">
 
@@ -95,11 +96,11 @@
                                     </div>
                                     <div class="col-md-3"> <input type="checkbox" id="checkbox_3" name="permissions[]"
                                             value="7">
-                                        <label for="checkbox_3">  السوشيل ميديا </label>
+                                        <label for="checkbox_3"> السوشيل ميديا </label>
                                     </div>
                                     <div class="col-md-3"> <input type="checkbox" id="checkbox_3" name="permissions[]"
                                             value="6">
-                                        <label for="checkbox_3">  المحافظات</label>
+                                        <label for="checkbox_3"> المحافظات</label>
                                     </div>
                                 </div>
                             </div>

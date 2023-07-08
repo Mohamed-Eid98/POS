@@ -30,13 +30,18 @@ class NotificationSendController extends Controller
         $url = 'https://fcm.googleapis.com/fcm/send';
 
         $FcmToken = User::whereNotNull('device_token')->pluck('device_token')->all();
-
         $serverKey = 'AAAAtAWqcQA:APA91bGJP2o_RGYHrxqtTj0CsFNjO6QKU33gQUXMn69fvjwzhRzjrJ1wPw8SMKF0GBG_mfz91W56f5jpOR5M96kX40il4HLlcfdaeaax-on353WYA1bzykq5rTAhizyiLC5yRsGUH6Jj';
+
         $data = [
             "registration_ids" => $FcmToken,
             "notification" => [
-                "title" => $request->title,
-                "body" => $request->body,
+                // "title" => $request->title,
+                // "body" => $request->body,
+                "id" => "1",
+                "type" => "mm",
+                "type_id" => "1",
+
+
             ]
         ];
 
@@ -75,6 +80,20 @@ class NotificationSendController extends Controller
         session()->flash('add', 'تم ارسال الاشعار بنجاح ');
         return redirect()->route('notification.show');
     }
+    // function toFcm($notifiable)
+    // return FemMessage:: create ()
+    // ->setData([ 'datal' =› 'value', 'data2' =› 'value2'])
+    // ->setNotification(\NotificationChannels\Fm\Resources\Notification::create()
+    // ->setTitle('Account Activated")
+    // ->setBody ('Your account has been activated.")
+    // ->setImage('http://example.com/url-to-image-here.png*))
+    // ->setAndroid(
+    // AndroidConfig: :create()
+    // ->setFcmOptions(AndroidFcmOptions::create()-›setAnalyticsLabel('analytics"))
+    // ->setNotification(AndroidNotification::create()-›setColor('#0A0A0A*))
+    // ) - ›setApns(
+    // ApnsConfig: :create ()
+    // ->setFcmOptions(ApnsFcmOptions::create()-›setAnalyticsLabel('analytics ios')));
 }
 
 
@@ -89,5 +108,3 @@ class NotificationSendController extends Controller
 // messagingSenderId: "773189169408",
 // appId: "1:773189169408:web:35ba4eb8dcdf0211d443e5",
 // measurementId: "G-882GB7XM5S"
-
-

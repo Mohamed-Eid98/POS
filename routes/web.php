@@ -73,37 +73,36 @@ Route::middleware('isAdmin')->group(function () {
         Route::get('/category-page-{id}', [CategoryController::class, 'showPage'])->name('category.page');
 
 
-    //////////// End Category All Routes //////////
+        //////////// End Category All Routes //////////
 
-    //////////// Start subCategory All Routes /////////
+        //////////// Start subCategory All Routes /////////
 
-    Route::get('/subcategory-add', [SubCategoryController::class, 'Add'])->name('subcategory.add');
-    Route::post('/subcategory-add', [SubCategoryController::class, 'Store'])->name('subcategory.store');
-    Route::get('/subcategory-show', [SubCategoryController::class, 'Show'])->name('subcategory.show');
-    Route::get('/subcategory-edit-{id}', [SubCategoryController::class, 'Edit'])->name('subcategory.edit');
-    Route::post('/subcategory-update', [SubCategoryController::class, 'Update'])->name('subcategory.update');
-    Route::get('/subcategory/delete/{id}', [SubCategoryController::class, 'Delete'])->name('subcategory.delete');
+        Route::get('/subcategory-add', [SubCategoryController::class, 'Add'])->name('subcategory.add');
+        Route::post('/subcategory-add', [SubCategoryController::class, 'Store'])->name('subcategory.store');
+        Route::get('/subcategory-show', [SubCategoryController::class, 'Show'])->name('subcategory.show');
+        Route::get('/subcategory-edit-{id}', [SubCategoryController::class, 'Edit'])->name('subcategory.edit');
+        Route::post('/subcategory-update', [SubCategoryController::class, 'Update'])->name('subcategory.update');
+        Route::get('/subcategory/delete/{id}', [SubCategoryController::class, 'Delete'])->name('subcategory.delete');
 
-    //////////// End subCategory All Routes //////////
+        //////////// End subCategory All Routes //////////
 
 
-    //////////// Start Product All Routes //////////
+        //////////// Start Product All Routes //////////
 
-    Route::get('/add2', [ProductController::class, 'Add'])->name('product.add');
-    Route::get('/zero-{id}', [ProductController::class, 'zero'])->name('product.quentity.zero');
-    Route::get('/ten-{id}', [ProductController::class, 'lessTen'])->name('product.quentity.ten');
-    Route::get('/read-notifiction-{id}', [ProductController::class, 'readNotification'])->name('product.read-notification');
-    Route::get('/addcands', [ProductController::class, 'addcands'])->name('product.addcolorandsize');
-    Route::post('/addcands', [ProductController::class, 'ColorSizeStore'])->name('product.addcolorandsize.store');
-    Route::post('/product-add', [ProductController::class, 'Store'])->name('product.store');
-    Route::get('/ajax-{id}', [ProductController::class, 'AjaxShow']);
-    Route::get('/showp', [ProductController::class, 'Show'])->name('product.show')->middleware('permission:show product');
-    Route::get('/product-edit-{id}', [ProductController::class, 'Edit'])->name('product.edit');
-    Route::post('/product-update', [ProductController::class, 'Update'])->name('product.update');
-    Route::get('/product-delete-{id}', [ProductController::class, 'Delete'])->name('product.delete');
-    Route::get('/product-subcategory-{id}', [ProductController::class, 'showSub'])->name('product.show.subcategory');
-
-});
+        Route::get('/add2', [ProductController::class, 'Add'])->name('product.add');
+        Route::get('/zero-{id}', [ProductController::class, 'zero'])->name('product.quentity.zero');
+        Route::get('/ten-{id}', [ProductController::class, 'lessTen'])->name('product.quentity.ten');
+        Route::get('/read-notifiction-{id}', [ProductController::class, 'readNotification'])->name('product.read-notification');
+        Route::get('/addcands', [ProductController::class, 'addcands'])->name('product.addcolorandsize');
+        Route::post('/addcands', [ProductController::class, 'ColorSizeStore'])->name('product.addcolorandsize.store');
+        Route::post('/product-add', [ProductController::class, 'Store'])->name('product.store');
+        Route::get('/ajax-{id}', [ProductController::class, 'AjaxShow']);
+        Route::get('/showp', [ProductController::class, 'Show'])->name('product.show')->middleware('permission:show product');
+        Route::get('/product-edit-{id}', [ProductController::class, 'Edit'])->name('product.edit');
+        Route::post('/product-update', [ProductController::class, 'Update'])->name('product.update');
+        Route::get('/product-delete-{id}', [ProductController::class, 'Delete'])->name('product.delete');
+        Route::get('/product-subcategory-{id}', [ProductController::class, 'showSub'])->name('product.show.subcategory');
+    });
 
 
 
@@ -190,7 +189,5 @@ Route::middleware('isAdmin')->group(function () {
     //////////// End employee All Routes //////////
     //////////// Start social All Routes //////////
     Route::get('/addsocial', [SocialController::class, 'addsocial'])->name('social.add');
-
-
     //////////// End social All Routes //////////
 });

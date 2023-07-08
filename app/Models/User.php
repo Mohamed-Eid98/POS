@@ -91,9 +91,9 @@ class User extends Authenticatable implements JWTSubject, HasMedia
     }
     public function getPackage()
     {
-      $count_order=  Order::where('user_id',$this->id)->count();
-       $package= Package::where('count_order','<=',$count_order)
-                ->orderBy('count_order','DESC')->first();
+        $count_order =  Order::where('user_id', $this->id)->count();
+        $package = Package::where('count_order', '<=', $count_order)
+            ->orderBy('count_order', 'DESC')->first();
         return $package;
     }
     public function customers()
@@ -109,6 +109,12 @@ class User extends Authenticatable implements JWTSubject, HasMedia
     {
         return $this->belongsTo(Role::class);
     }
-
-
+    public function routeNotificationForFcm()
+    {
+        return $this->fcm_token;
+    }
+    // public function routeNotificationForFcm()
+    // {
+    //     return $this->getDeviceTokens();
+    // }
 }
