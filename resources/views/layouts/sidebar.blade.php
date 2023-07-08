@@ -315,6 +315,10 @@
                         </ul>
                     </li> --}}
 
+
+            @endforeach
+            @endauth
+
                     <li class="menu-title" key="t-menu">الاعدادات</li>
 
                     <li>
@@ -695,8 +699,6 @@
             </ul>
             </li>
 
-            @endforeach
-            @endauth
             </ul>
         </div>
         <!-- Sidebar -->
