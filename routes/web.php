@@ -3,18 +3,19 @@
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\CityController;
+use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\OrderController;
+use App\Http\Controllers\Admin\SocialController;
 use App\Http\Controllers\Admin\IvoicesController;
+use App\Http\Controllers\Admin\PrivacyController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\ComplainController;
 use App\Http\Controllers\Admin\CustomerController;
+use App\Http\Controllers\Admin\EmployeeController;
 use App\Http\Controllers\Admin\SubCategoryController;
 use App\Http\Controllers\Admin\notificationController;
 use App\Http\Controllers\Admin\NotificationSendController;
-use App\Http\Controllers\Admin\PrivacyController;
-use App\Http\Controllers\Admin\ComplainController;
-use App\Http\Controllers\Admin\EmployeeController;
-use App\Http\Controllers\Admin\SocialController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,11 +30,13 @@ use App\Http\Controllers\Admin\SocialController;
 
 Auth::routes();
 
-Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('root');
 
 
 
 Route::middleware('isAdmin')->group(function () {
+
+
+    Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('root');
     Route::get('/order', [OrderController::class, 'index'])->name('orders.show');
     Route::get('/order-pending', [OrderController::class, 'pending'])->name('orders.pendingg');
     Route::get('/order-delivered', [OrderController::class, 'delivered'])->name('orders.delivered');
@@ -60,14 +63,15 @@ Route::middleware('isAdmin')->group(function () {
     //////////// End Customers All Routes //////////
 
     //////////// Start Category All Routes //////////
+    Route::middleware('permission:categories,admins')->group(function () {
+        Route::get('/addCategory', [CategoryController::class, 'Add'])->name('category.add');
+        Route::post('/add', [CategoryController::class, 'Store'])->name('category.store');
+        Route::get('/show', [CategoryController::class, 'Show'])->name('category.show');
+        Route::get('/edit-category-{id}', [CategoryController::class, 'Edit'])->name('category.edit');
+        Route::post('/update-category', [CategoryController::class, 'Update'])->name('category.update');
+        Route::get('/delete-category-{id}', [CategoryController::class, 'Delete'])->name('category.delete');
+        Route::get('/category-page-{id}', [CategoryController::class, 'showPage'])->name('category.page');
 
-    Route::get('/addCategory', [CategoryController::class, 'Add'])->name('category.add');
-    Route::post('/add', [CategoryController::class, 'Store'])->name('category.store');
-    Route::get('/show', [CategoryController::class, 'Show'])->name('category.show');
-    Route::get('/edit-category-{id}', [CategoryController::class, 'Edit'])->name('category.edit');
-    Route::post('/update-category', [CategoryController::class, 'Update'])->name('category.update');
-    Route::get('/delete-category-{id}', [CategoryController::class, 'Delete'])->name('category.delete');
-    Route::get('/category-page-{id}', [CategoryController::class, 'showPage'])->name('category.page');
 
     //////////// End Category All Routes //////////
 
@@ -93,11 +97,15 @@ Route::middleware('isAdmin')->group(function () {
     Route::post('/addcands', [ProductController::class, 'ColorSizeStore'])->name('product.addcolorandsize.store');
     Route::post('/product-add', [ProductController::class, 'Store'])->name('product.store');
     Route::get('/ajax-{id}', [ProductController::class, 'AjaxShow']);
-    Route::get('/showp', [ProductController::class, 'Show'])->name('product.show');
+    Route::get('/showp', [ProductController::class, 'Show'])->name('product.show')->middleware('permission:show product');
     Route::get('/product-edit-{id}', [ProductController::class, 'Edit'])->name('product.edit');
     Route::post('/product-update', [ProductController::class, 'Update'])->name('product.update');
     Route::get('/product-delete-{id}', [ProductController::class, 'Delete'])->name('product.delete');
     Route::get('/product-subcategory-{id}', [ProductController::class, 'showSub'])->name('product.show.subcategory');
+
+});
+
+
 
     //////////// End Product All Routes //////////
 
@@ -170,7 +178,12 @@ Route::middleware('isAdmin')->group(function () {
 
     //////////// End privacy All Routes //////////
     //////////// Start employee All Routes //////////
-    Route::get('/addemployeerole', [EmployeeController::class, 'addemployee'])->name('employee.addrole');
+    Route::get('/addemployeerole', [EmployeeController::class, 'addemployee'])->name('employee.add.role');
+    Route::post('/employee-role-update', [EmployeeController::class, 'UpdateRole'])->name('employee.update.role');
+    Route::post('/employee-update', [EmployeeController::class, 'UpdateEmployee'])->name('employee.update');
+
+    // Route::get('/role-test', [RoleController::class, 'show'])->name('role.test');
+
     Route::get('/addnewemployee', [EmployeeController::class, 'addnewemployee'])->name('employee.add');
     Route::get('/showemployee', [EmployeeController::class, 'showemployee'])->name('employee.show');
 

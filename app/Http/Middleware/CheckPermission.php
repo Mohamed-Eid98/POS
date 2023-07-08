@@ -6,8 +6,7 @@ use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-
-class AdminMiddleware
+class CheckPermission
 {
     /**
      * Handle an incoming request.
@@ -16,14 +15,17 @@ class AdminMiddleware
      * @param  \Closure(\Illuminate\Http\Request): (\Illuminate\Http\Response|\Illuminate\Http\RedirectResponse)  $next
      * @return \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse
      */
-    public function handle(Request $request, Closure $next)
+    public function handle($request, Closure $next, ...$permissions)
     {
-        if (Auth::check() && Auth::user()->role_id != 0) {
-            return $next($request);
-        } else {
-            Auth::logout();
-            return redirect()->back()->with('error', 'You are not authorized to access this page.');
-        }
-    }
+        $user = Auth::user();
+        $userPermissions = $user->role->permissions->pluck('name')->toArray();
 
+        foreach ($permissions as $permission) {
+            if (in_array($permission, $userPermissions)) {
+                return $next($request);
+            }
+        }
+
+        abort(403, 'Unauthorized');
+    }
 }

@@ -17,7 +17,7 @@
             إضافة
         @endslot
         @slot('title')
-            منطقه
+            دور موظف
         @endslot
     @endcomponent
 
@@ -47,71 +47,61 @@
 
                     <div>
 
-                        <form action="" class="dropzone" method="POST" enctype="multipart/form-data">
+                        <form action="{{ route('employee.update.role')  }}" class="dropzone" method="POST" enctype="multipart/form-data">
                             @csrf
 
 
-                            <div class="mb-3">
+                            <div class="row">
+                                <div class="col-md-6">
                                 <div class="form-group">
-                                    <h5> اسم الدور<span class="text-danger">*</span></h5>
+                                    <h5> الاسم <span class="text-danger">*</span></h5>
                                     <div class="controls">
-                                        <select name="city_id" id="city_id" class="form-control">
-                                            <option value="" selected disabled>-- اختر الدور--</option>
-                                            <option value="" selected disabled>بائع</option>
-                                            <option value="" selected disabled>محاسب</option>
-                                            <option value="" selected disabled>مدير المبيعات</option>
-
-                                        </select>
-                                        @error('')
-                                            <span class="text-danger">{{ $message }}</span>
-                                        @enderror
+                                        <input type="text" class="form-control" name="name" required>
                                     </div>
                                 </div>
+                            </div>
                             </div>
 
                             <div class="mb-12">
                                 <h4 for="formrow-firstname-input" class="form-label my-3"> اذن الوحده<span
                                         class="text-danger">*</span></h4>
                                 <div class="row">
-                                    <div class="col-md-3"> <input type="checkbox" id="checkbox_3" name="new_arrival"
+
+                                    <div class="col-md-3"> <input type="checkbox" id="checkbox_3" name="permissions[]"
                                             value="1">
+                                        <label for="checkbox_3">اداره الاقسام</label>
+                                    </div>
+                                    <div class="col-md-3"> <input type="checkbox" id="checkbox_3" name="permissions[]"
+                                            value="2">
                                         <label for="checkbox_3">اداره الطلبات</label>
                                     </div>
-                                    <div class="col-md-3"> <input type="checkbox" id="checkbox_3" name="new_arrival"
-                                            value="1">
-                                        <label for="checkbox_3">اداره المنتجات</label>
+                                    <div class="col-md-3"> <input type="checkbox" id="checkbox_3" name="permissions[]"
+                                            value="3">
+                                        <label for="checkbox_3"> ادارة الاشعارات</label>
                                     </div>
-                                    <div class="col-md-3"> <input type="checkbox" id="checkbox_3" name="new_arrival"
-                                            value="1">
-                                        <label for="checkbox_3"> قسم الموظفين</label>
-                                    </div>
-                                    <div class="col-md-3"> <input type="checkbox" id="checkbox_3" name="new_arrival"
-                                            value="1">
-                                        <label for="checkbox_3">قسم العميل</label>
+                                    <div class="col-md-3"> <input type="checkbox" id="checkbox_3" name="permissions[]"
+                                            value="5">
+                                        <label for="checkbox_3">ادارة السياسات</label>
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-md-3"> <input type="checkbox" id="checkbox_3" name="new_arrival"
-                                            value="1">
-                                        <label for="checkbox_3">قسم التسويق</label>
+                                    <div class="col-md-3"> <input type="checkbox" id="checkbox_3" name="permissions[]"
+                                            value="4">
+                                        <label for="checkbox_3"> ادارة العملاء</label>
                                     </div>
-                                    <div class="col-md-3"> <input type="checkbox" id="checkbox_3" name="new_arrival"
-                                            value="1">
+                                    <div class="col-md-3"> <input type="checkbox" id="checkbox_3" name="permissions[]"
+                                            value="8">
                                         <label for="checkbox_3"> لوحه التحكم</label>
                                     </div>
-                                    <div class="col-md-3"> <input type="checkbox" id="checkbox_3" name="new_arrival"
-                                            value="1">
-                                        <label for="checkbox_3"> قسم الدعم الفني</label>
+                                    <div class="col-md-3"> <input type="checkbox" id="checkbox_3" name="permissions[]"
+                                            value="7">
+                                        <label for="checkbox_3">  السوشيل ميديا </label>
                                     </div>
-                                    <div class="col-md-3"> <input type="checkbox" id="checkbox_3" name="new_arrival"
-                                            value="1">
-                                        <label for="checkbox_3"> اعدادات الموقع</label>
+                                    <div class="col-md-3"> <input type="checkbox" id="checkbox_3" name="permissions[]"
+                                            value="6">
+                                        <label for="checkbox_3">  المحافظات</label>
                                     </div>
                                 </div>
-
-                                @error('name')
-                                    <span class="text-danger">{{ $message }}</span>
-                                @enderror
                             </div>
 
 

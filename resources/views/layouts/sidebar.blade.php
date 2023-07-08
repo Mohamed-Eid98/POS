@@ -5,6 +5,10 @@
 
         <!--- Sidemenu -->
         <div id="sidebar-menu">
+
+
+
+
             <!-- Left Menu Start -->
             <ul class="metismenu list-unstyled" id="side-menu">
                 {{-- <li class="menu-title" key="t-menu">الصفحه الرئيسيه</li> --}}
@@ -25,6 +29,39 @@
                         <span key="t-dashboards">الصفحه الرئيسيه</span>
                     </a>
                 </li>
+
+
+
+                @php
+                    $all_orders = DB::table('orders')->count();
+                    $pending_orders = DB::table('orders')
+                        ->where('status', '=', 'Pending')
+                        ->count();
+                    $deliered_orders = DB::table('orders')
+                        ->where('status', '=', 'Delivered')
+                        ->count();
+                    $rejected_orders = DB::table('orders')
+                        ->where('status', '=', 'Rejected')
+                        ->count();
+                    $cancelled_orders = DB::table('orders')
+                        ->where('status', '=', 'Cancelled')
+                        ->count();
+                    $inPrograss_orders = DB::table('orders')
+                        ->where('status', '=', 'InProgress')
+                        ->count();
+                    $paid_orders = DB::table('orders')
+                        ->where('status', '=', 'Paid')
+                        ->count();
+                @endphp
+
+@auth
+
+@foreach (auth()->user()->role->permissions as $permission)
+
+
+    @if($permission->name == 'categories' || $permission->name == 'admins')
+
+
 
                 <li class="menu-title" key="t-menu">الاقسام</li>
 
@@ -66,29 +103,12 @@
                     </ul>
                 </li>
 
-                @php
-                    $all_orders = DB::table('orders')->count();
-                    $pending_orders = DB::table('orders')
-                        ->where('status', '=', 'Pending')
-                        ->count();
-                    $deliered_orders = DB::table('orders')
-                        ->where('status', '=', 'Delivered')
-                        ->count();
-                    $rejected_orders = DB::table('orders')
-                        ->where('status', '=', 'Rejected')
-                        ->count();
-                    $cancelled_orders = DB::table('orders')
-                        ->where('status', '=', 'Cancelled')
-                        ->count();
-                    $inPrograss_orders = DB::table('orders')
-                        ->where('status', '=', 'InProgress')
-                        ->count();
-                    $paid_orders = DB::table('orders')
-                        ->where('status', '=', 'Paid')
-                        ->count();
-                @endphp
+            @endif
+
 
                 <ul class="metismenu list-unstyled" id="side-menu">
+                    @if($permission->name == 'orders' || $permission->name == 'admins')
+
                     <li class="menu-title" key="t-menu">الطلبيات</li>
                     <li>
                         <a href="javascript: void(0);" class="has-arrow waves-effect">
@@ -137,7 +157,13 @@
                                     تم الإلغاء </a>
                         </ul>
                     </li>
+                @endif
                     {{-- <li class="" key="t-menu">اضافه اشعارات</li> --}}
+
+
+
+                    @if($permission->name == 'notifications' || $permission->name == 'admins'  )
+
 
                     <li>
 
@@ -156,7 +182,12 @@
                         </ul>
                     </li>
 
+                    @endif
+
+
                     {{-- <li class="menu-title" key="t-menu">العملاء</li> --}}
+                    @if($permission->name == 'customers' || $permission->name == 'admins'  )
+
 
                     <li>
                         <a href="javascript: void(0);" class="has-arrow waves-effect my-3">
@@ -169,7 +200,10 @@
 
                         </ul>
                     </li>
+                    @endif
                     {{-- <li class="menu-title" key="t-menu">المحافظات</li> --}}
+
+                    @if($permission->name == 'cities' || $permission->name == 'admins'  )
 
                     <li>
                         <a href="javascript: void(0);" class="has-arrow waves-effect my-3">
@@ -184,6 +218,10 @@
                             <li><a class="slide-item" href="{{ route('area.show') }}"> عرض المناطق </a>
                         </ul>
                     </li>
+@endif
+
+@if($permission->name == 'privacies' || $permission->name == 'admins'  )
+
                     <li>
                         <a href="javascript: void(0);" class="has-arrow waves-effect my-3">
                             <i class="bx bx-task"></i>
@@ -199,6 +237,10 @@
 
                         </ul>
                     </li>
+@endif
+
+@if($permission->name == 'socials' || $permission->name == 'admins'  )
+
                     <li>
                         <a href="javascript: void(0);" class="has-arrow waves-effect my-3">
                             <i class="bx bx-map"></i>
@@ -210,6 +252,10 @@
 
                         </ul>
                     </li>
+                @endif
+
+                @if($permission->name == 'complains' || $permission->name == 'admins'  )
+
                     <li>
                         <a href="javascript: void(0);" class="has-arrow waves-effect my-3">
                             <i class="bx bx-receipt"></i>
@@ -222,6 +268,10 @@
 
                         </ul>
                     </li>
+@endif
+
+                    @if($permission->name == 'employers' || $permission->name == 'admins'  )
+
                     <li class="menu-title" key="t-menu">قسم الموظفيين</li>
                     <li>
                     <li>
@@ -231,7 +281,7 @@
                             <span key="bx bxs-user-detail"> اضافه دور</span>
                         </a>
                         <ul class="sub-menu" aria-expanded="false">
-                            <li><a href="{{ route('employee.addrole') }}" key="t-saas"> اضافه دورالموظف</a></li>
+                            <li><a href="{{ route('employee.add.role') }}" key="t-saas"> اضافه دورالموظف</a></li>
 
                         </ul>
                     </li>
@@ -248,6 +298,8 @@
 
                         </ul>
                     </li>
+
+                    @endif
                     {{-- <li class="menu-title" key="t-menu">الفواتير</li> --}}
 
                     {{-- <li>
@@ -282,6 +334,7 @@
                             </form>
                         </ul>
                     </li>
+
 
 
 
@@ -642,6 +695,8 @@
             </ul>
             </li>
 
+            @endforeach
+            @endauth
             </ul>
         </div>
         <!-- Sidebar -->

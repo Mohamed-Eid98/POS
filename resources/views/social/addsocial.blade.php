@@ -146,6 +146,8 @@
             </div> <!-- end col -->
         </div>
     @endsection
+
+    
     <script>
         $(function(e) {
             //file export datatable

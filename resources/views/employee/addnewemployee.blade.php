@@ -47,7 +47,7 @@
 
                     <div>
 
-                        <form action="" class="dropzone" method="POST" enctype="multipart/form-data">
+                        <form class="dropzone" method="POST" action="{{ route('employee.update') }}" enctype="multipart/form-data">
                             @csrf
 
 
@@ -70,7 +70,7 @@
                                         <h4 for="formrow-firstname-input" class="form-label my-3"> رقم الهاتف<span
                                                 class="text-danger">*</span></h4>
                                         <input type="text" class="form-control" id="formrow-firstname-input"
-                                            name="name" placeholder="ادخل اسم المنطقه من فضلك">
+                                            name="phone" placeholder="ادخل اسم المنطقه من فضلك">
 
                                     </div>
 
@@ -78,24 +78,27 @@
 
                                 <div class="row">
                                     <div class="col-md-6">
-                                        <h4 for="formrow-firstname-input" class="form-label my-3"> البريد الالكترون<span
+                                        <h4 for="formrow-firstname-input" class="form-label my-3"> البريد الالكتروني<span
                                                 class="text-danger">*</span></h4>
                                         <input type="text" class="form-control" id="formrow-firstname-input"
-                                            name="name" placeholder="ادخل الاسم  من فضلك">
+                                            name="email" placeholder="ادخل الاسم  من فضلك">
 
                                     </div>
                                     <div class="col-md-6 my-4">
                                         <div class="form-group">
                                             <h5> اسم الدور<span class="text-danger">*</span></h5>
                                             <div class="controls">
-                                                <select name="city_id" id="city_id" class="form-control">
+                                                <select name="role_id" id="role_id" class="form-control" required >
                                                     <option value="" selected disabled>-- اختر الدور--</option>
-                                                    <option value="" selected disabled>بائع</option>
-                                                    <option value="" selected disabled>محاسب</option>
-                                                    <option value="" selected disabled>مدير المبيعات</option>
+
+                                                    @foreach ($roles as $role)
+
+                                                    <option value="{{ $role->id }}" >{{ $role->name }}</option>
+                                                    @endforeach
+
 
                                                 </select>
-                                                @error('city_id')
+                                                @error('role_id')
                                                     <span class="text-danger">{{ $message }}</span>
                                                 @enderror
                                             </div>
@@ -104,25 +107,20 @@
 
                                 </div>
 
-
-
-                                @error('name')
-                                    <span class="text-danger">{{ $message }}</span>
-                                @enderror
                             </div>
 
                             <div class="row">
                                 <div class="col-md-6">
                                     <h4 for="formrow-firstname-input" class="form-label my-3"> كلمه السر<span
                                             class="text-danger">*</span></h4>
-                                    <input type="text" class="form-control" id="formrow-firstname-input" name="name"
+                                    <input type="password" class="form-control" id="formrow-firstname-input" name="password"
                                         placeholder="ادخل كلمه السر  من فضلك">
 
                                 </div>
                                 <div class="col-md-6">
                                     <h4 for="formrow-firstname-input" class="form-label my-3"> صوره الموظف<span
                                             class="text-danger">*</span></h4>
-                                    <input type="file" class="form-control" id="formrow-firstname-input" name="name">
+                                    <input type="file" class="form-control" id="formrow-firstname-input" name="avatar">
 
                                 </div>
                             </div>

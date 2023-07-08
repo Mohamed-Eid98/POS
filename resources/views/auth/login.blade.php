@@ -88,6 +88,13 @@
                                         <img src="{{ asset('/build/images/logo1.pngg') }}" alt="" height="80">
                                     </a>
                                 </div>
+
+                                @error('error')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
+
                                 <div class="my-auto">
 
                                     <div style="text-align: center">
