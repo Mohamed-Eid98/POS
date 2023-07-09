@@ -84,7 +84,7 @@ Route::middleware('isAdmin')->group(function () {
         Route::get('/subcategory-show', [SubCategoryController::class, 'Show'])->name('subcategory.show');
         Route::get('/subcategory-edit-{id}', [SubCategoryController::class, 'Edit'])->name('subcategory.edit');
         Route::post('/subcategory-update', [SubCategoryController::class, 'Update'])->name('subcategory.update');
-        Route::get('/subcategory/delete/{id}', [SubCategoryController::class, 'Delete'])->name('subcategory.delete');
+        Route::get('/subcategory-delete/{id}', [SubCategoryController::class, 'Delete'])->name('subcategory.delete');
 
         //////////// End subCategory All Routes //////////
 
