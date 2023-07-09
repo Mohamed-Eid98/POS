@@ -54,10 +54,10 @@
                         ->count();
                 @endphp
 
-                {{-- @auth --}}
+                @auth
 
-                {{-- @foreach (auth()->user()->role->permissions as $permission) --}}
-                {{-- @if ($permission->name == 'categories' || $permission->name == 'admins') --}}
+                @foreach (auth()->user()->role->permissions as $permission)
+                @if ($permission->name == 'categories' || $permission->name == 'admins')
                 <li class="menu-title" key="t-menu">الاقسام</li>
 
                 <li>
@@ -98,11 +98,11 @@
 
                     </ul>
                 </li>
-                {{-- @endif --}}
+                @endif
 
 
                 <ul class="metismenu list-unstyled" id="side-menu">
-                    {{-- @if ($permission->name == 'orders' || $permission->name == 'admins') --}}
+                    @if ($permission->name == 'orders' || $permission->name == 'admins')
                     <li class="menu-title" key="t-menu">الطلبيات</li>
                     <li>
                         <a href="javascript: void(0);" class="has-arrow waves-effect">
@@ -153,12 +153,12 @@
                                     تم الإلغاء </a>
                         </ul>
                     </li>
-                    {{-- @endif --}}
+                    @endif
                     {{-- <li class="" key="t-menu">اضافه اشعارات</li> --}}
 
 
 
-                    {{-- @if ($permission->name == 'notifications' || $permission->name == 'admins') --}}
+                    @if ($permission->name == 'notifications' || $permission->name == 'admins')
                     <li>
 
                         <a href="javascript: void(0);" class="has-arrow waves-effect my-3">
@@ -177,11 +177,11 @@
 
                         </ul>
                     </li>
-                    {{-- @endif --}}
+                    @endif
 
 
-                    {{-- <li class="menu-title" key="t-menu">العملاء</li> --}}
-                    {{-- @if ($permission->name == 'customers' || $permission->name == 'admins') --}}
+                    @if ($permission->name == 'customers' || $permission->name == 'admins')
+                    <li class="menu-title" key="t-menu">العملاء</li>
                     <li>
                         <a href="javascript: void(0);" class="has-arrow waves-effect my-3">
                             <i class="bx bx-list-ul"></i>
@@ -193,10 +193,10 @@
 
                         </ul>
                     </li>
-                    {{-- @endif --}}
-                    {{-- <li class="menu-title" key="t-menu">المحافظات</li> --}}
+                    @endif
 
-                    {{-- @if ($permission->name == 'cities' || $permission->name == 'admins') --}}
+                    @if ($permission->name == 'cities' || $permission->name == 'admins')
+                    <li class="menu-title" key="t-menu">المحافظات</li>
                     <li>
                         <a href="javascript: void(0);" class="has-arrow waves-effect my-3">
                             <i class="bx bx-envelope"></i>
@@ -210,9 +210,9 @@
                             <li><a class="slide-item" href="{{ route('area.show') }}"> عرض المناطق </a>
                         </ul>
                     </li>
-                    {{-- @endif --}}
+                    @endif
 
-                    {{-- @if ($permission->name == 'privacies' || $permission->name == 'admins') --}}
+                    @if ($permission->name == 'privacies' || $permission->name == 'admins')
                     <li>
                         <a href="javascript: void(0);" class="has-arrow waves-effect my-3">
                             <i class="bx bx-task"></i>
@@ -233,9 +233,9 @@
 
                         </ul>
                     </li>
-                    {{-- @endif --}}
+                    @endif
 
-                    {{-- @if ($permission->name == 'socials' || $permission->name == 'admins') --}}
+                    @if ($permission->name == 'socials' || $permission->name == 'admins')
                     <li>
                         <a href="javascript: void(0);" class="has-arrow waves-effect my-3">
                             <i class="bx bx-map"></i>
@@ -247,7 +247,7 @@
 
                         </ul>
                     </li>
-                    {{-- @endif --}}
+                    @endif
                     <li>
                         <a href="javascript: void(0);" class="has-arrow waves-effect my-3">
                             <i class="bx bx-map"></i>
@@ -261,7 +261,7 @@
                         </ul>
                     </li>
 
-                    {{-- @if ($permission->name == 'complains' || $permission->name == 'admins') --}}
+                    @if ($permission->name == 'complains' || $permission->name == 'admins')
                     <li>
                         <a href="javascript: void(0);" class="has-arrow waves-effect my-3">
                             <i class="bx bx-receipt"></i>
@@ -274,9 +274,9 @@
 
                         </ul>
                     </li>
-                    {{-- @endif --}}
+                    @endif
 
-                    {{-- @if ($permission->name == 'employers' || $permission->name == 'admins') --}}
+                    @if ($permission->name == 'employers' || $permission->name == 'admins')
 
                     <li class="menu-title" key="t-menu">قسم الموظفيين</li>
                     <li>
@@ -306,7 +306,7 @@
                         </ul>
                     </li>
 
-                    {{-- @endif --}}
+                    @endif
                     {{-- <li class="menu-title" key="t-menu">الفواتير</li> --}}
 
                     {{-- <li>
@@ -321,8 +321,8 @@
 
                         </ul>
                     </li> --}}
-                    {{-- @endforeach --}}
-                    {{-- @endauth --}}
+                    @endforeach
+                    @endauth
 
                     <li class="menu-title" key="t-menu">الاعدادات</li>
 

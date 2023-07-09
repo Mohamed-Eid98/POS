@@ -5,12 +5,12 @@
             <div class="navbar-brand-box">
                 
 
-                    <div class="">
-                        <a href="<?php echo e(route('root')); ?>" class="">
-                            <img src="<?php echo e(asset('/build/images/logo1.png')); ?>" alt="" height="80">
-                            <img src="<?php echo e(asset('/build/images/logo1.pngg')); ?>" alt="" height="80">
-                        </a>
-                    </div>
+                <div class="">
+                    <a href="<?php echo e(route('root')); ?>" class="">
+                        <img src="<?php echo e(asset('/build/images/logo1.png')); ?>" alt="" height="80">
+                        <img src="<?php echo e(asset('/build/images/logo1.pngg')); ?>" alt="" height="80">
+                    </a>
+                </div>
 
             </div>
 

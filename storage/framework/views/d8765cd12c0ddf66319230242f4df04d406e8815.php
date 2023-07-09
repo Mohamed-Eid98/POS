@@ -46,15 +46,10 @@
                         ->count();
                 ?>
 
-<?php if(auth()->guard()->check()): ?>
+                <?php if(auth()->guard()->check()): ?>
 
-<?php $__currentLoopData = auth()->user()->role->permissions; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $permission): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-
-
-    <?php if($permission->name == 'categories' || $permission->name == 'admins'): ?>
-
-
-
+                <?php $__currentLoopData = auth()->user()->role->permissions; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $permission): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                <?php if($permission->name == 'categories' || $permission->name == 'admins'): ?>
                 <li class="menu-title" key="t-menu">الاقسام</li>
 
                 <li>
@@ -74,7 +69,8 @@
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
                         <li><a href="<?php echo e(route('subcategory.add')); ?>" key="t-default">إضافة قسم فرعي</a></li>
-                        <li><a href="<?php echo e(route('subcategory.show')); ?>" key="t-saas">عرض الاقسام الفرعيه</a></li>
+                        <li><a href="<?php echo e(route('subcategory.show')); ?>" key="t-saas">عرض الاقسام الفرعيه</a>
+                        </li>
                     </ul>
                 </li>
 
@@ -94,13 +90,11 @@
 
                     </ul>
                 </li>
-
-            <?php endif; ?>
+                <?php endif; ?>
 
 
                 <ul class="metismenu list-unstyled" id="side-menu">
                     <?php if($permission->name == 'orders' || $permission->name == 'admins'): ?>
-
                     <li class="menu-title" key="t-menu">الطلبيات</li>
                     <li>
                         <a href="javascript: void(0);" class="has-arrow waves-effect">
@@ -113,7 +107,8 @@
                         <ul class="sub-menu" aria-expanded="false">
                             <li><a class="slide-item" href="<?php echo e(route('orders.show')); ?>">
                                     
-                                    <span class="badge rounded-pill bg-info float-end"> <?php echo e($all_orders); ?></span>
+                                    <span class="badge rounded-pill bg-info float-end">
+                                        <?php echo e($all_orders); ?></span>
                                     كل الطلبات</a>
                             <li><a class="slide-item" href="<?php echo e(route('orders.pendingg')); ?>">
                                     
@@ -134,7 +129,8 @@
                                     قيد التوصيل</a>
                             <li><a class="slide-item" href="<?php echo e(route('orders.paid.show')); ?>">
                                     
-                                    <span class="badge rounded-pill bg-primary float-end"> <?php echo e($paid_orders); ?></span>
+                                    <span class="badge rounded-pill bg-primary float-end">
+                                        <?php echo e($paid_orders); ?></span>
                                     تم الدفع</a>
 
                             <li><a class="slide-item" href="<?php echo e(route('orders.rejected')); ?>">
@@ -149,14 +145,12 @@
                                     تم الإلغاء </a>
                         </ul>
                     </li>
-                <?php endif; ?>
+                    <?php endif; ?>
                     
 
 
 
-                    <?php if($permission->name == 'notifications' || $permission->name == 'admins'  ): ?>
-
-
+                    <?php if($permission->name == 'notifications' || $permission->name == 'admins'): ?>
                     <li>
 
                         <a href="javascript: void(0);" class="has-arrow waves-effect my-3">
@@ -168,19 +162,18 @@
                         </a>
 
                         <ul class="sub-menu" aria-expanded="false">
-                            <li><a class="slide-item" href="<?php echo e(route('notification.add')); ?>"> اضافه اشعارات </a>
-                            <li><a class="slide-item" href="<?php echo e(route('notification.show')); ?>"> عرض الاشعارات </a>
+                            <li><a class="slide-item" href="<?php echo e(route('notification.add')); ?>"> اضافه اشعارات
+                                </a>
+                            <li><a class="slide-item" href="<?php echo e(route('notification.show')); ?>"> عرض الاشعارات
+                                </a>
 
                         </ul>
                     </li>
-
                     <?php endif; ?>
 
 
-                    
-                    <?php if($permission->name == 'customers' || $permission->name == 'admins'  ): ?>
-
-
+                    <?php if($permission->name == 'customers' || $permission->name == 'admins'): ?>
+                    <li class="menu-title" key="t-menu">العملاء</li>
                     <li>
                         <a href="javascript: void(0);" class="has-arrow waves-effect my-3">
                             <i class="bx bx-list-ul"></i>
@@ -193,10 +186,9 @@
                         </ul>
                     </li>
                     <?php endif; ?>
-                    
 
-                    <?php if($permission->name == 'cities' || $permission->name == 'admins'  ): ?>
-
+                    <?php if($permission->name == 'cities' || $permission->name == 'admins'): ?>
+                    <li class="menu-title" key="t-menu">المحافظات</li>
                     <li>
                         <a href="javascript: void(0);" class="has-arrow waves-effect my-3">
                             <i class="bx bx-envelope"></i>
@@ -210,10 +202,9 @@
                             <li><a class="slide-item" href="<?php echo e(route('area.show')); ?>"> عرض المناطق </a>
                         </ul>
                     </li>
-<?php endif; ?>
+                    <?php endif; ?>
 
-<?php if($permission->name == 'privacies' || $permission->name == 'admins'  ): ?>
-
+                    <?php if($permission->name == 'privacies' || $permission->name == 'admins'): ?>
                     <li>
                         <a href="javascript: void(0);" class="has-arrow waves-effect my-3">
                             <i class="bx bx-task"></i>
@@ -221,18 +212,22 @@
                             <span key="t-dashboards"> السياسات</span>
                         </a>
                         <ul class="sub-menu" aria-expanded="false">
-                            <li><a class="slide-item" href="<?php echo e(route('privacy.bene.show')); ?>">سياسة بنسايز</a>
-                            <li><a class="slide-item" href="<?php echo e(route('privacy.delivery.show')); ?>"> سياسة التوصيل </a>
-                            <li><a class="slide-item" href="<?php echo e(route('privacy.return.show')); ?>"> سياسة الارجاع </a>
-                            <li><a class="slide-item" href="<?php echo e(route('privacy.warranty.show')); ?>"> سياسه الضمان</a>
-                            <li><a class="slide-item" href="<?php echo e(route('privacy.terms.show')); ?>"> سياسات قانونيه</a>
+                            <li><a class="slide-item" href="<?php echo e(route('privacy.bene.show')); ?>">سياسة
+                                    بنسايز</a>
+                            <li><a class="slide-item" href="<?php echo e(route('privacy.delivery.show')); ?>"> سياسة
+                                    التوصيل </a>
+                            <li><a class="slide-item" href="<?php echo e(route('privacy.return.show')); ?>"> سياسة
+                                    الارجاع </a>
+                            <li><a class="slide-item" href="<?php echo e(route('privacy.warranty.show')); ?>"> سياسه
+                                    الضمان</a>
+                            <li><a class="slide-item" href="<?php echo e(route('privacy.terms.show')); ?>"> سياسات
+                                    قانونيه</a>
 
                         </ul>
                     </li>
-<?php endif; ?>
+                    <?php endif; ?>
 
-<?php if($permission->name == 'socials' || $permission->name == 'admins'  ): ?>
-
+                    <?php if($permission->name == 'socials' || $permission->name == 'admins'): ?>
                     <li>
                         <a href="javascript: void(0);" class="has-arrow waves-effect my-3">
                             <i class="bx bx-map"></i>
@@ -244,10 +239,21 @@
 
                         </ul>
                     </li>
-                <?php endif; ?>
+                    <?php endif; ?>
+                    <li>
+                        <a href="javascript: void(0);" class="has-arrow waves-effect my-3">
+                            <i class="bx bx-map"></i>
+                            <span key="t-dashboards"> الكوبونات</span>
+                        </a>
+                        <ul class="sub-menu" aria-expanded="false">
+                            <li><a class="slide-item" href="<?php echo e(route('coupon.add')); ?>"> اضافه كوبون</a>
+                            <li><a class="slide-item" href="<?php echo e(route('social.add')); ?>"> عرض الكوبونات</a>
 
-                <?php if($permission->name == 'complains' || $permission->name == 'admins'  ): ?>
 
+                        </ul>
+                    </li>
+
+                    <?php if($permission->name == 'complains' || $permission->name == 'admins'): ?>
                     <li>
                         <a href="javascript: void(0);" class="has-arrow waves-effect my-3">
                             <i class="bx bx-receipt"></i>
@@ -260,9 +266,9 @@
 
                         </ul>
                     </li>
-<?php endif; ?>
+                    <?php endif; ?>
 
-                    <?php if($permission->name == 'employers' || $permission->name == 'admins'  ): ?>
+                    <?php if($permission->name == 'employers' || $permission->name == 'admins'): ?>
 
                     <li class="menu-title" key="t-menu">قسم الموظفيين</li>
                     <li>
@@ -273,7 +279,8 @@
                             <span key="bx bxs-user-detail"> اضافه دور</span>
                         </a>
                         <ul class="sub-menu" aria-expanded="false">
-                            <li><a href="<?php echo e(route('employee.add.role')); ?>" key="t-saas"> اضافه دورالموظف</a></li>
+                            <li><a href="<?php echo e(route('employee.add.role')); ?>" key="t-saas"> اضافه دورالموظف</a>
+                            </li>
 
                         </ul>
                     </li>
@@ -295,10 +302,8 @@
                     
 
                     
-
-
-            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-            <?php endif; ?>
+                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                    <?php endif; ?>
 
                     <li class="menu-title" key="t-menu">الاعدادات</li>
 

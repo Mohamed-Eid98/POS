@@ -7,14 +7,17 @@ use App\Models\Notification;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Faker\Factory as Faker;
+
 
 class NotificationSendController extends Controller
 {
     public function updateDeviceToken(Request $request)
     {
+        // dd('das');
 
         $user = Auth::user()->update([
-            'device_token' => $request->token,
+            'fcm_token' => $request->token,
         ]);
         // Auth::user()->device_token =  $request->token;
 
@@ -24,17 +27,26 @@ class NotificationSendController extends Controller
     }
 
     public function sendNotification(Request $request)
-    {
+{
+    $title = 'test2';
+    $body = 'this is test2';
+    $product_id = '1';
+    $user_id = 11;
+    $type = 'Info';
 
-        $this->save_notf(null, true, 'Info', null, null, null, null, $request);
-        // $this->save_notf($user->device_token, false, 'Info', null, null, null, $user->id);
+    $this->save_notf(
+        null,
+        true,
+        $title,
+        $body,
+        $product_id,
+        $user_id, 
+        $type,
+        $request
+    );
 
-
-
-        // $this->save_notf(null, true, 'dsf', $product_id);
-
-        // $this->save_notf(null, true, 'dsf', $product_id);
-    }
+    return response()->json(['message' => 'Notification sent.'], 200);
+}
 }
 
 
