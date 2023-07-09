@@ -77,7 +77,7 @@
 
 
                                     @php
-
+                                        
                                     @endphp
                                     <tbody>
 
@@ -88,7 +88,7 @@
                                                 <td>{{ $i }}</td>
                                                 <td>{{ $user->name }}</td>
                                                 <td>{{ $user->phone }}</td>
-                                                <td>رقم المحفظه</td>
+                                                <td>ddرقم المحفظه</td>
                                                 <td>$num_orders< /td>
                                                 <td>الحافظه</td>
 

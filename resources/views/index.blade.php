@@ -129,7 +129,7 @@
                 ->sum('price');
             $payments_sum = DB::table('payments')->sum('price');
             $payments_count = DB::table('payments')->count();
-            
+
         @endphp
         <div class="col-xl-12">
             <div class="row">
@@ -241,9 +241,13 @@
                                                     طلبات معلقة</h6>
                                             </div>
                                             <div>
+                                                <div class="my-3">
+
                                                 <span class="card-title h2" style="color: #1f7ce0!important;">
                                                     {{ $pending_orders }}
                                                 </span>
+                                            </div>
+
                                             </div>
 
 

@@ -5,12 +5,12 @@
             <div class="navbar-brand-box">
                 {{-- <a href="root" class="logo logo-dark"> --}}
 
-                    <div class="">
-                        <a href="{{ route('root') }}" class="">
-                            <img src="{{ asset('/build/images/logo1.png') }}" alt="" height="80">
-                            <img src="{{ asset('/build/images/logo1.pngg') }}" alt="" height="80">
-                        </a>
-                    </div>
+                <div class="">
+                    <a href="{{ route('root') }}" class="">
+                        <img src="{{ asset('/build/images/logo1.png') }}" alt="" height="80">
+                        <img src="{{ asset('/build/images/logo1.pngg') }}" alt="" height="80">
+                    </a>
+                </div>
 
             </div>
 

@@ -248,6 +248,18 @@
                         </ul>
                     </li>
                     {{-- @endif --}}
+                    <li>
+                        <a href="javascript: void(0);" class="has-arrow waves-effect my-3">
+                            <i class="bx bx-map"></i>
+                            <span key="t-dashboards"> الكوبونات</span>
+                        </a>
+                        <ul class="sub-menu" aria-expanded="false">
+                            <li><a class="slide-item" href="{{ route('coupon.add') }}"> اضافه كوبون</a>
+                            <li><a class="slide-item" href="{{ route('social.add') }}"> عرض الكوبونات</a>
+
+
+                        </ul>
+                    </li>
 
                     {{-- @if ($permission->name == 'complains' || $permission->name == 'admins') --}}
                     <li>

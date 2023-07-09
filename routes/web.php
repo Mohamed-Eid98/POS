@@ -16,6 +16,8 @@ use App\Http\Controllers\Admin\EmployeeController;
 use App\Http\Controllers\Admin\SubCategoryController;
 use App\Http\Controllers\Admin\notificationController;
 use App\Http\Controllers\Admin\NotificationSendController;
+use App\Http\Controllers\Admin\CouponController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -190,4 +192,8 @@ Route::middleware('isAdmin')->group(function () {
     //////////// Start social All Routes //////////
     Route::get('/addsocial', [SocialController::class, 'addsocial'])->name('social.add');
     //////////// End social All Routes //////////
+
+    //////////// Start coupon All Routes ////////
+    Route::get('/addcoupon', [CouponController::class, 'addcoupon'])->name('coupon.add');
+    //////////// End coupon All Routes //////////
 });

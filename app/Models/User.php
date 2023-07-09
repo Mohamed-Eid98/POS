@@ -109,12 +109,4 @@ class User extends Authenticatable implements JWTSubject, HasMedia
     {
         return $this->belongsTo(Role::class);
     }
-    public function routeNotificationForFcm()
-    {
-        return $this->fcm_token;
-    }
-    // public function routeNotificationForFcm()
-    // {
-    //     return $this->getDeviceTokens();
-    // }
 }
