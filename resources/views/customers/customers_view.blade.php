@@ -129,15 +129,16 @@
             </div> <!-- end col -->
         </div>
     @endsection
+    @section('script')
     <script>
         $(function(e) {
             //file export datatable
             var table = $('#example').DataTable({
                 lengthChange: false,
-                buttons: ['copy', 'excel', 'pdf', 'colvis'],
+                buttons: ['copy', 'excel', 'pdff', 'colvis'],
                 responsive: true,
                 language: {
-                    searchPlaceholder: 'Search...',
+                    searchPlaceholder: 'البحث ...',
                     sSearch: '',
                     lengthMenu: '_MENU_ ',
                 }
@@ -147,7 +148,7 @@
 
             $('#example1').DataTable({
                 language: {
-                    searchPlaceholder: 'Search...',
+                    searchPlaceholder: 'البحث ...',
                     sSearch: '',
                     lengthMenu: '_MENU_',
                 }
@@ -155,7 +156,7 @@
             $('#example2').DataTable({
                 responsive: true,
                 language: {
-                    searchPlaceholder: 'Search...',
+                    searchPlaceholder: 'البحث ...',
                     sSearch: '',
                     lengthMenu: '_MENU_',
                 }
@@ -163,7 +164,7 @@
             var table = $('#example-delete').DataTable({
                 responsive: true,
                 language: {
-                    searchPlaceholder: 'Search...',
+                    searchPlaceholder: 'البحث ...',
                     sSearch: '',
                     lengthMenu: '_MENU_',
                 }
@@ -185,7 +186,7 @@
             $('#example-1').DataTable({
                 responsive: true,
                 language: {
-                    searchPlaceholder: 'Search...',
+                    searchPlaceholder: 'البحث ...',
                     sSearch: '',
                     lengthMenu: '_MENU_',
                 },
@@ -205,3 +206,5 @@
             });
         });
     </script>
+
+    @endsection

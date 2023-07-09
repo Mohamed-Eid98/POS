@@ -4,8 +4,7 @@
 
 <?php $__env->startSection('css'); ?>
     <!-- DataTables -->
-    <link
-        href="<?php echo e(asset('build/libs/datatables.net-bs4/css/dataTables.bootstrap4.min.css" rel="stylesheet" type="text/css')); ?>" />
+    
     <link
         href="<?php echo e(asset('build/libs/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css" rel="stylesheet" type="text/css')); ?>" />
 
@@ -88,28 +87,30 @@
                                                 <td><?php echo e($i); ?></td>
                                                 <td><?php echo e($user->name); ?></td>
                                                 <td><?php echo e($user->phone); ?></td>
-                                                <?php if( $user->seller): ?>
-                                                <td><?php echo e($user->seller->wallet_number); ?> </td>
-
-                                                <?php else: ?>
-                                                    <td></td>
-                                                <?php endif; ?>
-                                                <?php if($user->orders): ?>
-                                                <td><?php echo e($user->orders->count()); ?></td>
-
-                                                <?php else: ?>
-                                                <td>0</td>
-
-                                                <?php endif; ?>
-                                                    <?php if( $user->city): ?>
-                                                <td><?php echo e($user->city->general_title); ?></td>
-                                                <?php else: ?>
                                                 <td>
-                                                    لا يوجد محافظه
+                                                    <?php if($user->seller): ?>
+                                                    <?php echo e($user->seller->wallet_number); ?>
 
+                                                    <?php else: ?>
+
+                                                    <?php endif; ?>
                                                 </td>
+                                                <td>
+                                                    <?php if($user->orders): ?>
+                                                    <?php echo e($user->orders->count()); ?>
 
-                                                <?php endif; ?>
+                                                    <?php else: ?>
+                                                                    0
+                                                    <?php endif; ?>
+                                                </td>
+                                                <td>
+                                                    <?php if($user->city): ?>
+                                                    <?php echo e($user->city->general_title); ?>
+
+                                                    <?php else: ?>
+                                                                    لا يوجد
+                                                    <?php endif; ?>
+                                                </td>
 
                                                 
 

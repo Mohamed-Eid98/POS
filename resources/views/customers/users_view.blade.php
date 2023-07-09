@@ -6,8 +6,8 @@
 
 @section('css')
     <!-- DataTables -->
-    <link
-        href="{{ asset('build/libs/datatables.net-bs4/css/dataTables.bootstrap4.min.css" rel="stylesheet" type="text/css') }}" />
+    {{-- <link
+        href="{{ asset('build/libs/datatables.net-bs4/css/dataTables.bootstrap4.min.css" rel="stylesheet" type="text/css') }}" /> --}}
     <link
         href="{{ asset('build/libs/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css" rel="stylesheet" type="text/css') }}" />
 
@@ -77,7 +77,7 @@
 
 
                                     @php
-                                        
+
                                     @endphp
                                     <tbody>
 
@@ -88,9 +88,27 @@
                                                 <td>{{ $i }}</td>
                                                 <td>{{ $user->name }}</td>
                                                 <td>{{ $user->phone }}</td>
-                                                <td>ddرقم المحفظه</td>
-                                                <td>$num_orders< /td>
-                                                <td>الحافظه</td>
+                                                <td>
+                                                    @if ($user->seller)
+                                                    {{ $user->seller->wallet_number }}
+                                                    @else
+
+                                                    @endif
+                                                </td>
+                                                <td>
+                                                    @if ($user->orders)
+                                                    {{ $user->orders->count() }}
+                                                    @else
+                                                                    0
+                                                    @endif
+                                                </td>
+                                                <td>
+                                                    @if ($user->city)
+                                                    {{ $user->city->general_title }}
+                                                    @else
+                                                                    لا يوجد
+                                                    @endif
+                                                </td>
 
                                                 {{-- <td>{{ $user->avatar }}</td> --}}
 
@@ -140,15 +158,16 @@
         </div>
     @endsection
 
+    @section('script')
     <script>
         $(function(e) {
             //file export datatable
             var table = $('#example').DataTable({
                 lengthChange: false,
-                buttons: ['copy', 'excel', 'pdf', 'colvis'],
+                buttons: ['copy', 'excel', 'pdff', 'colvis'],
                 responsive: true,
                 language: {
-                    searchPlaceholder: 'Search...',
+                    searchPlaceholder: 'البحث ...',
                     sSearch: '',
                     lengthMenu: '_MENU_ ',
                 }
@@ -158,7 +177,7 @@
 
             $('#example1').DataTable({
                 language: {
-                    searchPlaceholder: 'Search...',
+                    searchPlaceholder: 'البحث ...',
                     sSearch: '',
                     lengthMenu: '_MENU_',
                 }
@@ -166,7 +185,7 @@
             $('#example2').DataTable({
                 responsive: true,
                 language: {
-                    searchPlaceholder: 'Search...',
+                    searchPlaceholder: 'البحث ...',
                     sSearch: '',
                     lengthMenu: '_MENU_',
                 }
@@ -174,7 +193,7 @@
             var table = $('#example-delete').DataTable({
                 responsive: true,
                 language: {
-                    searchPlaceholder: 'Search...',
+                    searchPlaceholder: 'البحث ...',
                     sSearch: '',
                     lengthMenu: '_MENU_',
                 }
@@ -196,7 +215,7 @@
             $('#example-1').DataTable({
                 responsive: true,
                 language: {
-                    searchPlaceholder: 'Search...',
+                    searchPlaceholder: 'البحث ...',
                     sSearch: '',
                     lengthMenu: '_MENU_',
                 },
@@ -216,3 +235,5 @@
             });
         });
     </script>
+
+    @endsection

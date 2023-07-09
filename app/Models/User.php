@@ -2,14 +2,15 @@
 
 namespace App\Models;
 
+use App\Models\Order;
+use Laravel\Sanctum\HasApiTokens;
+use Spatie\MediaLibrary\HasMedia;
+use Tymon\JWTAuth\Contracts\JWTSubject;
+use Illuminate\Notifications\Notifiable;
+use Spatie\MediaLibrary\InteractsWithMedia;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
-use Laravel\Sanctum\HasApiTokens;
-use Tymon\JWTAuth\Contracts\JWTSubject;
-use Spatie\MediaLibrary\HasMedia;
-use Spatie\MediaLibrary\InteractsWithMedia;
 
 class User extends Authenticatable implements JWTSubject, HasMedia
 {
@@ -99,6 +100,10 @@ class User extends Authenticatable implements JWTSubject, HasMedia
     public function customers()
     {
         return $this->hasMany(Customer::class);
+    }
+    public function orders()
+    {
+        return $this->hasMany(Order::class);
     }
     public function notifications()
     {

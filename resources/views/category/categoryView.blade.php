@@ -15,6 +15,8 @@
     <!-- Responsive datatable examples -->
     <link href="{{ URL::asset('build/libs/datatables.net-responsive-bs4/css/responsive.bootstrap4.min.css') }}"
         rel="stylesheet" type="text/css" />
+
+
 @endsection
 
 @section('content')
@@ -116,80 +118,9 @@
         </div>
     @endsection
 
-    {{-- <script>
-        function myFunction() {
-            // Declare variables
-            var input, filter, table, tr, td, i, txtValue;
-            input = document.getElementById("myInput");
-            filter = input.value.toUpperCase();
-            table = document.getElementById("myTable");
-            tr = table.getElementsByTagName("tr");
-
-            // Loop through all table rows, and hide those who don't match the search query
-            for (i = 0; i < tr.length; i++) {
-                td = tr[i].getElementsByTagName("td")[0];
-                if (td) {
-                    txtValue = td.textContent || td.innerText;
-                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
-                        tr[i].style.display = "";
-                    } else {
-                        tr[i].style.display = "none";
-                    }
-                }
-            }
-        }
-    </script> --}}
 
 
-
-
-
-    {{-- <script>
-        function searchTable() {
-            var input, filter, found, table, tr, td, i, j;
-            input = document.getElementById("myInput");
-            filter = input.value.toUpperCase();
-            table = document.getElementById("myTable");
-            tr = table.getElementsByTagName("tr");
-            for (i = 0; i < tr.length; i++) {
-                td = tr[i].getElementsByTagName("td");
-                for (j = 0; j < td.length; j++) {
-                    if (td[j].innerHTML.toUpperCase().indexOf(filter) > -1) {
-                        found = true;
-                    }
-                }
-                if (found) {
-                    tr[i].style.display = "";
-                    found = false;
-                } else {
-                    tr[i].style.display = "none";
-                }
-            }
-        }
-    </script>
-    <script>
-        var currentPosition = 0;
-        var maxPosition = 10;
-        updateContent();
-        document.getElementById("prev").addEventListener("click", function() {
-            if (currentPosition > 0) {
-                currentPosition--;
-                updateContent();
-            }
-        });
-        document.getElementById("next").addEventListener("click", function() {
-            if (currentPosition < maxPosition) {
-                currentPosition++;
-                updateContent();
-            }
-        });
-
-        function updateContent() {
-            // update UI or make API call here
-            var content = document.getElementById("content");
-            content.innerHTML = "Current Position: " + currentPosition + "<br> <br>";
-        }
-    </script> --}}
+    @section('script')
     <script>
         $(function(e) {
             //file export datatable
@@ -266,3 +197,5 @@
             });
         });
     </script>
+
+    @endsection
