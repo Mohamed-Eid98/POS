@@ -30,14 +30,14 @@
 
 
     @if (session('delete'))
-    <div class="alert alert-success">
-        {{ session('delete') }}
-    </div>
+        <div class="alert alert-success">
+            {{ session('delete') }}
+        </div>
     @endif
     @if (session('edit'))
-    <div class="alert alert-success">
-        {{ session('edit') }}
-    </div>
+        <div class="alert alert-success">
+            {{ session('edit') }}
+        </div>
     @endif
 
     <div class="row">
@@ -45,7 +45,7 @@
             <div class="card">
                 <div class="card-body">
 
-                    <h4 class="card-title">عرض الاقسام الرئيسيه</h4>
+                    <h4 class="card-title my-5">عرض الاقسام الرئيسيه</h4>
 
 
                     <div id="datatable_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
@@ -59,45 +59,45 @@
 
                         <div class="row">
                             <div class="col-sm-12">
-                                <table id="example"
-                                    class="table table-bordered dt-responsive nowrap w-100 dataTable no-footer dtr-inline"
-                                    role="grid" aria-describedby="datatable_info" style="width: 1566px;">
+                                <table id="example" class="table table-striped my-3 w-100 " role="grid"
+                                    aria-describedby="datatable_info">
                                     <thead>
                                         <tr role="row">
                                             <th>#</th>
-                                            <th> الصوره</th>
+                                            <th>
+                                                الصوره
+                                            </th>
                                             <th>القسم الرئيسي</th>
                                             <th>التعديلات</th>
                                         </tr>
-
                                     </thead>
-
-
                                     <tbody>
-
                                         <?php $i = 0; ?>
                                         @foreach ($categories as $category)
                                             <?php $i++; ?>
                                             <tr>
-                                                <td><strong>{{ $i }}</strong></td>
+                                                <td>{{ $i }}</td>
                                                 <td>
-                                                    @if ($category->getFirstMediaUrl('CategoryImages'))
-                                                    <img src="{{  $category->getFirstMediaUrl('CategoryImages') }}" style="width: 60px;height:50px" alt="{{ $category->title }}" class="img-fluid">
-
+                                                    @if ($category->getFirstMediaUrl('images'))
+                                                        <img src="{{ $category->getFirstMediaUrl('images') }}"
+                                                            style="width: 60px;height:50px" alt="{{ $category->title }}"
+                                                            class="img-fluid">
                                                     @else
-                                                    <img src="{{  asset('uploads/on-C100969_Image_01.jpeg') }}" style="width: 60px;height:50px" alt="{{ $category->title }}" class="img-fluid">
-
+                                                        <img src="{{ asset('uploads/on-C100969_Image_01.jpeg') }}"
+                                                            style="width: 60px;height:50px" alt="{{ $category->title }}"
+                                                            class="img-fluid">
                                                     @endif
                                                 </td>
-                                                <td><strong>{{ $category->name }}</strong></td>
+                                                <td>{{ $category->name }}</td>
                                                 <td>
                                                     <a href="{{ route('category.edit', $category->id) }}" title="Edit Data"
-                                                        class="btn btn-info">
-                                                        <i class="fas fa-edit"></i></a>
-                                                    <a href="{{ route('category.delete', $category->id) }}"
-                                                        class="btn btn-danger" title="حذف">
-                                                        <i class="fas fa-trash"></i></a>
+                                                        class="btn btn-sm btn-soft-primary"><i
+                                                            class="mdi mdi-pencil-outline"></i></a>
+                                                    <a href="{{ route('category.delete', $category->id) }}" title="حذف"
+                                                        class="btn btn-sm btn-soft-danger"><i
+                                                            class="mdi mdi-delete-outline"></i></a>
                                                 </td>
+
                                             </tr>
                                         @endforeach
 

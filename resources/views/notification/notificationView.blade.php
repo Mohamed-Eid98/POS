@@ -27,6 +27,24 @@
         @endslot
     @endcomponent
 
+
+    @if (session('delete'))
+        <div class="alert alert-success">
+            {{ session('delete') }}
+        </div>
+    @endif
+    @if (session('edit'))
+        <div class="alert alert-success">
+            {{ session('edit') }}
+        </div>
+    @endif
+    @if (session('add'))
+        <div class="alert alert-success">
+            {{ session('add') }}
+        </div>
+    @endif
+
+
     <div class="row">
         <div class="col-12">
             <div class="card">
@@ -38,30 +56,21 @@
 
                     <div id="datatable_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
                         <div class="row">
-                            <div class="col-sm-12 col-md-6">
-                                <div class="dataTables_length" id="datatable_length"><label>Show <select
-                                            name="datatable_length" aria-controls="datatable"
-                                            class="custom-select custom-select-sm form-control form-control-sm form-select form-select-sm">
-                                            <option value="10">10</option>
-                                            <option value="25">25</option>
-                                            <option value="50">50</option>
-                                            <option value="100">100</option>
-                                        </select> entries</label></div>
-                            </div>
+
 
                         </div>
                         {{-- <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names.."> --}}
 
                         <div class="row">
                             <div class="col-sm-12">
-                                <table id="example"
-                                    class="table table-bordered dt-responsive nowrap w-100 dataTable no-footer dtr-inline"
-                                    role="grid" aria-describedby="datatable_info" style="width: 1566px;">
+                                <table id="example" class="table table-striped my-3 w-100 " role="grid"
+                                    aria-describedby="datatable_info" style="width: 1566px;">
                                     <thead>
                                         <tr role="row">
                                             <th>#</th>
-                                            <th>##</th>
-                                            <th>###</th>
+                                            <th>الاشعار</th>
+                                            <th>نوع الاشعار</th>
+                                            <th>التعديلات</th>
                                         </tr>
 
                                     </thead>
@@ -70,18 +79,41 @@
                                     <tbody>
 
                                         <?php $i = 0; ?>
-
+                                        @foreach ($notifications as $notification)
                                         <?php $i++; ?>
                                         <tr>
                                             <td><strong>{{ $i }}</strong></td>
-                                            <td><strong>ass</strong></td>
+
+                                            <td><strong> {{ $notification->title }} </strong></td>
+
+                                            @if ($notification->type == 'Info')
+
+                                                    <td><strong>معلومه</strong></td>
+                                            @elseif ($notification->type == 'Product')
+
+                                                    <td><strong>تنبيه</strong></td>
+
+
+                                            @else
+                                                    <td><strong>تهنئه</strong></td>
+                                            @endif
                                             <td>
-                                                <a href="" title="Edit Data" class="btn btn-info">
-                                                    <i class="fas fa-edit"></i></a>
-                                                <a href="" class="btn btn-danger" title="حذف">
-                                                    <i class="fas fa-trash"></i></a>
+                                                <ul class="list-unstyled hstack gap-1 mb-0">
+                                                    <li data-bs-toggle="tooltip" data-bs-placement="top" title="تعديل ">
+                                                        <a href="{{ route('notification.edit' , $notification->id) }}" class="btn btn-sm btn-soft-primary"><i
+                                                                class="mdi mdi-pencil-outline"></i></a>
+                                                    </li>
+
+                                                    <li data-bs-toggle="tooltip" data-bs-placement="top" title="Delete">
+                                                        <a href="{{ route('notification.delete' , $notification->id) }}" title="حذف"
+                                                            class="btn btn-sm btn-soft-danger"><i
+                                                                class="mdi mdi-delete-outline"></i></a>
+                                                    </li>
+                                                </ul>
                                             </td>
                                         </tr>
+                                        @endforeach
+
 
 
                                     </tbody>

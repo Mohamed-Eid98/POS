@@ -56,8 +56,8 @@
 
                             <div class="fallback">
 
-                                @if ($category->getFirstMediaUrl('CategoryImages'))
-                                <img src="{{  $category->getFirstMediaUrl('CategoryImages') }}" style="width: 130px;height:150px" id="mainThmb" alt="">
+                                @if ($category->getFirstMediaUrl('images'))
+                                <img src="{{  $category->getFirstMediaUrl('images') }}" style="width: 130px;height:150px" id="mainThmb" alt="">
                                 <br><br>
                                 @else
                                 <img src="" id="mainThmb" alt=""> <br><br>

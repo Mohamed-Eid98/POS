@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Models\Customer;
-use App\Models\Order;
 use Illuminate\Http\Request;
 
 class CustomerController extends Controller
@@ -13,19 +12,7 @@ class CustomerController extends Controller
 
         $users = User::with('customers')->get();
         // return $customers;
-        return view('customers.users_view' , compact('users'));
-    }
-    function showcustomer($id){
-
-        $user = User::with('customers')->find($id);
-        //  return $customers;
-         return view('customers.customers_view' , compact('user'));
-    }
-    function showuserorder($id){
-
-        $users = Order::find($id)->get();
-        //  return $customers;
-         return view('customers.ordercustomer_view' , compact('users'));
+        return view('customers.customers_view' , compact('users'));
     }
     function delete($id){
 

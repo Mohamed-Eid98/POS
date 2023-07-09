@@ -3,8 +3,6 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-use App\Models\User;
-
 
 class CreateUsersTable extends Migration
 {
@@ -17,16 +15,30 @@ class CreateUsersTable extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('email')->unique();
+            $table->string('name')->nullable();
+            $table->string('phone', 20)->nullable()->unique();
+            $table->string('email')->nullable()->unique();
+            $table->string('password')->nullable();
+            $table->unsignedBigInteger('country_id')->unsigned()->nullable();
+            $table->foreign('country_id')->references('id')->on('countries')->onDelete('set null');
+            $table->unsignedBigInteger('city_id')->unsigned()->nullable();
+            $table->foreign('city_id')->references('id')->on('cities')->onDelete('set null');
+            $table->unsignedBigInteger('area_id')->unsigned()->nullable();
+            $table->foreign('area_id')->references('id')->on('areas')->onDelete('set null');
             $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
-            $table->date('dob');
-            $table->text('avatar');
+            $table->string('address')->nullable();
+            $table->string('lat')->nullable();
+            $table->string('lang')->nullable();
+            $table->string('image',250)->nullable();
+            $table->boolean('is_active')->default(true);
+            $table->string('activation_code', 10)->nullable();
+            $table->tinyInteger('is_registerd')->default(0);
+            $table->enum('gender', array('male','female'))->nullable();
+            $table->date('date_of_birth')->nullable();
+            $table->text('device_token')->nullable(); // Add device token in users migration file.
             $table->rememberToken();
             $table->timestamps();
         });
-        User::create(['name' => 'admin','dob'=>'2000-10-10','email' => 'admin@themesbrand.com','password' => Hash::make('123456'),'email_verified_at'=>'2022-01-02 17:04:58','avatar' => 'images/avatar-1.jpg','created_at' => now(),]);
     }
 
     /**

@@ -57,16 +57,17 @@
                         </div>
                         <div class="row">
                             <div class="col-sm-12">
-                                <table id="example"
-                                    class="table table-bordered dt-responsive nowrap w-100 dataTable no-footer dtr-inline my-3"
-                                    role="grid" aria-describedby="datatable_info" style="width: 1566px;">
+                                <table id="example" class="table table-striped my-3 w-100" role="grid"
+                                    aria-describedby="datatable_info" style="width: 1566px;">
                                     <thead>
                                         <tr role="row">
                                             <th>#</th>
-                                            <th>الموزع</th>
-                                            <th>رقم التليفون</th>
-                                            <th>الايميل </th>
-                                            <th>العنوان </th>
+                                            <th>الاسم</th>
+                                            <th>رقم الهاتف</th>
+                                            <th>رقم المحفظه </th>
+                                            <th> عدد الطلبات</th>
+
+                                            <th>المحافظه </th>
                                             {{-- <th>الصوره </th> --}}
 
                                             <th>التعديلات</th>
@@ -75,6 +76,9 @@
                                     </thead>
 
 
+                                    @php
+                                        
+                                    @endphp
                                     <tbody>
 
                                         <?php $i = 0; ?>
@@ -84,8 +88,10 @@
                                                 <td>{{ $i }}</td>
                                                 <td>{{ $user->name }}</td>
                                                 <td>{{ $user->phone }}</td>
-                                                <td>{{ $user->email }}</td>
-                                                <td>{{ $user->address }}</td>
+                                                <td>ddرقم المحفظه</td>
+                                                <td>$num_orders< /td>
+                                                <td>الحافظه</td>
+
                                                 {{-- <td>{{ $user->avatar }}</td> --}}
 
 

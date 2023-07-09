@@ -2,18 +2,16 @@
 
 namespace App\Models;
 
-use App\Models\City;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-
-class Country extends Model
+use Illuminate\Database\Eloquent\Model;
+use Astrotomic\Translatable\Contracts\Translatable as TranslatableContract;
+use Astrotomic\Translatable\Translatable;
+class Country extends Model implements TranslatableContract
 {
-    use HasFactory;
-    /**
-     * Get all of the comments for the Country
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
+    use HasFactory,  Translatable;
+
+    public $translatedAttributes = ['title'];
+    protected $guarded = [];
     public function cities()
     {
         return $this->hasMany(City::class);

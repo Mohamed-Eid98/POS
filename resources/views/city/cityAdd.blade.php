@@ -22,9 +22,9 @@
         @endslot
     @endcomponent
 
-    @if (session('Add'))
+    @if (session('add'))
         <div class="alert alert-success">
-            {{ session('Add') }}
+            {{ session('add') }}
         </div>
     @endif
 
@@ -42,24 +42,6 @@
                         <form action="{{ route('city.store') }}" class="dropzone" method="POST"
                             enctype="multipart/form-data">
                             @csrf
-
-
-                            <div class="mb-3">
-                                <div class="form-group">
-                                    <h5> البلد <span class="text-danger">*</span></h5>
-                                    <div class="controls">
-                                        <select name="cate_id" id="select" class="form-control">
-                                            <option value="" selected disabled>-- اختر البلد --</option>
-                                            @foreach ($countries as $country)
-                                                <option value="{{ $country->id }}">{{ $country->general_title }}</option>
-                                            @endforeach
-                                        </select>
-                                        @error('cate_id')
-                                            <span class="text-danger">{{ $message }}</span>
-                                        @enderror
-                                    </div>
-                                </div>
-                            </div>
 
                             <div class="mb-3">
                                 <label for="formrow-firstname-input" class="form-label">اسم المحافظه <span

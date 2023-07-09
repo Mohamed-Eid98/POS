@@ -37,7 +37,7 @@ class CategoryController extends Controller
 
 
         if ($request->hasFile('pic')) {
-            $category->addMediaFromRequest('pic')->usingName($category->name)->toMediaCollection('CategoryImages');
+            $category->addMediaFromRequest('pic')->usingName($category->name)->toMediaCollection('images');
 
     }
         session()->flash('Add', 'تم اضافة القسم بنجاح ');
@@ -76,7 +76,7 @@ public function Update(Request $request)
 ]);
 
      if ($request->hasFile('pic')) {
-        $category->addMediaFromRequest('pic')->toMediaCollection('CategoryImages');
+        $category->addMediaFromRequest('pic')->toMediaCollection('images');
 
 }
 

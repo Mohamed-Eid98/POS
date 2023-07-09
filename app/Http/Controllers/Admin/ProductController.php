@@ -25,7 +25,6 @@ class ProductController extends Controller
         $categories = Category::orderBy('name', 'ASC')->get();
         $colors = Color::orderBy('name', 'ASC')->get();
         $sizes = Size::orderBy('name', 'ASC')->get();
-        // return response()->view('my-view')->header('Cache-Control', 'no-cache, no-store, must-revalidate');
         return view('product.ProductAdd', compact('categories', 'colors', 'sizes'));
     }
 
@@ -48,64 +47,34 @@ class ProductController extends Controller
     {
         // return $request;
 
-        if ($request->file('pic')) {
-            // dd('sa');
-            $file = $request->file('pic');
-            $fileName = date('YmdHi').$file->getClientOriginalName();
-            $file->move(public_path('uploads/product/'), $fileName);
-            $save_url = 'uploads/product/'.$fileName;
 
-            $product_id = Product::insertGetId([
+            $product = Product::create([
                 'name' => $request->name,
                 'description' => $request->desc,
                 'code' => $request->code,
 
-                'sub_category_id' => 17,
+                'sub_category_id' => $request->subcate_id,
 
                 'price' => $request->price,
                 'min_price' => $request->min_price,
                 'increase_ratio' => $request->increase_ratio,
                 'repeat_times' => $request->repeated_times,
+                'product_qty' => $request->qty,
 
 
-                'image' => $save_url,
                 'is_new' => $request->new,
                 'is_on_sale' => $request->sale,
                 'is_new_arrival' => $request->new_arrival,
                 'is_best_seller' => $request->best_seller,
 
             ]);
-        } else {
-            $product_id = Product::insertGetId([
-                'name' => $request->name,
-                'description' => $request->desc,
-                'code' => $request->code,
 
-                'sub_category_id' => 17,
 
-                'price' => $request->price,
-                'min_price' => $request->min_price,
-                'increase_ratio' => $request->increase_ratio,
-                'repeat_times' => $request->repeated_times,
 
-                'is_new' => $request->new,
-                'is_on_sale' => $request->sale,
-                'is_new_arrival' => $request->new_arrival,
-                'is_best_seller' => $request->best_seller,
-            ]);
+        if ($request->hasFile('pic')) {
+            $product->addMediaFromRequest('pic')->toMediaCollection('images');
 
-            $color_product_id = ColorProduct::insertGetId([
-                'product_id' => $product_id,
-                'color_id' => $request->color,
-            ]);
-
-            $color_product_size_id = ColorProductSize::insertGetId([
-                'color_product_id' => $color_product_id,
-                'size_id' => $request->size,
-
-            ]);
-        }
-        dd($request->all());
+    }
 
         session()->flash('add', 'تم اضافة المنتج بنجاح ');
 
@@ -129,8 +98,8 @@ public function showSub($id)
 
 public function Edit($id)
 {
-    $categories = Category::latest()->get();
-    $subcategories = subCategory::latest()->get();
+    $categories = Category::orderBy('name', 'ASC')->get();
+    $subcategories = subCategory::orderBy('name', 'ASC')->get();
     $product = Product::find($id);
 
     $colors = Color::orderBy('name', 'ASC')->get();
@@ -144,58 +113,35 @@ public function Edit($id)
 public function Update(Request $request)
 {
     $id = $request->id;
-    $old_pic = $request->photo;
+    $product =Product::findOrFail($id);
 
-    if ($request->file('main_thambnail')) {
-        unlink(public_path('uploads/'.$old_pic));
-        $file = $request->file('main_thambnail');
-        $fileName = date('YmdHi').$file->getClientOriginalName();
-        $file->move(public_path('uploads/'), $fileName);
+    Product::findOrFail($id)->update([
 
-        Product::findOrFail($id)->update([
-            'category_id' => $request->cate_id,
-            'Subcategory_id' => $request->subcate_id,
-            'name' => $request->name,
-            'description' => $request->short_desc,
-            'product_photo' => $request->main_thambnail,
+        'name' => $request->name,
+        'description' => $request->desc,
+        'code' => $request->code,
 
-            'selling_price' => $request->price,
-            'min_price' => $request->min_price,
-            'increase_ratio' => $request->increase_ratio,
-            'product_qty' => $request->count,
-            'code' => $request->code,
+        'sub_category_id' => $request->subcate_id,
+
+        'price' => $request->price,
+        'min_price' => $request->min_price,
+        'increase_ratio' => $request->increase_ratio,
+        'repeat_times' => $request->repeated_times,
+        'product_qty' => $request->qty,
 
 
+        'is_new' => $request->new,
+        'is_on_sale' => $request->sale,
+        'is_new_arrival' => $request->new_arrival,
+        'is_best_seller' => $request->best_seller,
 
-            'is_new' => $request->is_new,
-            'on_sale' => $request->on_sale,
-            'new_arrival' => $request->new_arrival,
-            'best_seller' => $request->best_seller,
-            'product_photo' => $fileName,
-        ]);
-    } else {
-        Product::findOrFail($id)->update([
-            'category_id' => $request->cate_id,
-            'Subcategory_id' => $request->subcate_id,
-            'name' => $request->name,
-            'description' => $request->short_desc,
-            'product_photo' => $request->main_thambnail,
+    ]);
 
-            'selling_price' => $request->price,
-            'min_price' => $request->min_price,
-            'increase_ratio' => $request->increase_ratio,
-            'product_qty' => $request->count,
-            'code' => $request->code,
+if ($request->hasFile('pic')) {
+    $product->addMediaFromRequest('pic')->toMediaCollection('images');
 
+}
 
-
-
-            'is_new' => $request->is_new,
-            'on_sale' => $request->on_sale,
-            'new_arrival' => $request->new_arrival,
-            'best_seller' => $request->best_seller,
-        ]);
-    }
 
     session()->flash('edit', 'تم تعديل المنتج بنجاح ');
 
@@ -205,10 +151,7 @@ public function Update(Request $request)
 public function Delete($id)
 {
     $product = Product::findOrfail($id);
-    // if($product->image){
 
-    //     unlink(public_path('/uploads/product/'.$product->image));
-    // }
 
     Product::findOrfail($id)->delete();
     session()->flash('delete', 'تم حذف المنتج بنجاح ');
@@ -250,7 +193,7 @@ foreach ($request->size as $size) {
 
 if ($request->hasFile('multi_img')) {
     foreach ($request->file('multi_img') as $image) {
-        $color_product->addMedia($image)->usingName('colorImages')->toMediaCollection('ColorImages');
+        $color_product->addMedia($image)->usingName('colorImages')->toMediaCollection('images');
     }
 }
 
