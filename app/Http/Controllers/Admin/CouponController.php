@@ -56,11 +56,22 @@ class CouponController extends Controller
         $coupon = Coupon::findOrFail($id);
         $coupon->is_active = $request->input('is_active');
         $coupon->save();
-        
+
         session()->flash('edit', 'تم تعديل الكوبون بنجاح ');
 
 
         return response()->json(['success' => true]);
+    }
+    public function coupon_delete($id)
+    {
+
+        $coupon = Coupon::findOrFail($id);
+        $coupon->delete();
+
+        session()->flash('delete', 'تم حذف الكوبون بنجاح ');
+
+
+        return redirect()->back();
     }
 
 

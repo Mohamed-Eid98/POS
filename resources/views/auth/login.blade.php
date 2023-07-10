@@ -89,8 +89,8 @@
                             <div class="d-flex flex-column h-100" >
                                 <div class="mb-4 mb-md-5">
                                     <a href="index" class="d-block auth-logo" style="text-align: center">
-                                        <img src="{{ asset('/build/images/logo1.png') }}" alt="" height="80">
-                                        <img src="{{ asset('/build/images/logo1.pngg') }}" alt="" height="80">
+                                        <img src="{{ asset('/build/images/logo123.png') }}" alt="" height="80">
+                                        <img src="{{ asset('/build/images/logo123.pngg') }}" alt="" height="80">
                                     </a>
                                 </div>
 

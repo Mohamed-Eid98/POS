@@ -183,6 +183,8 @@ Route::middleware('isAdmin')->group(function () {
     Route::get('/addemployeerole', [EmployeeController::class, 'addemployee'])->name('employee.add.role');
     Route::post('/employee-role-update', [EmployeeController::class, 'UpdateRole'])->name('employee.update.role');
     Route::post('/employee-update', [EmployeeController::class, 'UpdateEmployee'])->name('employee.update');
+    Route::patch('/user-{user}', [EmployeeController::class, 'updateStatus'])->name('user.updateStatus');
+    Route::get('/delete-employee-{id}', [EmployeeController::class, 'delete'])->name('employee.delete');
 
     // Route::get('/role-test', [RoleController::class, 'show'])->name('role.test');
 

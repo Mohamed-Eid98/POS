@@ -67,4 +67,27 @@ class EmployeeController extends Controller
     return redirect()->back();
 }
 
+public function updateStatus(Request $request, $id)
+{
+
+    $user = User::findOrFail($id);
+    $user->is_active = $request->input('is_active');
+    $user->save();
+
+    // session()->flash('edit', 'تم تعديل الكوبون بنجاح ');
+
+
+    return response()->json(['success' => true]);
+}
+public function Delete($id)
+{
+    $user = User::findOrfail($id);
+
+
+    User::findOrfail($id)->delete();
+    session()->flash('delete', 'تم حذف الموظف بنجاح ');
+
+    return redirect()->back();
+}
+
 }

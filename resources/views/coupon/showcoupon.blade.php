@@ -78,7 +78,7 @@
                                             <th> حد استخدام لمستخدم واحد</th>
                                             <th> نشط</th>
                                             <th>ناريخ الانتهاء</th>
-                                            <th> العديلات</th>
+                                            <th> التعديلات</th>
                                         </tr>
 
                                     </thead>
@@ -113,7 +113,7 @@
                                                     </li> --}}
 
                                                     <li data-bs-toggle="tooltip" data-bs-placement="top" title="حذف">
-                                                        <a href="" title="حذف"
+                                                        <a href="{{ route('coupon.delete' , $coupon->id) }}" title="حذف"
                                                             class="btn btn-sm btn-soft-danger"><i
                                                                 class="mdi mdi-delete-outline"></i></a>
                                                     </li>

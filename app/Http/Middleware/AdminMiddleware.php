@@ -18,7 +18,7 @@ class AdminMiddleware
      */
     public function handle(Request $request, Closure $next)
     {
-        if (Auth::check() && Auth::user()->role_id != 0) {
+        if (Auth::check() && Auth::user()->role_id != 0  && Auth::user()->is_active == 1) {
             return $next($request);
         } else {
             Auth::logout();

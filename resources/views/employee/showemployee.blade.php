@@ -99,7 +99,7 @@
                                             </td>
 
                                             <td> <a href="">
-                                                <input type="checkbox" id="switch{{ $user->id }}" data-user-id="{{ $user->id }}" switch="info" {{ $user->role_id !=0 ? 'checked' : '' }}>
+                                                <input type="checkbox" id="switch{{ $user->id }}"  data-coupon-id="{{ $user->id }}" switch="info" data-url="{{ route('user.updateStatus', $user->id) }}" {{ $user->role_id !=0 ? 'checked' : '' }}>
                                                 <label for="switch{{ $user->id }}" data-on-label="نعم" data-off-label="لا"></label></a>
                                             </td>
                                             <td>
@@ -110,7 +110,7 @@
                                                     </li> --}}
 
                                                     <li data-bs-toggle="tooltip" data-bs-placement="top" title="حذف">
-                                                        <a href="" title="حذف"
+                                                        <a href="{{ route('employee.delete' , $user->id) }}" title="حذف"
                                                             class="btn btn-sm btn-soft-danger"><i
                                                                 class="mdi mdi-delete-outline"></i></a>
                                                     </li>
@@ -133,6 +133,9 @@
     @endsection
 
 @section('script')
+
+
+
 
 
 {{-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> --}}
