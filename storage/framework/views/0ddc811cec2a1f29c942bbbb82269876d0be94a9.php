@@ -5,7 +5,7 @@
 <!-- Icons Css -->
 <link href="<?php echo e(URL::asset('/build/css/icons.min.css')); ?>" rel="stylesheet" type="text/css" />
 <!-- App Css-->
-<link href="<?php echo e(URL::asset('/build/css/app.min.css')); ?>" id="app-style" rel="stylesheet" type="text/css" />
+<link href="<?php echo e(URL::asset('/build/css/app-rtl.min.css')); ?>" id="app-style" rel="stylesheet" type="text/css" />
 <link href="<?php echo e(URL::asset('/build/css/style.css')); ?>" rel="stylesheet" type="text/css" />
 <link href="<?php echo e(URL::asset('/build/css/select2.min.css')); ?>" rel="stylesheet" type="text/css" />
 

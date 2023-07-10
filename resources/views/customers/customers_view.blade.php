@@ -129,7 +129,7 @@
             </div> <!-- end col -->
         </div>
     @endsection
-    @section('script')
+    @section('js')
     <script>
         $(function(e) {
             //file export datatable

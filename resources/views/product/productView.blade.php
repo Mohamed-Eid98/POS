@@ -211,6 +211,7 @@
 
 
 
+    @section('js')
 
 
 
@@ -290,3 +291,4 @@
             });
         });
     </script>
+@endsection

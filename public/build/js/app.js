@@ -14,7 +14,7 @@ File: Main Js File
 
     var language = localStorage.getItem('language');
     // Default Language
-    var default_lang = 'en';
+    var default_lang = 'ar';
 
     function setLanguage(lang) {
         if (document.getElementById("header-lang-img")) {
@@ -226,7 +226,7 @@ File: Main Js File
           var alreadyVisited = sessionStorage.getItem("is_visited");
           if (!alreadyVisited) {
             $("#rtl-mode-switch").prop('checked', true); // set the "RTL Mode" checkbox as default
-            $("#light-mode-switch, #dark-mode-switch, #dark-rtl-mode-switch").prop('checked', false); // uncheck the other checkboxes
+            $("#dark-rtl-mode-switch").prop('checked', false); // uncheck the other checkboxes
             sessionStorage.setItem("is_visited", "rtl-mode-switch");
             updateThemeSetting(alreadyVisited);
           } else {
@@ -235,7 +235,7 @@ File: Main Js File
             updateThemeSetting(alreadyVisited);
           }
         }
-        $("#light-mode-switch, #dark-mode-switch, #rtl-mode-switch, #dark-rtl-mode-switch").on("change", function (e) {
+        $("#rtl-mode-switch, #dark-rtl-mode-switch").on("change", function (e) {
           updateThemeSetting(e.target.id);
         });
 
@@ -247,36 +247,16 @@ File: Main Js File
       }
 
       function updateThemeSetting(id) {
-        if ($("#light-mode-switch").prop("checked") == true && id === "light-mode-switch") {
-          $("html").removeAttr("dir");
-          $("#dark-mode-switch").prop("checked", false);
-          $("#rtl-mode-switch").prop("checked", false);
+        if ($("#rtl-mode-switch").prop("checked") == true && id === "rtl-mode-switch") {
           $("#dark-rtl-mode-switch").prop("checked", false);
-          $("#bootstrap-style").attr('href', 'build/css/bootstrap.min.css');
-          $('body').attr('data-layout-mode', 'light');
-          $("#app-style").attr('href', 'build/css/app.min.css');
-          sessionStorage.setItem("is_visited", "light-mode-switch");
-        } else if ($("#dark-mode-switch").prop("checked") == true && id === "dark-mode-switch") {
-          $("html").removeAttr("dir");
-          $("#light-mode-switch").prop("checked", false);
-          $("#rtl-mode-switch").prop("checked", false);
-          $("#dark-rtl-mode-switch").prop("checked", false);
-          $('body').attr('data-layout-mode', 'dark');
-          sessionStorage.setItem("is_visited", "dark-mode-switch");
-        } else if ($("#rtl-mode-switch").prop("checked") == true && id === "rtl-mode-switch") {
-          $("#light-mode-switch").prop("checked", false);
-          $("#dark-mode-switch").prop("checked", false);
-          $("#dark-rtl-mode-switch").prop("checked", false);
-          // $("#bootstrap-style").attr('href', 'build/css/bootstrap-rtl.min.css');
+        //   $("#bootstrap-style").attr('href', 'build/css/bootstrap-rtl.min.css');
           $("#app-style").attr('href', 'build/css/app-rtl.min.css');
           $("html").attr("dir", 'rtl');
           $('body').attr('data-layout-mode', 'light');
           sessionStorage.setItem("is_visited", "rtl-mode-switch");
         } else if ($("#dark-rtl-mode-switch").prop("checked") == true && id === "dark-rtl-mode-switch") {
-          $("#light-mode-switch").prop("checked", false);
           $("#rtl-mode-switch").prop("checked", false);
-          $("#dark-mode-switch").prop("checked", false);
-          // $("#bootstrap-style").attr('href', 'build/css/bootstrap-rtl.min.css');
+        //   $("#bootstrap-style").attr('href', 'build/css/bootstrap-rtl.min.css');
           $("#app-style").attr('href', 'build/css/app-rtl.min.css');
           $("html").attr("dir", 'rtl');
           $('body').attr('data-layout-mode', 'dark');
@@ -284,7 +264,7 @@ File: Main Js File
         }
       }
 
-      initSettings();
+    //   initSettings();
 
 
     function initLanguage() {

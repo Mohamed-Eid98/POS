@@ -240,18 +240,7 @@
                         </ul>
                     </li>
                     <?php endif; ?>
-                    <li>
-                        <a href="javascript: void(0);" class="has-arrow waves-effect my-3">
-                            <i class="bx bx-map"></i>
-                            <span key="t-dashboards"> الكوبونات</span>
-                        </a>
-                        <ul class="sub-menu" aria-expanded="false">
-                            <li><a class="slide-item" href="<?php echo e(route('coupon.add')); ?>"> اضافه كوبون</a>
-                            <li><a class="slide-item" href="<?php echo e(route('social.add')); ?>"> عرض الكوبونات</a>
-
-
-                        </ul>
-                    </li>
+                    
 
                     <?php if($permission->name == 'complains' || $permission->name == 'admins'): ?>
                     <li>

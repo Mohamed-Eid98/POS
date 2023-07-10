@@ -146,8 +146,9 @@
             </div> <!-- end col -->
         </div>
     @endsection
+    @section('js')
 
-    
+
     <script>
         $(function(e) {
             //file export datatable
@@ -162,7 +163,7 @@
                 }
             });
             table.buttons().container()
-                .appendTo('#example_wrapper .col-md-6:eq(0)');
+            .appendTo('#example_wrapper .col-md-6:eq(0)');
 
             $('#example1').DataTable({
                 language: {
@@ -223,4 +224,6 @@
                 }
             });
         });
-    </script>
+        </script>
+
+@endsection

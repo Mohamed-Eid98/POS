@@ -25,7 +25,7 @@ class ProductController extends Controller
         $categories = Category::orderBy('name', 'ASC')->get();
         $colors = Color::orderBy('name', 'ASC')->get();
         $sizes = Size::orderBy('name', 'ASC')->get();
-        return view('product.ProductAdd', compact('categories', 'colors', 'sizes'));
+        return view('product.productAdd', compact('categories', 'colors', 'sizes'));
     }
 
     public function addcands()

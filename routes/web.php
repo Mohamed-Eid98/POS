@@ -197,3 +197,6 @@ Route::middleware('isAdmin')->group(function () {
     Route::get('/addcoupon', [CouponController::class, 'addcoupon'])->name('coupon.add');
     //////////// End coupon All Routes //////////
 });
+
+
+Route::get('/test-test', [ComplainController::class, 'addcomplain']);
