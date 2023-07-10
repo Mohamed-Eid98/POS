@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('title')
-    عرض المناطق
+    عرض الروابط
 @endsection
 
 @section('css')
@@ -23,10 +23,16 @@
             عرض
         @endslot
         @slot('title')
-            الموظفين
+            الروابط
         @endslot
     @endcomponent
 
+
+    @if (session('add'))
+        <div class="alert alert-success">
+            {{ session('add') }}
+        </div>
+    @endif
 
     @if (session('delete'))
         <div class="alert alert-success">
@@ -39,43 +45,61 @@
         </div>
     @endif
 
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+
+                    <form method="post" action="{{ route('social.store') }}" enctype="multipart/form-data">
+                        @csrf
+
+                        <div class="form-group">
+                            <h5 for="name"> الاسم <span class="text-danger">*</span></h5>
+                            <div class="controls">
+                                <input type="text" id="name" name="name" class="form-control">
+                                @error('name')
+                                    <span class="text-danger">{{ $message }}</span>
+                                @enderror
+                            </div>
+                        </div>
 
 
-    <form action="" class="dropzone" method="POST" enctype="multipart/form-data">
+                        <div class="form-group">
+                            <h5 for="link"> الرابط <span class="text-danger">*</span></h5>
+                            <div class="controls">
+                                <input type="text" id="link" name="link" class="form-control">
+                                @error('link')
+                                    <span class="text-danger">{{ $message }}</span>
+                                @enderror
+                            </div>
+                        </div>
+                        <br>
+                        <div class="fallback">
+                            <img src="" id="mainThmb" alt="">
+                            <br><br>
+                            <input type="file" name="pic" onChange="mainThamUrl(this)">
 
-        <div class="row">
-            <div class="col-md-12 my-4">
-                <div class="form-group">
-                    <h5> اسم <span class="text-danger">*</span></h5>
-                    <div class="controls">
-                        <select name="city_id" id="city_id" class="form-control">
-                            <option value="" selected disabled>-- اختر الدور--</option>
-                            <option value="" selected disabled>facebook</option>
-                            <option value="" selected disabled>twitter</option>
-                            <option value="" selected disabled> instagram</option>
+                            @error('pic')
+                                <span class="text-danger" >{{ $message }}</span>
+                            @enderror
+                    </div>
+                    <div class="dz-message needsclick">
+                        <div class="mb-3">
+                            <i class="display-4 text-muted bx bxs-cloud-upload"></i>
+                        </div>
 
-                        </select>
-                        @error('city_id')
-                            <span class="text-danger">{{ $message }}</span>
-                        @enderror
+                        <h4>ادخل الصوره هنا</h4>
                     </div>
                 </div>
+                    <div class="text-center mt-4 mb-2">
+                        <input type="submit" class="btn btn-primary waves-effect waves-light" value="حفظ">
+                    </div>
+                </form>
+
+                </div>
             </div>
-            <div class="col-md-12">
-                <h4 for="formrow-firstname-input" class="form-label my-3"> ارخل رابط الوسائط الاجتماعيه<span
-                        class="text-danger">*</span>
-                </h4>
-                <input type="text" class="form-control" id="formrow-firstname-input" name="name"
-                    placeholder="ادخل  الرابط  من فضلك">
-
-            </div>
-
+            <!-- /.box-body -->
         </div>
-        <div class="text-center mt-4">
-            <input type="submit" class="btn btn-primary waves-effect waves-light" value="حفظ">
-        </div>
-    </form>
-
 
     <div class="row">
         <div class="col-12">
@@ -100,6 +124,7 @@
                                         <tr role="row">
                                             <th>#</th>
                                             {{-- <th>المحافظات</th> --}}
+                                            <th>الصوره</th>
                                             <th>الاسم</th>
                                             <th>الرابط</th>
                                             <th>التعديلات</th>
@@ -107,26 +132,41 @@
 
                                     </thead>
                                     <tbody>
+                                        <?php $i = 0; ?>
+
+                                        @foreach ($icons as $icon)
+
+                                        <?php $i++; ?>
 
                                         <tr>
-                                            <td>1</td>
+                                            <td>{{ $i }}</td>
+                                            <td>
+                                                @if ($icon->image)
+                                                <img src="{{ $icon->image }}"
+                                                style="width: 60px;height:50px" alt="{{ $icon->title }}"
+                                                class="img-fluid">
+                                                @else
+                                                <img src="{{ asset('uploads/on-C100969_Image_01.jpeg') }}"
+                                                style="width: 60px;height:50px" alt="{{ $icon->title }}"
+                                                class="img-fluid">
+                                                @endif
+                                            </td>
+                                            <td>{{ $icon->title }}</td>
 
                                             <td>
-                                                ccc
+                                                {{ $icon->link }}
                                             </td>
-                                            <td>
-                                                ccc
-                                            </td>
+
 
                                             <td>
                                                 <ul class="list-unstyled hstack gap-1 mb-0">
-                                                    <li data-bs-toggle="tooltip" data-bs-placement="top" title="تعديل ">
+                                                    {{-- <li data-bs-toggle="tooltip" data-bs-placement="top" title="تعديل ">
                                                         <a href="" class="btn btn-sm btn-soft-primary"><i
                                                                 class="mdi mdi-pencil-outline"></i></a>
-                                                    </li>
+                                                    </li> --}}
 
                                                     <li data-bs-toggle="tooltip" data-bs-placement="top" title="حذف">
-                                                        <a href="" title="حذف"
+                                                        <a href="{{ route('social.delete', $icon->id) }}" title="حذف"
                                                             class="btn btn-sm btn-soft-danger"><i
                                                                 class="mdi mdi-delete-outline"></i></a>
                                                     </li>
@@ -134,6 +174,7 @@
                                             </td>
                                         </tr>
 
+                                        @endforeach
 
 
                                     </tbody>
@@ -148,6 +189,17 @@
     @endsection
     @section('js')
 
+    <script type="text/javascript">
+        function mainThamUrl(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function(e) {
+                    $('#mainThmb').attr('src', e.target.result).width(130).height(150);
+                };
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+    </script>
 
     <script>
         $(function(e) {

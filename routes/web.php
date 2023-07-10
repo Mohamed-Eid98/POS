@@ -191,10 +191,14 @@ Route::middleware('isAdmin')->group(function () {
     //////////// End employee All Routes //////////
     //////////// Start social All Routes //////////
     Route::get('/addsocial', [SocialController::class, 'addsocial'])->name('social.add');
+    Route::post('/addsocial', [SocialController::class, 'social_store'])->name('social.store');
+    Route::get('/delete-social-{id}', [SocialController::class, 'delete'])->name('social.delete');
     //////////// End social All Routes //////////
 
     //////////// Start coupon All Routes ////////
     Route::get('/addcoupon', [CouponController::class, 'addcoupon'])->name('coupon.add');
+    Route::post('/addcoupon', [CouponController::class, 'coupon_update'])->name('coupon.update');
+    Route::get('/coupon-delete-{id}' , [CouponController::class, 'coupon_delete'])->name('coupon.delete');
     //////////// End coupon All Routes //////////
 });
 

@@ -248,7 +248,7 @@
                         </ul>
                     </li>
                     @endif
-                    {{-- <li>
+                    <li>
                         <a href="javascript: void(0);" class="has-arrow waves-effect my-3">
                             <i class="bx bx-map"></i>
                             <span key="t-dashboards"> الكوبونات</span>
@@ -259,7 +259,7 @@
 
 
                         </ul>
-                    </li> --}}
+                    </li>
 
                     @if ($permission->name == 'complains' || $permission->name == 'admins')
                     <li>
