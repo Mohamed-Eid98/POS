@@ -102,7 +102,7 @@
                                                     </li> --}}
 
                                                     <li data-bs-toggle="tooltip" data-bs-placement="top" title="حذف">
-                                                        <a href="" title="حذف"
+                                                        <a href="{{ route('slide.delete' , $slider->id) }}" title="حذف"
                                                             class="btn btn-sm btn-soft-danger"><i
                                                                 class="mdi mdi-delete-outline"></i></a>
                                                     </li>

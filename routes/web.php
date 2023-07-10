@@ -211,7 +211,7 @@ Route::middleware('isAdmin')->group(function () {
     Route::get('/addslide', [SliderController::class, 'addslide'])->name('slide.add');
     Route::post('/slide-update', [SliderController::class, 'update_slide'])->name('slide.update');
     Route::get('/api-{type}s', [SliderController::class, 'getOptions'])->name('slide.get');
-    Route::get('/delete-slide', [SliderController::class, 'delete'])->name('slide.delete');
+    Route::get('/delete-slide-{id}', [SliderController::class, 'delete'])->name('slide.delete');
     Route::get('/showslides', [SliderController::class, 'showslides'])->name('slides.show');
 
     //////////// End slides All Routes //////////

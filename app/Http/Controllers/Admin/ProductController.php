@@ -38,7 +38,7 @@ class ProductController extends Controller
     }
     public function AjaxShow($id)
     {
-        $sub_cate = SubCategory::where('category_id', $id)->orderBy('name', 'ASC')->get();
+        $sub_cate = subCategory::where('category_id', $id)->orderBy('name', 'ASC')->get();
         // dd($sub_cate);
         return response()->json($sub_cate);
     }
