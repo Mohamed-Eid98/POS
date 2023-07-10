@@ -8,6 +8,11 @@
 <!-- owl.carousel css -->
     <link rel="stylesheet" href="{{ URL::asset('/build/libs/owl.carousel/assets/owl.carousel.min.css') }}">
     <link rel="stylesheet" href="{{ URL::asset('/build/libs/owl.carousel/assets/owl.theme.default.min.css') }}">
+
+<style>
+ .bg-overlay  {background:url(/build/images/bene.jpg);background-size:cover;background-repeat:no-repeat;background-position:center;}
+</style>
+
 @endsection
 
 @section('body')
@@ -32,7 +37,7 @@
 
                                                 {{-- <h4 class="mb-3"><i class="bx bxs-quote-alt-left text-primary h1 align-middle me-3"></i><span class="text-primary">5k</span>+ Satisfied clients</h4> --}}
 
-                                                <div dir="rtl">
+                                                <div>
                                                     <div class="owl-carousel owl-theme auth-review-carousel" id="auth-review-carousel">
                                                         {{-- <div class="item">
                                                             <div class="py-3">

@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('title')
-    عرض المناطق
+    عرض الموظفين
 @endsection
 
 @section('css')
@@ -15,6 +15,8 @@
     <!-- Responsive datatable examples -->
     <link href="{{ asset('build/libs/datatables.net-responsive-bs4/css/responsive.bootstrap4.min.css') }}" rel="stylesheet"
         type="text/css" />
+
+
 @endsection
 
 @section('content')
@@ -40,6 +42,10 @@
     @endif
 
 
+
+
+
+
     <div class="row">
         <div class="col-12">
             <div class="card">
@@ -62,41 +68,46 @@
                                     <thead>
                                         <tr role="row">
                                             <th>#</th>
-                                            {{-- <th>المحافظات</th> --}}
                                             <th>الاسم</th>
-                                            <th>الدور</th>
-                                            <th>بريد الكتروني</th>
-                                            <th>رقم الهاتف</th>
-
-                                            <th>التعديلات</th>
+                                            <th>الموبيل</th>
+                                            <th>الايميل </th>
+                                            <th>الدور </th>
+                                            <th>نشط</th>
+                                            <th> التعديلات</th>
                                         </tr>
 
                                     </thead>
-
-
                                     <tbody>
 
-                                        <tr>
-                                            <td>1</td>
 
+                        <?php $i = 0; ?>
+                        @foreach ($users as $user)
+                            <?php $i++; ?>
+                                        <tr>
+                                            <td>{{ $i }}</td>
+                                            <td>{{ $user->name }}</td>
+                                            <td>{{ $user->phone }}</td>
+
+                                            <td>{{ $user->email }}</td>
                                             <td>
-                                                ccc
+@if ($user->role)
+{{ $user->role->name }}
+
+@else
+لا يوجد
+@endif
                                             </td>
-                                            <td>
-                                                ccc
-                                            </td>
-                                            <td>
-                                                ccc
-                                            </td>
-                                            <td>
-                                                ccc
+
+                                            <td> <a href="">
+                                                <input type="checkbox" id="switch{{ $user->id }}" data-user-id="{{ $user->id }}" switch="info" {{ $user->role_id !=0 ? 'checked' : '' }}>
+                                                <label for="switch{{ $user->id }}" data-on-label="نعم" data-off-label="لا"></label></a>
                                             </td>
                                             <td>
                                                 <ul class="list-unstyled hstack gap-1 mb-0">
-                                                    <li data-bs-toggle="tooltip" data-bs-placement="top" title="تعديل ">
+                                                    {{-- <li data-bs-toggle="tooltip" data-bs-placement="top" title="تعديل ">
                                                         <a href="" class="btn btn-sm btn-soft-primary"><i
                                                                 class="mdi mdi-pencil-outline"></i></a>
-                                                    </li>
+                                                    </li> --}}
 
                                                     <li data-bs-toggle="tooltip" data-bs-placement="top" title="حذف">
                                                         <a href="" title="حذف"
@@ -106,6 +117,7 @@
                                                 </ul>
                                             </td>
                                         </tr>
+                    @endforeach
 
 
 
@@ -119,16 +131,56 @@
             </div> <!-- end col -->
         </div>
     @endsection
-    @section('js')
+
+@section('script')
+
+
+{{-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> --}}
+
+<script>
+    $(function() {
+        $('input[type=checkbox][switch=info]').change(function() {
+            var checkbox = $(this);
+            var url = checkbox.data('url');
+            var is_active = checkbox.prop('checked');
+
+            // Get the CSRF token
+            var csrfToken = $('meta[name="csrf-token"]').attr('content');
+
+            // Send a PATCH request to update the is_active status
+            $.ajax({
+                url: url,
+                type: "PATCH",
+                data: {
+                    is_active: is_active ? 1 : 0,
+                },
+                beforeSend: function(xhr) {
+                    xhr.setRequestHeader('X-CSRF-TOKEN', csrfToken);
+                },
+                success: function(data) {
+                    console.log(data);
+                },
+                error: function(xhr, status, error) {
+                    console.log(xhr.responseText);
+                }
+            });
+        });
+    });
+</script>
+
+@endsection
+@section('js')
+
+
     <script>
         $(function(e) {
             //file export datatable
             var table = $('#example').DataTable({
                 lengthChange: false,
-                buttons: ['copy', 'excel', 'pdff', 'colvis'],
+                buttons: ['copy', 'excel', 'pdf', 'colvis'],
                 responsive: true,
                 language: {
-                    searchPlaceholder: 'البحث ...',
+                    searchPlaceholder: 'Search...',
                     sSearch: '',
                     lengthMenu: '_MENU_ ',
                 }
@@ -138,7 +190,7 @@
 
             $('#example1').DataTable({
                 language: {
-                    searchPlaceholder: 'البحث ...',
+                    searchPlaceholder: 'Search...',
                     sSearch: '',
                     lengthMenu: '_MENU_',
                 }
@@ -146,7 +198,7 @@
             $('#example2').DataTable({
                 responsive: true,
                 language: {
-                    searchPlaceholder: 'البحث ...',
+                    searchPlaceholder: 'Search...',
                     sSearch: '',
                     lengthMenu: '_MENU_',
                 }
@@ -154,7 +206,7 @@
             var table = $('#example-delete').DataTable({
                 responsive: true,
                 language: {
-                    searchPlaceholder: 'البحث ...',
+                    searchPlaceholder: 'Search...',
                     sSearch: '',
                     lengthMenu: '_MENU_',
                 }
@@ -176,7 +228,7 @@
             $('#example-1').DataTable({
                 responsive: true,
                 language: {
-                    searchPlaceholder: 'البحث ...',
+                    searchPlaceholder: 'Search...',
                     sSearch: '',
                     lengthMenu: '_MENU_',
                 },
@@ -196,5 +248,4 @@
             });
         });
     </script>
-
-    @endsection
+@endsection

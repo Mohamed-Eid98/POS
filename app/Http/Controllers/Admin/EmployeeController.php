@@ -37,7 +37,8 @@ class EmployeeController extends Controller
     }
     public function showemployee()
     {
-        return view('employee.showemployee');
+        $users = User::orderBy('name' , 'ASC')->where('role_id', '<>' , 0)->get();
+        return view('employee.showemployee' , compact('users'));
     }
     public function addnewemployee()
     {

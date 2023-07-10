@@ -68,39 +68,39 @@
                                         class="text-danger">*</span></h4>
                                 <div class="row">
 
-                                    <div class="col-md-3"> <input type="checkbox" id="checkbox_3" name="permissions[]"
+                                    <div class="col-md-3"> <input type="checkbox" id="checkbox_1" name="permissions[]"
                                             value="1">
-                                        <label for="checkbox_3">اداره الاقسام</label>
+                                        <label for="checkbox_1">اداره الاقسام</label>
                                     </div>
-                                    <div class="col-md-3"> <input type="checkbox" id="checkbox_3" name="permissions[]"
+                                    <div class="col-md-3"> <input type="checkbox" id="checkbox_2" name="permissions[]"
                                             value="2">
-                                        <label for="checkbox_3">اداره الطلبات</label>
+                                        <label for="checkbox_2">اداره الطلبات</label>
                                     </div>
                                     <div class="col-md-3"> <input type="checkbox" id="checkbox_3" name="permissions[]"
                                             value="3">
                                         <label for="checkbox_3"> ادارة الاشعارات</label>
                                     </div>
-                                    <div class="col-md-3"> <input type="checkbox" id="checkbox_3" name="permissions[]"
+                                    <div class="col-md-3"> <input type="checkbox" id="checkbox_4" name="permissions[]"
                                             value="5">
-                                        <label for="checkbox_3">ادارة السياسات</label>
+                                        <label for="checkbox_4">ادارة السياسات</label>
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-md-3"> <input type="checkbox" id="checkbox_3" name="permissions[]"
+                                    <div class="col-md-3"> <input type="checkbox" id="checkbox_5" name="permissions[]"
                                             value="4">
-                                        <label for="checkbox_3"> ادارة العملاء</label>
+                                        <label for="checkbox_5"> ادارة العملاء</label>
                                     </div>
-                                    <div class="col-md-3"> <input type="checkbox" id="checkbox_3" name="permissions[]"
+                                    <div class="col-md-3"> <input type="checkbox" id="checkbox_6" name="permissions[]"
                                             value="8">
-                                        <label for="checkbox_3"> لوحه التحكم</label>
+                                        <label for="checkbox_6"> لوحه التحكم</label>
                                     </div>
-                                    <div class="col-md-3"> <input type="checkbox" id="checkbox_3" name="permissions[]"
+                                    <div class="col-md-3"> <input type="checkbox" id="checkbox_7" name="permissions[]"
                                             value="7">
-                                        <label for="checkbox_3"> السوشيل ميديا </label>
+                                        <label for="checkbox_7"> السوشيل ميديا </label>
                                     </div>
-                                    <div class="col-md-3"> <input type="checkbox" id="checkbox_3" name="permissions[]"
+                                    <div class="col-md-3"> <input type="checkbox" id="checkbox_8" name="permissions[]"
                                             value="6">
-                                        <label for="checkbox_3"> المحافظات</label>
+                                        <label for="checkbox_8"> المحافظات</label>
                                     </div>
                                 </div>
                             </div>

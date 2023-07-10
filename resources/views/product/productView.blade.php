@@ -115,8 +115,14 @@
                                                     <span class="badge text-bg-danger">{{ $product->code }}</span>
 
                                                 </td>
-                                                <td> <a href="{{ route('product.show.subcategory', $product->id) }}">
-                                                        {{ $product->subcategory->name }} </a></td>
+                                                <td>
+                                                    @if ($product->subcategory)
+                                                        <a href="{{ route('product.show.subcategory', $product->id) }}">
+                                                             {{ $product->subcategory->name }} </a>
+                                                    @else
+                                                            لا يوجد
+                                                    @endif
+                                                    </td>
 
                                                 <td> {{ $product->price }} د.ع. </td>
                                                 <td> {{ $product->min_price }} د.ع. </td>

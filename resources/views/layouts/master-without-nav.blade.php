@@ -11,7 +11,7 @@
     <meta content="Themesbrand" name="author" />
     <!-- App favicon -->
     <link rel="shortcut icon" href="{{ URL::asset('build/images/bene.jpg') }}">
-    @include('layouts.head-css')
+    @include('layouts.head-en-css')
 </head>
 
 @yield('body')

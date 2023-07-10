@@ -42,6 +42,7 @@ class CustomerController extends Controller
         // return $request;
         $request->validate([
             'name' => 'required',
+            
         ], [
 
             'name.required' => 'يرجي اختيار فاتوره ',

@@ -62,9 +62,10 @@
                                     <thead>
                                         <tr role="row">
                                             <th>#</th>
-                                            <th>النوع</th>
                                             <th>الصوره</th>
-                                            <th> العديلات</th>
+                                            <th>النوع</th>
+                                            {{-- <th>اسم المنتج</th> --}}
+                                            <th> التعديلات</th>
                                         </tr>
 
                                     </thead>
@@ -72,17 +73,27 @@
 
 
                                         <?php $i = 0; ?>
+                        @foreach ($sliders as $slider)
+
                                         <?php $i++; ?>
                                         <tr>
                                             <td>{{ $i }}</td>
-                                            <td>عاش </td>
-                                            <td>يابو عيد</td>
-                                            {{-- <td> <a href="">
-                                                    <input type="checkbox" id="switch" data-coupon-id="" switch="info"
-                                                        data-url="">
-                                                    <label for="switch" data-on-label="نعم"
-                                                        data-off-label="لا"></label></a>
-                                            </td> --}}
+                                            <td>
+                                                @if ($slider->image)
+                                                <img src="{{ $slider->image }}"
+                                                style="width: 60px;height:50px" alt="{{ $slider->title }}"
+                                                class="img-fluid">
+                                                @else
+                                                <img src="{{ asset('uploads/on-C100969_Image_01.jpeg') }}"
+                                                style="width: 60px;height:50px" alt="{{ $slider->title }}"
+                                                class="img-fluid">
+                                                @endif                                            </td>
+                                            @if ($slider->type == 'Product')
+                                                <td> منتج</td>
+                                           @else
+                                            <td> قسم</td>
+                                            @endif
+
                                             <td>
                                                 <ul class="list-unstyled hstack gap-1 mb-0">
                                                     {{-- <li data-bs-toggle="tooltip" data-bs-placement="top" title="تعديل ">
@@ -99,7 +110,7 @@
                                             </td>
                                         </tr>
 
-
+@endforeach
 
                                     </tbody>
                                 </table>

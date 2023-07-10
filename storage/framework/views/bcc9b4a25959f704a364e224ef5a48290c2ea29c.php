@@ -7,10 +7,10 @@
 <?php $__env->startSection('content'); ?>
     <?php $__env->startComponent('components.breadcrumb'); ?>
         <?php $__env->slot('li_1'); ?>
-            Dashboards
+            لوحه تحكم
         <?php $__env->endSlot(); ?>
         <?php $__env->slot('title'); ?>
-            Dashboard
+            بنسايز
         <?php $__env->endSlot(); ?>
     <?php echo $__env->renderComponent(); ?>
 
@@ -149,14 +149,12 @@
                                                 <h6 class="card-subtitle" style="color: #000000!important;">
                                                     طلبات معلقة</h6>
                                             </div>
-                                            <div>
-                                                <div class="my-3">
+                                            <div class="my-3">
 
-                                                <span class="card-title h2" style="color: #1f7ce0!important;">
+                                                <span class="card-title h2" style="font-size: 20px;color: #3f81d2;">
                                                     <?php echo e($pending_orders); ?>
 
                                                 </span>
-                                            </div>
 
                                             </div>
 
@@ -183,11 +181,18 @@
                                 <div class="card-body">
                                     <div class="flex-between align-items-center mb-1">
                                         <div style="text-align: right;">
-                                            <h6 class="card-subtitle" style="color: #000000!important;">تم التسليم </h6>
-                                            <span class="card-title h2"
-                                                style="font-size: 20px;color: #3f81d2;;"><?php echo e($deliered_orders); ?>
+                                            <div class="my-3">
 
-                                            </span>
+                                                <h6 class="card-subtitle" style="color: #000000!important;">تم التسليم </h6>
+                                            </div>
+                                            <div class="my-3">
+
+                                                <span class="card-title h2" style="font-size: 20px;color: #3f81d2;">
+                                                    <?php echo e($deliered_orders); ?>
+
+                                                </span>
+                                            </div>
+
                                         </div>
 
                                         <div style="text-align: left;">
@@ -208,12 +213,19 @@
                                 <div class="card-body">
                                     <div class="flex-between align-items-center gx-2 mb-1">
                                         <div style="text-align: right;">
-                                            <h6 class="card-subtitle" style="color: #0c0a09!important;"> قيد التوصيل
-                                            </h6>
-                                            <span class="card-title h2" style="color: #3f81d2;">
-                                                <?php echo e($inPrograss_orders); ?>
+                                            <div class="my-3">
 
-                                            </span>
+                                                <h6 class="card-subtitle" style="color: #0c0a09!important;"> قيد التوصيل
+                                                </h6>
+                                            </div>
+                                            <div class="my-3">
+
+                                                <span class="card-title h2" style="font-size: 20px;color: #3f81d2;">
+                                                    <?php echo e($inPrograss_orders); ?>
+
+                                                </span>
+                                            </div>
+
                                         </div>
 
                                         <div style="text-align: left;">
@@ -236,12 +248,18 @@
                                     <div class="card-body">
                                         <div class="flex-between align-items-center mb-1">
                                             <div style="text-align: right;">
-                                                <h6 class="card-subtitle" style="color: #030302!important;">تم الدفع
-                                                </h6>
-                                                <span class="card-title h2" style="color: #3f81d2;">
-                                                    <?php echo e($paid_orders); ?>
+                                                <div class="my-3">
 
-                                                </span>
+                                                    <h6 class="card-subtitle" style="color: #030302!important;">تم الدفع
+                                                    </h6>
+                                                </div>
+                                                <div class="my-3">
+
+                                                    <span class="card-title h2" style="font-size: 20px;color: #3f81d2;">
+                                                        <?php echo e($paid_orders); ?>
+
+                                                    </span>
+                                                </div>
 
                                             </div>
                                             <div style="text-align: left;">
@@ -265,11 +283,19 @@
                                     <div class="card-body">
                                         <div class="flex-between align-items-center mb-1">
                                             <div style="text-align: right;">
-                                                <h6 class="card-subtitle" style="color: #040303!important;">تم الرفض
-                                                </h6>
-                                                <span class="card-title h2" style="color: #3f81d2;"><?php echo e($rejected_orders); ?>
+                                                <div class="my-3">
 
-                                                </span>
+                                                    <h6 class="card-subtitle" style="color: #040303!important;">تم الرفض
+                                                    </h6>
+                                                </div>
+                                                <div class="my-3">
+
+                                                    <span class="card-title h2"
+                                                        style="font-size: 20px;color: #3f81d2;"><?php echo e($rejected_orders); ?>
+
+                                                    </span>
+                                                </div>
+
                                             </div>
 
                                             <div style="text-align: left;">
@@ -291,13 +317,21 @@
                                     <div class="card-body">
                                         <div class="flex-between align-items-center gx-2 mb-1">
                                             <div style="text-align: right;">
-                                                <h6 class="card-subtitle" style="color: #0a0908!important;"> تم
-                                                    الإلغاء
-                                                </h6>
-                                                <span class="card-title h2" style="color: #3f81d2;">
-                                                    <?php echo e($cancelled_orders); ?>
+                                                <div class="my-3">
 
-                                                </span>
+                                                    <h6 class="card-subtitle" style="color: #0a0908!important;"> تم
+                                                        الإلغاء
+                                                    </h6>
+                                                </div>
+
+                                                <div class="my-3">
+
+                                                    <span class="card-title h2" style="font-size: 20px;color: #3f81d2;">
+                                                        <?php echo e($cancelled_orders); ?>
+
+                                                    </span>
+                                                </div>
+
                                             </div>
 
                                             <div style="text-align: left;">

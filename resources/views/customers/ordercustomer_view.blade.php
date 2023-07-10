@@ -101,12 +101,14 @@
                                         </table>
 
 
+                                        @if (!$orders->isEmpty())
+
+
                                         <div class="row">
                                             <div class="col-md-6 m-auto">
 
 
                                                 <div class="row">
-                                                    {{-- <input type="hidden" name="user_id" value="{{ $order->user_id }}"> --}}
                                                     <input type="text" id="total" name="total" readonly
                                                         class="form-control form-control-rounded is-valid form-control-lg my-3 ">
                                                     <div class="col-md-4  m-auto"><input type="date" name="date_at"
@@ -116,13 +118,11 @@
                                                 </div>
 
 
-                                                {{-- <input type="text" readonly id="total" > --}}
                                             </div>
 
                                         </div>
-                                        {{-- <div class="row">
-                                        <div class="col-md-3 m-auto"><input type="date"></div>
-                                    </div> --}}
+    @endif
+
                                 </div>
                             </div>
                         </div>
@@ -132,7 +132,6 @@
                                                             mt-4 mb-2">
                     <input type="submit" class="btn btn-primary waves-effect waves-light" value="حفظ">
                 </div>
-                {{-- <div class="row"><div class="col-sm-12 col-md-5"><div class="dataTables_info" id="datatable_info" role="status" aria-live="polite">Showing 1 to 10 of 57 entries</div></div><div class="col-sm-12 col-md-7"><div class="dataTables_paginate paging_simple_numbers" id="datatable_paginate"><ul class="pagination"><li class="paginate_button page-item previous disabled" id="datatable_previous"><a href="#" aria-controls="datatable" data-dt-idx="0" tabindex="0" class="page-link">Previous</a></li><li class="paginate_button page-item active"><a href="#" aria-controls="datatable" data-dt-idx="1" tabindex="0" class="page-link">1</a></li><li class="paginate_button page-item "><a href="#" aria-controls="datatable" data-dt-idx="2" tabindex="0" class="page-link">2</a></li><li class="paginate_button page-item "><a href="#" aria-controls="datatable" data-dt-idx="3" tabindex="0" class="page-link">3</a></li><li class="paginate_button page-item "><a href="#" aria-controls="datatable" data-dt-idx="4" tabindex="0" class="page-link">4</a></li><li class="paginate_button page-item "><a href="#" aria-controls="datatable" data-dt-idx="5" tabindex="0" class="page-link">5</a></li><li class="paginate_button page-item "><a href="#" aria-controls="datatable" data-dt-idx="6" tabindex="0" class="page-link">6</a></li><li class="paginate_button page-item next" id="datatable_next"><a href="#" aria-controls="datatable" data-dt-idx="7" tabindex="0" class="page-link">Next</a></li></ul></div></div></div></div> --}}
                 </form>
 
             </div>

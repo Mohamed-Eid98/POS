@@ -1,5 +1,3 @@
-
-
 <?php $__env->startSection('title'); ?>
 <?php echo app('translator')->get('translation.Login'); ?>
 <?php $__env->stopSection(); ?>
@@ -8,6 +6,11 @@
 <!-- owl.carousel css -->
     <link rel="stylesheet" href="<?php echo e(URL::asset('/build/libs/owl.carousel/assets/owl.carousel.min.css')); ?>">
     <link rel="stylesheet" href="<?php echo e(URL::asset('/build/libs/owl.carousel/assets/owl.theme.default.min.css')); ?>">
+
+<style>
+ .bg-overlay  {background:url(/build/images/bene.jpg);background-size:cover;background-repeat:no-repeat;background-position:center;}
+</style>
+
 <?php $__env->stopSection(); ?>
 
 <?php $__env->startSection('body'); ?>
@@ -32,7 +35,7 @@
 
                                                 
 
-                                                <div dir="rtl">
+                                                <div>
                                                     <div class="owl-carousel owl-theme auth-review-carousel" id="auth-review-carousel">
                                                         
 

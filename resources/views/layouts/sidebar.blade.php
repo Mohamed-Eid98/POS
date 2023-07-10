@@ -247,6 +247,9 @@
                                     </ul>
                                 </li>
                             @endif
+
+                            @if ($permission->name == 'sliders' || $permission->name == 'admins')
+
                             <li>
                                 <a href="javascript: void(0);" class="has-arrow waves-effect my-3">
                                     <i class="bx bx-aperture"></i>
@@ -261,6 +264,10 @@
 
                                 </ul>
                             </li>
+                    @endif
+
+                    @if ($permission->name == 'coupons' || $permission->name == 'admins')
+
                             <li>
                                 <a href="javascript: void(0);" class="has-arrow waves-effect my-3">
                                     <i class="bx bx-bitcoin"></i>
@@ -274,6 +281,7 @@
                                 </ul>
                             </li>
 
+                    @endif
                             @if ($permission->name == 'complains' || $permission->name == 'admins')
                                 <li>
                                     <a href="javascript: void(0);" class="has-arrow waves-effect my-3">
