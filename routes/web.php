@@ -5,6 +5,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\CityController;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\OrderController;
+use App\Http\Controllers\Admin\CouponController;
+use App\Http\Controllers\Admin\SliderController;
 use App\Http\Controllers\Admin\SocialController;
 use App\Http\Controllers\Admin\IvoicesController;
 use App\Http\Controllers\Admin\PrivacyController;
@@ -16,7 +18,6 @@ use App\Http\Controllers\Admin\EmployeeController;
 use App\Http\Controllers\Admin\SubCategoryController;
 use App\Http\Controllers\Admin\notificationController;
 use App\Http\Controllers\Admin\NotificationSendController;
-use App\Http\Controllers\Admin\CouponController;
 
 
 /*
@@ -202,6 +203,14 @@ Route::middleware('isAdmin')->group(function () {
     Route::patch('/coupon-{coupon}', [CouponController::class, 'updateStatus'])->name('coupon.updateStatus');
     Route::get('/coupon-delete-{id}' , [CouponController::class, 'coupon_delete'])->name('coupon.delete');
     //////////// End coupon All Routes //////////
+
+    //////////// Start slieds All Routes ////////
+
+    Route::get('/addslide', [SliderController::class, 'addslide'])->name('slide.add');
+    Route::get('/showslides', [SliderController::class, 'showslides'])->name('slides.show');
+
+    //////////// End slides All Routes //////////
+
 });
 
 

@@ -7,10 +7,10 @@
 @section('content')
     @component('components.breadcrumb')
         @slot('li_1')
-            Dashboards
+            لوحه تحكم
         @endslot
         @slot('title')
-            Dashboard
+            بنسايز
         @endslot
     @endcomponent
 
@@ -240,13 +240,11 @@
                                                 <h6 class="card-subtitle" style="color: #000000!important;">
                                                     طلبات معلقة</h6>
                                             </div>
-                                            <div>
-                                                <div class="my-3">
+                                            <div class="my-3">
 
-                                                <span class="card-title h2" style="color: #1f7ce0!important;">
+                                                <span class="card-title h2" style="font-size: 20px;color: #3f81d2;">
                                                     {{ $pending_orders }}
                                                 </span>
-                                            </div>
 
                                             </div>
 
@@ -273,10 +271,17 @@
                                 <div class="card-body">
                                     <div class="flex-between align-items-center mb-1">
                                         <div style="text-align: right;">
-                                            <h6 class="card-subtitle" style="color: #000000!important;">تم التسليم </h6>
-                                            <span class="card-title h2"
-                                                style="font-size: 20px;color: #3f81d2;;">{{ $deliered_orders }}
-                                            </span>
+                                            <div class="my-3">
+
+                                                <h6 class="card-subtitle" style="color: #000000!important;">تم التسليم </h6>
+                                            </div>
+                                            <div class="my-3">
+
+                                                <span class="card-title h2" style="font-size: 20px;color: #3f81d2;">
+                                                    {{ $deliered_orders }}
+                                                </span>
+                                            </div>
+
                                         </div>
 
                                         <div style="text-align: left;">
@@ -297,11 +302,18 @@
                                 <div class="card-body">
                                     <div class="flex-between align-items-center gx-2 mb-1">
                                         <div style="text-align: right;">
-                                            <h6 class="card-subtitle" style="color: #0c0a09!important;"> قيد التوصيل
-                                            </h6>
-                                            <span class="card-title h2" style="color: #3f81d2;">
-                                                {{ $inPrograss_orders }}
-                                            </span>
+                                            <div class="my-3">
+
+                                                <h6 class="card-subtitle" style="color: #0c0a09!important;"> قيد التوصيل
+                                                </h6>
+                                            </div>
+                                            <div class="my-3">
+
+                                                <span class="card-title h2" style="font-size: 20px;color: #3f81d2;">
+                                                    {{ $inPrograss_orders }}
+                                                </span>
+                                            </div>
+
                                         </div>
 
                                         <div style="text-align: left;">
@@ -324,11 +336,17 @@
                                     <div class="card-body">
                                         <div class="flex-between align-items-center mb-1">
                                             <div style="text-align: right;">
-                                                <h6 class="card-subtitle" style="color: #030302!important;">تم الدفع
-                                                </h6>
-                                                <span class="card-title h2" style="color: #3f81d2;">
-                                                    {{ $paid_orders }}
-                                                </span>
+                                                <div class="my-3">
+
+                                                    <h6 class="card-subtitle" style="color: #030302!important;">تم الدفع
+                                                    </h6>
+                                                </div>
+                                                <div class="my-3">
+
+                                                    <span class="card-title h2" style="font-size: 20px;color: #3f81d2;">
+                                                        {{ $paid_orders }}
+                                                    </span>
+                                                </div>
 
                                             </div>
                                             <div style="text-align: left;">
@@ -352,10 +370,18 @@
                                     <div class="card-body">
                                         <div class="flex-between align-items-center mb-1">
                                             <div style="text-align: right;">
-                                                <h6 class="card-subtitle" style="color: #040303!important;">تم الرفض
-                                                </h6>
-                                                <span class="card-title h2" style="color: #3f81d2;">{{ $rejected_orders }}
-                                                </span>
+                                                <div class="my-3">
+
+                                                    <h6 class="card-subtitle" style="color: #040303!important;">تم الرفض
+                                                    </h6>
+                                                </div>
+                                                <div class="my-3">
+
+                                                    <span class="card-title h2"
+                                                        style="font-size: 20px;color: #3f81d2;">{{ $rejected_orders }}
+                                                    </span>
+                                                </div>
+
                                             </div>
 
                                             <div style="text-align: left;">
@@ -377,12 +403,20 @@
                                     <div class="card-body">
                                         <div class="flex-between align-items-center gx-2 mb-1">
                                             <div style="text-align: right;">
-                                                <h6 class="card-subtitle" style="color: #0a0908!important;"> تم
-                                                    الإلغاء
-                                                </h6>
-                                                <span class="card-title h2" style="color: #3f81d2;">
-                                                    {{ $cancelled_orders }}
-                                                </span>
+                                                <div class="my-3">
+
+                                                    <h6 class="card-subtitle" style="color: #0a0908!important;"> تم
+                                                        الإلغاء
+                                                    </h6>
+                                                </div>
+
+                                                <div class="my-3">
+
+                                                    <span class="card-title h2" style="font-size: 20px;color: #3f81d2;">
+                                                        {{ $cancelled_orders }}
+                                                    </span>
+                                                </div>
+
                                             </div>
 
                                             <div style="text-align: left;">
