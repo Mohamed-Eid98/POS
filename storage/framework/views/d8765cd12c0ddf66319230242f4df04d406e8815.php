@@ -247,7 +247,7 @@
                         </a>
                         <ul class="sub-menu" aria-expanded="false">
                             <li><a class="slide-item" href="<?php echo e(route('coupon.add')); ?>"> اضافه كوبون</a>
-                            <li><a class="slide-item" href="<?php echo e(route('social.add')); ?>"> عرض الكوبونات</a>
+                            <li><a class="slide-item" href="<?php echo e(route('coupon.show')); ?>"> عرض الكوبونات</a>
 
 
                         </ul>

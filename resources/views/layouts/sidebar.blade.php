@@ -255,7 +255,7 @@
                         </a>
                         <ul class="sub-menu" aria-expanded="false">
                             <li><a class="slide-item" href="{{ route('coupon.add') }}"> اضافه كوبون</a>
-                            <li><a class="slide-item" href="{{ route('social.add') }}"> عرض الكوبونات</a>
+                            <li><a class="slide-item" href="{{ route('coupon.show') }}"> عرض الكوبونات</a>
 
 
                         </ul>

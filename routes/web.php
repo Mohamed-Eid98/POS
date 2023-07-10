@@ -197,10 +197,12 @@ Route::middleware('isAdmin')->group(function () {
 
     //////////// Start coupon All Routes ////////
     Route::get('/addcoupon', [CouponController::class, 'addcoupon'])->name('coupon.add');
+    Route::get('/show-coupon', [CouponController::class, 'showcoupon'])->name('coupon.show');
     Route::post('/addcoupon', [CouponController::class, 'coupon_update'])->name('coupon.update');
+    Route::patch('/coupon-{coupon}', [CouponController::class, 'updateStatus'])->name('coupon.updateStatus');
     Route::get('/coupon-delete-{id}' , [CouponController::class, 'coupon_delete'])->name('coupon.delete');
     //////////// End coupon All Routes //////////
 });
 
 
-Route::get('/test-test', [ComplainController::class, 'addcomplain']);
+// Route::get('/test-test', [ComplainController::class, 'addcomplain']);
