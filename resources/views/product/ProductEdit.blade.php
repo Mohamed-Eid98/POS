@@ -33,8 +33,11 @@
 
     {{-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> --}}
 
-    <form method="POST" action="{{ route('product.store') }}" enctype="multipart/form-data">
+    <form method="POST" action="{{ route('product.update') }}" enctype="multipart/form-data">
         @csrf
+
+        <input type="hidden" name="id" value="{{ $product->id }}">
+
 
 
         <div class="row">
@@ -55,7 +58,7 @@
                                 <h5 for="name">أسم المنتج <span class="text-danger">*</span>
                                 </h5>
                                 <div class="controls">
-                                    <input type="text" id="name" name="name" value="{{ $product->name }}" class="form-control">
+                                    <input type="text" id="name" name="name" value="{{ $product->name }}" required class="form-control">
                                     @error('name')
                                         <span class="text-danger">{{ $message }}</span>
                                     @enderror
@@ -66,7 +69,7 @@
                                 <h5 for="desc">وصف المنتج <span class="text-danger">*</span>
                                 </h5>
                                 <div class="controls">
-                                    <textarea name="desc"  class="form-control" id="desc" cols="10" rows="5">{{ $product->description }}</textarea>
+                                    <textarea name="desc"  class="form-control" id="desc" cols="10" rows="5" required>{{ $product->description }}</textarea>
                                     @error('desc')
                                         <span class="text-danger">{{ $message }}</span>
                                     @enderror
@@ -79,7 +82,7 @@
 
                                     <h5 for="code">الكود</h5>
                                     <div class="controls">
-                                        <input type="text" name="code" value="{{ $product->code }}" class="form-control" />
+                                        <input type="text" name="code" value="{{ $product->code }}" required class="form-control" />
                                         @error('code')
                                         <span class="text-danger">{{ $message }}</span>
                                         @enderror
@@ -123,7 +126,7 @@
                                 <div class="controls">
                                     <select name="cate_id" id="select" class="form-control"  >
                                         @foreach ($categories as $category)
-                                            <option value="{{ $category->id }}">{{ $category->name  }}</option>
+                                            <option value="{{ $category->id }}" >{{ $category->name  }}</option>
                                         @endforeach
                                     </select>
                                     @error('cate_id')
@@ -141,7 +144,9 @@
                                 <h5>القسم الفرعي <span class="text-danger">*</span></h5>
                                 <div class="controls">
                                     <select name="subcate_id" id="select" class="form-control"  >
-                                        <option value="" selected disabled >-- اختر القسم الفرعي--</option>
+                                        @foreach ($subcategories as $subcategory)
+                                        <option value="{{ $subcategory->id }}" {{ $subcategory->id == $product->sub_category_id ? 'selected' : '' }}>{{ $subcategory->name  }}</option>
+                                    @endforeach
                                     </select>
                                     @error('subcate_id')
                                     <span class="text-danger" >{{ $message }}</span>
@@ -162,7 +167,7 @@
 
 
 
-
+{{--
             <div class="row">
                 <div class="col-lg-12 col-md-12">
                     <div class="card">
@@ -231,7 +236,7 @@
                     </div>
                 </div>
 
-            </div>
+            </div> --}}
 
 
             <div class="row">
@@ -260,6 +265,20 @@
                                         </div>
                                     </div>
                                 </div>
+
+                                <div class="col-md-4">
+
+                                    <div class="form-group">
+                                        <h5 for="qty">الكميه </h5>
+                                        <div class="controls">
+                                            <input type="number"  name="qty" class="form-control" value="{{ $product->product_qty }}" />
+                                            @error('qty')
+                                                <span class="text-danger" >{{ $message }}</span>
+                                            @enderror
+                                        </div>
+                                    </div>
+
+                                </div> <!-- end col md 6 -->
 
             </div>
 
@@ -430,40 +449,26 @@
 
 
 
-{{-- $(document).ready(function() {
-    $('select[name="cate_id"]').on('change', function(){})
-    var category_id = $(this).val();
-    $.get('/ajax-' + category_id ,
-    success:function(data) {
-        var d =$('select[name="subcate_id"]').empty();
-        $.each(data, function(key, value){
-            $('select[name="subcate_id"]').append('<option value="'+ value.id +'">' + value.name + '</option>');
-        });
-    },
-});
-
-});
-</script> --}}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
 <script type="text/javascript">
+    $(document).ready(function() {
+        $('select[name="cate_id"]').change(function() {
+            var category_id = $(this).val();
+            $.get('/ajax-' + category_id, function(data) {
 
-$(document).ready(function() {
-    $('select[name="cate_id"]').change(function() {
-        var category_id = $(this).val();
-        $.get('/ajax-' + category_id, function(data) {
 
+                var d = $('select[name="subcate_id"]').empty();
+                $.each(data, function(key, value) {
+                    $('select[name="subcate_id"]').append('<option value="' + value.id +
+                        '">' + value.name + '</option>');
+                });
 
-            var d =$('select[name="subcate_id"]').empty();
-        $.each(data, function(key, value){
-            $('select[name="subcate_id"]').append('<option value="'+ value.id +'">' + value.name + '</option>');
-        });
-
+            });
         });
     });
-});
 </script>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 @section('script')
 <script type="text/javascript">
     function mainThamUrl(input){

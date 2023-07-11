@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\Category;
+use App\Models\SubCategory;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Intervention\Image\Facades\Image;
@@ -17,39 +18,28 @@ class CategoryController extends Controller
 
     public function Store(Request $request)
     {
+
+
         $request->validate([
             'name' => 'required|unique:categories|max:255',
-            'pic' => 'image|required',
+            'pic' => 'image',
         ],[
 
             'name.required' =>'يرجي ادخال اسم القسم',
             'name.unique' =>'هذا القسم مسجل مسبقا',
-            'pic.required' =>'يرجي ادخال صوره ',
+            // 'pic.required' =>'يرجي ادخال صوره ',
         ]);
 
 
-        // if($request->file('pic')){
-        //     // dd('sa');
-        //     $file= $request->file('pic');
-        //     $fileName = date('YmdHi'). $file->getClientOriginalName();
-        //     $file->move(public_path('uploads/category/'),$fileName);
-        //     $save_url = 'uploads/brand/' .$fileName;
-
-        //     Category::create([
-        //         'name' => $request->name,
-        //         'image' => $save_url
-        // ]);
-        // }else{
-        //     Category::create([
-        //         'name' => $request->name,
-        //     ]);
-        // }
         $category = new Category;
         $category->name = $request->name;
         $category->save();
 
-        $category->addMediaFromRequest('pic')->usingName($category->name)->toMediaCollection('CategoryImages');
 
+        if ($request->hasFile('pic')) {
+            $category->addMediaFromRequest('pic')->usingName($category->name)->toMediaCollection('images');
+
+    }
         session()->flash('Add', 'تم اضافة القسم بنجاح ');
 
     return redirect()->back();
@@ -61,6 +51,12 @@ public function Show()
     return view('category.categoryView' , compact('categories'));
 }
 
+public function showPage($id)
+{
+    $category = SubCategory::with('category')->find($id);
+    // return $category;
+    return view('category.categoryViewPage' , compact('category'));
+}
 
 public function Edit($id)
 {
@@ -69,10 +65,25 @@ public function Edit($id)
 }
 public function Update(Request $request)
 {
+
+    // return $request;
+
     $id  = $request->id;
-Category::find($id)->update([
+    $category = Category::find($id);
+
+    Category::find($id)->update([
     'name' => $request->name,
 ]);
+
+     if ($request->hasFile('pic')) {
+        $category->addMediaFromRequest('pic')->toMediaCollection('images');
+
+}
+
+
+
+
+
 session()->flash('edit', 'تم تعديل القسم بنجاح ');
 
         return redirect()->route('category.show');

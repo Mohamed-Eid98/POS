@@ -2,22 +2,19 @@
 
 namespace App\Models;
 
-use App\Models\City;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 
-class Area extends Model
+use Astrotomic\Translatable\Contracts\Translatable as TranslatableContract;
+use Astrotomic\Translatable\Translatable;
+
+class Area extends Model  implements TranslatableContract
 {
-    use HasFactory;
+    use HasFactory,  Translatable;
+
+    public $translatedAttributes = ['title'];
     protected $guarded = [];
-
-
-    /**
-     * Get the user that owns the Area
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function city(): BelongsTo
+    public function city()
     {
         return $this->belongsTo(City::class);
     }

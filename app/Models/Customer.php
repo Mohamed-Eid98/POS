@@ -9,13 +9,34 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class Customer extends Model
 {
     use HasFactory;
-    /**
-     * Get the user that owns the Customer
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function user()
+
+    protected $fillable = [
+        'phone_number',
+        'second_phone_number',
+        'name',
+        'address',
+        'is_active',
+        'city_id',
+        'area_id',
+        'user_id'
+    ];
+    public function scopeActive($query)
     {
-        return $this->belongsTo(User::class, 'user_id', 'id');
+        return $query->where('is_active',  1);
+    }
+    public function user() {
+        return $this->belongsTo(User::class);
+    }
+    public function orders() {
+        return $this->hasMany(Order::class);
+    }
+
+    public function city()
+    {
+        return $this->belongsTo(City::class);
+    }
+    public function area()
+    {
+        return $this->belongsTo(Area::class);
     }
 }

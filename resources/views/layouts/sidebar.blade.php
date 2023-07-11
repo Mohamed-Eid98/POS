@@ -5,11 +5,15 @@
 
         <!--- Sidemenu -->
         <div id="sidebar-menu">
+
+
+
+
             <!-- Left Menu Start -->
             <ul class="metismenu list-unstyled" id="side-menu">
-                <li class="menu-title" key="t-menu">الصفحه الرئيسيه</li>
+                {{-- <li class="menu-title" key="t-menu">الصفحه الرئيسيه</li> --}}
 
-                <li>
+                {{-- <li>
                     <a href="javascript: void(0);" class="has-arrow waves-effect">
                         <i class="bx bx-home-circle"></i>
                         <span key="t-dashboards">الصفحه الرئيسيه</span>
@@ -17,46 +21,16 @@
                     <ul class="sub-menu" aria-expanded="false">
                         <li><a href="{{ route('root') }}" key="t-default">الصفحه الرئيسيه</a></li>
                     </ul>
-                </li>
-                <li class="menu-title" key="t-menu">الاقسام</li>
+                </li> --}}
 
-                <li>
-                    <a href="javascript: void(0);" class="has-arrow waves-effect">
+                <li class="mm-active">
+                    <a href="{{ route('root') }}" class="waves-effect active">
                         <i class="bx bx-home-circle"></i>
-                        <span key="t-dashboards">الاقسام الرئيسيه</span>
+                        <span key="t-dashboards">الصفحه الرئيسيه</span>
                     </a>
-                    <ul class="sub-menu" aria-expanded="false">
-                        <li><a href="{{ route('category.add') }}" key="t-default">إضافة قسم رئيسي</a></li>
-                        <li><a href="{{ route('category.show') }}" key="t-saas">عرض الاقسام الرئيسيه</a></li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="javascript: void(0);" class="has-arrow waves-effect">
-                        <i class="bx bx-layout"></i>
-                        <span key="t-dashboards">الاقسام الفرعيه</span>
-                    </a>
-                    <ul class="sub-menu" aria-expanded="false">
-                        <li><a href="{{ route('subcategory.add') }}" key="t-default">إضافة قسم فرعي</a></li>
-                        <li><a href="{{ route('subcategory.show') }}" key="t-saas">عرض الاقسام الفرعيه</a></li>
-                    </ul>
                 </li>
 
-                <li>
-                    <a href="javascript: void(0);" class="has-arrow waves-effect">
-                        <i class="bx bx-layout"></i>
-                        <span key="t-dashboards"> المنتجات</span>
-                    </a>
-                    <ul class="sub-menu" aria-expanded="false">
-                        <li><a href="{{ route('product.add') }}" key="t-default">إضافة المنتج</a></li>
 
-                        <li><a href="{{ route('product.addcolorandsize') }}" key="t-saas"> اضافه الوان ومقاسات
-                                المنتج</a>
-                        </li>
-
-                        <li><a href="{{ route('product.show') }}" key="t-saas">عرض المنتجات</a></li>
-
-                    </ul>
-                </li>
 
                 @php
                     $all_orders = DB::table('orders')->count();
@@ -80,93 +54,284 @@
                         ->count();
                 @endphp
 
-                <ul class="metismenu list-unstyled" id="side-menu">
-                    <li class="menu-title" key="t-menu">الطلبيات</li>
-                    <li>
-                        <a href="javascript: void(0);" class="has-arrow waves-effect">
-                            <i class="bx bx-task"></i>
+                @auth
 
-                            <span key="t-dashboards">
-                                الطلبيات</span>
-                            <span class="badge rounded-pill bg-danger float-end"> {{ $all_orders }}</span>
-                        </a>
-                        <ul class="sub-menu" aria-expanded="false">
-                            <li><a class="slide-item" href="{{ route('orders.show') }}">
-                                    <span class="badge rounded-pill bg-info float-end"> {{ $all_orders }}</span>
-                                    كل الطلبات</a>
-                            <li><a class="slide-item" href="{{ route('orders.pendingg') }}">
-                                    <span class="badge rounded-pill bg-light float-end"> {{ $pending_orders }}</span>
-                                    طلبات معلقه</a>
+                    @foreach (auth()->user()->role->permissions as $permission)
+                        @if ($permission->name == 'categories' || $permission->name == 'admins')
+                            <li class="menu-title" key="t-menu">الاقسام</li>
+
+                            <li>
+                                <a href="javascript: void(0);" class="has-arrow waves-effect">
+                                    <i class="bx bx-home-circle"></i>
+                                    <span key="t-dashboards">الاقسام الرئيسيه</span>
+                                </a>
+                                <ul class="sub-menu" aria-expanded="false">
+                                    <li><a href="{{ route('category.add') }}" key="t-default">إضافة قسم رئيسي</a></li>
+                                    <li><a href="{{ route('category.show') }}" key="t-saas">عرض الاقسام الرئيسيه</a></li>
+                                </ul>
                             </li>
-                            <li><a class="slide-item" href="{{ route('orders.delivered') }}">
-                                    <span class="badge rounded-pill bg-secondary float-end">
-                                        {{ $deliered_orders }}</span>
-                                    تم توصيلها</a>
-                            <li><a class="slide-item" href="{{ route('orders.inprograss') }}">
-                                    <span class="badge rounded-pill bg-primary float-end">
-                                        {{ $inPrograss_orders }}</span>
-                                    جاري العمل عليها</a>
-                            <li><a class="slide-item" href="{{ route('orders.paid.show') }}">
-                                    <span class="badge rounded-pill bg-primary float-end"> {{ $paid_orders }}</span>
-                                    مدفوعه</a>
+                            <li>
+                                <a href="javascript: void(0);" class="has-arrow waves-effect">
+                                    <i class="bx bx-layout"></i>
+                                    <span key="t-dashboards">الاقسام الفرعيه</span>
+                                </a>
+                                <ul class="sub-menu" aria-expanded="false">
+                                    <li><a href="{{ route('subcategory.add') }}" key="t-default">إضافة قسم فرعي</a></li>
+                                    <li><a href="{{ route('subcategory.show') }}" key="t-saas">عرض الاقسام الفرعيه</a>
+                                    </li>
+                                </ul>
+                            </li>
 
-                            <li><a class="slide-item" href="{{ route('orders.rejected') }}">
-                                    <span class="badge rounded-pill bg-warning float-end">
-                                        {{ $rejected_orders }}</span>
-                                    فشلت </a>
-                            <li><a class="slide-item" href="{{ route('orders.cancelled') }}">
-                                    <span class="badge rounded-pill bg-danger float-end">
-                                        {{ $cancelled_orders }}</span>
-                                    تم الغاؤها </a>
-                        </ul>
-                    </li>
-                    <li class="menu-title" key="t-menu">اضافه اشعارات</li>
+                            <li>
+                                <a href="javascript: void(0);" class="has-arrow waves-effect">
+                                    <i class="bx bx-layout"></i>
+                                    <span key="t-dashboards"> المنتجات</span>
+                                </a>
+                                <ul class="sub-menu" aria-expanded="false">
+                                    <li><a href="{{ route('product.add') }}" key="t-default">إضافة المنتج</a></li>
 
-                    <li>
-                        <a href="javascript: void(0);" class="has-arrow waves-effect">
-                            <i class="bx bx-store"></i>
+                                    <li><a href="{{ route('product.addcolorandsize') }}" key="t-saas"> اضافه الوان ومقاسات
+                                            المنتج</a>
+                                    </li>
 
-                            <span key="t-dashboards"> اضافه اشعارات</span>
-                        </a>
-                        <ul class="sub-menu" aria-expanded="false">
-                            <li><a class="slide-item" href="{{ route('notification.add') }}"> اضافه اشعارات </a>
-                            <li><a class="slide-item" href="{{ route('notification.show') }}"> عرض الاشعارات </a>
+                                    <li><a href="{{ route('product.show') }}" key="t-saas">عرض المنتجات</a></li>
 
-                        </ul>
-                    </li>
+                                </ul>
+                            </li>
+                        @endif
 
-                    <li class="menu-title" key="t-menu">العملاء</li>
 
-                    <li>
-                        <a href="javascript: void(0);" class="has-arrow waves-effect">
-                            <i class="bx bx-list-ul"></i>
+                        <ul class="metismenu list-unstyled" id="side-menu">
+                            @if ($permission->name == 'orders' || $permission->name == 'admins')
+                                <li class="menu-title" key="t-menu">الطلبيات</li>
+                                <li>
+                                    <a href="javascript: void(0);" class="has-arrow waves-effect">
+                                        <i class="bx bx-task"></i>
 
-                            <span key="t-dashboards"> العملاء</span>
-                        </a>
-                        <ul class="sub-menu" aria-expanded="false">
-                            <li><a class="slide-item" href="{{ route('customers.show') }}">جميع العملاء</a>
+                                        <span key="t-dashboards">
+                                            الطلبيات</span>
+                                        <span class="badge rounded-pill bg-danger float-end"> {{ $all_orders }}</span>
+                                    </a>
+                                    <ul class="sub-menu" aria-expanded="false">
+                                        <li><a class="slide-item" href="{{ route('orders.show') }}">
+                                                {{-- <i class="fas fa-allergies"></i> --}}
+                                                <span class="badge rounded-pill bg-info float-end">
+                                                    {{ $all_orders }}</span>
+                                                كل الطلبات</a>
+                                        <li><a class="slide-item" href="{{ route('orders.pendingg') }}">
+                                                {{-- <i class="fas fa-shopping-cart"></i> --}}
+                                                <span class="badge rounded-pill bg-secondary float-end">
+                                                    {{ $pending_orders }}</span>
+                                                طلبات معلقه</a>
+                                        </li>
+                                        <li><a class="slide-item" href="{{ route('orders.delivered') }}">
+                                                {{-- <i class="fas fa-shipping-fast"></i> --}}
+                                                <span class="badge rounded-pill bg-success float-end">
+                                                    {{ $deliered_orders }}</span>
+                                                تم التسليم</a>
+                                        <li><a class="slide-item" href="{{ route('orders.inprograss') }}">
 
-                        </ul>
-                    </li>
-                    <li class="menu-title" key="t-menu">المحافظات</li>
+                                                {{-- <i class="far fa-clock"></i> --}}
+                                                <span class="badge rounded-pill bg-info float-end">
+                                                    {{ $inPrograss_orders }}</span>
+                                                قيد التوصيل</a>
+                                        <li><a class="slide-item" href="{{ route('orders.paid.show') }}">
+                                                {{-- <i class="fas fa-check-circle"></i> --}}
+                                                <span class="badge rounded-pill bg-primary float-end">
+                                                    {{ $paid_orders }}</span>
+                                                تم الدفع</a>
 
-                    <li>
-                        <a href="javascript: void(0);" class="has-arrow waves-effect">
-                            <i class="bx bx-envelope"></i>
+                                        <li><a class="slide-item" href="{{ route('orders.rejected') }}">
+                                                {{-- <i class="fas fa-window-close"></i> --}}
+                                                <span class="badge rounded-pill bg-danger float-end">
+                                                    {{ $rejected_orders }}</span>
+                                                تم الرفض </a>
+                                        <li><a class="slide-item" href="{{ route('orders.cancelled') }}">
+                                                {{-- <i class="fas fa-prescription-bottle-alt"></i> --}}
+                                                <span class="badge rounded-pill bg-success float-end">
+                                                    {{ $cancelled_orders }}</span>
+                                                تم الإلغاء </a>
+                                    </ul>
+                                </li>
+                            @endif
+                            {{-- <li class="" key="t-menu">اضافه اشعارات</li> --}}
 
-                            <span key="t-dashboards"> المحافظات</span>
-                        </a>
-                        <ul class="sub-menu" aria-expanded="false">
-                            <li><a class="slide-item" href="{{ route('city.add') }}"> اضافه محافظه </a>
-                            <li><a class="slide-item" href="{{ route('city.show') }}"> عرض المحافظات </a>
-                            <li><a class="slide-item" href="{{ route('area.add') }}"> اضافه منطقه </a>
-                            <li><a class="slide-item" href="{{ route('area.show') }}"> عرض المناطق </a>
-                        </ul>
-                    </li>
-                    <li class="menu-title" key="t-menu">الفواتير</li>
 
-                    <li>
-                        <a href="javascript: void(0);" class="has-arrow waves-effect">
+
+
+
+
+                            @if ($permission->name == 'customers' || $permission->name == 'admins')
+                                <li>
+                                    <a href="javascript: void(0);" class="has-arrow waves-effect my-3">
+                                        <i class="bx bx-list-ul"></i>
+
+                                        <span key="t-dashboards"> العملاء</span>
+                                    </a>
+                                    <ul class="sub-menu" aria-expanded="false">
+                                        <li><a class="slide-item" href="{{ route('users.show') }}">جميع العملاء</a>
+
+                                    </ul>
+                                </li>
+                            @endif
+
+                            @if ($permission->name == 'cities' || $permission->name == 'admins')
+                                <li>
+                                    <a href="javascript: void(0);" class="has-arrow waves-effect my-3">
+                                        <i class="bx bx-envelope"></i>
+
+                                        <span key="t-dashboards"> المحافظات</span>
+                                    </a>
+                                    <ul class="sub-menu" aria-expanded="false">
+                                        <li><a class="slide-item" href="{{ route('city.add') }}"> اضافه محافظه </a>
+                                        <li><a class="slide-item" href="{{ route('city.show') }}"> عرض المحافظات </a>
+                                        <li><a class="slide-item" href="{{ route('area.add') }}"> اضافه منطقه </a>
+                                        <li><a class="slide-item" href="{{ route('area.show') }}"> عرض المناطق </a>
+                                    </ul>
+                                </li>
+                            @endif
+
+                            @if ($permission->name == 'privacies' || $permission->name == 'admins')
+                                <li>
+                                    <a href="javascript: void(0);" class="has-arrow waves-effect my-3">
+                                        <i class="bx bx-task"></i>
+
+                                        <span key="t-dashboards"> السياسات</span>
+                                    </a>
+                                    <ul class="sub-menu" aria-expanded="false">
+                                        <li><a class="slide-item" href="{{ route('privacy.bene.show') }}">سياسة
+                                                بنسايز</a>
+                                        <li><a class="slide-item" href="{{ route('privacy.delivery.show') }}"> سياسة
+                                                التوصيل </a>
+                                        <li><a class="slide-item" href="{{ route('privacy.return.show') }}"> سياسة
+                                                الارجاع </a>
+                                        <li><a class="slide-item" href="{{ route('privacy.warranty.show') }}"> سياسه
+                                                الضمان</a>
+                                        <li><a class="slide-item" href="{{ route('privacy.terms.show') }}"> سياسات
+                                                قانونيه</a>
+
+                                    </ul>
+                                </li>
+                            @endif
+                            @if ($permission->name == 'notifications' || $permission->name == 'admins')
+                                <li>
+
+                                    <a href="javascript: void(0);" class="has-arrow waves-effect my-3">
+                                        <i class="bx bx-store"></i>
+
+                                        <span key="t-dashboards menu-title"> اضافه اشعارات</span>
+
+                                        </h4>
+                                    </a>
+
+                                    <ul class="sub-menu" aria-expanded="false">
+                                        <li><a class="slide-item" href="{{ route('notification.add') }}"> اضافه اشعارات
+                                            </a>
+                                        <li><a class="slide-item" href="{{ route('notification.show') }}"> عرض الاشعارات
+                                            </a>
+
+                                    </ul>
+                                </li>
+                            @endif
+
+                            @if ($permission->name == 'socials' || $permission->name == 'admins')
+                                <li>
+                                    <a href="javascript: void(0);" class="has-arrow waves-effect my-3">
+                                        <i class="bx bx-map"></i>
+                                        <span key="t-dashboards"> مواقع التواصل الاجتماعي</span>
+                                    </a>
+                                    <ul class="sub-menu" aria-expanded="false">
+                                        <li><a class="slide-item" href="{{ route('social.add') }}"> مواقع التواصل </a>
+
+
+                                    </ul>
+                                </li>
+                            @endif
+
+                            @if ($permission->name == 'sliders' || $permission->name == 'admins')
+
+                            <li>
+                                <a href="javascript: void(0);" class="has-arrow waves-effect my-3">
+                                    <i class="bx bx-aperture"></i>
+                                    <span key="t-dashboards"> البانر</span>
+                                </a>
+                                <ul class="sub-menu" aria-expanded="false">
+                                    <li><a class="slide-item" href="{{ route('slide.add') }}"> اضافه بانر</a>
+                                    <li><a class="slide-item" href="{{ route('slides.show') }}"> عرض بانرات</a>
+
+
+
+
+                                </ul>
+                            </li>
+                    @endif
+
+                    @if ($permission->name == 'coupons' || $permission->name == 'admins')
+
+                            <li>
+                                <a href="javascript: void(0);" class="has-arrow waves-effect my-3">
+                                    <i class="bx bx-bitcoin"></i>
+                                    <span key="t-dashboards"> الكوبونات</span>
+                                </a>
+                                <ul class="sub-menu" aria-expanded="false">
+                                    <li><a class="slide-item" href="{{ route('coupon.add') }}"> اضافه كوبون</a>
+                                    <li><a class="slide-item" href="{{ route('coupon.show') }}"> عرض الكوبونات</a>
+
+
+                                </ul>
+                            </li>
+
+                    @endif
+                            @if ($permission->name == 'complains' || $permission->name == 'admins')
+                                <li>
+                                    <a href="javascript: void(0);" class="has-arrow waves-effect my-3">
+                                        <i class="bx bx-receipt"></i>
+
+                                        <span key="t-dashboards"> الشكاوي والمقترحات</span>
+                                    </a>
+                                    <ul class="sub-menu" aria-expanded="false">
+                                        <li><a class="slide-item" href="{{ route('complain.show') }}"> عرض الشكاوي</a>
+
+
+                                    </ul>
+                                </li>
+                            @endif
+
+                            @if ($permission->name == 'employers' || $permission->name == 'admins')
+                                <li class="menu-title" key="t-menu">قسم الموظفيين</li>
+                                <li>
+                                <li>
+
+                                    <a href="javascript: void(0);" class="has-arrow waves-effect">
+                                        <i class="bx bx-home-circle"></i>
+                                        <span key="bx bxs-user-detail"> اضافه دور</span>
+                                    </a>
+                                    <ul class="sub-menu" aria-expanded="false">
+                                        <li><a href="{{ route('employee.add.role') }}" key="t-saas"> اضافه
+                                                دورالموظف</a>
+                                        </li>
+
+                                    </ul>
+                                </li>
+                                </li>
+                                <li>
+
+                                    <a href="javascript: void(0);" class="has-arrow waves-effect">
+                                        <i class="bx bx-file"></i>
+                                        <span key="bx bx-briefcase-alt-2"> الموظفين</span>
+                                    </a>
+                                    <ul class="sub-menu" aria-expanded="false">
+                                        <li><a href="{{ route('employee.add') }}" key="t-saas"> اضافه موظف جديد </a>
+                                        </li>
+                                        <li><a href="{{ route('employee.show') }}" key="t-saas"> عرض الموظفين</a></li>
+
+                                    </ul>
+                                </li>
+                            @endif
+                            {{-- <li class="menu-title" key="t-menu">الفواتير</li> --}}
+
+                            {{-- <li>
+                        <a href="javascript: void(0);" class="has-arrow waves-effect my-3">
                             <i class="bx bx-envelope"></i>
 
                             <span key="t-dashboards"> الفواتير</span>
@@ -176,30 +341,34 @@
                             <li><a class="slide-item" href="{{ route('invoices.page') }}"> عرض الفواتير </a>
 
                         </ul>
-                    </li>
-                    <li class="menu-title" key="t-menu">الاعدادات</li>
+                    </li> --}}
+                    @endforeach
+                @endauth
 
-                    <li>
-                        <a href="javascript: void(0);" class="has-arrow waves-effect">
-                            <i class="bx bx-file"></i>
+                <li class="menu-title" key="t-menu">الاعدادات</li>
 
-                            <span key="t-dashboards"> الاعدادات</span>
-                        </a>
-                        <ul class="sub-menu" aria-expanded="false">
-                            <a class="dropdown-item" href="javascript:void();"
-                                onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><i
-                                    class="bx bx-power-off font-size-16 align-middle me-1"></i> <span>تسجيل
-                                    خروج</span></a>
-                            <form id="logout-form" action="{{ route('logout') }}" method="POST"
-                                style="display: none;">
-                                @csrf
-                            </form>
-                        </ul>
-                    </li>
+                <li>
+                    <a href="javascript: void(0);" class="has-arrow waves-effect">
+                        <i class="bx bx-file"></i>
+
+                        <span key="t-dashboards"> الاعدادات</span>
+                    </a>
+                    <ul class="sub-menu" aria-expanded="false">
+                        <a class="dropdown-item" href="javascript:void();"
+                            onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><i
+                                class="bx bx-power-off font-size-16 align-middle me-1"></i> <span>تسجيل
+                                خروج</span></a>
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                            style="display: none;">
+                            @csrf
+                        </form>
+                    </ul>
+                </li>
 
 
 
-                    {{-- <li class="menu-title" key="t-apps">@lang('translation.Apps')</li>
+
+                {{-- <li class="menu-title" key="t-apps">@lang('translation.Apps')</li>
 
                     <li>
                         <a href="javascript: void(0);" class="has-arrow waves-effect">
@@ -551,8 +720,8 @@
                                     </li>
                                     <li><a href="javascript: void(0);" key="t-level-2-2">@lang('translation.Level_2.2')</a>
                                     </li> --}}
-                </ul>
-                </li>
+            </ul>
+            </li>
             </ul>
             </li>
 

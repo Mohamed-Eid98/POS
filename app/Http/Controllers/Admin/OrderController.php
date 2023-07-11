@@ -25,9 +25,9 @@ return view('orders.allorders',compact('orders'));
         Order::findOrFail($id)->update(['status' => 'Paid' ]);
 
          $order= Order::findOrFail($id);
-         $usercreate=User::where('id','!=',Auth::user()->id)->get();
-          $user=Auth::user()->name;
-         Notification::send($usercreate,new CreateOrder($order->id,$user));
+        //  $usercreate=User::where('id','!=',Auth::user()->id)->get();
+        //   $user=Auth::user()->name;
+        //  Notification::send($usercreate,new CreateOrder($order->id,$user));
 
         return redirect()->route('orders.show');
     }
@@ -36,9 +36,9 @@ return view('orders.allorders',compact('orders'));
         // return $orders;
 
         $order= Order::findOrFail($id);
-        $usercreate=User::where('id','!=',Auth::user()->id)->get();
-         $user=Auth::user()->name;
-        Notification::send($usercreate,new CreateOrder($order->id,$user));
+        // $usercreate=User::where('id','!=',Auth::user()->id)->get();
+        //  $user=Auth::user()->name;
+        // Notification::send($usercreate,new CreateOrder($order->id,$user));
 
         return redirect()->route('orders.show');
     }
@@ -66,6 +66,7 @@ return view('orders.allorders',compact('orders'));
         $orders = Order::with('customer')->where('status' , 'Paid')->get();
         return view('orders.allorders',compact('orders'));
     }
+
 
 
 }

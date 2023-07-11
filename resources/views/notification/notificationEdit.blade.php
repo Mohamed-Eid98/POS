@@ -1,6 +1,6 @@
 @extends('layouts.master')
 @section('title')
-    تعديلالاشعار
+    تعديل الاشعار
 @stop
 @section('css')
     <!--  Owl-carousel css-->
@@ -14,7 +14,7 @@
         <div class="my-auto">
             <div class="d-flex">
                 <h4 class="content-title mb-0 my-auto">تعديل</h4><span class="text-muted mt-1 tx-13 mr-2 mb-0">/
-                    قسم رئيسي</span>
+                    الاشعار</span>
             </div>
         </div>
     </div>
@@ -41,27 +41,70 @@
                     <div class="box-body">
                         <div class="table-responsive">
 
-                            <form method="post" action="{{ route('category.update') }}">
+                            <form method="post" action="{{ route('notification.update') }}">
                                 @csrf
-                                <input type="hidden" name="id" value="" class="form-control">
-                                <div class="form-group">
-                                    <h5 for="name">أسم القسم <span class="text-danger">*</span></h5>
-                                    <div class="controls">
-                                        <input type="text" id="name" name="name" value=""
-                                            class="form-control">
-                                        @error('name')
-                                            <span class="text-danger">{{ $message }}</span>
-                                        @enderror
+                                <input type="hidden" name="id" value="{{ $notification->id }}" class="form-control">
+
+                                <div class="row">
+                                    <div class="col-lg-12 col-md-12">
+                                        <div class="card">
+                                            <div class="card-body">
+
+
+                                                <div class="box">
+                                                    <div class="box-header with-border">
+                                                        <h4 class="box-title">تعديل اشعار</h4>
+                                                    </div>
+                                                    <hr>
+                                                    <!-- start 2nd row  -->
+
+                                                    <div class="mb-3">
+                                                        <div class="form-group">
+                                                            <h2> نوع الاشعار<span class="text-danger">*</span></h2>
+                                                            <div class="controls">
+                                                                <select name="title" id="select" class="form-control">
+
+
+                                                                    <option value="Notice">تهنئه</option>
+                                                                    <option value="Product">تنبيه</option>
+                                                                    <option value="Info">معلومه</option>
+
+
+                                                                </select>
+                                                                @error('type')
+                                                                    <span class="text-danger">{{ $message }}</span>
+                                                                @enderror
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+
+                                                    <div class="form-group my-5">
+                                                        <h4 for="name"> الاشعار<span class="text-danger">*</span>
+                                                        </h4>
+                                                        <div class="controls">
+                                                            <textarea id="name" name="body" class="form-control" cols="10" rows="5">{{ $notification->title }}</textarea>
+                                                            @error('body')
+                                                                <span class="text-danger">{{ $message }}</span>
+                                                            @enderror
+                                                        </div>
+                                                    </div>
+
+
+
+
+
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
 
 
-                                <div class="text-center">
-                                    <input type="submit" class="btn btn-rounded btn-info mb-5" value="تعديل">
+                                <div class="text-center mt-4">
+                                    <input type="submit" class="btn btn-primary waves-effect waves-light" value="حفظ">
                                 </div>
-
                             </form>
-
                         </div>
                     </div>
                     <!-- /.box-body -->

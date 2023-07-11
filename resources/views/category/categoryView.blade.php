@@ -15,6 +15,8 @@
     <!-- Responsive datatable examples -->
     <link href="{{ URL::asset('build/libs/datatables.net-responsive-bs4/css/responsive.bootstrap4.min.css') }}"
         rel="stylesheet" type="text/css" />
+
+
 @endsection
 
 @section('content')
@@ -27,12 +29,25 @@
         @endslot
     @endcomponent
 
+
+
+    @if (session('delete'))
+        <div class="alert alert-success">
+            {{ session('delete') }}
+        </div>
+    @endif
+    @if (session('edit'))
+        <div class="alert alert-success">
+            {{ session('edit') }}
+        </div>
+    @endif
+
     <div class="row">
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
 
-                    <h4 class="card-title">عرض الاقسام الرئيسيه</h4>
+                    <h4 class="card-title my-5">عرض الاقسام الرئيسيه</h4>
 
 
                     <div id="datatable_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
@@ -46,40 +61,45 @@
 
                         <div class="row">
                             <div class="col-sm-12">
-                                <table id="example"
-                                    class="table table-bordered dt-responsive nowrap w-100 dataTable no-footer dtr-inline"
-                                    role="grid" aria-describedby="datatable_info" style="width: 1566px;">
+                                <table id="example" class="table table-striped my-3 w-100 " role="grid"
+                                    aria-describedby="datatable_info">
                                     <thead>
                                         <tr role="row">
                                             <th>#</th>
-                                            <th> الصوره</th>
+                                            <th>
+                                                الصوره
+                                            </th>
                                             <th>القسم الرئيسي</th>
                                             <th>التعديلات</th>
                                         </tr>
-
                                     </thead>
-
-
                                     <tbody>
-
                                         <?php $i = 0; ?>
                                         @foreach ($categories as $category)
                                             <?php $i++; ?>
                                             <tr>
-                                                <td><strong>{{ $i }}</strong></td>
+                                                <td>{{ $i }}</td>
                                                 <td>
-                                                    {{-- {{ $category->getFirstMediaUrl('CategoryImages') }} --}}
-                                                    <img src="{{  $category->getFirstMediaUrl('CategoryImages') }}" alt="{{ $category->title }}" class="img-fluid">
+                                                    @if ($category->getFirstMediaUrl('images'))
+                                                        <img src="{{ $category->getFirstMediaUrl('images') }}"
+                                                            style="width: 60px;height:50px" alt="{{ $category->title }}"
+                                                            class="img-fluid">
+                                                    @else
+                                                        <img src="{{ asset('uploads/on-C100969_Image_01.jpeg') }}"
+                                                            style="width: 60px;height:50px" alt="{{ $category->title }}"
+                                                            class="img-fluid">
+                                                    @endif
                                                 </td>
-                                                <td><strong>{{ $category->name }}</strong></td>
+                                                <td>{{ $category->name }}</td>
                                                 <td>
                                                     <a href="{{ route('category.edit', $category->id) }}" title="Edit Data"
-                                                        class="btn btn-info">
-                                                        <i class="fas fa-edit"></i></a>
-                                                    <a href="{{ route('category.delete', $category->id) }}"
-                                                        class="btn btn-danger" title="حذف">
-                                                        <i class="fas fa-trash"></i></a>
+                                                        class="btn btn-sm btn-soft-primary"><i
+                                                            class="mdi mdi-pencil-outline"></i></a>
+                                                    <a href="{{ route('category.delete', $category->id) }}" title="حذف"
+                                                        class="btn btn-sm btn-soft-danger"><i
+                                                            class="mdi mdi-delete-outline"></i></a>
                                                 </td>
+
                                             </tr>
                                         @endforeach
 
@@ -98,89 +118,18 @@
         </div>
     @endsection
 
-    {{-- <script>
-        function myFunction() {
-            // Declare variables
-            var input, filter, table, tr, td, i, txtValue;
-            input = document.getElementById("myInput");
-            filter = input.value.toUpperCase();
-            table = document.getElementById("myTable");
-            tr = table.getElementsByTagName("tr");
-
-            // Loop through all table rows, and hide those who don't match the search query
-            for (i = 0; i < tr.length; i++) {
-                td = tr[i].getElementsByTagName("td")[0];
-                if (td) {
-                    txtValue = td.textContent || td.innerText;
-                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
-                        tr[i].style.display = "";
-                    } else {
-                        tr[i].style.display = "none";
-                    }
-                }
-            }
-        }
-    </script> --}}
 
 
-
-
-
-    {{-- <script>
-        function searchTable() {
-            var input, filter, found, table, tr, td, i, j;
-            input = document.getElementById("myInput");
-            filter = input.value.toUpperCase();
-            table = document.getElementById("myTable");
-            tr = table.getElementsByTagName("tr");
-            for (i = 0; i < tr.length; i++) {
-                td = tr[i].getElementsByTagName("td");
-                for (j = 0; j < td.length; j++) {
-                    if (td[j].innerHTML.toUpperCase().indexOf(filter) > -1) {
-                        found = true;
-                    }
-                }
-                if (found) {
-                    tr[i].style.display = "";
-                    found = false;
-                } else {
-                    tr[i].style.display = "none";
-                }
-            }
-        }
-    </script>
-    <script>
-        var currentPosition = 0;
-        var maxPosition = 10;
-        updateContent();
-        document.getElementById("prev").addEventListener("click", function() {
-            if (currentPosition > 0) {
-                currentPosition--;
-                updateContent();
-            }
-        });
-        document.getElementById("next").addEventListener("click", function() {
-            if (currentPosition < maxPosition) {
-                currentPosition++;
-                updateContent();
-            }
-        });
-
-        function updateContent() {
-            // update UI or make API call here
-            var content = document.getElementById("content");
-            content.innerHTML = "Current Position: " + currentPosition + "<br> <br>";
-        }
-    </script> --}}
+    @section('js')
     <script>
         $(function(e) {
             //file export datatable
             var table = $('#example').DataTable({
                 lengthChange: false,
-                buttons: ['copy', 'excel', 'pdf', 'colvis'],
+                buttons: ['copy', 'excel', 'pdff', 'colvis'],
                 responsive: true,
                 language: {
-                    searchPlaceholder: 'Search...',
+                    searchPlaceholder: 'البحث ...',
                     sSearch: '',
                     lengthMenu: '_MENU_ ',
                 }
@@ -190,7 +139,7 @@
 
             $('#example1').DataTable({
                 language: {
-                    searchPlaceholder: 'Search...',
+                    searchPlaceholder: 'البحث ...',
                     sSearch: '',
                     lengthMenu: '_MENU_',
                 }
@@ -198,7 +147,7 @@
             $('#example2').DataTable({
                 responsive: true,
                 language: {
-                    searchPlaceholder: 'Search...',
+                    searchPlaceholder: 'البحث ...',
                     sSearch: '',
                     lengthMenu: '_MENU_',
                 }
@@ -206,7 +155,7 @@
             var table = $('#example-delete').DataTable({
                 responsive: true,
                 language: {
-                    searchPlaceholder: 'Search...',
+                    searchPlaceholder: 'البحث ...',
                     sSearch: '',
                     lengthMenu: '_MENU_',
                 }
@@ -228,7 +177,7 @@
             $('#example-1').DataTable({
                 responsive: true,
                 language: {
-                    searchPlaceholder: 'Search...',
+                    searchPlaceholder: 'البحث ...',
                     sSearch: '',
                     lengthMenu: '_MENU_',
                 },
@@ -248,3 +197,5 @@
             });
         });
     </script>
+
+    @endsection

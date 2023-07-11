@@ -76,7 +76,7 @@
                                 <h5 for="name">أسم المنتج <span class="text-danger">*</span>
                                 </h5>
                                 <div class="controls">
-                                    <input type="text" id="name" name="name" class="form-control">
+                                    <input type="text" id="name" name="name" class="form-control" required>
                                     @error('name')
                                         <span class="text-danger">{{ $message }}</span>
                                     @enderror
@@ -87,7 +87,7 @@
                                 <h5 for="desc">وصف المنتج <span class="text-danger">*</span>
                                 </h5>
                                 <div class="controls">
-                                    <textarea name="desc" class="form-control" id="desc" cols="10" rows="5"></textarea>
+                                    <textarea name="desc" class="form-control" id="desc" cols="10" rows="5" required></textarea>
                                     @error('desc')
                                         <span class="text-danger">{{ $message }}</span>
                                     @enderror
@@ -163,7 +163,7 @@
                                 <div class="form-group">
                                     <h5>القسم الفرعي <span class="text-danger">*</span></h5>
                                     <div class="controls">
-                                        <select name="subcate_id" id="select" class="form-control">
+                                        <select name="subcate_id" id="select" class="form-control" >
                                             <option value="" selected disabled>-- اختر القسم الفرعي--</option>
                                         </select>
                                         @error('subcate_id')
@@ -178,13 +178,14 @@
 
 
 
+
+
+
+
                     </div>
                 </div>
             </div>
         </div>
-
-
-
 
         <div class="row">
             <div class="col-lg-12 col-md-12">
@@ -194,48 +195,118 @@
 
                         <div class="box">
                             <div class="box-header with-border">
-                                <h4 class="box-title"> معلومات</h4>
+                                <h4 class="box-title"> تفاصيل</h4>
                             </div>
                             <hr>
                             <!-- start 2nd row  -->
 
 
                         </div>
+
+
                         <div class="row">
                             <!-- start 1st row  -->
 
+                            <div class="col-md-4">
 
-
-
-
-
-                            <div class="col-md-6">
-
-                                <div class="mb-3">
-                                    <label class="form-label">المقاس </label>
-
-                                    <select name="size[]" class="select2 form-control select2-multiple"
-                                        multiple="multiple" data-placeholder="Choose ...">
-
-                                        @foreach ($sizes as $size)
-                                            <option value="{{ $size->id }}">
-                                                {{ $size->name }}
-                                            </option>
-                                        @endforeach
-
-                                    </select>
-
+                                <div class="form-group">
+                                    <h5 for="price">السعر <span class="text-danger">*</span></h5>
+                                    <div class="controls">
+                                        <input type="number"  name="price" class="form-control" />
+                                        @error('price')
+                                            <span class="text-danger" >{{ $message }}</span>
+                                        @enderror
+                                    </div>
                                 </div>
+
+                            </div> <!-- end col md 6 -->
+
+
+                            <div class="col-md-4">
+
+                                <div class="form-group">
+                                    <h5 for="qty">الكميه </h5>
+                                    <div class="controls">
+                                        <input type="number"  name="qty" class="form-control" />
+                                        @error('qty')
+                                            <span class="text-danger" >{{ $message }}</span>
+                                        @enderror
+                                    </div>
+                                </div>
+
+                            </div> <!-- end col md 6 -->
+
+
+                        </div> <!-- end 1st row  -->
+
+
+                        <div class="row">
+                            <!-- start 1st row  -->
+
+                            <div class="col-md-4">
+
+                                <div class="form-group">
+                                    <h5 for="min_price"> الحد الادني </h5>
+                                    <div class="controls">
+                                        <input type="number"  name="min_price" class="form-control" />
+                                        @error('min_price')
+                                            <span class="text-danger" >{{ $message }}</span>
+                                        @enderror
+                                    </div>
+                                </div>
+
+                            </div> <!-- end col md 4 -->
+
+
+                            <div class="col-md-4">
+
+                                <div class="form-group">
+                                    <h5 for="repeated_times"> عدد التكرار</h5>
+                                    <div class="controls">
+                                        <input type="number"  name="repeated_times" class="form-control" />
+                                        @error('repeated_times')
+                                            <span class="text-danger" >{{ $message }}</span>
+                                        @enderror
+                                    </div>
+                                </div>
+
+                            </div> <!-- end col md 4 -->
+                            <div class="col-md-4">
+
+                                <div class="form-group">
+                                    <h5 for="increase_ratio">الزياده %</h5>
+                                    <div class="controls">
+                                        <input type="number"  name="increase_ratio" class="form-control" />
+                                        @error('increase_ratio')
+                                            <span class="text-danger" >{{ $message }}</span>
+                                        @enderror
+                                    </div>
+                                </div>
+
                             </div> <!-- end col md 6 -->
 
                         </div> <!-- end 1st row  -->
 
+
+
+
+
+
+
+
+
+
+
+
+
                     </div>
-                    <!-- end row -->
                 </div>
             </div>
-
         </div>
+
+
+
+
 
 
         <div class="row">

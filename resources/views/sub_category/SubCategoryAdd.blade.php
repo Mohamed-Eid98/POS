@@ -70,7 +70,10 @@
                                     </div>
                                     <br>
                                     <div class="fallback">
-                                        <input type="file" name="pic"><br>
+                                        <img src="" id="mainThmb" alt="">
+                                        <br><br>
+                                        <input type="file" name="pic" onChange="mainThamUrl(this)">
+
                                         @error('pic')
                                             <span class="text-danger" >{{ $message }}</span>
                                         @enderror
@@ -83,7 +86,7 @@
                                     <h4>ادخل الصوره هنا</h4>
                                 </div>
                             </div>
-                                <div class="text-center mt-4">
+                                <div class="text-center mt-4 mb-2">
                                     <input type="submit" class="btn btn-primary waves-effect waves-light" value="حفظ">
                                 </div>
                             </form>
@@ -101,6 +104,20 @@
 
 @endsection
 @section('js')
+
+@section('script')
+    <script type="text/javascript">
+        function mainThamUrl(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function(e) {
+                    $('#mainThmb').attr('src', e.target.result).width(130).height(150);
+                };
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+    </script>
+
 {{-- <script src="{{ asset('build/libs/dropzone/min/dropzone.min.js') }}"></script>
 
 <script src="{{ asset('build/js/app.js') }}"></script> --}}

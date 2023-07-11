@@ -52,13 +52,13 @@
                                 <div class="form-group">
                                     <h5> المحافظه <span class="text-danger">*</span></h5>
                                     <div class="controls">
-                                        <select name="cate_id" id="select" class="form-control"  >
+                                        <select name="city_id" id="city_id" class="form-control"  >
                                             <option value="" selected disabled >-- اختر المحافظه --</option>
                                             @foreach ($cities as $city)
-                                                <option value="{{ $city->id }}">{{ $city->general_title  }}</option>
-                                            @endforeach
+                                            <option value="{{ $city->id }}">{{ $city->general_title  }}</option>
+                                        @endforeach
                                         </select>
-                                        @error('cate_id')
+                                        @error('city_id')
                                         <span class="text-danger" >{{ $message }}</span>
                                         @enderror
                                      </div>
@@ -68,7 +68,9 @@
                                 <div class="mb-3">
                                     <label for="formrow-firstname-input" class="form-label">اسم المنطقه <span class="text-danger">*</span></label>
                                     <input type="text" class="form-control" id="formrow-firstname-input" name="name" placeholder="ادخل اسم المنطقه من فضلك">
-                                        @error('name')
+
+
+                                    @error('name')
                                             <span class="text-danger" >{{ $message }}</span>
                                         @enderror
                                 </div>
@@ -101,7 +103,36 @@
 
 
 
+@section('js')
 
+
+@section('script')
+
+
+
+
+    <!-- JAVASCRIPT -->
+    <script src="{{ asset('assets/libs/jquery/jquery.min.js') }}"></script>
+    <script src="{{ asset('assets/libs/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ asset('assets/libs/metismenu/metisMenu.min.js') }}"></script>
+    <script src="{{ asset('assets/libs/simplebar/simplebar.min.js') }}"></script>
+    <script src="{{ asset('assets/libs/node-waves/waves.min.js') }}"></script>
+
+    <script src="{{ asset('assets/libs/select2/js/select2.min.js') }}"></script>
+    <script src="{{ asset('assets/libs/bootstrap-datepicker/js/bootstrap-datepicker.min.js') }}"></script>
+    <script src="{{ asset('assets/libs/spectrum-colorpicker2/spectrum.min.js') }}"></script>
+    <script src="{{ asset('assets/libs/bootstrap-timepicker/js/bootstrap-timepicker.min.js') }}"></script>
+    <script src="{{ asset('assets/libs/bootstrap-touchspin/jquery.bootstrap-touchspin.min.js') }}"></script>
+    <script src="{{ asset('assets/libs/bootstrap-maxlength/bootstrap-maxlength.min.js') }}"></script>
+    <script src="{{ asset('assets/libs/@chenfengyuan/datepicker/datepicker.min.js') }}"></script>
+
+    <!-- form advanced init -->
+    <script src="{{ asset('assets/js/pages/form-advanced.init.js') }}"></script>
+
+    <script src="{{ asset('assets/js/app.js') }}"></script>
+
+
+@endsection
 
 
 

@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('title')
-    عرض العملاء
+    عرض الزبائن
 @endsection
 
 @section('css')
@@ -23,7 +23,7 @@
             عرض
         @endslot
         @slot('title')
-            العملاء
+            الزبائن
         @endslot
     @endcomponent
 
@@ -45,36 +45,31 @@
             <div class="card">
                 <div class="card-body">
 
-                    <h4 class="card-title">عرض العملاء</h4>
+                    <h4 class="card-title">عدد الزبائن ({{ $user->customers->count() }} )</h4>
                     <p class="card-title-desc">
 
                     </p>
 
                     <div id="datatable_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
                         <div class="row">
-                            <div class="col-sm-12 col-md-6">
-                                <div class="dataTables_length" id="datatable_length"><label>عرض <select
-                                            name="datatable_length" aria-controls="datatable"
-                                            class="custom-select custom-select-sm form-control form-control-sm form-select form-select-sm">
-                                            <option value="10">10</option>
-                                            <option value="25">25</option>
-                                            <option value="50">50</option>
-                                            <option value="100">100</option>
-                                        </select> entries</label></div>
-                            </div>
+
 
                         </div>
                         <div class="row">
                             <div class="col-sm-12">
-                                <table id="example"
-                                    class="table table-bordered dt-responsive nowrap w-100 dataTable no-footer dtr-inline"
-                                    role="grid" aria-describedby="datatable_info" style="width: 1566px;">
+                                <table id="example" class="table table-striped my-3 w-100" role="grid"
+                                    aria-describedby="datatable_info" style="width: 1566px;">
                                     <thead>
                                         <tr role="row">
                                             <th>#</th>
-                                            <th>الموزع</th>
-                                            <th>العميل</th>
-                                            <th>التعديلات</th>
+                                            <th>اسم الزبون</th>
+                                            <th>المحافظه </th>
+                                            <th>المنطقه </th>
+                                            <th>العنوان </th>
+                                            <th>رقم الهاتف</th>
+                                            <th>التعديلات </th>
+
+
                                         </tr>
 
                                     </thead>
@@ -83,29 +78,41 @@
                                     <tbody>
 
                                         <?php $i = 0; ?>
-                                        @foreach ($users as $user)
+                                        @foreach ($user->customers as $customer)
                                             <?php $i++; ?>
                                             <tr>
+                                                <?php $i; ?>
+
                                                 <td>{{ $i }}</td>
 
-                                                <td>{{ $user->name }}</td>
+                                                {{-- <td>{{ $user->avatar }}</td> --}}
+
+                                                <td>{{ $customer->name }}</td>
                                                 <td>
-                                                    @if ($user->customers)
-                                                        @foreach ($user->customers as $customer)
-                                                            <li>{{ $customer->name }} </li>
-                                                        @endforeach
+                                                    @if ($customer->city)
+                                                        {{ $customer->city->general_title }}
                                                     @else
-                                                        لا
+                                                        لا يوجد
                                                     @endif
                                                 </td>
                                                 <td>
-                                                    {{-- <a href="{{ route('user.edit',$user->id) }}" title="تعديل"
-                                                        class="btn btn-info">
-                                                        <i class="fas fa-edit"></i></a> --}}
-                                                    <a href="{{ route('user.delete', $user->id) }}" class="btn btn-danger"
-                                                        title="حذف">
-                                                        <i class="fas fa-trash"></i></a>
-
+                                                    @if ($customer->area)
+                                                        {{ $customer->area->general_title }}
+                                                    @else
+                                                        لا يوجد
+                                                    @endif
+                                                </td>
+                                                <td>{{ $customer->address }}</td>
+                                                <td>
+                                                    <li>{{ $customer->phone_number }}</li>
+                                                    @if ($customer->second_phone_number)
+                                                        <li>{{ $customer->second_phone_number }}</li>
+                                                    @endif
+                                                </td>
+                                                <td>
+                                                    <a href="{{ route('user.delete', $customer->id) }}" title="حذف"
+                                                        class="btn btn-sm btn-soft-danger"><i
+                                                            class="mdi mdi-delete-outline"></i></a>
                                                 </td>
                                             </tr>
                                         @endforeach
@@ -122,15 +129,16 @@
             </div> <!-- end col -->
         </div>
     @endsection
+    @section('js')
     <script>
         $(function(e) {
             //file export datatable
             var table = $('#example').DataTable({
                 lengthChange: false,
-                buttons: ['copy', 'excel', 'pdf', 'colvis'],
+                buttons: ['copy', 'excel', 'pdff', 'colvis'],
                 responsive: true,
                 language: {
-                    searchPlaceholder: 'Search...',
+                    searchPlaceholder: 'البحث ...',
                     sSearch: '',
                     lengthMenu: '_MENU_ ',
                 }
@@ -140,7 +148,7 @@
 
             $('#example1').DataTable({
                 language: {
-                    searchPlaceholder: 'Search...',
+                    searchPlaceholder: 'البحث ...',
                     sSearch: '',
                     lengthMenu: '_MENU_',
                 }
@@ -148,7 +156,7 @@
             $('#example2').DataTable({
                 responsive: true,
                 language: {
-                    searchPlaceholder: 'Search...',
+                    searchPlaceholder: 'البحث ...',
                     sSearch: '',
                     lengthMenu: '_MENU_',
                 }
@@ -156,7 +164,7 @@
             var table = $('#example-delete').DataTable({
                 responsive: true,
                 language: {
-                    searchPlaceholder: 'Search...',
+                    searchPlaceholder: 'البحث ...',
                     sSearch: '',
                     lengthMenu: '_MENU_',
                 }
@@ -178,7 +186,7 @@
             $('#example-1').DataTable({
                 responsive: true,
                 language: {
-                    searchPlaceholder: 'Search...',
+                    searchPlaceholder: 'البحث ...',
                     sSearch: '',
                     lengthMenu: '_MENU_',
                 },
@@ -198,3 +206,5 @@
             });
         });
     </script>
+
+    @endsection
