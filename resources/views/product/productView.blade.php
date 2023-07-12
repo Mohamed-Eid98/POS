@@ -73,11 +73,12 @@
                                         <tr role="row">
                                             <th>#</th>
                                             <th>الصوره</th>
-                                            <th>اسم المنتج</th>
-                                            <th>الكود</th>
-                                            <th>القسم الفرعي</th>
+                                            <th>الاسم </th>
+                                            <th>رمز المنتج (SKU) </th>
+                                            <th>المخزون</th>
                                             <th>السعر </th>
-                                            <th>الحد الادني </th>
+                                            <th> التصينفات</th>
+                                            {{-- <th>الحد الادني </th>
                                             <th>معدل الزياده </th>
                                             <th>عدد التكرار</th>
                                             <th>الحد الاقصي </th>
@@ -85,7 +86,7 @@
                                             <th>جديد </th>
                                             <th>الاكثر مبيعاً </th>
                                             <th> العروض </th>
-                                            <th>وصل حديثاً </th>
+                                            <th>وصل حديثاً </th> --}}
                                             <th>التعديلات</th>
                                         </tr>
 
@@ -116,16 +117,24 @@
 
                                                 </td>
                                                 <td>
+                                                    @if ($product->product_qty == 0)
+                                                           <b><span style="color:  rgb(164, 215, 46)">غير متوفر في المخزون</span></b>
+                                                    @else
+                                                    <b><span style="color: rgb(164, 215, 46)"> متوفر في المخزون</span></b>
+
+                                                    @endif
+                                                </td>
+                                                <td> {{ $product->price }} د.ع. </td>
+                                                <td>
                                                     @if ($product->subcategory)
                                                         <a href="{{ route('product.show.subcategory', $product->id) }}">
-                                                            {{ $product->subcategory->name }} </a>
+                                                            {{ $product->subcategory->category->name }},{{ $product->subcategory->name }} </a>
                                                     @else
                                                         لا يوجد
                                                     @endif
                                                 </td>
 
-                                                <td> {{ $product->price }} د.ع. </td>
-                                                <td> {{ $product->min_price }} د.ع. </td>
+                                                {{-- <td> {{ $product->min_price }} د.ع. </td>
                                                 <td> {{ $product->increase_ratio }} د.ع. </td>
                                                 <td> {{ $product->repeat_times }} </td>
                                                 <td>
@@ -161,7 +170,7 @@
                                                     @else
                                                         <span class="badge text-bg-danger">لا</span>
                                                     @endif
-                                                </td>
+                                                </td> --}}
 
                                                 <td>
 

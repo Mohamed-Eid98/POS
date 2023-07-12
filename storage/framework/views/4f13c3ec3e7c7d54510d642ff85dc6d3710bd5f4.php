@@ -66,19 +66,12 @@
                                         <tr role="row">
                                             <th>#</th>
                                             <th>الصوره</th>
-                                            <th>اسم المنتج</th>
-                                            <th>الكود</th>
-                                            <th>القسم الفرعي</th>
+                                            <th>الاسم </th>
+                                            <th>رمز المنتج (SKU) </th>
+                                            <th>المخزون</th>
                                             <th>السعر </th>
-                                            <th>الحد الادني </th>
-                                            <th>معدل الزياده </th>
-                                            <th>عدد التكرار</th>
-                                            <th>الحد الاقصي </th>
-                                            <th>الكميه </th>
-                                            <th>جديد </th>
-                                            <th>الافضل مبيعاً </th>
-                                            <th>عليه عرض </th>
-                                            <th>وصل حديثاً </th>
+                                            <th> التصينفات</th>
+                                            
                                             <th>التعديلات</th>
                                         </tr>
 
@@ -109,53 +102,24 @@
 
                                                 </td>
                                                 <td>
+                                                    <?php if($product->product_qty == 0): ?>
+                                                           <b><span style="color:  rgb(164, 215, 46)">غير متوفر في المخزون</span></b>
+                                                    <?php else: ?>
+                                                    <b><span style="color: rgb(164, 215, 46)"> متوفر في المخزون</span></b>
+
+                                                    <?php endif; ?>
+                                                </td>
+                                                <td> <?php echo e($product->price); ?> د.ع. </td>
+                                                <td>
                                                     <?php if($product->subcategory): ?>
                                                         <a href="<?php echo e(route('product.show.subcategory', $product->id)); ?>">
-                                                             <?php echo e($product->subcategory->name); ?> </a>
+                                                            <?php echo e($product->subcategory->category->name); ?>,<?php echo e($product->subcategory->name); ?> </a>
                                                     <?php else: ?>
-                                                            لا يوجد
+                                                        لا يوجد
                                                     <?php endif; ?>
-                                                    </td>
+                                                </td>
 
-                                                <td> <?php echo e($product->price); ?> د.ع. </td>
-                                                <td> <?php echo e($product->min_price); ?> د.ع. </td>
-                                                <td> <?php echo e($product->increase_ratio); ?> د.ع. </td>
-                                                <td> <?php echo e($product->repeat_times); ?> </td>
-                                                <td>
-                                                    <?php echo e($product->min_price + ($product->repeat_times + 1) * $product->increase_ratio); ?>
-
-                                                    د.ع.
-
-                                                </td>
-                                                <td> <?php echo e($product->product_qty); ?> </td>
-                                                <td>
-                                                    <?php if($product->is_new == 1): ?>
-                                                        <span class="badge text-bg-secondary">نعم</span>
-                                                    <?php else: ?>
-                                                        <span class="badge text-bg-danger">لا</span>
-                                                    <?php endif; ?>
-                                                </td>
-                                                <td>
-                                                    <?php if($product->is_best_seller == 1): ?>
-                                                        <span class="badge text-bg-secondary">نعم</span>
-                                                    <?php else: ?>
-                                                        <span class="badge text-bg-danger">لا</span>
-                                                    <?php endif; ?>
-                                                </td>
-                                                <td>
-                                                    <?php if($product->is_on_sale == 1): ?>
-                                                        <span class="badge text-bg-secondary">نعم</span>
-                                                    <?php else: ?>
-                                                        <span class="badge text-bg-danger">لا</span>
-                                                    <?php endif; ?>
-                                                </td>
-                                                <td>
-                                                    <?php if($product->is_new_arrival == 1): ?>
-                                                        <span class="badge text-bg-secondary">نعم</span>
-                                                    <?php else: ?>
-                                                        <span class="badge text-bg-danger">لا</span>
-                                                    <?php endif; ?>
-                                                </td>
+                                                
 
                                                 <td>
 
@@ -212,85 +176,82 @@
 
 
     <?php $__env->startSection('js'); ?>
-
-
-
-    <script>
-        $(function(e) {
-            //file export datatable
-            var table = $('#example').DataTable({
-                lengthChange: false,
-                buttons: ['copy', 'excel', 'pdf', 'colvis'],
-                responsive: true,
-                language: {
-                    searchPlaceholder: 'ابحث هنا',
-                    sSearch: '',
-                    lengthMenu: '_MENU_ ',
-                }
-            });
-            table.buttons().container()
-                .appendTo('#example_wrapper .col-md-6:eq(0)');
-
-            $('#example1').DataTable({
-                language: {
-                    searchPlaceholder: 'ابحث هنا',
-                    sSearch: '',
-                    lengthMenu: '_MENU_',
-                }
-            });
-            $('#example2').DataTable({
-                responsive: true,
-                language: {
-                    searchPlaceholder: 'ابحث هنا',
-                    sSearch: '',
-                    lengthMenu: '_MENU_',
-                }
-            });
-            var table = $('#example-delete').DataTable({
-                responsive: true,
-                language: {
-                    searchPlaceholder: 'ابحث هنا',
-                    sSearch: '',
-                    lengthMenu: '_MENU_',
-                }
-            });
-            $('#example-delete tbody').on('click', 'tr', function() {
-                if ($(this).hasClass('selected')) {
-                    $(this).removeClass('selected');
-                } else {
-                    table.$('tr.selected').removeClass('selected');
-                    $(this).addClass('selected');
-                }
-            });
-
-            $('#button').click(function() {
-                table.row('.selected').remove().draw(false);
-            });
-
-            //Details display datatable
-            $('#example-1').DataTable({
-                responsive: true,
-                language: {
-                    searchPlaceholder: 'ابحث هنا',
-                    sSearch: '',
-                    lengthMenu: '_MENU_',
-                },
-                responsive: {
-                    details: {
-                        display: $.fn.dataTable.Responsive.display.modal({
-                            header: function(row) {
-                                var data = row.data();
-                                return 'Details for ' + data[0] + ' ' + data[1];
-                            }
-                        }),
-                        renderer: $.fn.dataTable.Responsive.renderer.tableAll({
-                            tableClass: 'table border mb-0'
-                        })
+        <script>
+            $(function(e) {
+                //file export datatable
+                var table = $('#example').DataTable({
+                    lengthChange: false,
+                    buttons: ['copy', 'excel', 'pdf', 'colvis'],
+                    responsive: true,
+                    language: {
+                        searchPlaceholder: 'ابحث هنا',
+                        sSearch: '',
+                        lengthMenu: '_MENU_ ',
                     }
-                }
+                });
+                table.buttons().container()
+                    .appendTo('#example_wrapper .col-md-6:eq(0)');
+
+                $('#example1').DataTable({
+                    language: {
+                        searchPlaceholder: 'ابحث هنا',
+                        sSearch: '',
+                        lengthMenu: '_MENU_',
+                    }
+                });
+                $('#example2').DataTable({
+                    responsive: true,
+                    language: {
+                        searchPlaceholder: 'ابحث هنا',
+                        sSearch: '',
+                        lengthMenu: '_MENU_',
+                    }
+                });
+                var table = $('#example-delete').DataTable({
+                    responsive: true,
+                    language: {
+                        searchPlaceholder: 'ابحث هنا',
+                        sSearch: '',
+                        lengthMenu: '_MENU_',
+                    }
+                });
+                $('#example-delete tbody').on('click', 'tr', function() {
+                    if ($(this).hasClass('selected')) {
+                        $(this).removeClass('selected');
+                    } else {
+                        table.$('tr.selected').removeClass('selected');
+                        $(this).addClass('selected');
+                    }
+                });
+
+                $('#button').click(function() {
+                    table.row('.selected').remove().draw(false);
+                });
+
+                //Details display datatable
+                $('#example-1').DataTable({
+                    responsive: true,
+                    language: {
+                        searchPlaceholder: 'ابحث هنا',
+                        sSearch: '',
+                        lengthMenu: '_MENU_',
+                    },
+                    responsive: {
+                        details: {
+                            display: $.fn.dataTable.Responsive.display.modal({
+                                header: function(row) {
+                                    var data = row.data();
+                                    return 'Details for ' + data[0] + ' ' + data[1];
+                                }
+                            }),
+                            renderer: $.fn.dataTable.Responsive.renderer.tableAll({
+                                tableClass: 'table border mb-0'
+                            })
+                        }
+                    }
+                });
             });
-        });
-    </script>
-<?php $__env->stopSection(); ?>
+        </script>
+    <?php $__env->stopSection(); ?>
 
 <?php echo $__env->make('layouts.master', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\Users\test\Downloads\New folder\POS\resources\views/product/productView.blade.php ENDPATH**/ ?>

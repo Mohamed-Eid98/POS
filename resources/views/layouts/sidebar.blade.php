@@ -88,13 +88,12 @@
                                     <span key="t-dashboards"> المنتجات</span>
                                 </a>
                                 <ul class="sub-menu" aria-expanded="false">
-                                    <li><a href="{{ route('product.add') }}" key="t-default">إضافة المنتج</a></li>
-
-                                    <li><a href="{{ route('product.addcolorandsize') }}" key="t-saas"> اضافه الوان ومقاسات
-                                            المنتج</a>
+                                    <li><a href="{{ route('product.show') }}" key="t-default">جميع المنتجات</a></li>
+                                    <li><a href="{{ route('product.add') }}" key="t-saas">إضافة منتج</a></li>
+                                    <li><a href="{{ route('product.show') }}" key="t-saas">الوسوم</a></li>
+                                    <li><a href="{{ route('product.addcolorandsize') }}" key="t-saas">السمات</a>
                                     </li>
 
-                                    <li><a href="{{ route('product.show') }}" key="t-saas">عرض المنتجات</a></li>
 
                                 </ul>
                             </li>

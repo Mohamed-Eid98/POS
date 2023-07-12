@@ -95,6 +95,12 @@ class ProductController extends Controller
         return view('sub_category.subcategoryPage', compact('subcategory'));
     }
 
+    public function tags()
+    {
+        dd('das');
+        // return view('product.product_view_sub');
+    }
+
     public function Edit($id)
     {
         $categories = Category::orderBy('name', 'ASC')->get();

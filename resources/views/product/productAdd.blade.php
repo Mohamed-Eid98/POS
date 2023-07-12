@@ -414,24 +414,8 @@
 
 
 
-@section('js')
+@section('script')
 
-
-
-    {{-- $(document).ready(function() {
-    $('select[name="cate_id"]').on('change', function(){})
-    var category_id = $(this).val();
-    $.get('/ajax-' + category_id ,
-    success:function(data) {
-        var d =$('select[name="subcate_id"]').empty();
-        $.each(data, function(key, value){
-            $('select[name="subcate_id"]').append('<option value="'+ value.id +'">' + value.name + '</option>');
-        });
-    },
-});
-
-});
-</script> --}}
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
     <script type="text/javascript">
@@ -452,7 +436,6 @@
         });
     </script>
 
-@section('script')
     <script type="text/javascript">
         function mainThamUrl(input) {
             if (input.files && input.files[0]) {
@@ -464,7 +447,9 @@
             }
         }
     </script>
+@endsection
 
+@section('js')
 
     <!-- JAVASCRIPT -->
     <script src="{{ asset('assets/libs/jquery/jquery.min.js') }}"></script>

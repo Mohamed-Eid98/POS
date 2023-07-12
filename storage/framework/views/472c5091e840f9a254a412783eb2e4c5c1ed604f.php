@@ -1,4 +1,3 @@
-
 <?php $__env->startSection('title'); ?>
     اضافة منتج
 <?php $__env->stopSection(); ?>
@@ -192,7 +191,7 @@ unset($__errorArgs, $__bag); ?>
                                 <div class="form-group">
                                     <h5>القسم الفرعي <span class="text-danger">*</span></h5>
                                     <div class="controls">
-                                        <select name="subcate_id" id="select" class="form-control" >
+                                        <select name="subcate_id" id="select" class="form-control">
                                             <option value="" selected disabled>-- اختر القسم الفرعي--</option>
                                         </select>
                                         <?php $__errorArgs = ['subcate_id'];
@@ -248,13 +247,13 @@ unset($__errorArgs, $__bag); ?>
                                 <div class="form-group">
                                     <h5 for="price">السعر <span class="text-danger">*</span></h5>
                                     <div class="controls">
-                                        <input type="number"  name="price" class="form-control" />
+                                        <input type="number" name="price" class="form-control" />
                                         <?php $__errorArgs = ['price'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
 $message = $__bag->first($__errorArgs[0]); ?>
-                                            <span class="text-danger" ><?php echo e($message); ?></span>
+                                            <span class="text-danger"><?php echo e($message); ?></span>
                                         <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
@@ -270,13 +269,13 @@ unset($__errorArgs, $__bag); ?>
                                 <div class="form-group">
                                     <h5 for="qty">الكميه </h5>
                                     <div class="controls">
-                                        <input type="number"  name="qty" class="form-control" />
+                                        <input type="number" name="qty" class="form-control" />
                                         <?php $__errorArgs = ['qty'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
 $message = $__bag->first($__errorArgs[0]); ?>
-                                            <span class="text-danger" ><?php echo e($message); ?></span>
+                                            <span class="text-danger"><?php echo e($message); ?></span>
                                         <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
@@ -298,13 +297,13 @@ unset($__errorArgs, $__bag); ?>
                                 <div class="form-group">
                                     <h5 for="min_price"> الحد الادني </h5>
                                     <div class="controls">
-                                        <input type="number"  name="min_price" class="form-control" />
+                                        <input type="number" name="min_price" class="form-control" />
                                         <?php $__errorArgs = ['min_price'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
 $message = $__bag->first($__errorArgs[0]); ?>
-                                            <span class="text-danger" ><?php echo e($message); ?></span>
+                                            <span class="text-danger"><?php echo e($message); ?></span>
                                         <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
@@ -320,13 +319,13 @@ unset($__errorArgs, $__bag); ?>
                                 <div class="form-group">
                                     <h5 for="repeated_times"> عدد التكرار</h5>
                                     <div class="controls">
-                                        <input type="number"  name="repeated_times" class="form-control" />
+                                        <input type="number" name="repeated_times" class="form-control" />
                                         <?php $__errorArgs = ['repeated_times'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
 $message = $__bag->first($__errorArgs[0]); ?>
-                                            <span class="text-danger" ><?php echo e($message); ?></span>
+                                            <span class="text-danger"><?php echo e($message); ?></span>
                                         <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
@@ -340,13 +339,13 @@ unset($__errorArgs, $__bag); ?>
                                 <div class="form-group">
                                     <h5 for="increase_ratio">الزياده %</h5>
                                     <div class="controls">
-                                        <input type="number"  name="increase_ratio" class="form-control" />
+                                        <input type="number" name="increase_ratio" class="form-control" />
                                         <?php $__errorArgs = ['increase_ratio'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
 $message = $__bag->first($__errorArgs[0]); ?>
-                                            <span class="text-danger" ><?php echo e($message); ?></span>
+                                            <span class="text-danger"><?php echo e($message); ?></span>
                                         <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
@@ -437,7 +436,7 @@ unset($__errorArgs, $__bag); ?>
                                 </fieldset>
                                 <fieldset>
                                     <input type="checkbox" id="checkbox_2" name="sale" value="1">
-                                    <label for="checkbox_2">عرض</label>
+                                    <label for="checkbox_2">العروض</label>
                                 </fieldset>
                             </div>
                         </div>
@@ -448,11 +447,11 @@ unset($__errorArgs, $__bag); ?>
                             <div class="controls">
                                 <fieldset>
                                     <input type="checkbox" id="checkbox_3" name="new_arrival" value="1">
-                                    <label for="checkbox_3">لم يصل</label>
+                                    <label for="checkbox_3">وصل حديثا</label>
                                 </fieldset>
                                 <fieldset>
                                     <input type="checkbox" id="checkbox_4" name="best_seller" value="1">
-                                    <label for="checkbox_4">الافضل مبيعاً</label>
+                                    <label for="checkbox_4">الاكثر مبيعاً</label>
                                 </fieldset>
                             </div>
                         </div>
@@ -492,11 +491,8 @@ unset($__errorArgs, $__bag); ?>
 
 
 
-<?php $__env->startSection('js'); ?>
+<?php $__env->startSection('script'); ?>
 
-
-
-    
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
     <script type="text/javascript">
@@ -517,7 +513,6 @@ unset($__errorArgs, $__bag); ?>
         });
     </script>
 
-<?php $__env->startSection('script'); ?>
     <script type="text/javascript">
         function mainThamUrl(input) {
             if (input.files && input.files[0]) {
@@ -529,7 +524,9 @@ unset($__errorArgs, $__bag); ?>
             }
         }
     </script>
+<?php $__env->stopSection(); ?>
 
+<?php $__env->startSection('js'); ?>
 
     <!-- JAVASCRIPT -->
     <script src="<?php echo e(asset('assets/libs/jquery/jquery.min.js')); ?>"></script>

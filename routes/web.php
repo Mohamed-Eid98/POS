@@ -101,6 +101,7 @@ Route::middleware('isAdmin')->group(function () {
         Route::post('/product-add', [ProductController::class, 'Store'])->name('product.store');
         Route::get('/ajax-{id}', [ProductController::class, 'AjaxShow']);
         Route::get('/showp', [ProductController::class, 'Show'])->name('product.show');
+        Route::get('/tags', [ProductController::class, 'tags'])->name('product.tags');
         Route::get('/product-edit-{id}', [ProductController::class, 'Edit'])->name('product.edit');
         Route::post('/product-update', [ProductController::class, 'Update'])->name('product.update');
         Route::get('/product-delete-{id}', [ProductController::class, 'Delete'])->name('product.delete');
