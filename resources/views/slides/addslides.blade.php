@@ -89,10 +89,9 @@
                                     <label class="form-label">نوع المنتج </label>
 
                                     <select name="type_id[]" id="secondSelect" class="select2 form-control select2-multiple" multiple="multiple"
-                                    data-placeholder="Choose ...">
-                                    <option value="" selected disabled>-- اختر النوع
-                                        --
-                                    </option>
+                                    data-placeholder="اختر ...">
+
+
                                 </select>
                                 </div>
                             </div>
@@ -172,6 +171,15 @@ function updateSecondSelect(selectedValue) {
   // Clear any existing options and remove the multiple attribute
   secondSelect.innerHTML = "";
   secondSelect.removeAttribute("multiple");
+
+
+
+  // Add a disabled option
+  var disabledOption = document.createElement("option");
+  disabledOption.disabled = true;
+  disabledOption.selected = true;
+//   disabledOption.text = "اختار ..";
+  secondSelect.appendChild(disabledOption);
 
   // Fetch the options from the server using AJAX
   var url = '/api-' + (type == 'Category' ? 'categories' : 'products') + '?type=' + encodeURIComponent(type);

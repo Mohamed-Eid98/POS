@@ -31,7 +31,7 @@ class SubCategoryController extends Controller
             'name.unique' =>'هذا القسم مسجل مسبقا',
         ]);
 
-        $subcategory = subCategory::create([
+        $subcategory = subCategory::insert([
         'category_id' => $request->cate_id,
         'name' => $request->name,
     ]);
@@ -56,8 +56,9 @@ public function Show()
 
 public function Edit($id)
 {
+
     $categories = Category::orderBy('name' , 'ASC')->get();
-    $subcategory = SubCategory::find($id);
+    $subcategory = subCategory::find($id);
     return view('sub_category.SubCategoryEdit' , compact('categories' , 'subcategory'));
 }
 public function Update(Request $request)

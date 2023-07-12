@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\Category;
-use App\Models\SubCategory;
+use App\Models\subCategory;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Intervention\Image\Facades\Image;
@@ -53,7 +53,7 @@ public function Show()
 
 public function showPage($id)
 {
-    $category = SubCategory::with('category')->find($id);
+    $category = subCategory::with('category')->find($id);
     // return $category;
     return view('category.categoryViewPage' , compact('category'));
 }
