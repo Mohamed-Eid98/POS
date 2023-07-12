@@ -11,7 +11,8 @@ use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
 class CategoryController extends Controller
 {
-    function Add(){
+    function Add()
+    {
         return view('category.categoryAdd');
     }
 
@@ -23,10 +24,10 @@ class CategoryController extends Controller
         $request->validate([
             'name' => 'required|unique:categories|max:255',
             'pic' => 'image',
-        ],[
+        ], [
 
-            'name.required' =>'يرجي ادخال اسم القسم',
-            'name.unique' =>'هذا القسم مسجل مسبقا',
+            'name.required' => 'يرجي ادخال اسم القسم',
+            'name.unique' => 'هذا القسم مسجل مسبقا',
             // 'pic.required' =>'يرجي ادخال صوره ',
         ]);
 
@@ -38,66 +39,59 @@ class CategoryController extends Controller
 
         if ($request->hasFile('pic')) {
             $category->addMediaFromRequest('pic')->usingName($category->name)->toMediaCollection('images');
-
-    }
+        }
         session()->flash('Add', 'تم اضافة القسم بنجاح ');
 
-    return redirect()->back();
-}
+        return redirect()->back();
+    }
 
-public function Show()
-{
-    $categories = Category::latest()->get();
-    return view('category.categoryView' , compact('categories'));
-}
+    public function Show()
+    {
+        $categories = Category::latest()->get();
+        return view('category.categoryView', compact('categories'));
+    }
 
-public function showPage($id)
-{
-    $category = subCategory::with('category')->find($id);
-    // return $category;
-    return view('category.categoryViewPage' , compact('category'));
-}
+    public function showPage($id)
+    {
+        $category = subCategory::with('category')->find($id);
+        // return $category;
+        return view('category.categoryViewPage', compact('category'));
+    }
 
-public function Edit($id)
-{
-    $category = Category::find($id);
-    return view('category.categoryEdit' , compact('category'));
-}
-public function Update(Request $request)
-{
+    public function Edit($id)
+    {
+        $category = Category::find($id);
+        return view('category.categoryEdit', compact('category'));
+    }
+    public function Update(Request $request)
+    {
 
-    // return $request;
+        // return $request;
 
-    $id  = $request->id;
-    $category = Category::find($id);
+        $id  = $request->id;
+        $category = Category::find($id);
 
-    Category::find($id)->update([
-    'name' => $request->name,
-]);
+        Category::find($id)->update([
+            'name' => $request->name,
+        ]);
 
-     if ($request->hasFile('pic')) {
-        $category->addMediaFromRequest('pic')->toMediaCollection('images');
-
-}
-
+        if ($request->hasFile('pic')) {
+            $category->addMediaFromRequest('pic')->toMediaCollection('images');
+        }
 
 
 
 
-session()->flash('edit', 'تم تعديل القسم بنجاح ');
+
+        session()->flash('edit', 'تم تعديل القسم بنجاح ');
 
         return redirect()->route('category.show');
+    }
 
+    public function Delete($id)
+    {
+        Category::find($id)->delete();
+        session()->flash('delete', 'تم حذف القسم بنجاح ');
+        return redirect()->back();
+    }
 }
-
-public function Delete($id)
-{
-    Category::find($id)->delete();
-    session()->flash('delete', 'تم حذف القسم بنجاح ');
-    return redirect()->back();
-
-}
-
-
-}
-

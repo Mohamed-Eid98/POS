@@ -26,7 +26,6 @@
     <!-- Icons Css -->
     <link href="{{ asset('assets/css/icons.min.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ URL::asset('build/libs/dropzone/min/dropzone.min.css') }}" rel="stylesheet" type="text/css" />
-
 @endsection
 
 
@@ -52,14 +51,14 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
-
                     <h4 class="card-title">إضافة بانر</h4>
                     <p class="card-title-desc">
                     </p>
 
                     <div>
 
-                        <form action="{{ route('slide.update') }}" class="dropzone" method="POST" enctype="multipart/form-data">
+                        <form action="{{ route('slide.update') }}" class="dropzone" method="POST"
+                            enctype="multipart/form-data">
                             @csrf
 
                             <div class="col-md-6">
@@ -68,31 +67,39 @@
                                     <h5>نوع البانر <span class="text-danger">*</span></h5>
                                     <div class="controls">
 
-                                        <select name="type" id="select" class="form-control" onchange="updateSecondSelect(this.value)">
+                                        <select name="type" id="select" class="form-control"
+                                            onchange="updateSecondSelect(this.value)">
                                             <option value="" selected disabled>-- اختر النوع
                                                 --
                                             </option>
-                                            <option value="Product" >منتج </option>
-                                            <option value="Category" >قسم</option>
-                                            <option value="MultiProduct" >منتاجات</option>
+                                            <option value="Product">منتج </option>
+                                            <option value="Category">قسم</option>
+                                            <option value="MultiProduct">منتاجات</option>
                                         </select>
                                         @error('type')
                                             <span class="text-danger">{{ $message }}</span>
                                         @enderror
                                     </div>
                                 </div>
-
                             </div>
                             <div class="col-md-6">
 
                                 <div class="mb-3">
                                     <label class="form-label">نوع المنتج </label>
 
+<<<<<<< HEAD
                                     <select name="type_id[]" id="secondSelect" class="select2 form-control select2-multiple" multiple="multiple"
                                     data-placeholder="اختر ...">
 
 
                                 </select>
+=======
+                                    <select name="type_id[]" id="secondSelect" class="select2 form-control select2-multiple"
+                                        multiple="multiple" data-placeholder="اختر ...">
+
+
+                                    </select>
+>>>>>>> 7eb7c95580e6bdb0b027ad47351f5e8d5c18b606
                                 </div>
                             </div>
                             <div class="col-md-3">
@@ -139,7 +146,9 @@
 
                     </div>
                     <div class="text-center mt-4">
-                        <input type="submit" class="btn btn-primary waves-effect waves-light" value="حفظ">
+                        <input type="submit" class="btn btn-primary waves-effect
+                        waves-light"
+                            value="حفظ">
                     </div>
                     </form>
 
@@ -153,67 +162,59 @@
         </div> <!-- end col -->
     </div> <!-- end row -->
     <!-- JAVASCRIPT -->
-
 @endsection
 
 @section('script')
-
     <script src="{{ asset('assets/libs/jquery/jquery.min.js') }}"></script>
 
 
 
-<script>
+    <script>
+        function updateSecondSelect(selectedValue) {
+            var type = selectedValue;
+            var secondSelect = document.getElementById("secondSelect");
 
-function updateSecondSelect(selectedValue) {
-  var type = selectedValue;
-  var secondSelect = document.getElementById("secondSelect");
+            // Clear any existing options and remove the multiple attribute
+            secondSelect.innerHTML = "";
+            secondSelect.removeAttribute("multiple");
+            // Add a disabled option
+            var disabledOption = document.createElement("option");
+            disabledOption.disabled = true;
+            disabledOption.selected = true;
+            //   disabledOption.text = "اختار ..";
+            secondSelect.appendChild(disabledOption);
 
-  // Clear any existing options and remove the multiple attribute
-  secondSelect.innerHTML = "";
-  secondSelect.removeAttribute("multiple");
+            // Fetch the options from the server using AJAX
+            var url = '/api-' + (type == 'Category' ? 'categories' : 'products') + '?type=' + encodeURIComponent(type);
+            fetch(url)
+                .then(response => response.json())
+                .then(options => {
+                    options.forEach(option => {
+                        var optionElement = document.createElement("option");
+                        optionElement.value = option.id;
+                        optionElement.text = option.name;
+                        secondSelect.appendChild(optionElement);
+                    });
 
-
-
-  // Add a disabled option
-  var disabledOption = document.createElement("option");
-  disabledOption.disabled = true;
-  disabledOption.selected = true;
-//   disabledOption.text = "اختار ..";
-  secondSelect.appendChild(disabledOption);
-
-  // Fetch the options from the server using AJAX
-  var url = '/api-' + (type == 'Category' ? 'categories' : 'products') + '?type=' + encodeURIComponent(type);
-  fetch(url)
-    .then(response => response.json())
-    .then(options => {
-      options.forEach(option => {
-        var optionElement = document.createElement("option");
-        optionElement.value = option.id;
-        optionElement.text = option.name;
-        secondSelect.appendChild(optionElement);
-      });
-
-      // If the selected value is "MultiProduct", add the multiple attribute
-      if (type === "MultiProduct") {
-        secondSelect.setAttribute("multiple", "multiple");
-      }
-    })
-    .catch(error => console.error(error));
-}
-
-</script>
-
-<script type="text/javascript">
-    function mainThamUrl(input) {
-        if (input.files && input.files[0]) {
-            var reader = new FileReader();
-            reader.onload = function(e) {
-                $('#mainThmb').attr('src', e.target.result).width(130).height(150);
-            };
-            reader.readAsDataURL(input.files[0]);
+                    // If the selected value is "MultiProduct", add the multiple attribute
+                    if (type === "MultiProduct") {
+                        secondSelect.setAttribute("multiple", "multiple");
+                    }
+                })
+                .catch(error => console.error(error));
         }
-    }
-</script>
+    </script>
+    <script type="text/javascript">
+        function mainThamUrl(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function(e) {
+                    $('#mainThmb').attr('src', e.target.result).width(130).height(150);
+                };
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+    </script>
 
 
 
@@ -253,10 +254,7 @@ function updateSecondSelect(selectedValue) {
     </script> --}}
 
 
-{{-- <script src="{{ asset('build/libs/dropzone/min/dropzone.min.js') }}"></script> --}}
+    {{-- <script src="{{ asset('build/libs/dropzone/min/dropzone.min.js') }}"></script> --}}
 
-{{-- <script src="{{ asset('build/js/app.js') }}"></script> --}}
-
-
-
+    {{-- <script src="{{ asset('build/js/app.js') }}"></script> --}}
 @endsection

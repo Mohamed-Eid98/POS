@@ -1,35 +1,35 @@
-@extends('layouts.master')
-@section('title')
+
+<?php $__env->startSection('title'); ?>
     اضافة منتج
-@stop
-@section('css')
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('css'); ?>
     <!--  Owl-carousel css-->
-    <link href="{{ URL::asset('assets/plugins/owl-carousel/owl.carousel.css') }}" rel="stylesheet" />
+    <link href="<?php echo e(URL::asset('assets/plugins/owl-carousel/owl.carousel.css')); ?>" rel="stylesheet" />
     <!-- Maps css -->
-    <link href="{{ URL::asset('assets/plugins/jqvmap/jqvmap.min.css') }}" rel="stylesheet">
+    <link href="<?php echo e(URL::asset('assets/plugins/jqvmap/jqvmap.min.css')); ?>" rel="stylesheet">
 
 
-    <link href="{{ asset('assets/libs/select2/css/select2.min.css') }}" rel="stylesheet" type="text/css" />
-    <link href="{{ asset('assets/libs/bootstrap-datepicker/css/bootstrap-datepicker.min.css') }}" rel="stylesheet"
+    <link href="<?php echo e(asset('assets/libs/select2/css/select2.min.css')); ?>" rel="stylesheet" type="text/css" />
+    <link href="<?php echo e(asset('assets/libs/bootstrap-datepicker/css/bootstrap-datepicker.min.css')); ?>" rel="stylesheet"
         type="text/css">
-    <link href="{{ asset('assets/libs/spectrum-colorpicker2/spectrum.min.css') }}" rel="stylesheet" type="text/css">
-    <link href="{{ asset('assets/libs/bootstrap-timepicker/css/bootstrap-timepicker.min.css') }}" rel="stylesheet"
+    <link href="<?php echo e(asset('assets/libs/spectrum-colorpicker2/spectrum.min.css')); ?>" rel="stylesheet" type="text/css">
+    <link href="<?php echo e(asset('assets/libs/bootstrap-timepicker/css/bootstrap-timepicker.min.css')); ?>" rel="stylesheet"
         type="text/css">
-    <link href="{{ asset('assets/libs/bootstrap-touchspin/jquery.bootstrap-touchspin.min.css') }}" rel="stylesheet"
+    <link href="<?php echo e(asset('assets/libs/bootstrap-touchspin/jquery.bootstrap-touchspin.min.css')); ?>" rel="stylesheet"
         type="text/css" />
-    <link rel="stylesheet" href="{{ asset('assets/libs/@chenfengyuan/datepicker/datepicker.min.css') }}">
+    <link rel="stylesheet" href="<?php echo e(asset('assets/libs/@chenfengyuan/datepicker/datepicker.min.css')); ?>">
 
     <!-- Bootstrap Css -->
-    <link href="{{ asset('assets/css/bootstrap.min.css') }}" id="bootstrap-style" rel="stylesheet" type="text/css" />
+    <link href="<?php echo e(asset('assets/css/bootstrap.min.css')); ?>" id="bootstrap-style" rel="stylesheet" type="text/css" />
     <!-- Icons Css -->
-    <link href="{{ asset('assets/css/icons.min.css') }}" rel="stylesheet" type="text/css" />
+    <link href="<?php echo e(asset('assets/css/icons.min.css')); ?>" rel="stylesheet" type="text/css" />
     <!-- App Css-->
-    {{-- <link href="{{ asset('assets/css/app.min.css') }}" id="app-style" rel="stylesheet" type="text/css" /> --}}
+    
 
 
 
-@endsection
-@section('page-header')
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('page-header'); ?>
     <!-- breadcrumb -->
     <div class="breadcrumb-header justify-content-between">
         <div class="my-auto">
@@ -40,22 +40,23 @@
         </div>
     </div>
     <!-- breadcrumb -->
-@endsection
+<?php $__env->stopSection(); ?>
 
 
-@section('content')
+<?php $__env->startSection('content'); ?>
 
 
-    @if (session('add'))
+    <?php if(session('add')): ?>
         <div class="alert alert-success">
-            {{ session('add') }}
+            <?php echo e(session('add')); ?>
+
         </div>
-    @endif
+    <?php endif; ?>
 
-    {{-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> --}}
+    
 
-    <form method="POST" action="{{ route('product.store') }}" enctype="multipart/form-data">
-        @csrf
+    <form method="POST" action="<?php echo e(route('product.store')); ?>" enctype="multipart/form-data">
+        <?php echo csrf_field(); ?>
 
 
         <div class="row">
@@ -77,9 +78,16 @@
                                 </h5>
                                 <div class="controls">
                                     <input type="text" id="name" name="name" class="form-control" required>
-                                    @error('name')
-                                        <span class="text-danger">{{ $message }}</span>
-                                    @enderror
+                                    <?php $__errorArgs = ['name'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                        <span class="text-danger"><?php echo e($message); ?></span>
+                                    <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
                                 </div>
                             </div>
 
@@ -88,9 +96,16 @@
                                 </h5>
                                 <div class="controls">
                                     <textarea name="desc" class="form-control" id="desc" cols="10" rows="5" required></textarea>
-                                    @error('desc')
-                                        <span class="text-danger">{{ $message }}</span>
-                                    @enderror
+                                    <?php $__errorArgs = ['desc'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                        <span class="text-danger"><?php echo e($message); ?></span>
+                                    <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
                                 </div>
                             </div>
 
@@ -101,9 +116,16 @@
                                     <h5 for="code">الكود</h5>
                                     <div class="controls">
                                         <input type="text" name="code" class="form-control" />
-                                        @error('code')
-                                            <span class="text-danger">{{ $message }}</span>
-                                        @enderror
+                                        <?php $__errorArgs = ['code'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                            <span class="text-danger"><?php echo e($message); ?></span>
+                                        <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
                                     </div>
 
                                 </div>
@@ -145,13 +167,20 @@
                                     <div class="controls">
                                         <select name="cate_id" id="select" class="form-control">
                                             <option value="" selected disabled>-- اختر القسم الرئيسي--</option>
-                                            @foreach ($categories as $category)
-                                                <option value="{{ $category->id }}">{{ $category->name }}</option>
-                                            @endforeach
+                                            <?php $__currentLoopData = $categories; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $category): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                <option value="<?php echo e($category->id); ?>"><?php echo e($category->name); ?></option>
+                                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                         </select>
-                                        @error('cate_id')
-                                            <span class="text-danger">{{ $message }}</span>
-                                        @enderror
+                                        <?php $__errorArgs = ['cate_id'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                            <span class="text-danger"><?php echo e($message); ?></span>
+                                        <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
                                     </div>
                                 </div>
 
@@ -163,12 +192,19 @@
                                 <div class="form-group">
                                     <h5>القسم الفرعي <span class="text-danger">*</span></h5>
                                     <div class="controls">
-                                        <select name="subcate_id" id="select" class="form-control">
+                                        <select name="subcate_id" id="select" class="form-control" >
                                             <option value="" selected disabled>-- اختر القسم الفرعي--</option>
                                         </select>
-                                        @error('subcate_id')
-                                            <span class="text-danger">{{ $message }}</span>
-                                        @enderror
+                                        <?php $__errorArgs = ['subcate_id'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                            <span class="text-danger"><?php echo e($message); ?></span>
+                                        <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
                                     </div>
                                 </div>
 
@@ -212,10 +248,17 @@
                                 <div class="form-group">
                                     <h5 for="price">السعر <span class="text-danger">*</span></h5>
                                     <div class="controls">
-                                        <input type="number" name="price" class="form-control" />
-                                        @error('price')
-                                            <span class="text-danger">{{ $message }}</span>
-                                        @enderror
+                                        <input type="number"  name="price" class="form-control" />
+                                        <?php $__errorArgs = ['price'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                            <span class="text-danger" ><?php echo e($message); ?></span>
+                                        <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
                                     </div>
                                 </div>
 
@@ -227,10 +270,17 @@
                                 <div class="form-group">
                                     <h5 for="qty">الكميه </h5>
                                     <div class="controls">
-                                        <input type="number" name="qty" class="form-control" />
-                                        @error('qty')
-                                            <span class="text-danger">{{ $message }}</span>
-                                        @enderror
+                                        <input type="number"  name="qty" class="form-control" />
+                                        <?php $__errorArgs = ['qty'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                            <span class="text-danger" ><?php echo e($message); ?></span>
+                                        <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
                                     </div>
                                 </div>
 
@@ -248,10 +298,17 @@
                                 <div class="form-group">
                                     <h5 for="min_price"> الحد الادني </h5>
                                     <div class="controls">
-                                        <input type="number" name="min_price" class="form-control" />
-                                        @error('min_price')
-                                            <span class="text-danger">{{ $message }}</span>
-                                        @enderror
+                                        <input type="number"  name="min_price" class="form-control" />
+                                        <?php $__errorArgs = ['min_price'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                            <span class="text-danger" ><?php echo e($message); ?></span>
+                                        <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
                                     </div>
                                 </div>
 
@@ -263,10 +320,17 @@
                                 <div class="form-group">
                                     <h5 for="repeated_times"> عدد التكرار</h5>
                                     <div class="controls">
-                                        <input type="number" name="repeated_times" class="form-control" />
-                                        @error('repeated_times')
-                                            <span class="text-danger">{{ $message }}</span>
-                                        @enderror
+                                        <input type="number"  name="repeated_times" class="form-control" />
+                                        <?php $__errorArgs = ['repeated_times'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                            <span class="text-danger" ><?php echo e($message); ?></span>
+                                        <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
                                     </div>
                                 </div>
 
@@ -276,10 +340,17 @@
                                 <div class="form-group">
                                     <h5 for="increase_ratio">الزياده %</h5>
                                     <div class="controls">
-                                        <input type="number" name="increase_ratio" class="form-control" />
-                                        @error('increase_ratio')
-                                            <span class="text-danger">{{ $message }}</span>
-                                        @enderror
+                                        <input type="number"  name="increase_ratio" class="form-control" />
+                                        <?php $__errorArgs = ['increase_ratio'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                            <span class="text-danger" ><?php echo e($message); ?></span>
+                                        <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
                                     </div>
                                 </div>
 
@@ -328,9 +399,16 @@
                                 <img src="" id="mainThmb" alt="">
                                 <br><br>
                                 <input type="file" name="pic" onChange="mainThamUrl(this)">
-                                @error('pic')
-                                    <span class="text-danger">{{ $message }}</span>
-                                @enderror
+                                <?php $__errorArgs = ['pic'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                    <span class="text-danger"><?php echo e($message); ?></span>
+                                <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
                             </div>
                             <div class="dz-message needsclick">
                                 <div class="mb-3">
@@ -359,7 +437,7 @@
                                 </fieldset>
                                 <fieldset>
                                     <input type="checkbox" id="checkbox_2" name="sale" value="1">
-                                    <label for="checkbox_2">العروض</label>
+                                    <label for="checkbox_2">عرض</label>
                                 </fieldset>
                             </div>
                         </div>
@@ -370,11 +448,11 @@
                             <div class="controls">
                                 <fieldset>
                                     <input type="checkbox" id="checkbox_3" name="new_arrival" value="1">
-                                    <label for="checkbox_3">وصل حديثا</label>
+                                    <label for="checkbox_3">لم يصل</label>
                                 </fieldset>
                                 <fieldset>
                                     <input type="checkbox" id="checkbox_4" name="best_seller" value="1">
-                                    <label for="checkbox_4">الاكثر مبيعاً</label>
+                                    <label for="checkbox_4">الافضل مبيعاً</label>
                                 </fieldset>
                             </div>
                         </div>
@@ -409,29 +487,16 @@
     <!-- /.content -->
     </div>
 
-@endsection
+<?php $__env->stopSection(); ?>
 
 
 
 
-@section('js')
+<?php $__env->startSection('js'); ?>
 
 
 
-    {{-- $(document).ready(function() {
-    $('select[name="cate_id"]').on('change', function(){})
-    var category_id = $(this).val();
-    $.get('/ajax-' + category_id ,
-    success:function(data) {
-        var d =$('select[name="subcate_id"]').empty();
-        $.each(data, function(key, value){
-            $('select[name="subcate_id"]').append('<option value="'+ value.id +'">' + value.name + '</option>');
-        });
-    },
-});
-
-});
-</script> --}}
+    
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
     <script type="text/javascript">
@@ -452,7 +517,7 @@
         });
     </script>
 
-@section('script')
+<?php $__env->startSection('script'); ?>
     <script type="text/javascript">
         function mainThamUrl(input) {
             if (input.files && input.files[0]) {
@@ -467,24 +532,26 @@
 
 
     <!-- JAVASCRIPT -->
-    <script src="{{ asset('assets/libs/jquery/jquery.min.js') }}"></script>
-    <script src="{{ asset('assets/libs/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-    <script src="{{ asset('assets/libs/metismenu/metisMenu.min.js') }}"></script>
-    <script src="{{ asset('assets/libs/simplebar/simplebar.min.js') }}"></script>
-    <script src="{{ asset('assets/libs/node-waves/waves.min.js') }}"></script>
+    <script src="<?php echo e(asset('assets/libs/jquery/jquery.min.js')); ?>"></script>
+    <script src="<?php echo e(asset('assets/libs/bootstrap/js/bootstrap.bundle.min.js')); ?>"></script>
+    <script src="<?php echo e(asset('assets/libs/metismenu/metisMenu.min.js')); ?>"></script>
+    <script src="<?php echo e(asset('assets/libs/simplebar/simplebar.min.js')); ?>"></script>
+    <script src="<?php echo e(asset('assets/libs/node-waves/waves.min.js')); ?>"></script>
 
-    <script src="{{ asset('assets/libs/select2/js/select2.min.js') }}"></script>
-    <script src="{{ asset('assets/libs/bootstrap-datepicker/js/bootstrap-datepicker.min.js') }}"></script>
-    <script src="{{ asset('assets/libs/spectrum-colorpicker2/spectrum.min.js') }}"></script>
-    <script src="{{ asset('assets/libs/bootstrap-timepicker/js/bootstrap-timepicker.min.js') }}"></script>
-    <script src="{{ asset('assets/libs/bootstrap-touchspin/jquery.bootstrap-touchspin.min.js') }}"></script>
-    <script src="{{ asset('assets/libs/bootstrap-maxlength/bootstrap-maxlength.min.js') }}"></script>
-    <script src="{{ asset('assets/libs/@chenfengyuan/datepicker/datepicker.min.js') }}"></script>
+    <script src="<?php echo e(asset('assets/libs/select2/js/select2.min.js')); ?>"></script>
+    <script src="<?php echo e(asset('assets/libs/bootstrap-datepicker/js/bootstrap-datepicker.min.js')); ?>"></script>
+    <script src="<?php echo e(asset('assets/libs/spectrum-colorpicker2/spectrum.min.js')); ?>"></script>
+    <script src="<?php echo e(asset('assets/libs/bootstrap-timepicker/js/bootstrap-timepicker.min.js')); ?>"></script>
+    <script src="<?php echo e(asset('assets/libs/bootstrap-touchspin/jquery.bootstrap-touchspin.min.js')); ?>"></script>
+    <script src="<?php echo e(asset('assets/libs/bootstrap-maxlength/bootstrap-maxlength.min.js')); ?>"></script>
+    <script src="<?php echo e(asset('assets/libs/@chenfengyuan/datepicker/datepicker.min.js')); ?>"></script>
 
     <!-- form advanced init -->
-    <script src="{{ asset('assets/js/pages/form-advanced.init.js') }}"></script>
+    <script src="<?php echo e(asset('assets/js/pages/form-advanced.init.js')); ?>"></script>
 
-    <script src="{{ asset('assets/js/app.js') }}"></script>
+    <script src="<?php echo e(asset('assets/js/app.js')); ?>"></script>
 
 
-@endsection
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('layouts.master', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\Users\test\Downloads\New folder\POS\resources\views/product/productAdd.blade.php ENDPATH**/ ?>

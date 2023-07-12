@@ -1,7 +1,8 @@
 <?php
 
 namespace App\Models;
-use App\Models\SubCategory;
+
+use App\Models\subCategory;
 use Illuminate\Support\Facades\DB;
 use Spatie\MediaLibrary\HasMedia;
 use Illuminate\Database\Eloquent\Model;
@@ -10,7 +11,8 @@ use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
-class Product extends Model implements HasMedia {
+class Product extends Model implements HasMedia
+{
     use InteractsWithMedia;
     use HasFactory;
 
@@ -49,33 +51,37 @@ class Product extends Model implements HasMedia {
     public function getPriceAfterDiscountAttribute()
     {
 
-        if($this->ProductOffer){
-            if($this->ProductOffer->status && $this->ProductOffer->discount_value != 0){
-                return $this->price -   (($this->ProductOffer->discount_value/100 )* $this->price);
+        if ($this->ProductOffer) {
+            if ($this->ProductOffer->status && $this->ProductOffer->discount_value != 0) {
+                return $this->price -   (($this->ProductOffer->discount_value / 100) * $this->price);
             }
-
         }
         return $this->price;
     }
-    public function category() {
+    public function category()
+    {
         return $this->belongsTo(Category::class);
     }
-    public function subCategory() {
-        return $this->belongsTo(SubCategory::class,'sub_category_id');
+    public function subCategory()
+    {
+        return $this->belongsTo(SubCategory::class, 'sub_category_id');
     }
 
 
-    public function colors(){
+    public function colors()
+    {
         return $this->belongsToMany(Color::class)->withPivot('is_stock');
     }
 
 
-    public function ProductOffer(){
-        return $this->hasOne(ProductOffer::class,'product_id');
+    public function ProductOffer()
+    {
+        return $this->hasOne(ProductOffer::class, 'product_id');
     }
 
-    public function  colorProducts(){
-        return $this->hasMany(ColorProduct::class,'product_id')->with('productColorSizes');
+    public function  colorProducts()
+    {
+        return $this->hasMany(ColorProduct::class, 'product_id')->with('productColorSizes');
     }
 
     public function registerMediaCollections(): void
@@ -90,14 +96,13 @@ class Product extends Model implements HasMedia {
 
 
 
-    public function is_favourite(){
-        $data=false;
-        if(auth()->id()){
-            $data=  DB::table('favourite_products')->where('user_id',auth()->id())->where('product_id',$this->id)->count() > 0;
+    public function is_favourite()
+    {
+        $data = false;
+        if (auth()->id()) {
+            $data =  DB::table('favourite_products')->where('user_id', auth()->id())->where('product_id', $this->id)->count() > 0;
         }
 
-        return$data;
+        return $data;
     }
-
-
 }
