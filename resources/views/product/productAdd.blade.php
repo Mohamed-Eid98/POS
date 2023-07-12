@@ -163,7 +163,7 @@
                                 <div class="form-group">
                                     <h5>القسم الفرعي <span class="text-danger">*</span></h5>
                                     <div class="controls">
-                                        <select name="subcate_id" id="select" class="form-control" >
+                                        <select name="subcate_id" id="select" class="form-control">
                                             <option value="" selected disabled>-- اختر القسم الفرعي--</option>
                                         </select>
                                         @error('subcate_id')
@@ -212,9 +212,9 @@
                                 <div class="form-group">
                                     <h5 for="price">السعر <span class="text-danger">*</span></h5>
                                     <div class="controls">
-                                        <input type="number"  name="price" class="form-control" />
+                                        <input type="number" name="price" class="form-control" />
                                         @error('price')
-                                            <span class="text-danger" >{{ $message }}</span>
+                                            <span class="text-danger">{{ $message }}</span>
                                         @enderror
                                     </div>
                                 </div>
@@ -227,9 +227,9 @@
                                 <div class="form-group">
                                     <h5 for="qty">الكميه </h5>
                                     <div class="controls">
-                                        <input type="number"  name="qty" class="form-control" />
+                                        <input type="number" name="qty" class="form-control" />
                                         @error('qty')
-                                            <span class="text-danger" >{{ $message }}</span>
+                                            <span class="text-danger">{{ $message }}</span>
                                         @enderror
                                     </div>
                                 </div>
@@ -248,9 +248,9 @@
                                 <div class="form-group">
                                     <h5 for="min_price"> الحد الادني </h5>
                                     <div class="controls">
-                                        <input type="number"  name="min_price" class="form-control" />
+                                        <input type="number" name="min_price" class="form-control" />
                                         @error('min_price')
-                                            <span class="text-danger" >{{ $message }}</span>
+                                            <span class="text-danger">{{ $message }}</span>
                                         @enderror
                                     </div>
                                 </div>
@@ -263,9 +263,9 @@
                                 <div class="form-group">
                                     <h5 for="repeated_times"> عدد التكرار</h5>
                                     <div class="controls">
-                                        <input type="number"  name="repeated_times" class="form-control" />
+                                        <input type="number" name="repeated_times" class="form-control" />
                                         @error('repeated_times')
-                                            <span class="text-danger" >{{ $message }}</span>
+                                            <span class="text-danger">{{ $message }}</span>
                                         @enderror
                                     </div>
                                 </div>
@@ -276,9 +276,9 @@
                                 <div class="form-group">
                                     <h5 for="increase_ratio">الزياده %</h5>
                                     <div class="controls">
-                                        <input type="number"  name="increase_ratio" class="form-control" />
+                                        <input type="number" name="increase_ratio" class="form-control" />
                                         @error('increase_ratio')
-                                            <span class="text-danger" >{{ $message }}</span>
+                                            <span class="text-danger">{{ $message }}</span>
                                         @enderror
                                     </div>
                                 </div>
@@ -359,7 +359,7 @@
                                 </fieldset>
                                 <fieldset>
                                     <input type="checkbox" id="checkbox_2" name="sale" value="1">
-                                    <label for="checkbox_2">عرض</label>
+                                    <label for="checkbox_2">العروض</label>
                                 </fieldset>
                             </div>
                         </div>
@@ -370,11 +370,11 @@
                             <div class="controls">
                                 <fieldset>
                                     <input type="checkbox" id="checkbox_3" name="new_arrival" value="1">
-                                    <label for="checkbox_3">لم يصل</label>
+                                    <label for="checkbox_3">وصل حديثا</label>
                                 </fieldset>
                                 <fieldset>
                                     <input type="checkbox" id="checkbox_4" name="best_seller" value="1">
-                                    <label for="checkbox_4">الافضل مبيعاً</label>
+                                    <label for="checkbox_4">الاكثر مبيعاً</label>
                                 </fieldset>
                             </div>
                         </div>
