@@ -93,6 +93,7 @@
 
 
                                                     <ul class="list-unstyled hstack gap-1 mb-0">
+
                                                         <li data-bs-toggle="tooltip" data-bs-placement="top" title="Delete">
                                                             <a href=""
                                                                 title="حذف" class="btn btn-sm btn-soft-danger"><i
@@ -102,7 +103,6 @@
 
                                                 </td>
                                             </tr>
-                                        @endforeach
 
 
                                     </tbody>

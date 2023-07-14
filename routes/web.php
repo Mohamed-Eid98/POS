@@ -99,6 +99,7 @@ Route::middleware('isAdmin')->group(function () {
         Route::get('/addcands', [ProductController::class, 'addcands'])->name('product.addcolorandsize');
         Route::post('/addcands', [ProductController::class, 'ColorSizeStore'])->name('product.addcolorandsize.store');
         Route::post('/product-add', [ProductController::class, 'Store'])->name('product.store');
+        Route::post('/product-search', [ProductController::class, 'Search'])->name('product.search');
         Route::get('/ajax-{id}', [ProductController::class, 'AjaxShow']);
         Route::get('/showp', [ProductController::class, 'Show'])->name('product.show');
         Route::get('/tags', [ProductController::class, 'tags'])->name('product.tags');
@@ -216,8 +217,8 @@ Route::middleware('isAdmin')->group(function () {
     Route::get('/showslides', [SliderController::class, 'showslides'])->name('slides.show');
 
     //////////// End slides All Routes //////////
+    // Route::get('test-test1', [ComplainController::class, 'addcomplain']);
 
 });
 
 
-// Route::get('/test-test', [ComplainController::class, 'addcomplain']);

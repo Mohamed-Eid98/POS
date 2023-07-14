@@ -48,7 +48,7 @@ class ProductController extends Controller
         // return $request;
 
 
-        $product = Product::create([
+        $product = Product::Create([
             'name' => $request->name,
             'description' => $request->desc,
             'code' => $request->code,
@@ -75,6 +75,34 @@ class ProductController extends Controller
             $product->addMediaFromRequest('pic')->toMediaCollection('images');
         }
 
+        $colorProducts = [];
+
+        foreach ($request->color as $color){
+            $colorProduct = ColorProduct::Create([
+                'product_id' => $product->id,
+                'color_id' => $color,
+            ]);
+
+            $colorProducts[] = $colorProduct;
+        }
+
+        // return $colorProducts;
+
+        foreach ($request->size as $size) {
+            foreach ($colorProducts as $singleColorProduct ) {
+                ColorProductSize::create([
+                    'color_product_id' => $singleColorProduct->id,
+                    'size_id' => $size,
+                ]);
+            }
+        }
+
+        if ($request->hasFile('multi_img')) {
+            foreach ($request->file('multi_img') as $image) {
+                $color_product->addMedia($image)->usingName('colorImages')->toMediaCollection('images');
+            }
+        }
+
         session()->flash('add', 'تم اضافة المنتج بنجاح ');
 
         return redirect()->back();
@@ -83,8 +111,41 @@ class ProductController extends Controller
     public function Show()
     {
         $products = Product::with('subcategory')->get();
+        $subcategories = subCategory::get();
         // return $products;
-        return view('product.productView', compact('products'));
+        return view('product.productView', compact('products' , 'subcategories' ));
+    }
+    public function Search(Request $request)
+    {
+
+
+        $subcate_id = $request->input('subcate_id');
+        $product_name = $request->input('product_name');
+        $status = $request->input('status');
+
+        $products = Product::query();
+
+        if ($subcate_id) {
+            $products->where('sub_category_id', $subcate_id);
+        }
+
+        if ($product_name) {
+            $products->where('name', $product_name);
+        }
+
+        if ($status == 0) {
+            $products->where('product_qty', $status);
+        } else{
+            $products->where('product_qty', '<>', 0);
+        }
+
+        $products = $products->get();
+
+        // return $products;
+        $subcategories = subCategory::get();
+
+
+        return view('product.product_search', compact('products' , 'subcategories' ));
     }
 
     public function showSub($id)
@@ -97,8 +158,8 @@ class ProductController extends Controller
 
     public function tags()
     {
-        dd('das');
-        // return view('product.product_view_sub');
+        // dd('das');
+        return view('product.product_view_sub');
     }
 
     public function Edit($id)
@@ -147,6 +208,8 @@ class ProductController extends Controller
         }
 
 
+
+
         session()->flash('edit', 'تم تعديل المنتج بنجاح ');
 
         return redirect()->route('product.show');
@@ -165,7 +228,6 @@ class ProductController extends Controller
     public function ColorSizeStore(Request $request)
     {
 
-        // return $request;
 
         $request->validate([
             'product_id' => 'required',
@@ -177,10 +239,6 @@ class ProductController extends Controller
             'size.required' => 'يرجي ادخال حجم النتج ',
             'color.required' => 'يرجي ادخال لون النتج ',
         ]);
-
-        // $product = new Product;
-        // $product->name = $request->name;
-        // $product->save();
 
 
         $color_product = ColorProduct::Create([

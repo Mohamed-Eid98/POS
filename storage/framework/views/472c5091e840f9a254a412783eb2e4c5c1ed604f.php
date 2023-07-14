@@ -137,6 +137,166 @@ unset($__errorArgs, $__bag); ?>
         </div>
 
 
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body">
+
+                        <h4 class="card-title">إضافة مقاسات والوان المنتج</h4>
+                        <div class="text-md-end">
+
+                            <button type="button" onclick="addSizesAndColors()" class="btn btn-primary">اضافة جزء جديد للون والمقاس </button>
+                        </div>
+
+                        <p class="card-title-desc">
+                        </p>
+
+                        <div>
+
+
+
+                                <div class="col-md-6">
+
+                                    <div class="form-group">
+                                        <h5>اللون <span class="text-danger">*</span></h5>
+                                        <div class="controls">
+                                            <select name="color[]" id="select" class="form-control">
+                                                <option value="" selected disabled>-- اختر اللون
+                                                    --
+                                                </option>
+                                                <?php $__currentLoopData = $colors; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $color): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                    <option value="<?php echo e($color->id); ?>">
+                                                        <?php echo e($color->name); ?>
+
+                                                    </option>
+                                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                            </select>
+                                            <?php $__errorArgs = ['color'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                                <span class="text-danger"><?php echo e($message); ?></span>
+                                            <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="col-md-12">
+<div class="row">
+
+    <div class="col-md-6">
+        <div class="mb-3">
+
+            <h4 class="form-label my-3">المقاس </h4>
+
+
+            <select name="size[]" id="select" class="form-control">
+                <option value="" selected disabled>-- اختر المقاس --</option>
+                    <?php $__currentLoopData = $sizes; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $size): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                        <option value="<?php echo e($size->id); ?>">
+                            <?php echo e($size->name); ?>
+
+                        </option>
+                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+
+            </select>
+
+        </div>
+
+        <div class="mb-3">
+            <h4 class="form-label">الكميه </h4>
+            <input type="text" name="qty"  class="form-control" >
+
+        </div>
+    </div>
+
+    <div class="col-md-4 my-5">
+        <button type="button" onclick="addqtyandsize()" class="btn btn-primary">اضافة جزء للكميه والمقاس  </button>
+    </div> <br>
+
+</div>
+
+                                </div>
+
+                                <div id="sizeandquantitycontainer" >
+
+                                </div>
+
+
+
+                                <div class="box">
+                                    <div class="box-header with-border">
+                                        <h4 class="box-title">إضافة صور </h4>
+                                    </div>
+                                    <hr>
+                                    <!-- start 2nd row  -->
+
+
+
+                                    <div class="fallback">
+                                        
+                                        <div class="row" id="preview_image">
+
+                                        </div>
+                                        <br>
+                                        <input type="file" name="multi_img[]" class="form-control" multiple=""  id="multiImg" >
+                                        <?php $__errorArgs = ['multi_image'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                            <span class="text-danger" ><?php echo e($message); ?></span>
+                                        <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
+                                    </div>
+                                    <div class="dz-message needsclick">
+                                        <div class="mb-3">
+                                            <i class="display-4 text-muted bx bxs-cloud-upload text-center"></i>
+                                        </div>
+
+                                        <h4>ادخل الصور هنا</h4>
+                                    </div>
+                                </div>
+
+
+
+
+                        </div>
+
+
+                    </div>
+                </div>
+            </div> <!-- end col -->
+        </div> <!-- end row -->
+
+
+
+
+
+
+
+
+                                <div id="sizesAndColorsContainer" >
+
+                                </div>
+
+
+
+
+
+
+
+
+
+
+
+
 
 
         <div class="row">
@@ -264,26 +424,6 @@ unset($__errorArgs, $__bag); ?>
                             </div> <!-- end col md 6 -->
 
 
-                            <div class="col-md-4">
-
-                                <div class="form-group">
-                                    <h5 for="qty">الكميه </h5>
-                                    <div class="controls">
-                                        <input type="number" name="qty" class="form-control" />
-                                        <?php $__errorArgs = ['qty'];
-$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
-if ($__bag->has($__errorArgs[0])) :
-if (isset($message)) { $__messageOriginal = $message; }
-$message = $__bag->first($__errorArgs[0]); ?>
-                                            <span class="text-danger"><?php echo e($message); ?></span>
-                                        <?php unset($message);
-if (isset($__messageOriginal)) { $message = $__messageOriginal; }
-endif;
-unset($__errorArgs, $__bag); ?>
-                                    </div>
-                                </div>
-
-                            </div> <!-- end col md 6 -->
 
 
                         </div> <!-- end 1st row  -->
@@ -524,6 +664,234 @@ unset($__errorArgs, $__bag); ?>
             }
         }
     </script>
+
+
+<script>
+    function addSizesAndColors() {
+        var container = document.getElementById("sizesAndColorsContainer");
+
+        // Create a new div element for each size and color fields
+        var newDiv = document.createElement("div");
+        newDiv.className = "sizesAndColorsFields";
+
+        // Add the HTML code for the size and color fields
+        newDiv.innerHTML = `
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-body">
+
+                            <h4 class="card-title">إضافة مقاسات والوان المنتج</h4>
+                            <p class="card-title-desc">
+                            </p>
+
+                            <div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <h5>اللون <span class="text-danger">*</span></h5>
+                                        <div class="controls">
+                                            <select name="color[]" id="select" class="form-control">
+                                                <option value="" selected disabled>-- اختر اللون --</option>
+                                                <?php $__currentLoopData = $colors; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $color): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                    <option value="<?php echo e($color->id); ?>"><?php echo e($color->name); ?></option>
+                                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                            </select>
+                                            <?php $__errorArgs = ['color'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                                <span class="text-danger"><?php echo e($message); ?></span>
+                                            <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-12">
+                                    <div class="row">
+
+                                        <div class="col-md-6">
+                                            <div class="mb-3">
+
+                                                <h4 class="form-label my-3">المقاس </h4>
+
+
+                                                <select name="size[]" id="select" class="form-control">
+                                                    <option value="" selected disabled>-- اختر المقاس --</option>
+                                                        <?php $__currentLoopData = $sizes; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $size): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                            <option value="<?php echo e($size->id); ?>">
+                                                                <?php echo e($size->name); ?>
+
+                                                            </option>
+                                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+
+                                                </select>
+
+                                            </div>
+
+                                            <div class="mb-3">
+                                                <h4 class="form-label">الكميه </h4>
+                                                <input type="text" name="qty"  class="form-control" >
+
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-4 my-5">
+                                            <button type="button" onclick="addqtyandsize()" class="btn btn-primary">اضافة جزء للكميه والمقاس  </button>
+                                        </div> <br>
+
+                                    </div>
+
+
+                        <div id="sizeandquantitycontainer" >
+
+</div>
+
+                                </div>
+                                <div class="box">
+                                    <div class="box-header with-border">
+                                        <h4 class="box-title">إضافة صور</h4>
+                                    </div>
+                                    <hr>
+                                    <!-- start 2nd row  -->
+                                    <div class="fallback">
+                                        <div class="row" id="preview_image"></div>
+                                        <br>
+                                        <input type="file" name="multi_img[]" class="form-control" multiple="" id="multiImg">
+                                        <?php $__errorArgs = ['multi_image'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                            <span class="text-danger"><?php echo e($message); ?></span>
+                                        <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
+                                    </div>
+                                    <div class="dz-message needsclick">
+                                        <div class="mb-3">
+                                            <i class="display-4 text-muted bx bxs-cloud-upload text-center"></i>
+                                        </div>
+                                        <h4>ادخل الصور هنا</h4>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div>
+                                <button type="button" onclick="deleteSection(this)" class="btn btn-danger">حذف</button>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `;
+
+        // Append the new div to the container
+        container.appendChild(newDiv);
+    }
+    function addqtyandsize() {
+        var container = document.getElementById("sizeandquantitycontainer");
+
+        // Create a new div element for each size and color fields
+        var newDiv = document.createElement("div");
+        newDiv.className = "sizesAndQuantityFields";
+
+        // Add the HTML code for the size and color fields
+        newDiv.innerHTML = `
+        <hr>
+        <div class="col-md-12">
+<div class="row">
+
+    <div class="col-md-6">
+        <div class="mb-3">
+
+            <h4 class="form-label my-3">المقاس </h4>
+
+
+            <select name="size[]" id="select" class="form-control">
+
+
+                <?php $__currentLoopData = $sizes; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $size): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                    <option value="<?php echo e($size->id); ?>">
+                        <?php echo e($size->name); ?>
+
+                    </option>
+                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+
+            </select>
+
+        </div>
+
+        <div class="mb-3">
+            <h4 class="form-label">الكميه </h4>
+            <input type="text" name="qty"  class="form-control" >
+
+        </div>
+    </div>
+
+
+    <div>
+     <button type="button" onclick="deleteSize(this)" class="btn btn-danger">حذف</button>
+        </div> <br>
+
+</div>
+
+</div>
+        `;
+
+        // Append the new div to the container
+        container.appendChild(newDiv);
+    }
+
+    function deleteSection(button) {
+        var section = button.closest(".sizesAndColorsFields");
+        section.remove();
+    }
+    function deleteSize(button) {
+        var section = button.closest(".sizesAndQuantityFields");
+        section.remove();
+    }
+
+
+</script>
+
+
+<script>
+
+    $(document).ready(function(){
+     $('#multiImg').on('change', function(){ //on file input change
+        if (window.File && window.FileReader && window.FileList && window.Blob) //check File API supported browser
+        {
+            var data = $(this)[0].files; //this file data
+
+            $.each(data, function(index, file){ //loop though each file
+                if(/(\.|\/)(gif|jpe?g|png)$/i.test(file.type)){ //check supported file type
+                    var fRead = new FileReader(); //new filereader
+                    fRead.onload = (function(file){ //trigger function on successful read
+                    return function(e) {
+                        var img = $('<img/>').addClass('thumb').attr('src', e.target.result) .width(80)
+                    .height(80); //create image element
+                        $('#preview_image').append(img); //append image to output element
+                    };
+                    })(file);
+                    fRead.readAsDataURL(file); //URL representing the file's data.
+                }
+            });
+
+        }else{
+            alert("Your browser doesn't support File API!"); //if File API is absent
+        }
+     });
+    });
+
+    </script>
+
+
 <?php $__env->stopSection(); ?>
 
 <?php $__env->startSection('js'); ?>

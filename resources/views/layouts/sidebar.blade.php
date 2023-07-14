@@ -90,7 +90,7 @@
                                 <ul class="sub-menu" aria-expanded="false">
                                     <li><a href="{{ route('product.show') }}" key="t-default">جميع المنتجات</a></li>
                                     <li><a href="{{ route('product.add') }}" key="t-saas">إضافة منتج</a></li>
-                                    <li><a href="{{ route('product.show') }}" key="t-saas">الوسوم</a></li>
+                                    <li><a href="{{ route('product.tags') }}" key="t-saas">الوسوم</a></li>
                                     <li><a href="{{ route('product.addcolorandsize') }}" key="t-saas">السمات</a>
                                     </li>
 

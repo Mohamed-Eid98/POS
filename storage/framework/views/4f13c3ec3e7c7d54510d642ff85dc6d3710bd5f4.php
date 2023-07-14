@@ -41,8 +41,9 @@
     <?php endif; ?>
 
 
+
     <div class="row">
-        <div class="col-12">
+        <div class="col-lg-12 col-md-12">
             <div class="card">
                 <div class="card-body">
 
@@ -51,17 +52,118 @@
 
                     </p>
 
-                    <div id="datatable_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
-                        <div class="row">
-                            <div class="col-sm-12 col-md-6">
+                    <form action="<?php echo e(route('product.search')); ?>" method="POST" >
+                        <?php echo csrf_field(); ?>
 
-                            </div>
-                        </div>
+                        <div class="row">
+                            <!-- start 1st row  -->
+
+                            <div class="col-md-2">
+
+                                <div class="form-group">
+                                    <div class="controls">
+                                        <select name="subcate_id" id="select" class="form-control">
+                                            <option value="" selected disabled><b>تصينفات</b></option>
+                                            <?php $__currentLoopData = $subcategories; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $subcategory): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                <option value="<?php echo e($subcategory->id); ?>"><?php echo e($subcategory->name); ?></option>
+                                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                        </select>
+                                        <?php $__errorArgs = ['subcate_id'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                            <span class="text-danger"><?php echo e($message); ?></span>
+                                        <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
+                                    </div>
+                                </div>
+
+                            </div> <!-- end col md 6 -->
+
+
+                            <div class="col-md-2">
+
+                                <div class="form-group">
+                                    <div class="controls">
+                                        <select name="product_name" id="select" class="form-control">
+                                            <option value="" selected disabled><b> الفرز حسب نوع المنتج</b></option>
+                                            <?php $__currentLoopData = $products; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $product): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                            <option value="<?php echo e($product->id); ?>"><?php echo e($product->name); ?></option>
+                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                        </select>
+                                        <?php $__errorArgs = ['product_name'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                            <span class="text-danger"><?php echo e($message); ?></span>
+                                        <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
+                                    </div>
+                                </div>
+
+                            </div> <!-- end col md 6 -->
+
+                            <div class="col-md-2">
+
+                                <div class="form-group">
+                                    <div class="controls">
+                                        <select name="status" id="select" class="form-control">
+                                            <option value="" selected disabled><b>الفرز حسب حالة المخزون</b></option>
+                                            <option value="0">غير متوفر في المخزون</option>
+                                            <option value="1">متوفر في المخزون</option>
+                                        </select>
+                                        <?php $__errorArgs = ['status'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                            <span class="text-danger"><?php echo e($message); ?></span>
+                                        <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
+                                    </div>
+                                </div>
+
+                            </div> <!-- end col md 6 -->
+                            <div class="col-md-1">
+
+                                <div class="form-group">
+                                    <div class="controls">
+                                        <input type="submit" class="btn btn-rounded btn-primary mb-5" value="تصفيه">
+
+                                        <?php $__errorArgs = ['subcate_id'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                            <span class="text-danger"><?php echo e($message); ?></span>
+                                        <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
+                                    </div>
+                                </div>
+
+                            </div> <!-- end col md 6 -->
+
+                        </div> <!-- end 1st row  -->
+
+                        <br>
+                    </form>
+
 
                         <div class="row">
                             <div class="col-sm-12">
                                 <table id="example" class="table table-striped my-3" role="grid"
                                     aria-describedby="datatable_info" style="width: 100%">
+
                                     <thead>
                                         <tr role="row">
                                             <th>#</th>
@@ -163,10 +265,15 @@
 
                             </div>
                         </div>
-                        
 
-                    </div>
+
+
+                    
                 </div>
+            </div>
+        </div>
+    </div>
+
             </div> <!-- end col -->
         </div>
     <?php $__env->stopSection(); ?>
