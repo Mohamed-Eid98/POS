@@ -1,3 +1,5 @@
+
+
 <?php $__env->startSection('title'); ?>
     عرض المنتجات
 <?php $__env->stopSection(); ?>

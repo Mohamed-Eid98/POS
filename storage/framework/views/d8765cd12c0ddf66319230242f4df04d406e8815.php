@@ -80,10 +80,10 @@
                                     <span key="t-dashboards"> المنتجات</span>
                                 </a>
                                 <ul class="sub-menu" aria-expanded="false">
-                                    <li><a href="<?php echo e(route('product.show')); ?>" key="t-default">جميع المنتجات</a></li>
-                                    <li><a href="<?php echo e(route('product.add')); ?>" key="t-saas">إضافة منتج</a></li>
-                                    <li><a href="<?php echo e(route('product.tags')); ?>" key="t-saas">الوسوم</a></li>
-                                    <li><a href="<?php echo e(route('product.addcolorandsize')); ?>" key="t-saas">السمات</a>
+                                    <li><a href="<?php echo e(route('product.add')); ?>" key="t-default">إضافة منتج</a></li>
+                                    <li><a href="<?php echo e(route('product.show')); ?>" key="t-wallet">جميع المنتجات</a></li>
+                                    <li><a href="<?php echo e(route('product.tags')); ?>" key="t-saas" >الوسوم</a></li>
+                                    <li><a href="<?php echo e(route('product.addcolorandsize')); ?>" key="t-blog" >السمات</a>
                                     </li>
 
 
@@ -240,39 +240,36 @@
                             <?php endif; ?>
 
                             <?php if($permission->name == 'sliders' || $permission->name == 'admins'): ?>
-
-                            <li>
-                                <a href="javascript: void(0);" class="has-arrow waves-effect my-3">
-                                    <i class="bx bx-aperture"></i>
-                                    <span key="t-dashboards"> البانر</span>
-                                </a>
-                                <ul class="sub-menu" aria-expanded="false">
-                                    <li><a class="slide-item" href="<?php echo e(route('slide.add')); ?>"> اضافه بانر</a>
-                                    <li><a class="slide-item" href="<?php echo e(route('slides.show')); ?>"> عرض بانرات</a>
-
+                                <li>
+                                    <a href="javascript: void(0);" class="has-arrow waves-effect my-3">
+                                        <i class="bx bx-aperture"></i>
+                                        <span key="t-dashboards"> البانر</span>
+                                    </a>
+                                    <ul class="sub-menu" aria-expanded="false">
+                                        <li><a class="slide-item" href="<?php echo e(route('slide.add')); ?>"> اضافه بانر</a>
+                                        <li><a class="slide-item" href="<?php echo e(route('slides.show')); ?>"> عرض بانرات</a>
 
 
 
-                                </ul>
-                            </li>
-                    <?php endif; ?>
 
-                    <?php if($permission->name == 'coupons' || $permission->name == 'admins'): ?>
+                                    </ul>
+                                </li>
+                            <?php endif; ?>
 
-                            <li>
-                                <a href="javascript: void(0);" class="has-arrow waves-effect my-3">
-                                    <i class="bx bx-bitcoin"></i>
-                                    <span key="t-dashboards"> الكوبونات</span>
-                                </a>
-                                <ul class="sub-menu" aria-expanded="false">
-                                    <li><a class="slide-item" href="<?php echo e(route('coupon.add')); ?>"> اضافه كوبون</a>
-                                    <li><a class="slide-item" href="<?php echo e(route('coupon.show')); ?>"> عرض الكوبونات</a>
+                            <?php if($permission->name == 'coupons' || $permission->name == 'admins'): ?>
+                                <li>
+                                    <a href="javascript: void(0);" class="has-arrow waves-effect my-3">
+                                        <i class="bx bx-bitcoin"></i>
+                                        <span key="t-dashboards"> الكوبونات</span>
+                                    </a>
+                                    <ul class="sub-menu" aria-expanded="false">
+                                        <li><a class="slide-item" href="<?php echo e(route('coupon.add')); ?>"> اضافه كوبون</a>
+                                        <li><a class="slide-item" href="<?php echo e(route('coupon.show')); ?>"> عرض الكوبونات</a>
 
 
-                                </ul>
-                            </li>
-
-                    <?php endif; ?>
+                                    </ul>
+                                </li>
+                            <?php endif; ?>
                             <?php if($permission->name == 'complains' || $permission->name == 'admins'): ?>
                                 <li>
                                     <a href="javascript: void(0);" class="has-arrow waves-effect my-3">

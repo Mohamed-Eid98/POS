@@ -4,9 +4,9 @@
 @stop
 @section('css')
     <!--  Owl-carousel css-->
-    <link href="{{ URL::asset('assets/plugins/owl-carousel/owl.carousel.css') }}" rel="stylesheet" />
+    <link href="{{ asset('assets/plugins/owl-carousel/owl.carousel.css') }}" rel="stylesheet" />
     <!-- Maps css -->
-    <link href="{{ URL::asset('assets/plugins/jqvmap/jqvmap.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/plugins/jqvmap/jqvmap.min.css') }}" rel="stylesheet">
 
 
     <link href="{{ asset('assets/libs/select2/css/select2.min.css') }}" rel="stylesheet" type="text/css" />
@@ -52,7 +52,6 @@
         </div>
     @endif
 
-    {{-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> --}}
 
     <form method="POST" action="{{ route('product.store') }}" enctype="multipart/form-data">
         @csrf
@@ -186,7 +185,7 @@
                                     </div>
 
                                     <div class="col-md-4 my-5">
-                                        <button type="button" onclick="addqtyandsize(this)"
+                                        <button type="button" onclick="add()"
                                             class="btn btn-primary">اضافة جزء للكميه والمقاس </button> <br>
 
                                     </div>
@@ -194,9 +193,10 @@
                                 </div>
                             </div>
 
-                            <div class="col-md-12">
-                                <div class="row sizeandquantitycontainer"></div>
-                            </div>
+                                <div id="firstsizeandquantitycontainer">
+
+
+                                </div>
 
 
                             <div class="box">
@@ -243,23 +243,9 @@
 
 
 
-
-
-
-
         <div id="sizesAndColorsContainer">
 
         </div>
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -534,35 +520,15 @@
         </div>
 
 
-        </div>
-        </div>
     </form>
 
-
-
-
-
-    </div>
-    <!-- /.col -->
-    </div>
-    <!-- /.row -->
-    </div>
-    <!-- /.box-body -->
-    </div>
-    <!-- /.box -->
-
-    </section>
-    <!-- /.content -->
-    </div>
 
 @endsection
 
 
-
-
 @section('script')
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    {{-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> --}}
 
     <script type="text/javascript">
         $(document).ready(function() {
@@ -596,6 +562,61 @@
 
 
     <script>
+
+
+function add() {
+        var container = document.getElementById("firstsizeandquantitycontainer");
+
+        // Create a new div element for each size and color fields
+        var newDiv = document.createElement("div");
+        newDiv.className = "sizesAndQuantityFields";
+
+
+        // Add the HTML code for the size and color fields
+        newDiv.innerHTML = `
+        <
+        <div class="col-md-6">
+
+    <div class="col-md-1">
+        <div class="mb-3">
+
+            <h4 class="form-label my-3">المقاس </h4>
+
+
+            <select name="size[]" id="select" class="form-control">
+
+
+                @foreach ($sizes as $size)
+                    <option value="{{ $size->id }}">
+                        {{ $size->name }}
+                    </option>
+                @endforeach
+
+            </select>
+
+        </div>
+
+        <div class="mb-3">
+            <h4 class="form-label">الكميه </h4>
+            <input type="text" name="qty"  class="form-control" >
+
+        </div>
+    </div>
+
+
+    <div>
+     <button type="button" onclick="deleteSize(this)" class="btn btn-danger">حذف</button>
+        </div> <br>
+
+
+</div>
+        `;
+
+        // Append the new div to the container
+        container.appendChild(newDiv);
+
+    }
+
         function addSizesAndColors() {
             var container = document.getElementById("sizesAndColorsContainer");
 
@@ -793,8 +814,8 @@
 
 
 @endsection
-
-@section('js')
+{{--
+@section('script')
 
     <!-- JAVASCRIPT -->
     <script src="{{ asset('assets/libs/jquery/jquery.min.js') }}"></script>
@@ -814,7 +835,8 @@
     <!-- form advanced init -->
     <script src="{{ asset('assets/js/pages/form-advanced.init.js') }}"></script>
 
-    <script src="{{ asset('assets/js/app.js') }}"></script>
-
 
 @endsection
+ --}}
+
+
