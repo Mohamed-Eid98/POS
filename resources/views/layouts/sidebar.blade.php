@@ -90,7 +90,7 @@
                                 <ul class="sub-menu" aria-expanded="false">
                                     <li><a href="{{ route('product.show') }}" key="t-default">جميع المنتجات</a></li>
                                     <li><a href="{{ route('product.add') }}" key="t-saas">إضافة منتج</a></li>
-                                    <li><a href="{{ route('product.tags') }}" key="t-saas">الوسوم</a></li>
+                                    <li><a href="" key="t-saas">الوسوم</a></li>
                                     <li><a href="{{ route('product.addcolorandsize') }}" key="t-saas">السمات</a>
                                     </li>
 
@@ -248,39 +248,36 @@
                             @endif
 
                             @if ($permission->name == 'sliders' || $permission->name == 'admins')
-
-                            <li>
-                                <a href="javascript: void(0);" class="has-arrow waves-effect my-3">
-                                    <i class="bx bx-aperture"></i>
-                                    <span key="t-dashboards"> البانر</span>
-                                </a>
-                                <ul class="sub-menu" aria-expanded="false">
-                                    <li><a class="slide-item" href="{{ route('slide.add') }}"> اضافه بانر</a>
-                                    <li><a class="slide-item" href="{{ route('slides.show') }}"> عرض بانرات</a>
-
+                                <li>
+                                    <a href="javascript: void(0);" class="has-arrow waves-effect my-3">
+                                        <i class="bx bx-aperture"></i>
+                                        <span key="t-dashboards"> البانر</span>
+                                    </a>
+                                    <ul class="sub-menu" aria-expanded="false">
+                                        <li><a class="slide-item" href="{{ route('slide.add') }}"> اضافه بانر</a>
+                                        <li><a class="slide-item" href="{{ route('slides.show') }}"> عرض بانرات</a>
 
 
 
-                                </ul>
-                            </li>
-                    @endif
 
-                    @if ($permission->name == 'coupons' || $permission->name == 'admins')
+                                    </ul>
+                                </li>
+                            @endif
 
-                            <li>
-                                <a href="javascript: void(0);" class="has-arrow waves-effect my-3">
-                                    <i class="bx bx-bitcoin"></i>
-                                    <span key="t-dashboards"> الكوبونات</span>
-                                </a>
-                                <ul class="sub-menu" aria-expanded="false">
-                                    <li><a class="slide-item" href="{{ route('coupon.add') }}"> اضافه كوبون</a>
-                                    <li><a class="slide-item" href="{{ route('coupon.show') }}"> عرض الكوبونات</a>
+                            @if ($permission->name == 'coupons' || $permission->name == 'admins')
+                                <li>
+                                    <a href="javascript: void(0);" class="has-arrow waves-effect my-3">
+                                        <i class="bx bx-bitcoin"></i>
+                                        <span key="t-dashboards"> الكوبونات</span>
+                                    </a>
+                                    <ul class="sub-menu" aria-expanded="false">
+                                        <li><a class="slide-item" href="{{ route('coupon.add') }}"> اضافه كوبون</a>
+                                        <li><a class="slide-item" href="{{ route('coupon.show') }}"> عرض الكوبونات</a>
 
 
-                                </ul>
-                            </li>
-
-                    @endif
+                                    </ul>
+                                </li>
+                            @endif
                             @if ($permission->name == 'complains' || $permission->name == 'admins')
                                 <li>
                                     <a href="javascript: void(0);" class="has-arrow waves-effect my-3">
