@@ -93,8 +93,6 @@
                                     @enderror
                                 </div>
                             </div>
-
-
                             <div class="form-group">
                                 <div class="col-md-6">
 
@@ -114,7 +112,6 @@
                 </div>
             </div>
         </div>
-
 
         <div class="row">
             <div class="col-12">
@@ -158,7 +155,7 @@
 
                             </div>
                             <div class="col-md-12">
-                                <div class="row">
+                                <div class="row sizeandquantitycontainer">
 
                                     <div class="col-md-6">
                                         <div class="mb-3">
@@ -205,13 +202,9 @@
                                 </div>
                                 <hr>
                                 <!-- start 2nd row  -->
-
-
-
                                 <div class="fallback">
                                     {{-- <img src="" id="mainThmb" alt=""> --}}
                                     <div class="row" id="preview_image">
-
                                     </div>
                                     <br>
                                     <input type="file" name="multi_img[]" class="form-control" multiple=""
@@ -224,7 +217,6 @@
                                     <div class="mb-3">
                                         <i class="display-4 text-muted bx bxs-cloud-upload text-center"></i>
                                     </div>
-
                                     <h4>ادخل الصور هنا</h4>
                                 </div>
                             </div>
@@ -240,29 +232,8 @@
             </div> <!-- end col -->
         </div> <!-- end row -->
 
-
-
-
-
-
-
-
         <div id="sizesAndColorsContainer">
-
         </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
 
         <div class="row">
             <div class="col-lg-12 col-md-12">
@@ -450,11 +421,6 @@
             </div>
         </div>
 
-
-
-
-
-
         <div class="row">
             <div class="col-lg-12 col-md-12">
                 <div class="card">
@@ -534,26 +500,17 @@
         </div>
 
 
-        </div>
-        </div>
+
     </form>
 
 
 
 
 
-    </div>
-    <!-- /.col -->
-    </div>
-    <!-- /.row -->
-    </div>
-    <!-- /.box-body -->
-    </div>
-    <!-- /.box -->
+
 
     </section>
     <!-- /.content -->
-    </div>
 
 @endsection
 
@@ -562,7 +519,7 @@
 
 @section('script')
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    {{-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> --}}
 
     <script type="text/javascript">
         $(document).ready(function() {
