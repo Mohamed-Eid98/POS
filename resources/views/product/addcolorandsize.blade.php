@@ -26,7 +26,6 @@
     <!-- Icons Css -->
     <link href="{{ asset('assets/css/icons.min.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ URL::asset('build/libs/dropzone/min/dropzone.min.css') }}" rel="stylesheet" type="text/css" />
-
 @endsection
 
 
@@ -59,46 +58,25 @@
 
                     <div>
 
-                        <form action="{{ route('product.addcolorandsize.store') }}" class="dropzone" method="POST" enctype="multipart/form-data">
+                        <form action="{{ route('product.addcolorandsize.store') }}" class="dropzone" method="POST"
+                            enctype="multipart/form-data">
                             @csrf
 
 
-                            <div class="mb-3">
-                                <div class="form-group">
-                                    <h5> اسم المنتح<span class="text-danger">*</span></h5>
-                                    <div class="controls">
-                                        <select name="product_id" id="select" class="form-control">
-                                            <option value="" selected disabled>-- اختر المنتج --</option>
-                                            @foreach ($products as $product)
-                                                <option value="{{ $product->id }}">{{ $product->name }}</option>
-                                            @endforeach
-
-                                        </select>
-                                        @error('product_id')
-                                            <span class="text-danger">{{ $message }}</span>
-                                        @enderror
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col-md-6">
+                            <div class="col-md-12">
 
                                 <div class="form-group">
-                                    <h5>اللون <span class="text-danger">*</span></h5>
+                                    <h4>ادخل اللون<span class="text-danger">*</span></h4>
                                     <div class="controls">
-                                        <select name="color" id="select" class="form-control">
-                                            <option value="" selected disabled>-- اختر اللون
-                                                --
-                                            </option>
-                                            @foreach ($colors as $color)
-                                                <option value="{{ $color->id }}">
-                                                    {{ $color->name }}
-                                                </option>
-                                            @endforeach
-                                        </select>
-                                        @error('color')
-                                            <span class="text-danger">{{ $message }}</span>
-                                        @enderror
+
+                                        <div class="controls">
+                                            <input type="colour" name="price" class="form-control" />
+                                            @error('colour')
+                                                <span class="text-danger">{{ $message }}</span>
+                                            @enderror
+                                        </div>
+
+
                                     </div>
                                 </div>
 
@@ -106,52 +84,21 @@
                             <div class="col-md-6">
 
                                 <div class="mb-3">
-                                    <label class="form-label">المقاس </label>
+                                    <h4 class="form-label">المقاس </h4>
 
-                                    <select name="size[]" class="select2 form-control select2-multiple" multiple="multiple"
-                                        data-placeholder="Choose ...">
-
-                                        @foreach ($sizes as $size)
-                                            <option value="{{ $size->id }}">
-                                                {{ $size->name }}
-                                            </option>
-                                        @endforeach
-
-                                    </select>
+                                    <div class="controls">
+                                        <input type="size" name="price" class="form-control" />
+                                        @error('size')
+                                            <span class="text-danger">{{ $message }}</span>
+                                        @enderror
+                                    </div>
 
                                 </div>
                             </div>
 
 
 
-                            <div class="box">
-                                <div class="box-header with-border">
-                                    <h4 class="box-title">إضافة صور </h4>
-                                </div>
-                                <hr>
-                                <!-- start 2nd row  -->
 
-
-
-                                <div class="fallback">
-                                    {{-- <img src="" id="mainThmb" alt=""> --}}
-                                    <div class="row" id="preview_image">
-
-                                    </div>
-                                    <br>
-                                    <input type="file" name="multi_img[]" class="form-control" multiple=""  id="multiImg" >
-                                    @error('multi_image')
-                                        <span class="text-danger" >{{ $message }}</span>
-                                    @enderror
-                                </div>
-                                <div class="dz-message needsclick">
-                                    <div class="mb-3">
-                                        <i class="display-4 text-muted bx bxs-cloud-upload text-center"></i>
-                                    </div>
-
-                                    <h4>ادخل الصور هنا</h4>
-                                </div>
-                            </div>
 
 
 
@@ -204,40 +151,39 @@
     </script> --}}
 
 
-<script>
+    <script>
+        $(document).ready(function() {
+            $('#multiImg').on('change', function() { //on file input change
+                if (window.File && window.FileReader && window.FileList && window
+                    .Blob) //check File API supported browser
+                {
+                    var data = $(this)[0].files; //this file data
 
-    $(document).ready(function(){
-     $('#multiImg').on('change', function(){ //on file input change
-        if (window.File && window.FileReader && window.FileList && window.Blob) //check File API supported browser
-        {
-            var data = $(this)[0].files; //this file data
+                    $.each(data, function(index, file) { //loop though each file
+                        if (/(\.|\/)(gif|jpe?g|png)$/i.test(file
+                                .type)) { //check supported file type
+                            var fRead = new FileReader(); //new filereader
+                            fRead.onload = (function(file) { //trigger function on successful read
+                                return function(e) {
+                                    var img = $('<img/>').addClass('thumb').attr('src',
+                                            e.target.result).width(80)
+                                        .height(80); //create image element
+                                    $('#preview_image').append(
+                                        img); //append image to output element
+                                };
+                            })(file);
+                            fRead.readAsDataURL(file); //URL representing the file's data.
+                        }
+                    });
 
-            $.each(data, function(index, file){ //loop though each file
-                if(/(\.|\/)(gif|jpe?g|png)$/i.test(file.type)){ //check supported file type
-                    var fRead = new FileReader(); //new filereader
-                    fRead.onload = (function(file){ //trigger function on successful read
-                    return function(e) {
-                        var img = $('<img/>').addClass('thumb').attr('src', e.target.result) .width(80)
-                    .height(80); //create image element
-                        $('#preview_image').append(img); //append image to output element
-                    };
-                    })(file);
-                    fRead.readAsDataURL(file); //URL representing the file's data.
+                } else {
+                    alert("Your browser doesn't support File API!"); //if File API is absent
                 }
             });
-
-        }else{
-            alert("Your browser doesn't support File API!"); //if File API is absent
-        }
-     });
-    });
-
+        });
     </script>
 
-{{-- <script src="{{ asset('build/libs/dropzone/min/dropzone.min.js') }}"></script> --}}
+    {{-- <script src="{{ asset('build/libs/dropzone/min/dropzone.min.js') }}"></script> --}}
 
-{{-- <script src="{{ asset('build/js/app.js') }}"></script> --}}
-
-
-
+    {{-- <script src="{{ asset('build/js/app.js') }}"></script> --}}
 @endsection
