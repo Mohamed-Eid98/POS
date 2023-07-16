@@ -222,11 +222,12 @@ unset($__errorArgs, $__bag); ?>
 
                                 </div>
                             </div>
+                            <div class="row">
 
-                                <div id="firstsizeandquantitycontainer">
+                                                                <div id="firstsizeandquantitycontainer">
+                                                                </div>
 
-
-                                </div>
+                            </div>
 
 
                             <div class="box">
@@ -647,8 +648,6 @@ function add() {
 
         // Add the HTML code for the size and color fields
         newDiv.innerHTML = `
-        <
-        <div class="col-md-6">
 
     <div class="col-md-1">
         <div class="mb-3">
@@ -680,7 +679,7 @@ function add() {
 
     <div>
      <button type="button" onclick="deleteSize(this)" class="btn btn-danger">حذف</button>
-        </div> <br>
+    </div> <br>
 
 
 </div>
@@ -900,6 +899,29 @@ unset($__errorArgs, $__bag); ?>
             });
         });
     </script>
+
+
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('script'); ?>
+
+    <!-- JAVASCRIPT -->
+    <script src="<?php echo e(asset('assets/libs/jquery/jquery.min.js')); ?>"></script>
+    <script src="<?php echo e(asset('assets/libs/bootstrap/js/bootstrap.bundle.min.js')); ?>"></script>
+    <script src="<?php echo e(asset('assets/libs/metismenu/metisMenu.min.js')); ?>"></script>
+    <script src="<?php echo e(asset('assets/libs/simplebar/simplebar.min.js')); ?>"></script>
+    <script src="<?php echo e(asset('assets/libs/node-waves/waves.min.js')); ?>"></script>
+
+    <script src="<?php echo e(asset('assets/libs/select2/js/select2.min.js')); ?>"></script>
+    <script src="<?php echo e(asset('assets/libs/bootstrap-datepicker/js/bootstrap-datepicker.min.js')); ?>"></script>
+    <script src="<?php echo e(asset('assets/libs/spectrum-colorpicker2/spectrum.min.js')); ?>"></script>
+    <script src="<?php echo e(asset('assets/libs/bootstrap-timepicker/js/bootstrap-timepicker.min.js')); ?>"></script>
+    <script src="<?php echo e(asset('assets/libs/bootstrap-touchspin/jquery.bootstrap-touchspin.min.js')); ?>"></script>
+    <script src="<?php echo e(asset('assets/libs/bootstrap-maxlength/bootstrap-maxlength.min.js')); ?>"></script>
+    <script src="<?php echo e(asset('assets/libs/@chenfengyuan/datepicker/datepicker.min.js')); ?>"></script>
+
+    <!-- form advanced init -->
+    <script src="<?php echo e(asset('assets/js/pages/form-advanced.init.js')); ?>"></script>
 
 
 <?php $__env->stopSection(); ?>

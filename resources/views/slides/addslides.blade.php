@@ -87,19 +87,11 @@
                                 <div class="mb-3">
                                     <label class="form-label">نوع المنتج </label>
 
-<<<<<<< HEAD
-                                    <select name="type_id[]" id="secondSelect" class="select2 form-control select2-multiple" multiple="multiple"
-                                    data-placeholder="اختر ...">
-
-
-                                </select>
-=======
                                     <select name="type_id[]" id="secondSelect" class="select2 form-control select2-multiple"
                                         multiple="multiple" data-placeholder="اختر ...">
 
 
                                     </select>
->>>>>>> 7eb7c95580e6bdb0b027ad47351f5e8d5c18b606
                                 </div>
                             </div>
                             <div class="col-md-3">

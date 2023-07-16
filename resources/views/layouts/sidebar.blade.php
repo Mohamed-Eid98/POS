@@ -88,8 +88,8 @@
                                     <span key="t-dashboards"> المنتجات</span>
                                 </a>
                                 <ul class="sub-menu" aria-expanded="false">
-                                    <li><a href="{{ route('product.add') }}" key="t-default">إضافة منتج</a></li>
                                     <li><a href="{{ route('product.show') }}" key="t-wallet">جميع المنتجات</a></li>
+                                    <li><a href="{{ route('product.add') }}" key="t-default">إضافة منتج</a></li>
                                     <li><a href="{{ route('product.tags') }}" key="t-saas" >الوسوم</a></li>
                                     <li><a href="{{ route('product.addcolorandsize') }}" key="t-blog" >السمات</a>
                                     </li>
