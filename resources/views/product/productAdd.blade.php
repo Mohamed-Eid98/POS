@@ -93,11 +93,10 @@
                                 </div>
                             </div>
 
+                            <div class="row">
+                                <div class="col-md-6 ">
 
-                            <div class="form-group">
-                                <div class="col-md-6">
-
-                                    <h5 for="code">الكود</h5>
+                                    <h4 for="code" class=" my-3">الكود</h4>
                                     <div class="controls">
                                         <input type="text" name="code" class="form-control" />
                                         @error('code')
@@ -106,57 +105,75 @@
                                     </div>
 
                                 </div>
-                            </div>
 
+
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+
+                                        <h4 class="form-label my-3">الوسوم </h4>
+
+
+                                        <select name="size[]" id="select" class="form-control">
+                                            <option value="" selected disabled>-- اختر --</option>
+                                            <option value="">
+                                                sss
+                                            </option>
+
+                                        </select>
+
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
 
 
-        <div class="row">
-            <div class="col-12">
-                <div class="card">
-                    <div class="card-body">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-body">
 
-                        <h4 class="card-title">إضافة مقاسات والوان المنتج</h4>
-                        <div class="text-md-end">
+                            <h4 class="card-title">إضافة مقاسات والوان المنتج</h4>
+                            <div class="text-md-end">
 
-                            <button type="button" onclick="addSizesAndColors()" class="btn btn-primary">اضافة جزء جديد للون
-                                والمقاس </button>
-                        </div>
+                                <button type="button" onclick="addSizesAndColors()" class="btn btn-primary">اضافة جزء
+                                    جديد
+                                    للون
+                                    والمقاس </button>
+                            </div>
 
-                        <p class="card-title-desc">
-                        </p>
+                            <p class="card-title-desc">
+                            </p>
 
-                        <div>
+                            <div>
 
 
 
-                            <div class="col-md-6">
+                                <div class="col-md-6">
 
-                                <div class="form-group">
-                                    <h5>اللون <span class="text-danger">*</span></h5>
-                                    <div class="controls">
-                                        <select name="color[]" id="select" class="form-control">
-                                            <option value="" selected disabled>-- اختر اللون
-                                                --
-                                            </option>
-                                            @foreach ($colors as $color)
-                                                <option value="{{ $color->id }}">
-                                                    {{ $color->name }}
+                                    <div class="form-group">
+                                        <h5>اللون <span class="text-danger">*</span></h5>
+                                        <div class="controls">
+                                            <select name="color[]" id="select" class="form-control">
+                                                <option value="" selected disabled>-- اختر اللون
+                                                    --
                                                 </option>
-                                            @endforeach
-                                        </select>
-                                        @error('color')
-                                            <span class="text-danger">{{ $message }}</span>
-                                        @enderror
+                                                @foreach ($colors as $color)
+                                                    <option value="{{ $color->id }}">
+                                                        {{ $color->name }}
+                                                    </option>
+                                                @endforeach
+                                            </select>
+                                            @error('color')
+                                                <span class="text-danger">{{ $message }}</span>
+                                            @enderror
+                                        </div>
                                     </div>
+
                                 </div>
 
-                            </div>
-                            <div class="col-md-12">
                                 <div class="row">
 
                                     <div class="col-md-6">
@@ -185,18 +202,20 @@
                                     </div>
 
                                     <div class="col-md-4 my-5">
-                                        <button type="button" onclick="add()"
-                                            class="btn btn-primary">اضافة جزء للكميه والمقاس </button> <br>
+                                        <button type="button" onclick="add()" class="btn btn-primary">اضافة جزء
+                                            للكميه
+                                            والمقاس </button> <br>
 
                                     </div>
 
                                 </div>
                             </div>
 
-                                <div id="firstsizeandquantitycontainer">
+                            <div id="firstsizeandquantitycontainer" style="display:flex">
 
 
-                                </div>
+                            </div>
+
 
 
                             <div class="box">
@@ -239,7 +258,6 @@
                 </div>
             </div> <!-- end col -->
         </div> <!-- end row -->
-
 
 
 
@@ -419,18 +437,6 @@
 
                         </div> <!-- end 1st row  -->
 
-
-
-
-
-
-
-
-
-
-
-
-
                     </div>
                 </div>
             </div>
@@ -562,24 +568,20 @@
 
 
     <script>
+        function add() {
+            var container = document.getElementById("firstsizeandquantitycontainer");
+
+            // Create a new div element for each size and color fields
+            var newDiv = document.createElement("div");
+            newDiv.className = "sizesAndQuantityFields";
 
 
-function add() {
-        var container = document.getElementById("firstsizeandquantitycontainer");
-
-        // Create a new div element for each size and color fields
-        var newDiv = document.createElement("div");
-        newDiv.className = "sizesAndQuantityFields";
+            // Add the HTML code for the size and color fields
+            newDiv.innerHTML = `
 
 
-        // Add the HTML code for the size and color fields
-        newDiv.innerHTML = `
-        <
-        <div class="col-md-6">
-
-    <div class="col-md-1">
-        <div class="mb-3">
-
+    <div class="col-md-12 "style="padding-left:30px ">
+          <div>
             <h4 class="form-label my-3">المقاس </h4>
 
 
@@ -601,7 +603,6 @@ function add() {
             <input type="text" name="qty"  class="form-control" >
 
         </div>
-    </div>
 
 
     <div>
@@ -612,10 +613,10 @@ function add() {
 </div>
         `;
 
-        // Append the new div to the container
-        container.appendChild(newDiv);
+            // Append the new div to the container
+            container.appendChild(newDiv);
 
-    }
+        }
 
         function addSizesAndColors() {
             var container = document.getElementById("sizesAndColorsContainer");
@@ -687,8 +688,8 @@ function add() {
                                     </div>
 
 
-                                    <div class="col-md-12">
-  <div class="row sizeandquantitycontainer"></div>
+                                    <div class="col-md-12" >
+  <div class="sizeandquantitycontainer" style="display:flex"></div>
 </div>
 
                                 </div>
@@ -739,29 +740,40 @@ function add() {
 
             // Add the HTML code for the size and color fields
             newDiv.innerHTML = `
-    <hr>
-    <div class="col-md-12">
-      <div class="row">
-        <div class="col-md-6">
-          <div class="mb-3">
+
+
+    <div class="col-md-12 lol"style="padding-left:30px ">
+          <div>
             <h4 class="form-label my-3">المقاس </h4>
+
+
             <select name="size[]" id="select" class="form-control">
-              @foreach ($sizes as $size)
-              <option value="{{ $size->id }}">{{ $size->name }}</option>
-              @endforeach
+
+
+                @foreach ($sizes as $size)
+                    <option value="{{ $size->id }}">
+                        {{ $size->name }}
+                    </option>
+                @endforeach
+
             </select>
-          </div>
-          <div class="mb-3">
+
+        </div>
+
+        <div class="mb-3">
             <h4 class="form-label">الكميه </h4>
-            <input type="text" name="qty" class="form-control">
-          </div>
+            <input type="text" name="qty"  class="form-control" >
+
         </div>
-        <div>
-          <button type="button" onclick="deleteSize(this)" class="btn btn-danger">حذف</button>
-        </div>
-      </div>
-    </div>
-  `;
+
+
+    <div>
+     <button type="button" onclick="deleteSize(this)" class="btn btn-danger">حذف</button>
+        </div> <br>
+
+
+</div>
+        `;
 
             // Append the new div to the container
             container.appendChild(newDiv);
@@ -838,5 +850,3 @@ function add() {
 
 @endsection
  --}}
-
-
