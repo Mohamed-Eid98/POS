@@ -90,8 +90,8 @@
                                 <ul class="sub-menu" aria-expanded="false">
                                     <li><a href="{{ route('product.add') }}" key="t-default">إضافة منتج</a></li>
                                     <li><a href="{{ route('product.show') }}" key="t-wallet">جميع المنتجات</a></li>
-                                    <li><a href="{{ route('product.tags') }}" key="t-saas" >الوسوم</a></li>
-                                    <li><a href="{{ route('product.addcolorandsize') }}" key="t-blog" >السمات</a>
+                                    <li><a href="{{ route('product.tags') }}" key="t-saas">الوسوم</a></li>
+                                    <li><a href="{{ route('product.addcolorandsize') }}" key="t-blog">السمات</a>
                                     </li>
 
 
@@ -173,6 +173,20 @@
                                     </ul>
                                 </li>
                             @endif
+                            {{-- @if ($permission->name == 'customers' || $permission->name == 'admins') --}}
+                            <li>
+                                <a href="javascript: void(0);" class="has-arrow waves-effect my-3">
+                                    <i class="bx bx-share-alt"></i>
+
+                                    <span key="t-dashboards"> التحليلات</span>
+                                </a>
+                                <ul class="sub-menu" aria-expanded="false">
+                                    <li><a class="slide-item" href="{{ route('public.view') }}"> النظره العامة</a>
+                                    <li><a class="slide-item" href="{{ route('storage.view') }}"> المخزون</a>
+
+                                </ul>
+                            </li>
+                            {{-- @endif --}}
 
                             @if ($permission->name == 'cities' || $permission->name == 'admins')
                                 <li>
