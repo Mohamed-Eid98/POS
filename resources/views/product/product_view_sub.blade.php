@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('title')
-    عرض الوسوم
+    عرض الروابط
 @endsection
 
 @section('css')
@@ -15,14 +15,6 @@
     <!-- Responsive datatable examples -->
     <link href="{{ asset('build/libs/datatables.net-responsive-bs4/css/responsive.bootstrap4.min.css') }}" rel="stylesheet"
         type="text/css" />
-    {{--
-        <style>
-            td strong a {
-              text-decoration: underline;
-              color:black;
-
-            }
-          </style> --}}
 @endsection
 
 @section('content')
@@ -35,94 +27,135 @@
         @endslot
     @endcomponent
 
+
+    @if (session('add'))
+        <div class="alert alert-success">
+            {{ session('add') }}
+        </div>
+    @endif
+
     @if (session('delete'))
         <div class="alert alert-success">
             {{ session('delete') }}
         </div>
     @endif
-
     @if (session('edit'))
         <div class="alert alert-success">
             {{ session('edit') }}
         </div>
     @endif
 
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+
+                    <form method="post" action="" enctype="multipart/form-data">
+                        @csrf
+
+                        <div class="form-group">
+                            <h5 for="name"> الاسم <span class="text-danger">*</span></h5>
+                            <div class="controls">
+                                <input type="text" id="name" name="name" class="form-control">
+                                @error('name')
+                                    <span class="text-danger">{{ $message }}</span>
+                                @enderror
+                            </div>
+                        </div>
+
+
+
+
+                </div>
+                <div class="text-center mt-4 mb-2">
+                    <input type="submit" class="btn btn-primary waves-effect waves-light" value="حفظ">
+                </div>
+                </form>
+
+            </div>
+        </div>
+        <!-- /.box-body -->
+    </div>
 
     <div class="row">
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
 
-                    <h4 class="card-title">عرض الوسوم </h4>
+                    <h4 class="card-title">عرض الوسوم</h4>
                     <p class="card-title-desc">
 
                     </p>
 
                     <div id="datatable_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
                         <div class="row">
-                            <div class="col-sm-12 col-md-6">
 
-                            </div>
+
                         </div>
-
                         <div class="row">
                             <div class="col-sm-12">
-                                <table id="example" class="table table-striped my-3" role="grid"
-                                    aria-describedby="datatable_info" style="width: 100%">
+                                <table id="example" class="table table-striped my-3 w-100" role="grid"
+                                    aria-describedby="datatable_info">
                                     <thead>
                                         <tr role="row">
                                             <th>#</th>
-                                            <th>الصوره</th>
-                                            <th>الاسم </th>
+                                            {{-- <th>المحافظات</th> --}}
+                                            <th>الاسم</th>
+
                                             <th>التعديلات</th>
                                         </tr>
 
                                     </thead>
-
-
                                     <tbody>
-
                                         <?php $i = 0; ?>
-                                            <?php $i++; ?>
-                                            <tr>
-                                                <td>{{ $i }}</td>
-                                                <td></td>
-                                                <td></td>
-                                                <td>
+
+                                        <?php $i++; ?>
+
+                                        <tr>
+                                            <td>{{ $i }}</td>
+                                            <td> lol </td>
 
 
+                                            <td>
+                                                <ul class="list-unstyled hstack gap-1 mb-0">
+                                                    {{-- <li data-bs-toggle="tooltip" data-bs-placement="top" title="تعديل ">
+                                                        <a href="" class="btn btn-sm btn-soft-primary"><i
+                                                                class="mdi mdi-pencil-outline"></i></a>
+                                                    </li> --}}
 
-                                                    <ul class="list-unstyled hstack gap-1 mb-0">
-
-                                                        <li data-bs-toggle="tooltip" data-bs-placement="top" title="Delete">
-                                                            <a href=""
-                                                                title="حذف" class="btn btn-sm btn-soft-danger"><i
-                                                                    class="mdi mdi-delete-outline"></i></a>
-                                                        </li>
-                                                    </ul>
-
-                                                </td>
-                                            </tr>
+                                                    <li data-bs-toggle="tooltip" data-bs-placement="top" title="حذف">
+                                                        <a href="" title="حذف"
+                                                            class="btn btn-sm btn-soft-danger"><i
+                                                                class="mdi mdi-delete-outline"></i></a>
+                                                    </li>
+                                                </ul>
+                                            </td>
+                                        </tr>
 
 
                                     </tbody>
                                 </table>
-
                             </div>
                         </div>
-                        {{-- <div class="row"><div class="col-sm-12 col-md-5"><div class="dataTables_info" id="datatable_info" role="status" aria-live="polite">Showing 1 to 10 of 57 entries</div></div><div class="col-sm-12 col-md-7"><div class="dataTables_paginate paging_simple_numbers" id="datatable_paginate"><ul class="pagination"><li class="paginate_button page-item previous disabled" id="datatable_previous"><a href="#" aria-controls="datatable" data-dt-idx="0" tabindex="0" class="page-link">Previous</a></li><li class="paginate_button page-item active"><a href="#" aria-controls="datatable" data-dt-idx="1" tabindex="0" class="page-link">1</a></li><li class="paginate_button page-item "><a href="#" aria-controls="datatable" data-dt-idx="2" tabindex="0" class="page-link">2</a></li><li class="paginate_button page-item "><a href="#" aria-controls="datatable" data-dt-idx="3" tabindex="0" class="page-link">3</a></li><li class="paginate_button page-item "><a href="#" aria-controls="datatable" data-dt-idx="4" tabindex="0" class="page-link">4</a></li><li class="paginate_button page-item "><a href="#" aria-controls="datatable" data-dt-idx="5" tabindex="0" class="page-link">5</a></li><li class="paginate_button page-item "><a href="#" aria-controls="datatable" data-dt-idx="6" tabindex="0" class="page-link">6</a></li><li class="paginate_button page-item next" id="datatable_next"><a href="#" aria-controls="datatable" data-dt-idx="7" tabindex="0" class="page-link">Next</a></li></ul></div></div></div></div> --}}
 
                     </div>
                 </div>
             </div> <!-- end col -->
         </div>
     @endsection
-
-
-
-
-
     @section('js')
+        <script type="text/javascript">
+            function mainThamUrl(input) {
+                if (input.files && input.files[0]) {
+                    var reader = new FileReader();
+                    reader.onload = function(e) {
+                        $('#mainThmb').attr('src', e.target.result).width(130).height(150);
+                    };
+                    reader.readAsDataURL(input.files[0]);
+                }
+            }
+        </script>
+
         <script>
             $(function(e) {
                 //file export datatable
@@ -131,7 +164,7 @@
                     buttons: ['copy', 'excel', 'pdf', 'colvis'],
                     responsive: true,
                     language: {
-                        searchPlaceholder: 'ابحث هنا',
+                        searchPlaceholder: 'Search...',
                         sSearch: '',
                         lengthMenu: '_MENU_ ',
                     }
@@ -141,7 +174,7 @@
 
                 $('#example1').DataTable({
                     language: {
-                        searchPlaceholder: 'ابحث هنا',
+                        searchPlaceholder: 'Search...',
                         sSearch: '',
                         lengthMenu: '_MENU_',
                     }
@@ -149,7 +182,7 @@
                 $('#example2').DataTable({
                     responsive: true,
                     language: {
-                        searchPlaceholder: 'ابحث هنا',
+                        searchPlaceholder: 'Search...',
                         sSearch: '',
                         lengthMenu: '_MENU_',
                     }
@@ -157,7 +190,7 @@
                 var table = $('#example-delete').DataTable({
                     responsive: true,
                     language: {
-                        searchPlaceholder: 'ابحث هنا',
+                        searchPlaceholder: 'Search...',
                         sSearch: '',
                         lengthMenu: '_MENU_',
                     }
@@ -179,7 +212,7 @@
                 $('#example-1').DataTable({
                     responsive: true,
                     language: {
-                        searchPlaceholder: 'ابحث هنا',
+                        searchPlaceholder: 'Search...',
                         sSearch: '',
                         lengthMenu: '_MENU_',
                     },

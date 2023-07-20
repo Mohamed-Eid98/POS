@@ -18,7 +18,7 @@ use App\Http\Controllers\Admin\EmployeeController;
 use App\Http\Controllers\Admin\SubCategoryController;
 use App\Http\Controllers\Admin\notificationController;
 use App\Http\Controllers\Admin\NotificationSendController;
-
+use App\Http\Controllers\Admin\analysisController;
 
 /*
 |--------------------------------------------------------------------------
@@ -205,7 +205,7 @@ Route::middleware('isAdmin')->group(function () {
     Route::get('/show-coupon', [CouponController::class, 'showcoupon'])->name('coupon.show');
     Route::post('/addcoupon', [CouponController::class, 'coupon_update'])->name('coupon.update');
     Route::patch('/coupon-{coupon}', [CouponController::class, 'updateStatus'])->name('coupon.updateStatus');
-    Route::get('/coupon-delete-{id}' , [CouponController::class, 'coupon_delete'])->name('coupon.delete');
+    Route::get('/coupon-delete-{id}', [CouponController::class, 'coupon_delete'])->name('coupon.delete');
     //////////// End coupon All Routes //////////
 
     //////////// Start slieds All Routes ////////
@@ -217,8 +217,14 @@ Route::middleware('isAdmin')->group(function () {
     Route::get('/showslides', [SliderController::class, 'showslides'])->name('slides.show');
 
     //////////// End slides All Routes //////////
+    //////////// Start slieds All Routes ////////
+
+    Route::get('/publicview1', [analysisController::class, 'publicview'])->name('public.view');
+    Route::get('/storage1', [analysisController::class, 'storage'])->name('storage.view');
+    Route::get('/storage-delete-{id}', [analysisController::class, 'Delete'])->name('storage.delete');
+
+
+    //////////// End slides All Routes //////////
     // Route::get('test-test1', [ComplainController::class, 'addcomplain']);
 
 });
-
-

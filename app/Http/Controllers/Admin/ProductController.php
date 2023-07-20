@@ -77,7 +77,7 @@ class ProductController extends Controller
 
         $colorProducts = [];
 
-        foreach ($request->color as $color){
+        foreach ($request->color as $color) {
             $colorProduct = ColorProduct::Create([
                 'product_id' => $product->id,
                 'color_id' => $color,
@@ -89,7 +89,7 @@ class ProductController extends Controller
         // return $colorProducts;
 
         foreach ($request->size as $size) {
-            foreach ($colorProducts as $singleColorProduct ) {
+            foreach ($colorProducts as $singleColorProduct) {
                 ColorProductSize::create([
                     'color_product_id' => $singleColorProduct->id,
                     'size_id' => $size,
@@ -113,29 +113,28 @@ class ProductController extends Controller
         $products = Product::with('subcategory')->get();
         $subcategories = subCategory::get();
         // return $products;
-        return view('product.productView', compact('products' , 'subcategories' ));
+        return view('product.productView', compact('products', 'subcategories'));
     }
     public function Search(Request $request)
     {
 
 
         $subcate_id = $request->input('subcate_id');
-        $product_name = $request->input('product_name');
+        $product_id = $request->input('product_id');
         $status = $request->input('status');
 
         $products = Product::query();
-
         if ($subcate_id) {
             $products->where('sub_category_id', $subcate_id);
         }
 
-        if ($product_name) {
-            $products->where('name', $product_name);
+        if ($product_id) {
+            $products->where('id', $product_id);
         }
 
         if ($status == 0) {
             $products->where('product_qty', $status);
-        } else{
+        } else {
             $products->where('product_qty', '<>', 0);
         }
 
@@ -144,8 +143,7 @@ class ProductController extends Controller
         // return $products;
         $subcategories = subCategory::get();
 
-
-        return view('product.product_search', compact('products' , 'subcategories' ));
+        return view('product.product_search', compact('products', 'subcategories'));
     }
 
     public function showSub($id)
@@ -229,35 +227,39 @@ class ProductController extends Controller
     {
 
 
-        $request->validate([
-            'product_id' => 'required',
-            'size' => 'required',
-            'color' => 'required',
-        ], [
 
-            'product_id.required' => 'يرجي ادخال اسم المنتج',
-            'size.required' => 'يرجي ادخال حجم النتج ',
-            'color.required' => 'يرجي ادخال لون النتج ',
+
+         $request->validate([
+            'color' => 'unique:colors,name',
+            'size' => 'unique:sizes,name',
+         ],
+        [
+            'size.unique' => 'هذا الحجم موجود مسبقا',
+            'color.unique' => 'هذا اللون موجود مسبقا',
         ]);
 
+if($request->color){
+Color::insert([
+    'name' => $request->color,
+    'hexa' => 0,
+]);
+}
+if($request->size){
+    Size::insert([
+        'name' => $request->size,
+    ]);
+}
+        // $color_product = ColorProduct::Create([
+        //     'product_id' => $request->product_id,
+        //     'color_id' => $request->color,
+        // ]);
 
-        $color_product = ColorProduct::Create([
-            'product_id' => $request->product_id,
-            'color_id' => $request->color,
-        ]);
-
-        foreach ($request->size as $size) {
-            ColorProductSize::create([
-                'color_product_id' => $color_product->id,
-                'size_id' => $size,
-            ]);
-        }
-
-        if ($request->hasFile('multi_img')) {
-            foreach ($request->file('multi_img') as $image) {
-                $color_product->addMedia($image)->usingName('colorImages')->toMediaCollection('images');
-            }
-        }
+        // foreach ($request->size as $size) {
+        //     ColorProductSize::create([
+        //         'color_product_id' => $color_product->id,
+        //         'size_id' => $size,
+        //     ]);
+        // }
 
 
 

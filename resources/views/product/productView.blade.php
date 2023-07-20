@@ -88,7 +88,7 @@
 
                                 <div class="form-group">
                                     <div class="controls">
-                                        <select name="product_name" id="select" class="form-control">
+                                        <select name="product_id" id="select" class="form-control">
                                             <option value="" selected disabled><b> الفرز حسب نوع المنتج</b></option>
                                             @foreach ($products as $product)
                                             <option value="{{ $product->id }}">{{ $product->name }}</option>
