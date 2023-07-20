@@ -50,172 +50,161 @@
 
 
     <div class="row">
-        <div class="col-lg-12 col-md-12">
-            <div class="card">
-                <div class="card-body">
 
-                    <h4 class="card-title">عرض المخزون</h4>
-                    <p class="card-title-desc">
 
-                    </p>
 
-                    <form action="{{ route('storage.view') }}" method="POST">
-                        @csrf
 
-                        <div class="row">
-                            <!-- start 1st row  -->
+        @php
+            $all_orders = DB::table('orders')->count();
+            $pending_orders = DB::table('orders')
+                ->where('status', '=', 'Pending')
+                ->count();
+            $deliered_orders = DB::table('orders')
+                ->where('status', '=', 'Delivered')
+                ->count();
+            $rejected_orders = DB::table('orders')
+                ->where('status', '=', 'Rejected')
+                ->count();
+            $cancelled_orders = DB::table('orders')
+                ->where('status', '=', 'Cancelled')
+                ->count();
+            $inPrograss_orders = DB::table('orders')
+                ->where('status', '=', 'InProgress')
+                ->count();
+            $paid_orders = DB::table('orders')
+                ->where('status', '=', 'Paid')
+                ->count();
+            $payments_today = DB::table('payments')
+                ->whereDate('created_at', today())
+                ->sum('price');
+            $month = date('m'); // Get the current month
+            $year = date('Y'); // Get the current year
+            $payments_month = DB::table('payments')
+                ->whereMonth('created_at', $month)
+                ->whereYear('created_at', $year)
+                ->sum('price');
+            $payments_sum = DB::table('payments')->sum('price');
+            $payments_count = DB::table('payments')->count();
 
-                            <div class="col-md-2">
-
-                                <div class="form-group">
-                                    <div class="controls">
-                                        <select name="status" id="select" class="form-control">
-                                            <option value="" selected disabled><b>الفرز حسب حالة المخزون</b></option>
-                                            <option value="0">غير متوفر في المخزون</option>\
-                                            <option value="0">مخزون منخفض</option>
-                                            <option value="1">متوفر في المخزون</option>
-                                        </select>
-                                        @error('status')
-                                            <span class="text-danger">{{ $message }}</span>
-                                        @enderror
-                                    </div>
+        @endphp
+        <div class="col-xl-12">
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="card mini-stats-wid">
+                        <div class="card-body">
+                            <div class="d-flex">
+                                <div class="flex-grow-1">
+                                    <p class="text-muted fw-medium">عدد الطلبيات</p>
+                                    <h4 class="mb-0">{{ $all_orders }}</h4>
                                 </div>
 
-                            </div> <!-- end col md 6 -->
+                                <div class="flex-shrink-0 align-self-center">
+                                    <div class="mini-stat-icon avatar-sm rounded-circle bg-primary">
+                                        <span class="avatar-title">
+                                            <i class="bx bx-copy-alt font-size-24"></i>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card mini-stats-wid">
+                        <div class="card-body">
+                            <div class="d-flex">
+                                <div class="flex-grow-1">
+                                    <p class="text-muted fw-medium"> مجموع المبيعات</p>
+                                    <h4 class="mb-0">{{ $payments_sum }} دينار</h4>
+                                </div>
+
+                                <div class="flex-shrink-0 align-self-center ">
+                                    <div class="avatar-sm rounded-circle bg-primary mini-stat-icon">
+                                        <span class="avatar-title rounded-circle bg-primary">
+                                            <i class="bx bx-archive-in font-size-24"></i>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card mini-stats-wid">
+                        <div class="card-body">
+                            <div class="d-flex">
+                                <div class="flex-grow-1">
+                                    <p class="text-muted fw-medium"> صافي المبيعات</p>
+                                    <h4 class="mb-0">{{ $payments_sum }} دينار</h4>
+                                </div>
+
+                                <div class="flex-shrink-0 align-self-center">
+                                    <div class="avatar-sm rounded-circle bg-primary mini-stat-icon">
+                                        <span class="avatar-title rounded-circle bg-primary">
+                                            <i class="bx bx-purchase-tag-alt font-size-24"></i>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card mini-stats-wid">
+                        <div class="card-body">
+                            <div class="d-flex">
+                                <div class="flex-grow-1">
+                                    <p class="text-muted fw-medium"> الطلبات المباعه </p>
+                                    <h4 class="mb-0">000</h4>
+                                </div>
+
+                                <div class="flex-shrink-0 align-self-center">
+                                    <div class="avatar-sm rounded-circle bg-primary mini-stat-icon">
+                                        <span class="avatar-title rounded-circle bg-primary">
+                                            <i class="fas fa-chart-bar"></i> </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+
+
+                <div class="col-xl-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="card-title mb-4">الطلبات</h4>
+
+                            <div id="column_chart_datalabel" data-colors='["--bs-primary"]' class="apex-charts"
+                                dir="ltr"height="300">
+                            </div>
+                        </div>
+                    </div>
+                    <!--end card-->
+                </div>
+                <!-- end row -->
+                <div class="col-xl-6">
+                    <div class="card">
+                        <div class="card-body">
+
+                            <h4 class="card-title mb-4">صافي المبيعات</h4>
 
 
 
-
-                        </div> <!-- end 1st row  -->
-
-                        <br>
-                    </form>
-
-
-                    <div class="row">
-                        <div class="col-sm-12">
-                            <table id="example" class="table table-striped my-3" role="grid"
-                                aria-describedby="datatable_info" style="width: 100%">
-
-                                <thead>
-                                    <tr role="row">
-                                        <th>#</th>
-                                        <th>مجموع المبيعات مع سعر التوصيل</th>
-                                        <th>صافي المبيعات دون اجور التوصيل</th>
-                                        <th> حاله المنتج</th>
-                                        <th>المخزون</th>
-                                        {{-- <th>الحد الادني </th>
-                                            <th>معدل الزياده </th>
-                                            <th>عدد التكرار</th>
-                                            <th>الحد الاقصي </th>
-                                            <th>الكميه </th>
-                                            <th>جديد </th>
-                                            <th>الاكثر مبيعاً </th>
-                                            <th> العروض </th>
-                                            <th>وصل حديثاً </th> --}}
-                                        <th>التعديلات</th>
-                                    </tr>
-
-                                </thead>
-
-
-                                <tbody>
-
-                                    <?php $i = 0; ?>
-                                    @foreach ($products as $product)
-                                        <?php $i++; ?>
-                                        <tr>
-                                            <td>{{ $i }}</td>
-
-                                            <td> {{ $product->name }} </td>
-                                            <td>
-                                                <span class="badge text-bg-danger">{{ $product->code }}</span>
-
-                                            </td>
-                                            <td>
-                                                @if ($product->product_qty == 0)
-                                                    <b><span style="color:  rgb(164, 215, 46)">غير متوفر في
-                                                            المخزون</span></b>
-                                                @else
-                                                    <b><span style="color: rgb(164, 215, 46)"> متوفر في المخزون</span></b>
-                                                @endif
-                                            </td>
-
-                                            <td>
-                                                @if ($product->product_qty != 0)
-                                                    {{ $product->product_qty }}
-                                                @else
-                                                    <b>0</b>
-                                                @endif
-                                            </td>
-
-                                            {{-- <td> {{ $product->min_price }} د.ع. </td>
-                                                <td> {{ $product->increase_ratio }} د.ع. </td>
-                                                <td> {{ $product->repeat_times }} </td>
-                                                <td>
-                                                    {{ $product->min_price + ($product->repeat_times + 1) * $product->increase_ratio }}
-                                                    د.ع.
-
-                                                </td>
-                                                <td> {{ $product->product_qty }} </td>
-                                                <td>
-                                                    @if ($product->is_new == 1)
-                                                        <span class="badge text-bg-secondary">نعم</span>
-                                                    @else
-                                                        <span class="badge text-bg-danger">لا</span>
-                                                    @endif
-                                                </td>
-                                                <td>
-                                                    @if ($product->is_best_seller == 1)
-                                                        <span class="badge text-bg-secondary">نعم</span>
-                                                    @else
-                                                        <span class="badge text-bg-danger">لا</span>
-                                                    @endif
-                                                </td>
-                                                <td>
-                                                    @if ($product->is_on_sale == 1)
-                                                        <span class="badge text-bg-secondary">نعم</span>
-                                                    @else
-                                                        <span class="badge text-bg-danger">لا</span>
-                                                    @endif
-                                                </td>
-                                                <td>
-                                                    @if ($product->is_new_arrival == 1)
-                                                        <span class="badge text-bg-secondary">نعم</span>
-                                                    @else
-                                                        <span class="badge text-bg-danger">لا</span>
-                                                    @endif
-                                                </td> --}}
-                                            <td>
-                                                <ul class="list-unstyled hstack gap-1 mb-0">
-
-                                                    <li data-bs-toggle="tooltip" data-bs-placement="top" title="Delete">
-                                                        <a href="{{ route('storage.delete', $product->id) }}"
-                                                            title="حذف" class="btn btn-sm btn-soft-danger"><i
-                                                                class="mdi mdi-delete-outline"></i></a>
-                                                    </li>
-                                                </ul>
-
-                                            </td>
-                                        </tr>
-                                    @endforeach
-
-
-                                </tbody>
-                            </table>
+                            <canvas id="bar" data-colors='["--bs-success-rgb, 0.8", "--bs-success"]'
+                                height="300"></canvas>
 
                         </div>
                     </div>
-
-
-
-                    {{-- </div> --}}
                 </div>
+                <!-- end row -->
             </div>
-        </div>
-    </div>
 
-    </div> <!-- end col -->
+
+        </div>
     </div>
 @endsection
 
@@ -224,6 +213,8 @@
 
 
 @section('js')
+    <!-- apexcharts -->
+
     <script>
         $(function(e) {
             //file export datatable

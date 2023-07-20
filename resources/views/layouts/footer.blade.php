@@ -4,11 +4,11 @@
             <div class="col-sm-6">
                 <script>
                     document.write(new Date().getFullYear())
-                </script> © WEBEtec(Moo).
+                </script> © sitytec(Moo).
             </div>
             <div class="col-sm-6">
                 <div class="text-sm-end d-none d-sm-block">
-                    Design & Develop by WEBE TEC.
+                    Design & Develop by Sity TEC.
                 </div>
             </div>
         </div>

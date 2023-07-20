@@ -227,35 +227,39 @@ class ProductController extends Controller
     {
 
 
-        $request->validate([
-            'product_id' => 'required',
-            'size' => 'required',
-            'color' => 'required',
-        ], [
 
-            'product_id.required' => 'يرجي ادخال اسم المنتج',
-            'size.required' => 'يرجي ادخال حجم النتج ',
-            'color.required' => 'يرجي ادخال لون النتج ',
+
+         $request->validate([
+            'color' => 'unique:colors,name',
+            'size' => 'unique:sizes,name',
+         ],
+        [
+            'size.unique' => 'هذا الحجم موجود مسبقا',
+            'color.unique' => 'هذا اللون موجود مسبقا',
         ]);
 
+if($request->color){
+Color::insert([
+    'name' => $request->color,
+    'hexa' => 0,
+]);
+}
+if($request->size){
+    Size::insert([
+        'name' => $request->size,
+    ]);
+}
+        // $color_product = ColorProduct::Create([
+        //     'product_id' => $request->product_id,
+        //     'color_id' => $request->color,
+        // ]);
 
-        $color_product = ColorProduct::Create([
-            'product_id' => $request->product_id,
-            'color_id' => $request->color,
-        ]);
-
-        foreach ($request->size as $size) {
-            ColorProductSize::create([
-                'color_product_id' => $color_product->id,
-                'size_id' => $size,
-            ]);
-        }
-
-        if ($request->hasFile('multi_img')) {
-            foreach ($request->file('multi_img') as $image) {
-                $color_product->addMedia($image)->usingName('colorImages')->toMediaCollection('images');
-            }
-        }
+        // foreach ($request->size as $size) {
+        //     ColorProductSize::create([
+        //         'color_product_id' => $color_product->id,
+        //         'size_id' => $size,
+        //     ]);
+        // }
 
 
 
