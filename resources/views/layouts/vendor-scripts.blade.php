@@ -25,8 +25,7 @@
 <script src="{{ asset('assets/js/app.js') }}"></script>
 
 <!-- يمين -->
-<script src="{{ asset('assets/libs/chart.js/Chart.bundle.min.js') }}"></script>
-<script src="{{ asset('assets/js/pages/chartjs.init.js') }}"></script>
+
 <script src="{{ asset('assets/libs/apexcharts/apexcharts.min.js') }}"></script>
 <script src="{{ asset('assets/js/pages/apexcharts.init.js') }}"></script>
 

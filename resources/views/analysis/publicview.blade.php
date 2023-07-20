@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('title')
-    عرض المخزون
+    عرض
 @endsection
 
 @section('css')
@@ -31,7 +31,7 @@
             عرض
         @endslot
         @slot('title')
-            المخزون
+            ..
         @endslot
     @endcomponent
 
@@ -56,6 +56,9 @@
 
         @php
             $all_orders = DB::table('orders')->count();
+            $all_orderssum = DB::table('orders')->sum('final_total');
+            $all_orders_shipping = DB::table('orders')->sum('shipping_cost');
+
             $pending_orders = DB::table('orders')
                 ->where('status', '=', 'Pending')
                 ->count();
@@ -74,6 +77,9 @@
             $paid_orders = DB::table('orders')
                 ->where('status', '=', 'Paid')
                 ->count();
+            $paid_orders_sum = DB::table('orders')
+                ->where('status', '=', 'Paid')
+                ->sum('final_total');
             $payments_today = DB::table('payments')
                 ->whereDate('created_at', today())
                 ->sum('price');
@@ -115,7 +121,7 @@
                             <div class="d-flex">
                                 <div class="flex-grow-1">
                                     <p class="text-muted fw-medium"> مجموع المبيعات</p>
-                                    <h4 class="mb-0">{{ $payments_sum }} دينار</h4>
+                                    <h4 class="mb-0">{{ $all_orderssum }} دينار</h4>
                                 </div>
 
                                 <div class="flex-shrink-0 align-self-center ">
@@ -135,7 +141,7 @@
                             <div class="d-flex">
                                 <div class="flex-grow-1">
                                     <p class="text-muted fw-medium"> صافي المبيعات</p>
-                                    <h4 class="mb-0">{{ $payments_sum }} دينار</h4>
+                                    <h4 class="mb-0">{{ $all_orderssum - $all_orders_shipping }} دينار</h4>
                                 </div>
 
                                 <div class="flex-shrink-0 align-self-center">
@@ -155,7 +161,7 @@
                             <div class="d-flex">
                                 <div class="flex-grow-1">
                                     <p class="text-muted fw-medium"> الطلبات المباعه </p>
-                                    <h4 class="mb-0">000</h4>
+                                    <h4 class="mb-0">{{ $paid_orders_sum }}دينار</h4>
                                 </div>
 
                                 <div class="flex-shrink-0 align-self-center">
