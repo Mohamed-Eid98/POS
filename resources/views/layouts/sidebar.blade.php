@@ -96,7 +96,6 @@
                             <li><a href="{{ route('product.add') }}" key="t-default">إضافة منتج</a></li>
                             <li><a href="{{ route('product.tags') }}" key="t-saas">الوسوم</a></li>
                             <li><a href="{{ route('product.addcolorandsize') }}" key="t-blog">السمات</a>
-                                >>>>>>> 8596fc2444e5fec3c5b25cff0bee61c01260b520
                             </li>
 
 
