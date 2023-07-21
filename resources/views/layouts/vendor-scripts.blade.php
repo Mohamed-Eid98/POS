@@ -22,16 +22,13 @@
 <script src="{{ asset('assets/plugins/datatable/js/responsive.bootstrap4.min.js') }}"></script>
 <!--Internal  Datatable js -->
 <script src="{{ asset('assets/js/table-data.js') }}"></script>
-<script src="{{ asset('assets/js/app.js') }}"></script>
 
 <!-- يمين -->
 
 <script src="{{ asset('assets/libs/apexcharts/apexcharts.min.js') }}"></script>
-<script src="{{ asset('assets/js/pages/apexcharts.init.js') }}"></script>
 
 <!-- شمال -->
 <script src="{{ asset('assets/libs/chart.js/Chart.bundle.min.js') }}"></script>
-<script src="{{ asset('assets/js/pages/chartjs.init.js') }}"></script>
 <!-- App js -->
 
 
