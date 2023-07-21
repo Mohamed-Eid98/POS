@@ -42,9 +42,31 @@ class analysisController extends Controller
         }, $monthes);
 
 
+        $profit_jan = DB::table('orders')->whereMonth('created_at' , '01')->sum('profit_total');
+        $profit_feb = DB::table('orders')->whereMonth('created_at' , '02')->sum('profit_total');
+        $profit_mar = DB::table('orders')->whereMonth('created_at' , '03')->sum('profit_total');
+        $profit_apr = DB::table('orders')->whereMonth('created_at' , '04')->sum('profit_total');
+        $profit_may = DB::table('orders')->whereMonth('created_at' , '05')->sum('profit_total');
+        $profit_june = DB::table('orders')->whereMonth('created_at' , '06')->sum('profit_total');
+        $profit_jul = DB::table('orders')->whereMonth('created_at' , '07')->sum('profit_total');
+        $profit_aug = DB::table('orders')->whereMonth('created_at' , '08')->sum('profit_total');
+        $profit_sep = DB::table('orders')->whereMonth('created_at' , '09')->sum('profit_total');
+        $profit_oct= DB::table('orders')->whereMonth('created_at' , '10')->sum('profit_total');
+        $profit_nov= DB::table('orders')->whereMonth('created_at' , '11')->sum('profit_total');
+        $profit_dec= DB::table('orders')->whereMonth('created_at' , '12')->sum('profit_total');
+        $profit_total = DB::table('orders')->sum('profit_total');
+
+        $profit_months = [ $profit_jan , $profit_feb ,  $profit_mar, $profit_apr, $profit_may, $profit_june ,$profit_jul, $profit_aug,
+        $profit_sep, $profit_oct , $profit_nov, $profit_dec];
+
+        $profit_data= array_map(function($value) use ($orders) {
+
+            return $value;
+
+        }, $profit_months);
 
 
-        return view('analysis.publicview', compact('data'));
+        return view('analysis.publicview', compact('data' , 'profit_data'));
     }
     public function storage()
     {

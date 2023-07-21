@@ -1,3 +1,4 @@
+
 <?php $__env->startSection('title'); ?>
     اضافة منتج
 <?php $__env->stopSection(); ?>
@@ -107,11 +108,10 @@ unset($__errorArgs, $__bag); ?>
                                 </div>
                             </div>
 
+                            <div class="row">
+                                <div class="col-md-6 ">
 
-                            <div class="form-group">
-                                <div class="col-md-6">
-
-                                    <h5 for="code">الكود</h5>
+                                    <h4 for="code" class=" my-3">الكود</h4>
                                     <div class="controls">
                                         <input type="text" name="code" class="form-control" />
                                         <?php $__errorArgs = ['code'];
@@ -127,65 +127,83 @@ unset($__errorArgs, $__bag); ?>
                                     </div>
 
                                 </div>
-                            </div>
 
+
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+
+                                        <h4 class="form-label my-3">الوسوم </h4>
+
+
+                                        <select name="size[]" id="select" class="form-control">
+                                            <option value="" selected disabled>-- اختر --</option>
+                                            <option value="">
+                                                sss
+                                            </option>
+
+                                        </select>
+
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
 
 
-        <div class="row">
-            <div class="col-12">
-                <div class="card">
-                    <div class="card-body">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-body">
 
-                        <h4 class="card-title">إضافة مقاسات والوان المنتج</h4>
-                        <div class="text-md-end">
+                            <h4 class="card-title">إضافة مقاسات والوان المنتج</h4>
+                            <div class="text-md-end">
 
-                            <button type="button" onclick="addSizesAndColors()" class="btn btn-primary">اضافة جزء جديد للون
-                                والمقاس </button>
-                        </div>
+                                <button type="button" onclick="addSizesAndColors()" class="btn btn-primary">اضافة جزء
+                                    جديد
+                                    للون
+                                    والمقاس </button>
+                            </div>
 
-                        <p class="card-title-desc">
-                        </p>
+                            <p class="card-title-desc">
+                            </p>
 
-                        <div>
+                            <div>
 
 
 
-                            <div class="col-md-6">
+                                <div class="col-md-6">
 
-                                <div class="form-group">
-                                    <h5>اللون <span class="text-danger">*</span></h5>
-                                    <div class="controls">
-                                        <select name="color[]" id="select" class="form-control">
-                                            <option value="" selected disabled>-- اختر اللون
-                                                --
-                                            </option>
-                                            <?php $__currentLoopData = $colors; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $color): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                                <option value="<?php echo e($color->id); ?>">
-                                                    <?php echo e($color->name); ?>
-
+                                    <div class="form-group">
+                                        <h5>اللون <span class="text-danger">*</span></h5>
+                                        <div class="controls">
+                                            <select name="color[]" id="select" class="form-control">
+                                                <option value="" selected disabled>-- اختر اللون
+                                                    --
                                                 </option>
-                                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                                        </select>
-                                        <?php $__errorArgs = ['color'];
+                                                <?php $__currentLoopData = $colors; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $color): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                    <option value="<?php echo e($color->id); ?>">
+                                                        <?php echo e($color->name); ?>
+
+                                                    </option>
+                                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                            </select>
+                                            <?php $__errorArgs = ['color'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
 $message = $__bag->first($__errorArgs[0]); ?>
-                                            <span class="text-danger"><?php echo e($message); ?></span>
-                                        <?php unset($message);
+                                                <span class="text-danger"><?php echo e($message); ?></span>
+                                            <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>
+                                        </div>
                                     </div>
+
                                 </div>
 
-                            </div>
-                            <div class="col-md-12">
                                 <div class="row">
 
                                     <div class="col-md-6">
@@ -215,19 +233,20 @@ unset($__errorArgs, $__bag); ?>
                                     </div>
 
                                     <div class="col-md-4 my-5">
-                                        <button type="button" onclick="add()"
-                                            class="btn btn-primary">اضافة جزء للكميه والمقاس </button> <br>
+                                        <button type="button" onclick="add()" class="btn btn-primary">اضافة جزء
+                                            للكميه
+                                            والمقاس </button> <br>
 
                                     </div>
 
                                 </div>
                             </div>
-                            <div class="row">
 
-                                                                <div id="firstsizeandquantitycontainer">
-                                                                </div>
+                            <div id="firstsizeandquantitycontainer" style="display:flex">
+
 
                             </div>
+
 
 
                             <div class="box">
@@ -277,7 +296,6 @@ unset($__errorArgs, $__bag); ?>
                 </div>
             </div> <!-- end col -->
         </div> <!-- end row -->
-
 
 
 
@@ -486,18 +504,6 @@ unset($__errorArgs, $__bag); ?>
 
                         </div> <!-- end 1st row  -->
 
-
-
-
-
-
-
-
-
-
-
-
-
                     </div>
                 </div>
             </div>
@@ -636,22 +642,20 @@ unset($__errorArgs, $__bag); ?>
 
 
     <script>
+        function add() {
+            var container = document.getElementById("firstsizeandquantitycontainer");
+
+            // Create a new div element for each size and color fields
+            var newDiv = document.createElement("div");
+            newDiv.className = "sizesAndQuantityFields";
 
 
-function add() {
-        var container = document.getElementById("firstsizeandquantitycontainer");
-
-        // Create a new div element for each size and color fields
-        var newDiv = document.createElement("div");
-        newDiv.className = "sizesAndQuantityFields";
+            // Add the HTML code for the size and color fields
+            newDiv.innerHTML = `
 
 
-        // Add the HTML code for the size and color fields
-        newDiv.innerHTML = `
-
-    <div class="col-md-1">
-        <div class="mb-3">
-
+    <div class="col-md-12 "style="padding-left:30px ">
+          <div>
             <h4 class="form-label my-3">المقاس </h4>
 
 
@@ -674,21 +678,20 @@ function add() {
             <input type="text" name="qty"  class="form-control" >
 
         </div>
-    </div>
 
 
     <div>
      <button type="button" onclick="deleteSize(this)" class="btn btn-danger">حذف</button>
-    </div> <br>
+        </div> <br>
 
 
 </div>
         `;
 
-        // Append the new div to the container
-        container.appendChild(newDiv);
+            // Append the new div to the container
+            container.appendChild(newDiv);
 
-    }
+        }
 
         function addSizesAndColors() {
             var container = document.getElementById("sizesAndColorsContainer");
@@ -768,8 +771,8 @@ unset($__errorArgs, $__bag); ?>
                                     </div>
 
 
-                                    <div class="col-md-12">
-  <div class="row sizeandquantitycontainer"></div>
+                                    <div class="col-md-12" >
+  <div class="sizeandquantitycontainer" style="display:flex"></div>
 </div>
 
                                 </div>
@@ -827,29 +830,41 @@ unset($__errorArgs, $__bag); ?>
 
             // Add the HTML code for the size and color fields
             newDiv.innerHTML = `
-    <hr>
-    <div class="col-md-12">
-      <div class="row">
-        <div class="col-md-6">
-          <div class="mb-3">
+
+
+    <div class="col-md-12 lol"style="padding-left:30px ">
+          <div>
             <h4 class="form-label my-3">المقاس </h4>
+
+
             <select name="size[]" id="select" class="form-control">
-              <?php $__currentLoopData = $sizes; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $size): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-              <option value="<?php echo e($size->id); ?>"><?php echo e($size->name); ?></option>
-              <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+
+
+                <?php $__currentLoopData = $sizes; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $size): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                    <option value="<?php echo e($size->id); ?>">
+                        <?php echo e($size->name); ?>
+
+                    </option>
+                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+
             </select>
-          </div>
-          <div class="mb-3">
+
+        </div>
+
+        <div class="mb-3">
             <h4 class="form-label">الكميه </h4>
-            <input type="text" name="qty" class="form-control">
-          </div>
+            <input type="text" name="qty"  class="form-control" >
+
         </div>
-        <div>
-          <button type="button" onclick="deleteSize(this)" class="btn btn-danger">حذف</button>
-        </div>
-      </div>
-    </div>
-  `;
+
+
+    <div>
+     <button type="button" onclick="deleteSize(this)" class="btn btn-danger">حذف</button>
+        </div> <br>
+
+
+</div>
+        `;
 
             // Append the new div to the container
             container.appendChild(newDiv);
@@ -902,31 +917,6 @@ unset($__errorArgs, $__bag); ?>
 
 
 <?php $__env->stopSection(); ?>
-
-<?php $__env->startSection('script'); ?>
-
-    <!-- JAVASCRIPT -->
-    <script src="<?php echo e(asset('assets/libs/jquery/jquery.min.js')); ?>"></script>
-    <script src="<?php echo e(asset('assets/libs/bootstrap/js/bootstrap.bundle.min.js')); ?>"></script>
-    <script src="<?php echo e(asset('assets/libs/metismenu/metisMenu.min.js')); ?>"></script>
-    <script src="<?php echo e(asset('assets/libs/simplebar/simplebar.min.js')); ?>"></script>
-    <script src="<?php echo e(asset('assets/libs/node-waves/waves.min.js')); ?>"></script>
-
-    <script src="<?php echo e(asset('assets/libs/select2/js/select2.min.js')); ?>"></script>
-    <script src="<?php echo e(asset('assets/libs/bootstrap-datepicker/js/bootstrap-datepicker.min.js')); ?>"></script>
-    <script src="<?php echo e(asset('assets/libs/spectrum-colorpicker2/spectrum.min.js')); ?>"></script>
-    <script src="<?php echo e(asset('assets/libs/bootstrap-timepicker/js/bootstrap-timepicker.min.js')); ?>"></script>
-    <script src="<?php echo e(asset('assets/libs/bootstrap-touchspin/jquery.bootstrap-touchspin.min.js')); ?>"></script>
-    <script src="<?php echo e(asset('assets/libs/bootstrap-maxlength/bootstrap-maxlength.min.js')); ?>"></script>
-    <script src="<?php echo e(asset('assets/libs/@chenfengyuan/datepicker/datepicker.min.js')); ?>"></script>
-
-    <!-- form advanced init -->
-    <script src="<?php echo e(asset('assets/js/pages/form-advanced.init.js')); ?>"></script>
-
-
-<?php $__env->stopSection(); ?>
-
-
 
 
 <?php echo $__env->make('layouts.master', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\Users\test\Downloads\New folder\POS\resources\views/product/productAdd.blade.php ENDPATH**/ ?>

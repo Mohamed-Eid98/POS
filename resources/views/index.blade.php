@@ -7,7 +7,7 @@
 @section('content')
     @component('components.breadcrumb')
         @slot('li_1')
-            لوحه تحكم
+         as   لوحه تحكم
         @endslot
         @slot('title')
             بنسايز
@@ -743,10 +743,4 @@
         </div>
         <!-- end modal -->
     @endsection
-    @section('script')
-        <!-- apexcharts -->
-        <script src="{{ URL::asset('/build/libs/apexcharts/apexcharts.min.js') }}"></script>
 
-        <!-- dashboard init -->
-        <script src="{{ URL::asset('build/js/pages/dashboard.init.js') }}"></script>
-    @endsection
