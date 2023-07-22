@@ -1,4 +1,3 @@
-
 <?php $__env->startSection('title'); ?>
     اضافة منتج
 <?php $__env->stopSection(); ?>
@@ -135,7 +134,7 @@ unset($__errorArgs, $__bag); ?>
                                         <h4 class="form-label my-3">الوسوم </h4>
 
 
-                                        <select name="size[]" id="select" class="form-control">
+                                        <select name="tag" id="select" class="form-control">
                                             <option value="" selected disabled>-- اختر --</option>
                                             <option value="">
                                                 sss
@@ -227,7 +226,7 @@ unset($__errorArgs, $__bag); ?>
 
                                         <div class="mb-3">
                                             <h4 class="form-label">الكميه </h4>
-                                            <input type="text" name="qty" class="form-control">
+                                            <input type="number" name="qty[]" required class="form-control">
 
                                         </div>
                                     </div>
@@ -660,7 +659,7 @@ unset($__errorArgs, $__bag); ?>
 
 
             <select name="size[]" id="select" class="form-control">
-
+                <option value="" selected disabled>-- اختر المقاس --</option>
 
                 <?php $__currentLoopData = $sizes; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $size): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                     <option value="<?php echo e($size->id); ?>">
@@ -675,7 +674,7 @@ unset($__errorArgs, $__bag); ?>
 
         <div class="mb-3">
             <h4 class="form-label">الكميه </h4>
-            <input type="text" name="qty"  class="form-control" >
+            <input type="number" name="qty[]" required  class="form-control" >
 
         </div>
 
@@ -760,7 +759,7 @@ unset($__errorArgs, $__bag); ?>
 
                                             <div class="mb-3">
                                                 <h4 class="form-label">الكميه </h4>
-                                                <input type="text" name="qty"  class="form-control" >
+                                                <input type="number" name="qty[]" required  class="form-control" >
 
                                             </div>
                                         </div>
@@ -839,6 +838,7 @@ unset($__errorArgs, $__bag); ?>
 
             <select name="size[]" id="select" class="form-control">
 
+                <option value="" selected disabled>-- اختر المقاس --</option>
 
                 <?php $__currentLoopData = $sizes; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $size): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                     <option value="<?php echo e($size->id); ?>">
@@ -853,7 +853,7 @@ unset($__errorArgs, $__bag); ?>
 
         <div class="mb-3">
             <h4 class="form-label">الكميه </h4>
-            <input type="text" name="qty"  class="form-control" >
+            <input type="number" name="qty[]" required  class="form-control" >
 
         </div>
 

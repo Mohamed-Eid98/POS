@@ -79,7 +79,7 @@
                 ->count();
             $paid_orders_sum = DB::table('orders')
                 ->where('status', '=', 'Paid')
-                ->sum('final_total');
+                ->count();
             $payments_today = DB::table('payments')
                 ->whereDate('created_at', today())
                 ->sum('price');
@@ -161,7 +161,7 @@
                             <div class="d-flex">
                                 <div class="flex-grow-1">
                                     <p class="text-muted fw-medium"> الطلبات المباعه </p>
-                                    <h4 class="mb-0">{{ $paid_orders_sum }}دينار</h4>
+                                    <h4 class="mb-0">{{ $paid_orders_sum }}</h4>
                                 </div>
 
                                 <div class="flex-shrink-0 align-self-center">
