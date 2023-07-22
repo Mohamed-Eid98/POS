@@ -124,16 +124,20 @@
 
                                             </td>
                                             <td>
-                                                @if (($product->colors->sum('pivot.is_stock') / 2) == 0)
-                                                    <b><span style="color:  rgb(164, 215, 46)">غير متوفر في
+                                                @if ( $product->colors->count('pivot.is_stock') !=0 && ($product->colors->sum('pivot.is_stock') /($product->colors->count('pivot.is_stock'))) == 0)
+                                                <b><span style="color:  rgb(164, 215, 46)">غير متوفر في
                                                             المخزون</span></b>
                                                 @else
                                                     <b><span style="color: rgb(164, 215, 46)"> متوفر في المخزون</span></b>
                                                 @endif
                                             </td>
 
-                                            <td>{{ ($product->colors->sum('pivot.is_stock')) / 2 }}</td>
-
+                                            <td>
+                                                @if ( $product->colors->count('pivot.is_stock') !=0)
+                                                {{ ($product->colors->sum('pivot.is_stock')) / $product->colors->count('pivot.is_stock') }}</td>
+                                                @else
+                                               {{ $product->colors->sum('pivot.is_stock')}}
+                                               @endif
 
                                             <td>
                                                 <ul class="list-unstyled hstack gap-1 mb-0">

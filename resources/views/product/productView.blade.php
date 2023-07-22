@@ -191,7 +191,7 @@
 
                                                 </td>
                                                 <td>
-                                                    @if (($product->colors->sum('pivot.is_stock') / 2) == 0)
+                                                    @if ( $product->colors->count('pivot.is_stock') !=0 && ($product->colors->sum('pivot.is_stock') /($product->colors->count('pivot.is_stock'))) == 0)
                                                         <b><span style="color:  rgb(164, 215, 46)">غير متوفر في
                                                                 المخزون</span></b>
                                                     @else
