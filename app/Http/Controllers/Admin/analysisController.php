@@ -6,6 +6,7 @@ use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use Illuminate\Database\Query\Builder;
 
 
 class analysisController extends Controller
@@ -70,7 +71,7 @@ class analysisController extends Controller
     }
     public function storage()
     {
-        $products = Product::orderBy('name', 'ASC')->get();
+        $products = Product::get();
 
         return view('analysis.storage', compact('products'));
     }
@@ -84,4 +85,31 @@ class analysisController extends Controller
 
         return redirect()->back();
     }
+
+    function search(Request $request){
+            $q = $request->status;
+
+            if ($q == 'unavailable') {
+                $products = Product::with(['colors' => function ($q){
+                    $q->wherePivot('is_stock' , '=', 0);
+                }])->get();
+                // return $products ;
+            }
+            elseif ($q == 'lowavailable') {
+                $products = Product::whereHas('colors' , function($query){
+                    $query->where('is_stock' , '>', 0)->where('is_stock', '<' , 10);
+                } )->get();
+            }
+
+            else{
+                $products = Product::whereHas('colors' , function($query){
+                    $query->where('is_stock' , '>', 10);
+                } )->get();
+            }
+
+            return view('analysis.storage', compact('products'));
+
+    }
+
+
 }

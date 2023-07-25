@@ -219,8 +219,9 @@ Route::middleware('isAdmin')->group(function () {
     //////////// End slides All Routes //////////
     //////////// Start slieds All Routes ////////
 
-    Route::get('/publicview1', [analysisController::class, 'publicview'])->name('public.view');
-    Route::get('/storage1', [analysisController::class, 'storage'])->name('storage.view');
+    Route::get('/public-view', [analysisController::class, 'publicview'])->name('public.view');
+    Route::get('/storage-view', [analysisController::class, 'storage'])->name('storage.view');
+    Route::post('/storage-view', [analysisController::class, 'search'])->name('storage.search');
     Route::get('/storage-delete-{id}', [analysisController::class, 'Delete'])->name('storage.delete');
 
 

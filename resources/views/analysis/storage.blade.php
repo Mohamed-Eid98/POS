@@ -59,7 +59,7 @@
 
                     </p>
 
-                    <form action="{{ route('storage.view') }}" method="POST">
+                    <form action="{{ route('storage.search') }}" method="POST"  class="row gy-2 gx-3 align-items-center">
                         @csrf
 
                         <div class="row">
@@ -69,16 +69,25 @@
 
                                 <div class="form-group">
                                     <div class="controls">
-                                        <select name="status" id="select" class="form-select" style="dir: rtl; padding-right:10%">
+                                        <select class="form-select-left" style="width:100%;" id="autoSizingSelect" name="status">
+                                        {{-- <select name="status" id="select" class="form-select-left" style="width: 50%"> --}}
                                             <option value="" selected disabled><b>الفرز حسب حالة المخزون</b></option>
-                                            <option value="0">غير متوفر في المخزون</option>
-                                            <option value="0">مخزون منخفض</option>
-                                            <option value="1">متوفر في المخزون</option>
+                                            <option value="unavailable">غير متوفر في المخزون</option>
+                                            <option value="lowavailable">مخزون منخفض</option>
+                                            <option value="available">متوفر في المخزون</option>
                                         </select>
                                         @error('status')
                                             <span class="text-danger">{{ $message }}</span>
                                         @enderror
                                     </div>
+                                </div>
+
+                            </div> <!-- end col md 6 -->
+                            <div class="col-md-1">
+
+
+                                <div class="col-sm-auto">
+                                    <button type="submit" class="btn btn-info w-md">تصفيه</button>
                                 </div>
 
                             </div> <!-- end col md 6 -->
@@ -89,6 +98,9 @@
 
                         <br>
                     </form>
+                    <br>
+
+
 
 
                     <div class="row">
@@ -123,22 +135,41 @@
 
                                             </td>
                                             <td>
-                                                @if ( $product->colors->count('pivot.is_stock') !=0 && ($product->colors->sum('pivot.is_stock') /($product->colors->count('pivot.is_stock'))) == 0)
-                                                <b><span style="color:  rgb(164, 215, 46)">غير متوفر في
-                                                            المخزون</span></b>
+
+
+                                                @if ( $product->colors->sum('pivot.is_stock') > 0)
+                                                <b><span style="color: rgb(164, 215, 46)"> متوفر في المخزون</span></b>
+
                                                 @else
-                                                    <b><span style="color: rgb(164, 215, 46)"> متوفر في المخزون</span></b>
+                                                <b><span style="color:  red">غير متوفر في
+                                                    المخزون</span></b>
                                                 @endif
+
+
                                             </td>
 
-                                            <td>
-                                                @if ( $product->colors->count('pivot.is_stock') !=0)
-                                                {{ ($product->colors->sum('pivot.is_stock')) / $product->colors->count('pivot.is_stock') }}</td>
-                                                @else
-                                               {{ $product->colors->sum('pivot.is_stock')}}
-                                               @endif
+                                <td>
+                                    @if ( $product->colors->count('pivot.is_stock') !=0)
+                                            @if (($product->colors->sum('pivot.is_stock')) / $product->colors->count('pivot.is_stock') > 10)
+                                            <b><span class="badge text-bg-success" >
+                                                {{ ($product->colors->sum('pivot.is_stock')) / $product->colors->count('pivot.is_stock') }}
+                                            </span></b>
+                                            @elseif (($product->colors->sum('pivot.is_stock')) / $product->colors->count('pivot.is_stock') < 10 && ($product->colors->sum('pivot.is_stock')) / $product->colors->count('pivot.is_stock') > 5)
+                                            <b><span class="badge text-bg-warning">
+                                                {{ ($product->colors->sum('pivot.is_stock')) / $product->colors->count('pivot.is_stock') }}
+                                            </span></b>
+                                            @else
+                                            <b><span class="badge text-bg-danger">
+                                                {{ ($product->colors->sum('pivot.is_stock')) / $product->colors->count('pivot.is_stock') }}
+                                            </span></b>
+                                            @endif
+                                        @else
+                                        <b><span class="badge text-bg-danger">
+                                            {{ ($product->colors->sum('pivot.is_stock')) }}
+                                        </span></b>
+                                   @endif
 
-                                            <td>
+                                <td>
                                                 <ul class="list-unstyled hstack gap-1 mb-0">
 
                                                     <li data-bs-toggle="tooltip" data-bs-placement="top" title="Delete">
