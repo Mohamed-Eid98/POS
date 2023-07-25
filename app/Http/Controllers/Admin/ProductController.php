@@ -45,8 +45,7 @@ class ProductController extends Controller
 
     public function Store(Request $request)
     {
-        // return $request;
-
+        // return $request->qty;
 
         $product = Product::Create([
             'name' => $request->name,
@@ -59,8 +58,6 @@ class ProductController extends Controller
             'min_price' => $request->min_price,
             'increase_ratio' => $request->increase_ratio,
             'repeat_times' => $request->repeated_times,
-            'product_qty' => $request->qty,
-
 
             'is_new' => $request->new,
             'is_on_sale' => $request->sale,
@@ -75,27 +72,31 @@ class ProductController extends Controller
             $product->addMediaFromRequest('pic')->toMediaCollection('images');
         }
 
+        $qtySum = array_sum($request->qty);
         $colorProducts = [];
 
         foreach ($request->color as $color) {
-            $colorProduct = ColorProduct::Create([
+            $colorProduct = ColorProduct::create([
                 'product_id' => $product->id,
                 'color_id' => $color,
+                'is_stock' => $qtySum,
             ]);
 
             $colorProducts[] = $colorProduct;
         }
 
-        // return $colorProducts;
-
-        foreach ($request->size as $size) {
-            foreach ($colorProducts as $singleColorProduct) {
+        foreach ($colorProducts as $singleColorProduct) {
+            foreach ($request->size as $sizeIndex => $size) {
+                $isStock = $request->qty[$sizeIndex];
                 ColorProductSize::create([
                     'color_product_id' => $singleColorProduct->id,
                     'size_id' => $size,
+                    'is_stock' => $isStock,
                 ]);
             }
         }
+
+
 
         if ($request->hasFile('multi_img')) {
             foreach ($request->file('multi_img') as $image) {
@@ -110,7 +111,7 @@ class ProductController extends Controller
 
     public function Show()
     {
-        $products = Product::with('subcategory')->get();
+        $products = Product::with('subcategory' , 'colors')->get();
         $subcategories = subCategory::get();
         // return $products;
         return view('product.productView', compact('products', 'subcategories'));
@@ -150,13 +151,11 @@ class ProductController extends Controller
     {
         $product = Product::find($id);
         $subcategory = subCategory::where('id', $product->sub_category_id)->first();
-        // return $subcategory;
         return view('sub_category.subcategoryPage', compact('subcategory'));
     }
 
     public function tags()
     {
-        // dd('das');
         return view('product.product_view_sub');
     }
 

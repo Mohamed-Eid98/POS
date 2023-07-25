@@ -103,15 +103,6 @@
                                         <th>رمز المنتج (SKU) </th>
                                         <th> حاله المنتج</th>
                                         <th>المخزون</th>
-                                        {{-- <th>الحد الادني </th>
-                                            <th>معدل الزياده </th>
-                                            <th>عدد التكرار</th>
-                                            <th>الحد الاقصي </th>
-                                            <th>الكميه </th>
-                                            <th>جديد </th>
-                                            <th>الاكثر مبيعاً </th>
-                                            <th> العروض </th>
-                                            <th>وصل حديثاً </th> --}}
                                         <th>التعديلات</th>
                                     </tr>
 
@@ -132,8 +123,8 @@
 
                                             </td>
                                             <td>
-                                                @if ($product->product_qty == 0)
-                                                    <b><span style="color:  rgb(164, 215, 46)">غير متوفر في
+                                                @if ( $product->colors->count('pivot.is_stock') !=0 && ($product->colors->sum('pivot.is_stock') /($product->colors->count('pivot.is_stock'))) == 0)
+                                                <b><span style="color:  rgb(164, 215, 46)">غير متوفر في
                                                             المخزون</span></b>
                                                 @else
                                                     <b><span style="color: rgb(164, 215, 46)"> متوفر في المخزون</span></b>
@@ -141,50 +132,12 @@
                                             </td>
 
                                             <td>
-                                                @if ($product->product_qty != 0)
-                                                    {{ $product->product_qty }}
+                                                @if ( $product->colors->count('pivot.is_stock') !=0)
+                                                {{ ($product->colors->sum('pivot.is_stock')) / $product->colors->count('pivot.is_stock') }}</td>
                                                 @else
-                                                    <b>0</b>
-                                                @endif
-                                            </td>
+                                               {{ $product->colors->sum('pivot.is_stock')}}
+                                               @endif
 
-                                            {{-- <td> {{ $product->min_price }} د.ع. </td>
-                                                <td> {{ $product->increase_ratio }} د.ع. </td>
-                                                <td> {{ $product->repeat_times }} </td>
-                                                <td>
-                                                    {{ $product->min_price + ($product->repeat_times + 1) * $product->increase_ratio }}
-                                                    د.ع.
-
-                                                </td>
-                                                <td> {{ $product->product_qty }} </td>
-                                                <td>
-                                                    @if ($product->is_new == 1)
-                                                        <span class="badge text-bg-secondary">نعم</span>
-                                                    @else
-                                                        <span class="badge text-bg-danger">لا</span>
-                                                    @endif
-                                                </td>
-                                                <td>
-                                                    @if ($product->is_best_seller == 1)
-                                                        <span class="badge text-bg-secondary">نعم</span>
-                                                    @else
-                                                        <span class="badge text-bg-danger">لا</span>
-                                                    @endif
-                                                </td>
-                                                <td>
-                                                    @if ($product->is_on_sale == 1)
-                                                        <span class="badge text-bg-secondary">نعم</span>
-                                                    @else
-                                                        <span class="badge text-bg-danger">لا</span>
-                                                    @endif
-                                                </td>
-                                                <td>
-                                                    @if ($product->is_new_arrival == 1)
-                                                        <span class="badge text-bg-secondary">نعم</span>
-                                                    @else
-                                                        <span class="badge text-bg-danger">لا</span>
-                                                    @endif
-                                                </td> --}}
                                             <td>
                                                 <ul class="list-unstyled hstack gap-1 mb-0">
 

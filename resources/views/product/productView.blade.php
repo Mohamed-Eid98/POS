@@ -191,13 +191,15 @@
 
                                                 </td>
                                                 <td>
-                                                    @if ($product->product_qty == 0)
-                                                           <b><span style="color:  rgb(164, 215, 46)">غير متوفر في المخزون</span></b>
+                                                    @if ( $product->colors->count('pivot.is_stock') !=0 && ($product->colors->sum('pivot.is_stock') /($product->colors->count('pivot.is_stock'))) == 0)
+                                                        <b><span style="color:  rgb(164, 215, 46)">غير متوفر في
+                                                                المخزون</span></b>
                                                     @else
-                                                    <b><span style="color: rgb(164, 215, 46)"> متوفر في المخزون</span></b>
-
+                                                        <b><span style="color: rgb(164, 215, 46)"> متوفر في المخزون</span></b>
                                                     @endif
                                                 </td>
+                                                {{-- <td>{{ ($product->colors->sum('pivot.is_stock')) / 2 }}</td> --}}
+
                                                 <td> {{ $product->price }} د.ع. </td>
                                                 <td>
                                                     @if ($product->subcategory)

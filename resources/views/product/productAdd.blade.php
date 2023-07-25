@@ -113,7 +113,7 @@
                                         <h4 class="form-label my-3">الوسوم </h4>
 
 
-                                        <select name="size[]" id="select" class="form-control">
+                                        <select name="tag" id="select" class="form-control">
                                             <option value="" selected disabled>-- اختر --</option>
                                             <option value="">
                                                 sss
@@ -196,7 +196,7 @@
 
                                         <div class="mb-3">
                                             <h4 class="form-label">الكميه </h4>
-                                            <input type="text" name="qty" class="form-control">
+                                            <input type="number" name="qty[]" required class="form-control">
 
                                         </div>
                                     </div>
@@ -375,10 +375,10 @@
                             <div class="col-md-4">
 
                                 <div class="form-group">
-                                    <h5 for="qty">الكميه </h5>
+                                    <h5 for="qty[]">الكميه </h5>
                                     <div class="controls">
-                                        <input type="number" name="qty" class="form-control" />
-                                        @error('qty')
+                                        <input type="number" name="qty[]" class="form-control" />
+                                        @error('qty[]')
                                             <span class="text-danger">{{ $message }}</span>
                                         @enderror
                                     </div>
@@ -586,7 +586,7 @@
 
 
             <select name="size[]" id="select" class="form-control">
-
+                <option value="" selected disabled>-- اختر المقاس --</option>
 
                 @foreach ($sizes as $size)
                     <option value="{{ $size->id }}">
@@ -600,7 +600,7 @@
 
         <div class="mb-3">
             <h4 class="form-label">الكميه </h4>
-            <input type="text" name="qty"  class="form-control" >
+            <input type="number" name="qty[]" required  class="form-control" >
 
         </div>
 
@@ -677,7 +677,7 @@
 
                                             <div class="mb-3">
                                                 <h4 class="form-label">الكميه </h4>
-                                                <input type="text" name="qty"  class="form-control" >
+                                                <input type="number" name="qty[]" required  class="form-control" >
 
                                             </div>
                                         </div>
@@ -749,6 +749,7 @@
 
             <select name="size[]" id="select" class="form-control">
 
+                <option value="" selected disabled>-- اختر المقاس --</option>
 
                 @foreach ($sizes as $size)
                     <option value="{{ $size->id }}">
@@ -762,7 +763,7 @@
 
         <div class="mb-3">
             <h4 class="form-label">الكميه </h4>
-            <input type="text" name="qty"  class="form-control" >
+            <input type="number" name="qty[]" required  class="form-control" >
 
         </div>
 
