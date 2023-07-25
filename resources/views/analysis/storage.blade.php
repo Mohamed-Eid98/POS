@@ -69,9 +69,9 @@
 
                                 <div class="form-group">
                                     <div class="controls">
-                                        <select name="status" id="select" class="form-control">
+                                        <select name="status" id="select" class="form-select" style="dir: rtl; padding-right:10%">
                                             <option value="" selected disabled><b>الفرز حسب حالة المخزون</b></option>
-                                            <option value="0">غير متوفر في المخزون</option>\
+                                            <option value="0">غير متوفر في المخزون</option>
                                             <option value="0">مخزون منخفض</option>
                                             <option value="1">متوفر في المخزون</option>
                                         </select>
@@ -82,7 +82,6 @@
                                 </div>
 
                             </div> <!-- end col md 6 -->
-
 
 
 
